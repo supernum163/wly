@@ -1,0 +1,172 @@
+# Free CDN : Cloudinary postimg
+
+# hugo汇编时需要忽略的文件与文件夹
+ignoreFiles = [".Rmd$", ".Rmarkdown$", "_files$", "_cache$"]
+
+# 网站根目录，可以是网址
+baseURL = "/"
+# 主界面语言，与i18n文件夹对应
+languageCode = "zh-cn"
+defaultContentLanguage = "zh-cn"
+# 网站标题
+title = "wly's notebook"
+# disqus网站账户名
+disqusShortname = "hugo-tranquilpeak-theme"
+# 主页面每页显示多少条post
+paginate = 7
+# unkown
+canonifyurls = true
+
+# post在public文件夹中的放置路径
+[permalinks]
+  post = "/:year-:month/:slug/"
+
+# post标签、分类、归档路径
+[taxonomies]
+  tag = "tags"
+  category = "categories"
+  archive = "archives"
+
+# 作者信息
+[author]
+  name = "Firstname Lastname"
+  bio = "Super bio with markdown support **COOL**"
+  job = "Your job title"
+  location = "中国 上海"
+  # Gravatar email 作者头像
+  gravatarEmail = "thibaud999.lepretre@gmail.com"
+  # 当 Gravatar email 为空时, 作者头像
+  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+
+  # Your Twitter username without the @. E.g : thibaudlepretre
+  twitter = "thibaudlepretre"
+  # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
+  googlePlus = "+ThibaudLepretre"
+
+# 侧边栏菜单
+[[menu.main]]
+  weight = 1
+  identifier = "home"
+  name = "Home"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-home\"></i>"
+  url = "/"
+[[menu.main]]
+  weight = 2
+  identifier = "categories"
+  name = "Categories"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-bookmark\"></i>"
+  url = "/categories"
+[[menu.main]]
+  weight = 3
+  identifier = "tags"
+  name = "Tags"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-tags\"></i>"
+  url = "/tags"
+[[menu.main]]
+  weight = 4
+  identifier = "archives"
+  name = "Archives"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-archive\"></i>"
+  url = "/archives"
+[[menu.main]]
+  weight = 5
+  identifier = "about"
+  name = "About"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
+  url = "/#about"
+
+[[menu.links]]
+  weight = 1
+  identifier = "github"
+  name = "GitHub"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
+  url = "https://github.com/kakawait"
+[[menu.links]]
+  weight = 2
+  identifier = "stackoverflow"
+  name = "Stack Overflow"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-stack-overflow\"></i>"
+  url = "https://stackoverflow.com/users/636472/kakawait"
+
+[[menu.misc]]
+  weight = 1
+  identifier = "rss"
+  name = "RSS"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rss\"></i>"
+  url = "/index.xml"
+
+[params]
+  # 日期格式
+  dateFormat = "2006-01-02"
+
+  # 高亮代码，可用选项有: "highlight.js" (recommanded) and "prism.js" (experimental)
+  syntaxHighlighter = "highlight.js"
+
+  # 网站favicon
+  favicon = "/favicon.png"
+  # 全局关键字，在meta信息中
+  keywords = ["development", "next-gen"]
+  # 网站description，在meta信息中
+  description = "Hugo tranquilpeak theme demo"
+
+  # 当用户阅读post时，隐藏侧边栏
+  clearReading = true
+  # 互换post底部“上一篇”与“下一篇”
+  # swapPaginator = false
+  # post归类标准: `categories = ["foo", "bar"]` 将post归类于 "foo"下层的"bar"中，设置为false则不能进行归类
+  hierarchicalCategories = true
+  # 当post的meta中含有gallery信息时，在页面底部展示imageGallery
+  imageGallery = true
+
+  # 侧边栏大小，可以为1至6
+  sidebarBehavior = 1
+
+  # 侧边栏背景图，修改为底色比较好
+  coverImage = "cover.jpg"
+
+  # 是否显示post展示图
+  thumbnailImage = true
+  # post展示图默认摆放位置， 可以为"right", "left", "bottom", 在post的"thumbnailImagePosition"中覆盖此设置
+  thumbnailImagePosition = "right"
+  # 将post中的第一张图片作为post展示图，在post的"autoThumbnailImage"中覆盖此设置
+  autoThumbnailImage = true
+
+  # 加入自定义CSS，默认放在static/css文件夹中
+  # [[params.customCSS]]
+  #   href = "css/mystyle.css"
+
+  # 加入自定义js，默认放在static/js文件夹中
+  # [[params.customJS]]
+  #   src = "js/myscript.js"
+  
+
+  # 分享链接，在每个post页面底部
+  [[params.sharingOptions]]
+    name = "Facebook"
+    icon = "fa-facebook-official"
+    url = "https://www.facebook.com/sharer/sharer.php?u=%s"
+
+  [[params.sharingOptions]]
+    name = "Twitter"
+    icon = "fa-twitter"
+    url = "https://twitter.com/intent/tweet?text=%s"
+
+  [[params.sharingOptions]]
+    name = "Google+"
+    icon = "fa-google-plus"
+    url = "https://plus.google.com/share?url=%s"
+    
+
+  # 在页面右上角对象与链接,默认是用户头像
+  [params.header.rightLink]
+  url = "/#search"
+  icon = "search"
+  class = "st-search-show-outputs"
+
+  # 在侧边栏中加入关于页面
+   [params.sidebar.profile]
+     url = "/#about"
+
+  # 修改修改所有权声明中的作者
+   [params.footer]
+     copyright = "<a href=\"https://github.com/kakawait\">kakawait</a>"
