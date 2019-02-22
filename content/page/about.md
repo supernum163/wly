@@ -3,8 +3,6 @@ title: "about"
 categories:
 - 博客信息
 - 关于博主
-tags:
-- 关于博主
 keywords:
 - 关于博主
 comments:       false
