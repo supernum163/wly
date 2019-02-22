@@ -19,7 +19,7 @@ canonifyurls = true
 
 # post在public文件夹中的放置路径
 [permalinks]
-  post = "/:year-:month/:slug/"
+  post = "/:year/:month/:slug/"
 
 # post标签、分类、归档路径
 [taxonomies]
@@ -73,7 +73,7 @@ canonifyurls = true
   identifier = "about"
   name = "About"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-question\"></i>"
-  url = "/#about"
+  url = "/page/about"
 
 [[menu.links]]
   weight = 1
@@ -105,7 +105,7 @@ canonifyurls = true
   # 网站favicon
   favicon = "/favicon.png"
   # 全局关键字，在meta信息中
-  keywords = ["development", "next-gen"]
+  keywords = ["个人博客", "supernum"]
   # 网站description，在meta信息中
   description = "Hugo tranquilpeak theme demo"
 
