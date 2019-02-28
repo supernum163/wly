@@ -99,9 +99,6 @@
 
 - id: "post_action.comment"
   translation: "写下评论"
-
-- id: "post_action.show_social"
-  translation: "分享"
   
 ## POST ##
 - id: "post.no_title"
