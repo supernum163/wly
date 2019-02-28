@@ -50,13 +50,13 @@
     <ul class="post-actions post-action-share" >
       {{ if (not (eq .Params.showSocial false)) }}
         <li class="post-action hide-lg hide-md hide-sm">
-          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions tooltip--top" href="#btn-open-shareoptions"  data-tooltip="{{ i18n "post_action.show_social" }}">
             <i class="fa fa-share-alt"></i>
           </a>
         </li>
         {{ range .Site.Params.sharingOptions }}
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default" target="new" href="{{ printf .url $.Permalink }}">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="{{ printf .url $.Permalink }}" data-tooltip="{{ printf (i18n "global.share_on") .name }}">
               <i class="fa {{ .icon }}"></i>
             </a>
           </li>
@@ -64,16 +64,16 @@
       {{ end }}
       {{ if and (not (eq .Params.comments false)) .Site.DisqusShortname }}
         <li class="post-action">
-          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+          <a class="post-action-btn btn btn--default tooltip--top" href="#disqus_thread" data-tooltip="{{ i18n "post_action.comment" }}">
             <i class="fa fa-commenting-o"></i>
           </a>
         </li>
       {{ end }}
       <li class="post-action">
         {{ if findRE "<!--\\s*[t|T][o|O][c|C]\\s*-->" .Content }}
-          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+          <a class="post-action-btn btn btn--default tooltip--top" href="#table-of-contents" data-tooltip="{{ i18n "post_action.go_top" }}">
         {{ else }}
-          <a class="post-action-btn btn btn--default" href="#">
+          <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="{{ i18n "post_action.go_top" }}">
         {{ end }}
           <i class="fa fa-arrow-up"></i>
         </a>
