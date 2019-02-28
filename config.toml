@@ -112,7 +112,7 @@ canonifyurls = true
   # 当用户阅读post时，隐藏侧边栏
   clearReading = true
   # 互换post底部“上一篇”与“下一篇”
-  # swapPaginator = false
+  swapPaginator = false
   # post归类标准: `categories = ["foo", "bar"]` 将post归类于 "foo"下层的"bar"中，设置为false则不能进行归类
   hierarchicalCategories = true
   # 当post的meta中含有gallery信息时，在页面底部展示imageGallery

@@ -88,10 +88,10 @@
   translation: "下一页"
 
 - id: "pagination.previous"
-  translation: "下一篇"
+  translation: "上一篇"
 
 - id: "pagination.next"
-  translation: "上一篇"
+  translation: "下一篇"
 
 ## POST ##
 - id: "post.no_title"
