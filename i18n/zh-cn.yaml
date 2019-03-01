@@ -93,7 +93,6 @@
 - id: "pagination.next"
   translation: "下一篇"
   
-## PAGINATION ##
 - id: "post_action.go_top"
   translation: "回到顶部"
 
