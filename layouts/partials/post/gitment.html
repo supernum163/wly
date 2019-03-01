@@ -1,0 +1,18 @@
+{{ if .Site.Params.gitment.enable }}
+<br><br><br>
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
+<script src="https://billts.site/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '<%= page.date %>',
+        owner: '{{ .Site.Params.gitment.githubID }}',
+        repo: '{{ .Site.Params.gitment.repo }}',
+        oauth: {
+            client_id: '{{ .Site.Params.gitment.ClientID }}',
+            client_secret: '{{ .Site.Params.gitment.ClientSecret }}',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+{{ end }}

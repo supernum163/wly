@@ -1,6 +1,56 @@
+### config
+# disqus网站账户名
+disqusShortname = "hugo-tranquilpeak-theme"
+# 作者信息
+[author]
+  # Your Twitter username without the @. E.g : thibaudlepretre
+  twitter = "thibaudlepretre"
+  # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
+  googlePlus = "+ThibaudLepretre"
 
 #### layouts/__default/single.html
 #  <div id="bottom-bar" class="post-bottom-bar" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
 #    {{ partial "post/actions.html" . }}
 #  </div>
 {{ partial "post/share-options.html" . }}
+
+
+#### layouts/__default/single.html
+            {{ if not (eq .Params.comments false) }}
+              {{ if .Site.DisqusShortname }}
+                {{ partial "post/disqus.html" . }}
+              {{ end }}
+            {{ end }}
+            
+#### layouts/partials/script.html
+{{ if .IsPage }}
+  {{ if not (eq .Params.comments false) }}
+    {{ if .Site.DisqusShortname }}
+      <script>
+        var disqus_config = function () {
+          this.page.url = '{{ .Permalink }}';
+          {{ if .Params.disqusIdentifier }}
+            this.page.identifier = '{{ .Params.disqusIdentifier }}';
+          {{ else }}
+            this.page.identifier = '{{ .URL | relURL }}'
+          {{ end }}
+        };
+        (function() {
+          // Don't ever inject Disqus on localhost--it creates unwanted
+          // discussions from 'localhost:1313' on your Disqus account...
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = '{{ .Site.DisqusShortname }}';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    {{ end }}
+  {{ end }}
+{{ end }}
+#{{ if or .Params.math .Site.Params.math }}
+

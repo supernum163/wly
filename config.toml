@@ -10,8 +10,6 @@ languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
 # 网站标题
 title = "wly's notebook"
-# disqus网站账户名
-disqusShortname = "hugo-tranquilpeak-theme"
 # 主页面每页显示多少条post
 paginate = 7
 # unkown
@@ -37,11 +35,6 @@ canonifyurls = true
   gravatarEmail = "thibaud999.lepretre@gmail.com"
   # 当 Gravatar email 为空时, 作者头像
   picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
-
-  # Your Twitter username without the @. E.g : thibaudlepretre
-  # twitter = "thibaudlepretre"
-  # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
-  # googlePlus = "+ThibaudLepretre"
 
 # 侧边栏菜单
 [[menu.main]]
@@ -170,3 +163,12 @@ canonifyurls = true
   # 修改修改所有权声明中的作者
    [params.footer]
      copyright = "<a href=\"https://github.com/kakawait\">kakawait</a>"
+     
+  # gitment评论系统信息
+  [params.gitment]
+    enable = true
+    githubID = "supernum163"
+    repo = "https://github.com/supernum163/wly"
+    ClientID = "40f2576aa2a372d81a1a"
+    ClientSecret = "be1df3e5286c5ccd1feec5bd3f297d298dd39037"
+    lazy = true

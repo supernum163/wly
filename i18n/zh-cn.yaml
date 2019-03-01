@@ -97,6 +97,9 @@
 - id: "post_action.go_top"
   translation: "回到顶部"
 
+- id: "post_action.go_bottom"
+  translation: "回到底部"
+
 - id: "post_action.comment"
   translation: "写下评论"
   

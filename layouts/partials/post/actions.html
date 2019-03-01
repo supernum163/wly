@@ -62,13 +62,16 @@
           </li>
         {{ end }}
       {{ end }}
-      {{ if and (not (eq .Params.comments false)) .Site.DisqusShortname }}
-        <li class="post-action">
-          <a class="post-action-btn btn btn--default tooltip--top" href="#disqus_thread" data-tooltip="{{ i18n "post_action.comment" }}">
-            <i class="fa fa-commenting-o"></i>
-          </a>
-        </li>
-      {{ end }}
+      <li class="post-action">
+        {{ if .Site.Params.gitment.enable }}
+          <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="{{ i18n "post_action.comment" }}">
+          <i class="fa fa-commenting-o"></i>
+        {{ else }}
+          <a class="post-action-btn btn btn--default tooltip--top" href="#footer" data-tooltip="{{ i18n "post_action.go_bottom" }}">
+          <i class="fa fa-arrow-down"></i>
+        {{ end }}
+        </a>
+      </li>
       <li class="post-action">
         {{ if findRE "<!--\\s*[t|T][o|O][c|C]\\s*-->" .Content }}
           <a class="post-action-btn btn btn--default tooltip--top" href="#table-of-contents" data-tooltip="{{ i18n "post_action.go_top" }}">
