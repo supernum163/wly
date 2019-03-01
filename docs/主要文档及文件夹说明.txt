@@ -1,0 +1,11 @@
+theme.toml:   网站整体设置
+wly.Rproj:    R语言project管理
+.gitignore:   上传至github时需要忽略的内容
+layouts:      网站页面布局模板
+src:          存放原始css、js、image等内容
+static:       存放汇总处理后的css、js、image等内容
+i18n:         网站语言包
+public:       hugo最终编译生成的静态网站
+archetypes:   生成page和post文件头的模板
+content:      网站子页面
+docs：        说明与帮助文档，不会被hugo编译

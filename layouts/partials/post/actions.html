@@ -4,28 +4,28 @@
         <ul class="post-actions post-action-nav">
           {{ if .Site.Params.swapPaginator }}
             <li class="post-action">
-              {{ with .NextInSection }}
-                <a class="post-action-btn btn btn--default tooltip--top" href="{{ .RelPermalink }}" data-tooltip="{{ .Title }}">
-              {{ else }}
-                <a class="post-action-btn btn btn--disabled">
-              {{ end }}
-                  <i class="fa fa-angle-left"></i>
-                  <span class="hide-xs hide-sm text-small icon-ml">{{ i18n "pagination.next" }}</span>
-                </a>
-            </li>
-            <li class="post-action">
               {{ with .PrevInSection }}
                 <a class="post-action-btn btn btn--default tooltip--top" href="{{ .RelPermalink }}" data-tooltip="{{ .Title }}">
               {{ else }}
                 <a class="post-action-btn btn btn--disabled">
               {{ end }}
                   <span class="hide-xs hide-sm text-small icon-mr">{{ i18n "pagination.previous" }}</span>
+                  <i class="fa fa-angle-left"></i>
+                </a>
+            </li>
+            <li class="post-action">
+              {{ with .NextInSection }}
+                <a class="post-action-btn btn btn--default tooltip--top" href="{{ .RelPermalink }}" data-tooltip="{{ .Title }}">
+              {{ else }}
+                <a class="post-action-btn btn btn--disabled">
+              {{ end }}
                   <i class="fa fa-angle-right"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">{{ i18n "pagination.next" }}</span>
                 </a>
             </li>
           {{ else }}
             <li class="post-action">
-              {{ with .PrevInSection }}
+              {{ with .NextInSection }}
                 <a class="post-action-btn btn btn--default tooltip--top" href="{{ .RelPermalink }}" data-tooltip="{{ .Title }}">
               {{ else }}
                 <a class="post-action-btn btn btn--disabled">
@@ -35,7 +35,7 @@
                 </a>
             </li>
             <li class="post-action">
-              {{ with .NextInSection }}
+              {{ with .PrevInSection }}
                 <a class="post-action-btn btn btn--default tooltip--top" href="{{ .RelPermalink }}" data-tooltip="{{ .Title }}">
               {{ else }}
                 <a class="post-action-btn btn btn--disabled">
