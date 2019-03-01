@@ -8,11 +8,6 @@ disqusShortname = "hugo-tranquilpeak-theme"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
   googlePlus = "+ThibaudLepretre"
 
-#### layouts/__default/single.html
-#  <div id="bottom-bar" class="post-bottom-bar" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
-#    {{ partial "post/actions.html" . }}
-#  </div>
-{{ partial "post/share-options.html" . }}
 
 #### layouts/partials/post/gitment.html
 <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
