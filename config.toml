@@ -39,9 +39,9 @@ canonifyurls = true
   picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
 
   # Your Twitter username without the @. E.g : thibaudlepretre
-  twitter = "thibaudlepretre"
+  # twitter = "thibaudlepretre"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
-  googlePlus = "+ThibaudLepretre"
+  # googlePlus = "+ThibaudLepretre"
 
 # 侧边栏菜单
 [[menu.main]]
