@@ -165,7 +165,7 @@ canonifyurls = true
   [params.gitment]
     enable = true
     githubID = "supernum163"
-    repo = "https://github.com/supernum163/wly"
+    repo = "wly"
     ClientID = "40f2576aa2a372d81a1a"
     ClientSecret = "be1df3e5286c5ccd1feec5bd3f297d298dd39037"
     lazy = true
