@@ -31,10 +31,8 @@ canonifyurls = true
   bio = "Super bio with markdown support **COOL**"
   job = "Your job title"
   location = "中国 上海"
-  # Gravatar email 作者头像
-  gravatarEmail = "thibaud999.lepretre@gmail.com"
   # 当 Gravatar email 为空时, 作者头像
-  picture = "https://cdn1.iconfinder.com/data/icons/ninja-things-1/1772/ninja-simple-512.png"
+  picture = "https://www.gravatar.com/avatar/04ad14c8350763bebfd8382501c90a84?s=110"
 
 # 侧边栏菜单
 [[menu.main]]
@@ -124,15 +122,14 @@ canonifyurls = true
   # 将post中的第一张图片作为post展示图，在post的"autoThumbnailImage"中覆盖此设置
   autoThumbnailImage = true
 
-  # 加入自定义CSS，默认放在static/css文件夹中
+  # 加入自定义CSS
   # [[params.customCSS]]
-  #   href = "css/mystyle.css"
+  #   href = "/css/show-url.css"
 
-  # 加入自定义js，默认放在static/js文件夹中
+  # 加入自定义js
   # [[params.customJS]]
-  #   src = "js/myscript.js"
-  
-
+  #   src = "http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"
+    
   # 分享链接，在每个post页面底部
   [[params.sharingOptions]]
     name = "新浪微博"
@@ -147,7 +144,7 @@ canonifyurls = true
   [[params.sharingOptions]]
     name = "微信"
     icon = "fa-weixin"
-    url = "https://plus.google.com/share?url=%s"
+    url = "#qrcode?%s"
     
 
   # 在页面右上角对象与链接,默认是用户头像
