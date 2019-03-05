@@ -4,10 +4,14 @@
       <div id="show-url-btn-close">
         <i class="fa fa-remove"></i>
       </div>
-      <div id="qrcode"></div> 
+      <div id="show-url-qrcode"></div> 
       <div id="show-url-describe">扫描上方二维码分享到微信</div>
     </div>
   </div>
+  <script src="/js/qrcode.min.js"></script>
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+  </script>
 {{ end }}
 
 <script>
@@ -218,9 +222,3 @@
     }
 }
 </style>
-
-
-<script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
-  
-<script> jQuery('#qrcode').qrcode({ text: window.location.href }); </script>

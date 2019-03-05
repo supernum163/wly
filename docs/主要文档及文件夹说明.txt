@@ -19,6 +19,7 @@ static/js:
   highlight.min.js、prism.min.js:                     高亮代码的脚本
   jquery.fancybox.min.js:                             使用fancybox图片展示功能的脚本
   gitment.js:                                         使用gitment评论功能的脚本
+  qrcode.min.js:                                      生成二维码的脚本
   MathJax.js:                                         在网页生成数学符号、公式的脚本
 
 static/css:

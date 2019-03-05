@@ -11,6 +11,12 @@ disqusShortname = "hugo-tranquilpeak-theme"
 ### layouts/partials/head.html
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
 
+### layouts/partials/post/show-url.html
+<script src="http://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="http://cdn.staticfile.org/jquery.qrcode/1.0/jquery.qrcode.min.js"></script>
+  
+<script> jQuery('#qrcode').qrcode({ text: window.location.href }); </script>
+
 #### layouts/partials/post/gitment.html
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
 <script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
