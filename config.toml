@@ -12,8 +12,6 @@ defaultContentLanguage = "zh-cn"
 title = "wly's notebook"
 # 主页面每页显示多少条post
 paginate = 7
-# unkown
-canonifyurls = true
 
 # post在public文件夹中的放置路径
 [permalinks]
@@ -140,12 +138,6 @@ canonifyurls = true
     name = "QQ空间"
     icon = "fa-qq"
     url = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/%s"
-
-  [[params.sharingOptions]]
-    name = "微信"
-    icon = "fa-weixin"
-    url = "#qrcode?%s"
-    
 
   # 在页面右上角对象与链接,默认是用户头像
   [params.header.rightLink]

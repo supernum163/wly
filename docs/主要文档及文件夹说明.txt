@@ -11,3 +11,26 @@ public:       hugo最终编译生成的静态网站
 Gruntfile.js: Grunt 将js与css内容插入到`layout/partials/script.html`
 tasks:        Grunt tasks
 docs：        说明与帮助文档，不会被hugo编译
+
+
+static/js:
+  jquery.min.js:                                      jquery v2.2.4
+  algoliasearch.min.js、moment-with-locales.min.js:   algolia网站托管平台的本地脚本
+  highlight.min.js、prism.min.js:                     高亮代码的脚本
+  jquery.fancybox.min.js:                             使用fancybox图片展示功能的脚本
+  gitment.js:                                         使用gitment评论功能的脚本
+  MathJax.js:                                         在网页生成数学符号、公式的脚本
+
+static/css:
+  font-awesome.min.css:                                     使用font-awesome图标库的css
+  jquery.fancybox.min.css、jquery.fancybox-thumbs.min.css:  使用fancybox图片展示、缩略图功能的css
+  gitment.css:                                              使用gitment评论功能的css
+
+static/fonts:           font-awesome的字体库
+static/img/fancybox:    fancybox图形原件
+
+
+
+
+
+

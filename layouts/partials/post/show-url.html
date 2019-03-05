@@ -1,12 +1,14 @@
-<div id="show-url">
-  <div id="show-url-card">
-    <div id="show-url-btn-close">
-      <i class="fa fa-remove"></i>
+{{ if (not (eq .Params.showSocial false)) }}
+  <div id="show-url">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="qrcode"></div> 
+      <div id="show-url-describe">扫描上方二维码分享到微信</div>
     </div>
-    <div id="qrcode"></div> 
-    <div id="show-url-describe">扫描上方二维码分享到微信</div>
   </div>
-</div>
+{{ end }}
 
 <script>
   (function($) {

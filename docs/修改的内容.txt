@@ -8,6 +8,8 @@ disqusShortname = "hugo-tranquilpeak-theme"
   # Your google plus profile id. E.g : +ThibaudLepretre or 114625208755123718311
   googlePlus = "+ThibaudLepretre"
 
+### layouts/partials/head.html
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
 
 #### layouts/partials/post/gitment.html
 <link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">

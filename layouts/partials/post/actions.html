@@ -61,6 +61,11 @@
             </a>
           </li>
         {{ end }}
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top" href="#qrcode" data-tooltip="分享到 微信">
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
       {{ end }}
       <li class="post-action">
       {{ if and (not (eq .Params.showSocial false)) .Site.Params.gitment.enable }}
