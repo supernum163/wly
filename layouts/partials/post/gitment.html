@@ -1,9 +1,10 @@
-{{ if .Site.Params.gitment.enable }}
+{{ if and (not (eq .Params.showSocial false)) .Site.Params.gitment.enable }}
 <div id="gitmentContainer"></div>
 <link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
 <script src="https://jjeejj.github.io/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
+        id: '{{ .Params.title }}',
         owner: '{{ .Site.Params.gitment.githubID }}',
         repo: '{{ .Site.Params.gitment.repo }}',
         oauth: {
