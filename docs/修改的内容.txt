@@ -12,7 +12,8 @@ disqusShortname = "hugo-tranquilpeak-theme"
 #### layouts/partials/post/gitment.html
 <link rel="stylesheet" href="https://billts.site/extra_css/gitment.css">
 <script src="https://billts.site/js/gitment.js"></script>
-
+<link rel="stylesheet" href="https://jjeejj.github.io/css/gitment.css">
+<script src="https://jjeejj.github.io/js/gitment.js"></script>
 
 #### layouts/__default/single.html
             {{ if not (eq .Params.comments false) }}
