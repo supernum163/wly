@@ -1,224 +1,69 @@
 {{ if (not (eq .Params.showSocial false)) }}
-  <div id="show-url">
+  <div id="show-url-background">
     <div id="show-url-card">
       <div id="show-url-btn-close">
         <i class="fa fa-remove"></i>
       </div>
       <div id="show-url-qrcode"></div> 
-      <div id="show-url-describe">扫描上方二维码分享到微信</div>
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
     </div>
   </div>
+  
   <script src="/js/qrcode.min.js"></script>
+
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
-  </script>
-{{ end }}
-
-<script>
-  (function($) {
-    'use strict';
     
-    var ShowURLCard = function() {
-      this.$openBtn = $("#post-footer").find("a[href*='/#show-url']");
-      this.$closeBtn = $('#show-url-btn-close');
-      this.$blog = $('#blog');
-      this.$show-url = $('#show-url');
-      this.$ShowURLCard = $('#show-url-card');
-    };
-  
-    ShowURLCard.prototype = {
-  
-      /**
-       * Run ShowURLCard feature
-       * @return {void}
-       */
-      run: function() {
-        var self = this;
-        // Detect click on open button
-        self.$openBtn.click(function(e) {
-          e.preventDefault();
-          self.play();
-        });
-        // Detect click on close button
-        self.$closeBtn.click(function(e) {
-          e.preventDefault();
-          self.playBack();
-        });
-      },
-  
-      /**
-       * Play the animation
-       * @return {void}
-       */
-      play: function() {
-        var self = this;
-        // Fade out the blog
-        self.$blog.fadeOut();
-        // Fade in the show-url card
-        self.$show-url.fadeIn();
-        // Small timeout to drop the show-url card after that
-        // the show-url card fade in and the blog fade out
-        setTimeout(function() {
-          self.dropShowURLCard();
-        }, 300);
-      },
-  
-      /**
-       * Play back the animation
-       * @return {void}
-       */
-      playBack: function() {
-        var self = this;
-        // Lift the show-url card
-        self.liftShowURLCard();
-        // Fade in the blog after that the show-url card lifted up
-        setTimeout(function() {
-          self.$blog.fadeIn();
-        }, 500);
-        // Fade out the show-url card after that the show-url card lifted up
-        setTimeout(function() {
-          self.$show-url.fadeOut();
-        }, 500);
-      },
-  
-      /**
-       * Slide the card to the middle
-       * @return {void}
-       */
-      dropShowURLCard: function() {
-        var self = this;
-        var ShowURLCardHeight = self.$ShowURLCard.innerHeight();
-        // default offset from top
-        var offsetTop = ($(window).height() / 2) - (ShowURLCardHeight / 2) + ShowURLCardHeight;
-        // if card is longer than the window
-        // scroll is enable
-        // and re-define offsetTop
-        if (ShowURLCardHeight + 30 > $(window).height()) {
-          offsetTop = ShowURLCardHeight;
-        }
-        self.$ShowURLCard
-          .css('top', '0px')
-          .css('top', '-' + ShowURLCardHeight + 'px')
-          .show(500, function() {
-            self.$ShowURLCard.animate({
-              top: '+=' + offsetTop + 'px'
-            });
-          });
-      },
-  
-      /**
-       * Slide the card to the top
-       * @return {void}
-       */
-      liftShowURLCard: function() {
-        var self = this;
-        var ShowURLCardHeight = self.$ShowURLCard.innerHeight();
-        // default offset from top
-        var offsetTop = ($(window).height() / 2) - (ShowURLCardHeight / 2) + ShowURLCardHeight;
-        if (ShowURLCardHeight + 30 > $(window).height()) {
-          offsetTop = ShowURLCardHeight;
-        }
-        self.$ShowURLCard.animate({
-          top: '-=' + offsetTop + 'px'
-        }, 500, function() {
-          self.$ShowURLCard.hide();
-          self.$ShowURLCard.removeAttr('style');
-        });
-      }
-    };
-  
-    $(document).ready(function() {
-      var ShowURLCard = new ShowURLCard();
-      ShowURLCard.run();
-    });
-  })(jQuery);
-</script>
-
-<style>
-#show-url {
-    display:     none;
-    position:    fixed;
-    top:         0;
-    left:        0;
-    width:       100%;
-    height:      100%;
-    background:  map-get($show-url, background);
-    text-align:  center;
-    line-height: 100%;
-    overflow-y:  auto;
-    overflow-x:  hidden;
-    z-index:     map-get($z-indexes, l-show-url);
-
-    #ashow-url-card {
-        position:      relative;
-        // Position the card out the page to improve the javascript drop effect
-        top:           -1000px;
-        display:       block;
-        background:    white;
-        max-width:     400px;
-        margin:        15px auto;
-        border-radius: 3px;
-        padding:       30px 0;
-        @include prefix(box-shadow, 0 0 5px rgba(0, 0, 0, 0.50), 'webkit' 'moz');
-
-        #show-url-btn-close {
-            position: absolute;
-            top:      15px;
-            right:    15px;
-            color:    map-get($colors, light);
-            cursor:   pointer;
-
-            &:hover {
-                color: darken(map-get($colors, light), 15);
-            }
-        }
-        #qrcode {
-            margin-bottom: 15px;
-        }
-        #show-url-describe {
-            padding: 0 30px;
-            margin:  0 0 30px 0;
-        }
-        #show-url-describe {
-            font-size:   $font-size-base;
-            line-height: $line-height-base;
-            font-weight: 400;
-            color:       map-get($colors, base);
-        }
+    var show_url_background=document.getElementById("show-url-background");
+    var show_url_card=document.getElementById("show-url-card");
+    var btn_open=document.getElementById("show-url-btn-open");
+    var btn_close=document.getElementById("show-url-btn-close");
+   
+    btn_open.onclick=function() {
+      show_url_background.style.display="block";
+      show_url_card.style.display="block";
     }
-}
-
-// Improve responsiveness of show-url card on small screen and down
-@media #{$small-and-down} {
-    #show-url {
-        #show-url-card {
-            width: 90%;
-            #qrcode {
-                width:         90px;
-                height:        90px;
-                border-radius: 45px;
-            }
-            #show-url-describe {
-                margin-bottom: 15px;
-            }
-        }
+    btn_close.onclick=function() {
+      show_url_background.style.display="none";
+      show_url_card.style.display="none"; 
     }
-}
+  </script>
+  
+  <style>
+  #show-url-background {
+    margin:0px;
+    padding:0px;
+    width:100%;
+    height:100%;
+    background-color:#888786;
+    position:fixed;
+    display:none;
+    z-index:1000;
+    opacity:0.5;
+    filter:alpha(opacity=50);
+  }
+  
+  #show-url-card{
+    text-align: center;
+    position: relative; 
+    top:25%; 
+    width:400px;
+    padding:10px;
+    margin: auto;
+    background-color:#000;
+    display:none;
+    z-index:1500;
+    opacity:1;
+  }
+  
+  #show-url-describe{
+    padding-top:10px;
+    color:white;
+  }
+  #show-url-qrcode img{
+    display: inline;
+  }
+  
+  </style>
 
-// Improve responsiveness of show-url card on medium screen and up
-@media #{$medium-and-up} {
-    #show-url {
-        #show-url-card {
-            width: 80%;
-            #qrcode {
-                width:         110px;
-                height:        110px;
-                border-radius: 55px;
-            }
-            #show-url-describe {
-                margin-bottom: 15px;
-            }
-        }
-    }
-}
-</style>
+{{ end }}
