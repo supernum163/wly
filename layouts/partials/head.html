@@ -1,24 +1,18 @@
+<!-- page or post -->
 {{- $.Scratch.Set "isPost" false -}}
 {{- if .IsPage -}}
   {{- if eq .Type "post" -}}
     {{- $.Scratch.Set "isPost" true -}}
   {{- end -}}
 {{- end -}}
+<!-- sidebarBehavior -->
 {{- if and (and ($.Scratch.Get "isPost") (lt .Site.Params.sidebarBehavior 3)) (or (and .Site.Params.clearReading (not .Params.clearReading)) .Params.clearReading) -}}
   {{- .Scratch.Set "sidebarBehavior" (add .Site.Params.sidebarBehavior 3) -}}
 {{- else -}}
   {{- .Scratch.Set "sidebarBehavior" .Site.Params.sidebarBehavior -}}
 {{- end -}}
-<!-- Fix hugo 0.17 expects ".Site.Author.gravatarEmail" whereas hugo 0.18 expects ".Site.Author.gravataremail" -->
-{{- if .Site.Author.gravatarEmail -}}
-  {{- .Scratch.Set "gravatarEmail" .Site.Author.gravatarEmail -}}
-{{- end -}}
-{{- if .Site.Author.gravataremail -}}
-  {{- .Scratch.Set "gravatarEmail" .Site.Author.gravataremail -}}
-{{- end -}}
-{{- if .Scratch.Get "gravatarEmail" -}}
-  {{- .Scratch.Set "authorPicture" (printf "https://www.gravatar.com/avatar/%s" (urlize (md5 (.Scratch.Get "gravatarEmail")))) -}}
-{{- else if .Site.Author.picture -}}
+<!-- authorPicture -->
+{{- if .Site.Author.picture -}}
   {{- .Scratch.Set "authorPicture" (absURL .Site.Author.picture) -}}
 {{- end -}}
 <!DOCTYPE html>
@@ -33,18 +27,13 @@
       <link rel="alternate" type="application/rss+xml" title="RSS" href="{{ . }}">
     {{ end }}
 
-    {{ with .Site.Author.googleplus }}
-      <link rel="publisher" href="https://plus.google.com/{{ . | urlize }}">
-    {{ end }}
-
     <link rel="canonical" href="{{ .Permalink }}">
 
     <!--EXTERNAL STYLES-->
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <link rel="stylesheet" href="/css/jquery.fancybox.min.css" />
     <link rel="stylesheet" href="/css/jquery.fancybox-thumbs.min.css" />
-    <!--EXTERNAL STYLES END-->
-    <!--STYLES-->
+    <!--MAIN STYLES-->
     <link rel="stylesheet" href="/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     <!--STYLES END-->
     {{ range .Site.Params.customCSS }}
@@ -55,10 +44,5 @@
       {{ end }}
     {{ end }}
 
-    {{ if .Params.ga.async }}
-      {{ template "_internal/google_analytics_async.html" . }}
-    {{ else }}
-      {{ template "_internal/google_analytics.html" . }}
-    {{ end }}
     {{ partial "head_end.html" . }}
   </head>
