@@ -2,7 +2,7 @@
 ignoreFiles = [".Rmd$", ".Rmarkdown$", "_files$", "_cache$"]
 
 # 网站根目录，可以是网址
-baseURL = "https://wly.supernum.tech/"
+baseURL = "//wly.supernum.tech/"
 # 主界面语言，与i18n文件夹对应
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
@@ -90,7 +90,7 @@ paginate = 7
   syntaxHighlighter = "highlight.js"
 
   # 网站favicon
-  favicon = "/favicon.png"
+  favicon = "favicon.png"
   # 全局关键字，在meta信息中
   keywords = ["个人博客", "supernum"]
   # 网站description，在meta信息中
@@ -109,7 +109,7 @@ paginate = 7
   sidebarBehavior = 1
 
   # 侧边栏背景图，修改为底色比较好
-  coverImage = "cover.jpg"
+  coverImage = "img/cover.jpg"
 
   # 是否显示post展示图
   thumbnailImage = true

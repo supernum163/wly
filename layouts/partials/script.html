@@ -1,14 +1,14 @@
 <!--EXTERNAL SCRIPTS-->
-<script src="/js/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+<script src="{{ .Site.BaseURL }}js/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
 {{ if eq .Site.Params.syntaxHighlighter "highlight.js" }}
-  <script src="/js/highlight.min.js"></script>
+  <script src="{{ .Site.BaseURL }}js/highlight.min.js"></script>
 {{ else if eq .Site.Params.syntaxHighlighter "prism.js" }}
-  <script src="/js/prism.min.js"></script>
+  <script src="{{ .Site.BaseURL }}js/prism.min.js"></script>
 {{ end }}
-<script src="/js/jquery.fancybox.min.js"></script>
+<script src="{{ .Site.BaseURL }}js/jquery.fancybox.min.js"></script>
 <!--EXTERNAL SCRIPTS END-->
 <!--SCRIPTS-->
-<script src="/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="{{ .Site.BaseURL }}js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 <!--SCRIPTS END-->
 {{ range .Site.Params.customJS }}
   {{ if isset . "src" }}
@@ -46,7 +46,7 @@ $(document).ready(function() {
 {{ end }}
 
 {{ if or .Params.math .Site.Params.math }}
-  <script type="text/javascript" async src="/js/MathJax.js"></script>
+  <script type="text/javascript" async src="{{ .Site.BaseURL }}js/MathJax.js"></script>
   <script type="text/x-mathjax-config">
     MathJax.Hub.Config({
       CommonHTML: { linebreaks: { automatic: true } },
@@ -57,8 +57,8 @@ $(document).ready(function() {
 {{ end }}
 {{ with .Site.Params.algolia }}
   {{ if (isset . "appId") | and (isset . "apiKey") | and (isset . "indexName") }}
-    <script src="/js/moment-with-locales.min.js"></script>
-    <script src="/js/algoliasearch.min.js"></script>
+    <script src="{{ .Site.BaseURL }}js/moment-with-locales.min.js"></script>
+    <script src="{{ .Site.BaseURL }}js/algoliasearch.min.js"></script>
     <script>
       var algoliaClient = algoliasearch('{{ .appId }}', '{{ .apiKey }}');
       var algoliaIndex = algoliaClient.initIndex('{{ .indexName }}');

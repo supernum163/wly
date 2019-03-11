@@ -1,7 +1,7 @@
 {{ if and (not (eq .Params.showSocial false)) .Site.Params.gitment.enable }}
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="/css/gitment.css">
-<script src="/js/gitment.js"></script>
+<link rel="stylesheet" href="{{ .Site.BaseURL }}css/gitment.css">
+<script src="{{ .Site.BaseURL }}js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: '{{ .Params.title }}',

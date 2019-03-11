@@ -9,7 +9,7 @@
     </div>
   </div>
   
-  <script src="/js/qrcode.min.js"></script>
+  <script src="{{ .Site.BaseURL }}js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
