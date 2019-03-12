@@ -32,6 +32,74 @@ static/img/fancybox:    fancybox图形原件
 
 
 
+post中的yaml信息: 
+
+  # post标题
+  title: "Who's using Tranquilpeak Hugo Theme"
+  # post文件名及网络路径
+  slug: who-is-using-tranquilpeak-hugo-theme
+  
+  # post生成日期，publishDate发布日期、lastmod修改日期、expiryDate过期日期
+  date: 2015-06-14
+  # 是否展示post生成日期
+  showDate = true
+  
+  # post分类
+  categories:
+  - tranquilpeak
+  - showcase appliquée
+  
+  # post标签
+  tags:
+  - hexo theme
+  - responsive
+
+  # post的关键字
+  keywords:
+  - disqus
+  - google
+  - gravatar
+  
+  # 是否展示评论区、分享区、翻页按钮、post标签、post的meta信息（发布更新时间）
+  comments:       false
+  showActions:    false
+  showPagination: false
+  showTags:       false
+  showMeta:       false
+  
+  # 是否默认将post的第一张图作为展示图
+  autoThumbnailImage: false
+  # post展示图的位置、可以是left、right、top、bottom
+  thumbnailImagePosition: left
+  # post展示图的地址
+  thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city-750.jpg
+  
+  # post封面图
+  coverImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city.jpg
+  # post的meta信息展示位置
+  metaAlignment: center
+  # post的meta信息展示位置 in展示在封面图中， out展示在封面图下
+  coverMeta: out
+  
+  # 在文章末尾展示图片画廊
+  gallery:
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-31.jpg "Mercedes"
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-9.jpg "Lamborghini"
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-10.jpg "Nissan"
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-27.jpg "Mercedes"
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-4.jpg "Ferrari"
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-26.jpg "Lamborghini"
+- //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-18.jpg
+
+
+# 摘要与正文分界线
+<!--more-->
+# 插入目录
+<!-- toc -->
+
+
+
+
 
 
 

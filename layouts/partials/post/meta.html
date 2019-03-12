@@ -1,10 +1,16 @@
 {{ if not (eq .Params.showMeta false) }}
   <div class="postShorten-meta post-meta">
     {{ if not (eq .Params.showDate false)  }}
-      <time itemprop="datePublished" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      <time itemprop="publishDate" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ partial "internal/date.html" . }}
       </time>
     {{ end }}
     {{ partial "post/category.html" . }}
+    {{ if .Params.lastmod }}
+      <span>&emsp;{{ i18n "post.lastmod_in" }}</span>
+      <time itemprop="lastmod" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+        {{ .Lastmod.Format $.Site.Params.dateFormat }}
+      </time>
+    {{ end }}
   </div>
 {{ end }}

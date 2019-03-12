@@ -1,4 +1,4 @@
-{{ if and (not (eq .Params.showSocial false)) .Site.Params.gitment.enable }}
+{{ if and (not (eq .Params.comments false)) .Site.Params.gitment.enable }}
 <div id="gitmentContainer"></div>
 <link rel="stylesheet" href="{{ .Site.BaseURL }}css/gitment.css">
 <script src="{{ .Site.BaseURL }}js/gitment.js"></script>

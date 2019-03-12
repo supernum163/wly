@@ -109,6 +109,9 @@
 - id: "post.categorized_in"
   translation: "发布在"
 
+- id: "post.lastmod_in"
+  translation: "更新于"
+
 - id: "post.tagged_in"
   translation: "标签"
 

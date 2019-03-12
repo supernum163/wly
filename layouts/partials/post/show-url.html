@@ -1,28 +1,5 @@
 {{ if (not (eq .Params.showSocial false)) }}
-  <div id="show-url-background">
-    <div id="show-url-card">
-      <div id="show-url-btn-close">
-        <i class="fa fa-remove"></i>
-      </div>
-      <div id="show-url-qrcode"></div> 
-      <p id="show-url-describe">扫描上方二维码分享到微信</p>
-    </div>
-  </div>
-  
-  <script src="{{ .Site.BaseURL }}js/qrcode.min.js"></script>
 
-  <script type="text/javascript">
-    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
-    
-    var show_url_background=document.getElementById("show-url-background");
-    var show_url_card=document.getElementById("show-url-card");
-    var btn_close=document.getElementById("show-url-btn-close");
-    btn_close.onclick=function() {
-      show_url_background.style.display="none";
-      show_url_card.style.display="none"; 
-    }
-  </script>
-  
   <style>
   #show-url-background {
     margin:0px;
@@ -61,4 +38,28 @@
   }
   </style>
 
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="{{ .Site.BaseURL }}js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    var show_url_background=document.getElementById("show-url-background");
+    var show_url_card=document.getElementById("show-url-card");
+    var btn_close=document.getElementById("show-url-btn-close");
+    btn_close.onclick=function() {
+      show_url_background.style.display="none";
+      show_url_card.style.display="none"; 
+    }
+  </script>
+  
 {{ end }}
