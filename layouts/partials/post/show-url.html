@@ -1,41 +1,41 @@
 {{ if (not (eq .Params.showSocial false)) }}
 
   <style>
-  #show-url-background {
-    margin:0px;
-    padding:0px;
-    width:100%;
-    height:100%;
-    background-color:rgba(136,135,134,0.5);
-    position:fixed;
-    display:none;
-    z-index:1000;
-  }
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
   
-  #show-url-card{
-    text-align: center;
-    position: relative; 
-    top:50%; 
-    left:50%;
-    transform: translate(-50%, -50%);
-    max-width:400px;
-    max-height:400px;
-    padding:5rem 0 3rem 0;
-    background-color:#888786;
-    display:none;
-  }
-  
-  #show-url-describe{
-    margin:2rem 0 0 0;
-    color:white;
-  }
-
-  #show-url-btn-close {
-    position: absolute; 
-    top: 5px;
-    right: 15px;
-    color:white;
-  }
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
   </style>
 
   <div id="show-url-background">

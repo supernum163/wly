@@ -38,7 +38,7 @@ gallery:
 
 ## 段落测试
 
-[远程链接测试](https://www.baidu.com), [本地链接测试](#翻页代码块测试),  **粗体字测试** ,  *斜体字测试* , <u>下划线测试</u>, ~~删除线测试~~ , `行内代码测试`.
+[远程链接测试](https://www.baidu.com), [本地链接测试](#翻页代码块测试), **粗体字测试** ,  *斜体字测试* , <u>下划线测试</u>, ~~删除线测试~~ , `行内代码测试`.
 
 <sup>上标文字测试</sup>, <sub>下标文字测试</sub> , 键盘文本测试<kdb>ctrl + c</kdb>, <cite>行内引用测试</cite>
 ， 缩写测试<acronym title="National Basketball Association">NBA</acronym>，简写测试<abbr title="Avenue">AVE</abbr>
@@ -178,14 +178,6 @@ function $initHighlight(block, flags) {
 <!-- endtab -->
 {{< /tabbed-codeblock >}}
 
-### Gist代码块测试
-
-{{< gist imathis 996818 >}}
-
-### jsFiddle代脉快测试
-
-{{< jsfiddle ccWP7 >}}
-
 ## 图片测试
 
 ### 普通图片
@@ -218,15 +210,5 @@ classes:
 ### 宽型图片测试
 
 {{< wide-image src="//d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-1.jpg" title="Mercedes SLS" >}}
-
-## 视频测试
-
-### Youtube
-
-{{< youtube BSVkI3Ds8E >}}
-
-### Vimeo
-
-{{< vimeo 147585091 >}}
 
 
