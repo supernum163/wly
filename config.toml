@@ -1,7 +1,7 @@
 # hugo汇编时需要忽略的文件与文件夹
 ignoreFiles = [".Rmd$", ".Rmarkdown$", "_files$", "_cache$"]
 # 网站根目录，可以是网址
-baseURL = "/"
+baseURL = "https://example.site/"
 # 主界面语言，与i18n文件夹对应
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
@@ -27,7 +27,7 @@ enableEmoji = true
   name = "Firstname Lastname"
   bio = "Super bio with markdown support **COOL**"
   job = "Your job title"
-  location = "中国 上海"
+  location = "China ShangHai"
   # 当 Gravatar email 为空时, 作者头像
   picture = "https://www.gravatar.com/avatar/04ad14c8350763bebfd8382501c90a84?s=110"
 
