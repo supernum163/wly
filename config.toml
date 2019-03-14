@@ -9,6 +9,8 @@ defaultContentLanguage = "zh-cn"
 title = "wly's notebook"
 # 主页面每页显示多少条post
 paginate = 7
+# 使用emoji
+enableEmoji = true
 
 # post在public文件夹中的放置路径
 [permalinks]
