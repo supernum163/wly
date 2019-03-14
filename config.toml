@@ -1,7 +1,7 @@
 # hugo汇编时需要忽略的文件与文件夹
 ignoreFiles = [".Rmd$", ".Rmarkdown$", "_files$", "_cache$"]
 # 网站根目录，可以是网址
-baseURL = "https://example.site/"
+baseURL = "https://wly.supernum.tech/"
 # 主界面语言，与i18n文件夹对应
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
