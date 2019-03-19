@@ -24,10 +24,10 @@ enableEmoji = true
 
 # 作者信息
 [author]
-  name = "Firstname Lastname"
-  bio = "Super bio with markdown support **COOL**"
-  job = "Your job title"
-  location = "China ShangHai"
+  name = "wly"
+  bio = "令凤鸟飞腾兮，继之以昼夜"
+  job = "数据分析师"
+  location = "中国 上海"
   # 当 Gravatar email 为空时, 作者头像
   picture = "https://www.gravatar.com/avatar/04ad14c8350763bebfd8382501c90a84?s=110"
 
@@ -71,10 +71,16 @@ enableEmoji = true
   url = "https://github.com/supernum163"
 [[menu.links]]
   weight = 2
-  identifier = "mailto"
+  identifier = "email"
   name = "Email"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-at\"></i>"
   url = "mailto:supernum@163.com"
+[[menu.links]]
+  weight = 2
+  identifier = "donate"
+  name = "打赏"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-rmb\"></i>"
+  url = "/page/donate"
 
 [[menu.misc]]
   weight = 1
