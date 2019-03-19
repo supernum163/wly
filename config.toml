@@ -1,7 +1,7 @@
 # hugo汇编时需要忽略的文件与文件夹
 ignoreFiles = [".Rmd$", ".Rmarkdown$", "_files$", "_cache$"]
 # 网站根目录，可以是网址
-baseURL = "https://wly.supernum.tech/"
+baseURL = "/"
 # 主界面语言，与i18n文件夹对应
 languageCode = "zh-cn"
 defaultContentLanguage = "zh-cn"
@@ -68,13 +68,13 @@ enableEmoji = true
   identifier = "github"
   name = "GitHub"
   pre = "<i class=\"sidebar-button-icon fa fa-lg fa-github\"></i>"
-  url = "https://github.com/kakawait"
+  url = "https://github.com/supernum163"
 [[menu.links]]
   weight = 2
-  identifier = "stackoverflow"
-  name = "Stack Overflow"
-  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-stack-overflow\"></i>"
-  url = "https://stackoverflow.com/users/636472/kakawait"
+  identifier = "mailto"
+  name = "Email"
+  pre = "<i class=\"sidebar-button-icon fa fa-lg fa-at\"></i>"
+  url = "mailto:supernum@163.com"
 
 [[menu.misc]]
   weight = 1
@@ -94,7 +94,7 @@ enableEmoji = true
   syntaxHighlighter = "highlight.js"
 
   # 是否插入Math.js, 在post的"math"中覆盖此设置
-  math = true
+  math = false
   # 当用户阅读post时，隐藏侧边栏
   clearReading = true
   # 互换post底部“上一篇”与“下一篇”,“上一页”与“下一页”
@@ -120,7 +120,7 @@ enableEmoji = true
 
   # 加入自定义CSS
   # [[params.customCSS]]
-  #   href = "/css/show-url.css"
+  #   href = "css/show-url.css"
 
   # 加入自定义js
   # [[params.customJS]]
@@ -137,11 +137,14 @@ enableEmoji = true
     icon = "fa-qq"
     url = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/%s"
 
-  # 在页面右上角对象与链接,默认是用户头像
+  # 在post右上角对象与链接,默认是用户头像
   [params.header.rightLink]
-  url = "/#search"
-  icon = "search"
-  class = "st-search-show-outputs"
+    url = "/#about"
+    class = ""
+    icon = ""
+    # url = "/#search"
+    # icon = "search"
+    # class = "st-search-show-outputs"
 
   # 在侧边栏中加入关于页面
   [params.sidebar.profile]
@@ -149,7 +152,7 @@ enableEmoji = true
 
   # 修改修改所有权声明中的作者
   [params.footer]
-    copyright = "<a href=\"https://github.com/kakawait\">kakawait</a>"
+    copyright = "<a href=\"https://github.com/supernum163\">supernum</a>"
      
   # gitment评论系统信息
   [params.gitment]
