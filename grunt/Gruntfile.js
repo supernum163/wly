@@ -3,16 +3,6 @@ module.exports = function(grunt) {
   // configurations and task registrations dynamically.
   var includeAll;
 
-  try {
-    includeAll = require('include-all');
-  }
-  catch (e0) {
-    console.error('Could not find `include-all` module.');
-    console.error('Skipping grunt tasks...');
-    console.error('To fix this, please run:');
-    console.error('npm install include-all --save-dev');
-    console.error();
-  }
 
   /**
    * Loads Grunt configuration modules from the specified

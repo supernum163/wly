@@ -1,16 +1,19 @@
 theme.toml:   网站整体设置
 wly.Rproj:    R语言project管理
 .gitignore:   上传至github时需要忽略的内容
-layouts:      网站页面布局模板
+data:         YAML、JSON、TOML类型的原始数据
 i18n:         网站语言包
-src:          存放原始css、js、image等内容
-static:       存放汇总处理后的css、js、image等内容
-archetypes:   生成page和post文件头的模板
 content:      网站子页面
+layouts:      网站页面布局模板
+archetypes:   生成page和post文件头的模板
+assets:       存放在assets文件夹的内容，只有在被引用才会被放入public
+static:       存放汇总处理后的css、js、image等内容，存放在static文件夹的内容，将被原封不动的放入public
 public:       hugo最终编译生成的静态网站
-Gruntfile.js: Grunt 将js与css内容插入到`layout/partials/script.html`
-tasks:        Grunt tasks
-docs：        说明与帮助文档，不会被hugo编译
+docs：        说明与帮助文档
+grunt:        grunt工程文件夹
+  src:          存放原始css、js、image等内容
+  Gruntfile.js: Grunt 加密js文件
+  tasks:        Grunt tasks
 
 
 static/js:

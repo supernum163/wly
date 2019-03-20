@@ -1,12 +1,12 @@
 ---
-title: "Elements showcase"
+title: "文章标题"
 date: 2019-02-28
 categories:
-- tranquilpeak
-- features
+- 一级分类
+- 二级分类
 tags:
-- html elements
-- markdown
+- 标签一
+- 标签二
 thumbnailImagePosition: left
 thumbnailImage: //d1u9biwaxjngwg.cloudfront.net/elements-showcase/vintage-140.jpg
 coverImage: //d1u9biwaxjngwg.cloudfront.net/cover-image-showcase/city.jpg
