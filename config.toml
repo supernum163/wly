@@ -167,4 +167,10 @@ enableEmoji = true
     repo = "wly"
     ClientID = "40f2576aa2a372d81a1a"
     ClientSecret = "be1df3e5286c5ccd1feec5bd3f297d298dd39037"
-    lazy = true
+
+  # algolia站内搜索系统
+  #[params.algolia]
+  #  enable = true
+  #  appId = ""
+  #  apiKey = ""
+  #  indexName = ""

@@ -56,7 +56,7 @@ $(document).ready(function() {
   </script>
 {{ end }}
 {{ with .Site.Params.algolia }}
-  {{ if (isset . "appId") | and (isset . "apiKey") | and (isset . "indexName") }}
+  {{ if .enable }}
     <script src="{{ .Site.BaseURL }}js/moment-with-locales.min.js"></script>
     <script src="{{ .Site.BaseURL }}js/algoliasearch.min.js"></script>
     <script>
