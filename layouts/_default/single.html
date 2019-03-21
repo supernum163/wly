@@ -39,9 +39,11 @@
         </article>
         {{ partial "footer.html" . }}
       </div>
-      <div id="bottom-bar" class="post-bottom-bar" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
-        {{ partial "post/actions.html" . }}
-      </div>
-      {{ partial "post/share-options.html" . }}
+      {{ if not (eq .Params.showActions false) }}
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="{{ .Scratch.Get "sidebarBehavior" }}">
+          {{ partial "post/actions.html" . }}
+        </div>
+        {{ partial "post/share-options.html" . }}
+      {{ end }}
     </div>
 {{ partial "foot.html" . }}

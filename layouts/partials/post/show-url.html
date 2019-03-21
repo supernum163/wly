@@ -1,4 +1,4 @@
-{{ if (not (eq .Params.showSocial false)) }}
+{{ if not (or (eq .Params.showActions false)  (eq .Params.showSocial false)) }}
 
   <style>
     #show-url-background {

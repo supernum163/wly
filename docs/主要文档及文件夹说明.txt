@@ -44,8 +44,6 @@ post中的yaml信息:
   
   # post生成日期，publishDate发布日期、lastmod修改日期、expiryDate过期日期
   date: 2015-06-14
-  # 是否展示post生成日期
-  showDate = true
   
   # post分类
   categories:
@@ -63,12 +61,14 @@ post中的yaml信息:
   - google
   - gravatar
   
-  # 是否展示评论区、分享区、翻页按钮、post标签、post的meta信息（发布更新时间）
-  comments:       false
-  showActions:    false
-  showPagination: false
-  showTags:       false
+  # 是否展示post生成日期、post的meta信息（发布更新时间）、post标签、评论区、分享按钮、翻页按钮、所有底部按钮
+  showDate:       false
   showMeta:       false
+  showTags:       false
+  comments:       false
+  showSocial      false
+  showPagination: false
+  showActions:    false
   
   # 是否默认将post的第一张图作为展示图
   autoThumbnailImage: false

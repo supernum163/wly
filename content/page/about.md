@@ -1,9 +1,6 @@
 ---
 title: "关于博客"
-categories:
-- 关于博客
-keywords:
-- 关于博客
+metaAlignment: center
 comments:       false
 showMeta:       false
 showActions:    false
@@ -12,18 +9,27 @@ showActions:    false
 当你第一次浏览这个博客时，心中一定会有些许疑问：这个博客是谁创建的？为什么要创建这个博客？这个博客将展现什么样的内容？这篇文章将尝试解答这些问题。
 
 <!--more-->
-这里是正文
+首先，我只是一个从事数据分析行业的普通职员，学历不算高，资历不算深。平时没什么爱好，遇到问题喜欢追根究底，所以总能接触一些琐碎的知识。<cite>好记性不如烂笔头</cite>，有些知识不*记录在案* ，下次用到时就记不起来了。所以我搭建了这个博客，希望将学到的知识有条有理的保存下来，同时也方便**后来人**少走弯路吧。
 
-[远程链接测试](https://www.baidu.com), [本地链接测试](#翻页代码块测试),  **粗体字测试** ,  *斜体字测试* , <u>下划线测试</u>, ~~删除线测试~~ , `行内代码测试`，:smile:.
+你可能会认为，我完全可以使用国内现成的技术论坛，没必要自己新搭建一个博客。事实上我确实这么做过，我曾经在某个技术论坛辛苦耕耘大半年，结果突然有一天我再去登录时，发现因为我没在这个平台绑定手机号，之前的账号被强制锁定了，而且解锁还必须要关注他们的官微。他们在我的文章里插入自家的广告和推广；我上传的资料我都不收费，他们却要收费；注册了他们的账号后，各种*XX小课* 、*XX培训班* 的广告推送。这些我都忍了，而今辛苦经营的账号突然就被强制锁定了，真是让我倍感小微个体在霸权主义面前根本没有话语权啊。而且我相信这样的平台不只一两个，有些平台甚至连删除自己的帖子都要打申请，各种规定看似仁义道德，实际上字里行间都是…… :speak_no_evil:。总之，这就是我为什么非要自己搭博客。
 
-<sup>上标文字测试</sup>, <sub>下标文字测试</sub> , 键盘文本测试<kdb>ctrl + c</kdb>, <cite>行内引用测试</cite>
-， 缩写测试<acronym title="National Basketball Association">NBA</acronym>，简写测试<abbr title="Avenue">AVE</abbr>
+如果你想参与进来，你可以通过多种形式帮助到我。最直接的方式当然是[打赏](/page/donate)。你也可以将你认为有用的文章分享到你的社交网络，分享的时候请注明文章来源。你也可以指正我的错误，提出你的疑问，或者回答其他人的问题。我会使用**gitment**作为每篇帖子的评论系统，你只需要掌握少量的**markdown**代码，就可以写出图文并茂的评论。我尊重你的言论自由，也希望你能为自己的言论负责。你也可以为这个博客捐赠文章，我会充分尊重你的著作权。如果你想要联系到我，可以直接[发送邮件](mailto:supernum@163.com)给我。
 
-Phasellus adipiscing, mauris nec mollis egestas, ipsum nunc auctor velit, et rhoncus lorem ipsum at ante. Duis vel mauris nulla. Maecenas mattis interdum ante, quis sagittis.
-{{< pullquote left >}}
-Here is a pullquote left. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-{{< /pullquote >}}
-ulputate nisl, ac congue ante tortor ut ante. Proin aliquam sem vel mauris tincidunt, elementum ullamcorper nisl pretium, ultrices cursus justo. Mauris porttitor commodo eros, ac ornare orci interdum in. Cras fermentum cursus leo sed mattis. In dignissim lorem sem, sit amet elementum mauris venenatis ac.
-{{< pullquote right >}}
-Here is a pullquote right. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-{{< /pullquote >}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
