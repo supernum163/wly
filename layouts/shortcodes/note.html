@@ -1,4 +1,8 @@
 <div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
-  <div style="text-align: center; font-weight:bold; background-color: rgba(0,0,0,.1); padding: 1rem;">{{ .Get 0 }}</div>
-  <div style="background-color: rgba(0,0,0,.03); padding: 1rem; border-radius:0 0 5px 5px;">{{ .Inner }}</div>
+  <div style="text-align: center; font-weight:bold; background-color: rgba(0,0,0,.1); padding: 1rem;">
+    {{ .Get 0 }}
+  </div>
+  <div style="background-color: rgba(0,0,0,.03); padding: 1rem; border-radius:0 0 5px 5px;">
+    {{ .Inner | markdownify }}
+  </div>
 </div>
