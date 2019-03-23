@@ -78,11 +78,7 @@
         </a>
       </li>
       <li class="post-action">
-        {{ if findRE "<!--\\s*[t|T][o|O][c|C]\\s*-->" .Content }}
-          <a class="post-action-btn btn btn--default tooltip--top" href="#table-of-contents" data-tooltip="{{ i18n "post_action.go_top" }}">
-        {{ else }}
-          <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="{{ i18n "post_action.go_top" }}">
-        {{ end }}
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="{{ i18n "post_action.go_top" }}">
           <i class="fa fa-arrow-up"></i>
         </a>
       </li>
