@@ -2,12 +2,14 @@
 title: "在评论区使用markdown语法"
 date: 2019-03-22
 categories:
-- markdown
-- 评论区
+  - markdown
+  - 评论区
 tags:
-- markdown
+  - markdown
+keywords:
+  - markdown
 thumbnailImagePosition: left
-thumbnailImage: 
+thumbnailImage: https://i.postimg.cc/jq8Hrrt6/Markdown-01.png
 ---
 
 **markdown**是一款轻量级网页内容生成语法，使用markdown语法，你可以轻松生成图文并茂的网页内容。这篇文章将带你了解如何在评论区使用markdown语法。
@@ -92,7 +94,7 @@ thumbnailImage:
 你可以使用{{< hl-text primary >}}![图片Alt](图片链接地址){{< /hl-text >}}的格式插入一幅图片，注意图片与超链接的语法区别。你也可以直接拖放一张图片至评论区，图片代码将会自动生成。
 
 {{< codeshow >}}
-![图片Alt](https://octodex.github.com/images/yaktocat.png)
+![图片Alt](https://i.postimg.cc/CLzjh6x3/Markdown-02.png)
 {{< /codeshow >}}
 
 <br>
@@ -128,13 +130,13 @@ thumbnailImage:
 
 ## 1.7、表格语法
 
-如需插入表格，则需要以{{< hl-text primary >}}|{{< /hl-text >}}来区分不同的列，以换行来区分不同的行，以多个{{< hl-text primary >}}-{{< /hl-text >}}来区分表头与表格内容，以{{< hl-text primary >}}:--{{< /hl-text >}}、{{< hl-text primary >}}--:{{< /hl-text >}}、{{< hl-text primary >}}:--:{{< /hl-text >}}来分别表示左对齐、右对齐和剧中对齐。
+如需插入表格，则需要以{{< hl-text primary >}} | {{< /hl-text >}}来区分不同的列，以换行来区分不同的行，以多个{{< hl-text primary >}}-{{< /hl-text >}}来区分表头与表格内容，以{{< hl-text primary >}}:--{{< /hl-text >}}、{{< hl-text primary >}}--:{{< /hl-text >}}、{{< hl-text primary >}}:--:{{< /hl-text >}}来分别表示左对齐、右对齐和剧中对齐。
 
 {{< codeshow >}}
-| 第一列       | 第二列       |
-|:--------------|:------------:|
-| 使用左对齐   | 使用居中对齐 |
-|              | 占位符       |
+| 第一列 | 第二列 |
+|:--------|:-------:|
+| 使用左对齐 | 使用居中对齐 |
+|             | 占位符       |
 {{< /codeshow >}}
 
 <br>

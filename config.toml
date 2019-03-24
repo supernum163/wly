@@ -29,7 +29,7 @@ enableEmoji = true
   job = "数据分析师"
   location = "中国 上海"
   # 当 Gravatar email 为空时, 作者头像
-  picture = "https://www.gravatar.com/avatar/04ad14c8350763bebfd8382501c90a84?s=110"
+  picture = "https://i.postimg.cc/nhmB7j7T/image.png"
 
 # 侧边栏菜单
 [[menu.main]]
@@ -118,7 +118,7 @@ enableEmoji = true
   autoThumbnailImage = true
 
   # 网站favicon
-  favicon = "favicon.png"
+  favicon = "img/favicon.png"
   # 全局关键字，在meta信息中
   keywords = ["个人博客", "supernum"]
   # 网站默认description，在meta信息中
