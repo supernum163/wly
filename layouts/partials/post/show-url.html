@@ -53,13 +53,14 @@
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
     
-    var show_url_background=document.getElementById("show-url-background");
-    var show_url_card=document.getElementById("show-url-card");
-    var btn_close=document.getElementById("show-url-btn-close");
-    btn_close.onclick=function() {
-      show_url_background.style.display="none";
-      show_url_card.style.display="none"; 
-    }
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
   </script>
   
 {{ end }}
