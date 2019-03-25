@@ -143,9 +143,9 @@ thumbnailImage: https://i.postimg.cc/jq8Hrrt6/Markdown-01.png
 
 ## 1.8、其它github特有的markdown语法
 
-### 1.8.1、回应某人或某条评论
+### 1.8.1、回应某人
 
-你可以使用{{< hl-text primary >}}@github账户名{{< /hl-text >}}，{{< hl-text primary >}}#评论编号{{< /hl-text >}}的格式，特指某人或某条评论，你指名的内容将自动成为超链接。
+你可以使用{{< hl-text primary >}}@github账户名{{< /hl-text >}}的格式，来特指某人。这种方式本质上只是生成了一个指向某个github用户主页的超链接，所以你也可以直接使用超链接的格式达到相同的效果。
 
 <br>
 
