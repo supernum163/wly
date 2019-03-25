@@ -1,8 +1,9 @@
-{{ with .Site.Params.coverImage }}
-  {{ if (in . "://") }}
-    {{ $cover := . }}
-    <div id="cover" style="background-image:url('{{ $cover | absURL }}');"></div>
-  {{ else }}
+{{ with .Site.Params.cover }}
+  {{ if (findRE "#\\w{6}" .) }}
+    <div id="cover" style="background-color: {{ . }};"></div>
+  {{ else if (in . "://") }}
     <div id="cover" style="background-image:url('{{ . | absURL }}');"></div>
+  {{ else }}
+    <div id="cover" style="background-image:url('{{ .Site.BaseURL }}{{ . | absURL }}');"></div>
   {{ end }}
 {{ end }}

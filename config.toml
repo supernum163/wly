@@ -94,8 +94,8 @@ enableEmoji = true
   sidebarBehavior = 1
   # 日期格式
   dateFormat = "2006-01-02"
-  # 侧边栏背景图，修改为底色比较好
-  coverImage = "img/cover.jpg"
+  # 网站背景，修改为底色比较好
+  cover = "#171314"
   # 高亮代码，可用选项有: "highlight.js" (recommanded) and "prism.js" (experimental)
   syntaxHighlighter = "highlight.js"
 
