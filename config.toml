@@ -136,12 +136,12 @@ enableEmoji = true
   [[params.sharingOptions]]
     name = "新浪微博"
     icon = "fa-weibo"
-    url = "http://service.weibo.com/share/share.php?title=title&url=https://wly.supernum.tech/%s&source=bookmark#_loginLayer_1551323382531"
+    url = "http://service.weibo.com/share/share.php?title=title&url=%s&source=bookmark#_loginLayer_1551323382531"
 
   [[params.sharingOptions]]
     name = "QQ空间"
     icon = "fa-qq"
-    url = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/%s"
+    url = "http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%s"
 
   # 在post右上角对象与链接,默认是用户头像
   [params.header.rightLink]
