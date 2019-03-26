@@ -5,3 +5,5 @@
 .Rmd
 .Rmarkdown
 public/
+grunt/
+docs/
