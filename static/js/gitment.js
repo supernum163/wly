@@ -2844,8 +2844,14 @@ function renderHeader(_ref, instance) {
       reactions = _ref.reactions;
 
   var container = document.createElement('div');
-  container.lang = "en-US";
   container.className = 'gitment-container gitment-header-container';
+
+  var issueLink = document.createElement('a');
+  issueLink.className = 'gitment-header-issue-link';
+  issueLink.href = meta.html_url;
+  issueLink.target = '_blank';
+  issueLink.innerHTML = '&emsp;&emsp; Issue Page';
+  container.appendChild(issueLink);
 
   var likeButton = document.createElement('span');
   var likedReaction = reactions.find(function (reaction) {
@@ -2870,13 +2876,6 @@ function renderHeader(_ref, instance) {
   var commentsCount = document.createElement('span');
   commentsCount.innerHTML = '\n    ' + (meta.comments ? ' \u2022 <strong>' + meta.comments + '</strong> 条评论' : '') + '\n  ';
   container.appendChild(commentsCount);
-
-  var issueLink = document.createElement('a');
-  issueLink.className = 'gitment-header-issue-link';
-  issueLink.href = meta.html_url;
-  issueLink.target = '_blank';
-  issueLink.innerText = 'Issue Page';
-  container.appendChild(issueLink);
 
   return container;
 }
