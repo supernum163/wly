@@ -120,7 +120,7 @@ enableEmoji = true
   # 网站favicon
   favicon = "img/favicon.png"
   # 全局关键字，在meta信息中
-  keywords = ["个人博客", "supernum"]
+  keywords = ["wly的博客", "supernum"]
   # 网站默认description，在meta信息中
   description = "Hugo tranquilpeak theme demo"
 
