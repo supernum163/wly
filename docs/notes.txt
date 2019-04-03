@@ -1,3 +1,22 @@
+# 使用R语言对数字进行数学运算
+-, +, *, /,
+^, exp, expm1, sqrt, log, log10, log1p, log2, logb, 
+sign, abs, floor, trunc, ceiling, round, signif, zapsmall, 
+sin, cos, tan, asin, acos, atan, atan2, sinpi, cospi, tanpi, 
+sinh, cosh, tanh, asinh, acosh, atanh, 
+Re, Im, Mod, Arg, Conj,  
+choose, lchoose,  factorial, lfactorial, beta, lbeta, gamma, lgamma, digamma, trigamma, psigamma, 
+
+# vector可以存储的数据类型
+The atomic modes are "logical", "integer", "numeric" (synonym "double"), "complex", "character" and "raw". 
+
+# typeof，R语言的数据类型
+A character string. The possible values are listed in the structure TypeTable in ‘src/main/util.c’. Current values are the vector types "logical", "integer", "double", "complex", "character", "raw" and "list", "NULL", "closure" (function), "special" and "builtin" (basic functions and operators), "environment", "S4" (some S4 objects) and others that are unlikely to be seen at user level ("symbol", "pairlist", "promise", "language", "char", "...", "any", "expression", "externalptr", "bytecode" and "weakref"). 
+
+# R语言中调用底层函数的方式
+.Primitive, .Internal
+
+
 # 系统数据
 F, T, pi, letters, LETTERS, month.abb, month.name, version, R.version, R.version.string, 
 .path.package, .Platform, .popath, .Last.value, .Options, options, getOption, .deparseOpts, default.stringsAsFactors, .OptRequireMethods, 
@@ -25,11 +44,7 @@ Sys.getenv, Sys.getlocale, Sys.setlocale, Sys.chmod, Sys.setFileTime,  Sys.getpi
 sys.save.image, sys.load.image, Sys.readlink, sys.source, 
 
 # 符号类函数
--, -.Date, -.POSIXt , 
-+, +.Date, +.POSIXt, 
-*, *.difftime, 
-/, /.difftime, 
-^, 
+-.Date, -.POSIXt, +.Date, +.POSIXt, *.difftime, /.difftime, 
 :, ::, :::, 
 !, !.hexmode, !.octmode, !=, 
 (, {, 
@@ -99,13 +114,8 @@ prettyNum, formatC, formatDL, format, format.AsIs, format.data.frame, format.Dat
 
 
 # 数学运算类函数
-signif, sign, floor, ceiling, zapsmall, round, round.Date, round.POSIXt, trunc, trunc.Date, trunc.POSIXt, pretty, pretty.default, 
-sin, sinh, sinpi, asin, asinh, cos, cosh, cospi, acos, acosh, tan, tanh, tanpi, atan, atan2, atanh, 
-log, log10, log1p, log2, logb, exp, expm1, 
-gamma, lgamma, digamma, psigamma, trigamma, beta, lbeta, 
-choose, lchoose, factorial, lfactorial, 
-sqrt, abs, sum, min, max, max.col, mean, mean.Date, mean.default, mean.difftime, mean.POSIXct, mean.POSIXlt, 
-Re, Im, Mod ,Arg, Conj 
+round.Date, round.POSIXt, trunc.Date, trunc.POSIXt, 
+sum, min, max, max.col, mean, mean.default, mean.Date, mean.difftime, mean.POSIXct, mean.POSIXlt, 
 
 # 统计类函数
 which, which.max, which.min, 
@@ -153,4 +163,4 @@ apply, sapply, lapply, tapply, vapply, eapply, rapply,Map, mapply, .mapply, Vect
 by, by.default, by.data.frame, print.by, .kronecker, kronecker, replicate, simplify2array, 
 
 # 其他函数
-q, quit, .Deprecated, 
+q, quit, .Deprecated, pretty, pretty.default,

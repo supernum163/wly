@@ -6,9 +6,9 @@
       </time>
     {{ end }}
     {{ partial "post/category.html" . }}
-    {{ if .Params.lastmod }}
+    {{ if not (eq .Lastmod .Date) }}
       <span>&emsp;{{ i18n "post.lastmod_in" }}</span>
-      <time itemprop="lastmod" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+      <time itemprop="lastmod" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
         {{ .Lastmod.Format $.Site.Params.dateFormat }}
       </time>
     {{ end }}
