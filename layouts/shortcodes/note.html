@@ -1,8 +1,12 @@
-<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
-  <div style="text-align: center; font-weight:bold; background-color: rgba(0,0,0,.1); padding: 1rem;">
+{{ .Scratch.Add "bg-color" "#C0C0C0" }}
+{{ if ge (len .Params) 2 }}
+  {{ .Scratch.Set "bg-color" (.Get 1) }}
+{{ end }}
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid {{ .Scratch.Get "bg-color" }}; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: {{ .Scratch.Get "bg-color" }}; padding: 1rem;">
     {{ .Get 0 }}
   </div>
-  <div style="background-color: rgba(0,0,0,.03); padding: 1rem;">
+  <div style="padding: 1rem;">
     {{ .Inner | markdownify }}
   </div>
 </div>

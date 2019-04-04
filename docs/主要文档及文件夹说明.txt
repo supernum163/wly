@@ -95,10 +95,31 @@ post中的yaml信息:
 - //d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-18.jpg
 
 
+
 # 摘要与正文分界线
 <!--more-->
 # 插入目录
 <!-- toc -->
+
+
+
+# RGB颜色对照
+
+red       #ffe6e6
+green     #cdffcd
+blue      #e6e6ff
+purple    #ffe6ff
+orange    #ffedcc
+yellow    #ffc
+cyan      #cff
+
+primary   #ddeffd
+success   #d4f1d7
+warning   #fdeece
+danger    #fee3e0
+
+
+
 
 
 
