@@ -118,7 +118,7 @@ enableEmoji = true
   autoThumbnailImage = true
 
   # 网站favicon
-  favicon = "img/favicon.png"
+  favicon = "img/favicon.ico"
   # 全局关键字，在meta信息中
   keywords = ["wly的博客", "supernum"]
   # 网站默认description，在meta信息中
