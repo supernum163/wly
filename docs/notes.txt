@@ -10,13 +10,13 @@ choose, lchoose,  factorial, lfactorial, beta, lbeta, gamma, lgamma, digamma, tr
 # 使用R语言对数组进行数学运算
 :, c, c.Date, c.difftime, c.noquote, c.numeric_version, c.POSIXct, c.POSIXlt, c.warnings, 
 mat.or.vec, seq, seq.default, seq_along, seq_len, seq.Date, seq.int, seq.POSIXt, sequence, range, range.default, repeat, rep, rep_len, rep.Date, rep.factor, rep.int, rep.numeric_version, rep.POSIXct, rep.POSIXlt, replace, 
-diff, diff.Date, diff.default, diff.difftime, diff.POSIXt, 
 unique, unique.default, unique.array, unique.data.frame, unique.matrix, unique.numeric_version, unique.POSIXlt, unique.warnings, 
 duplicated, duplicated.default, duplicated.array, duplicated.data.frame, duplicated.matrix, duplicated.numeric_version, duplicated.POSIXlt, duplicated.warnings, 
-sum, min, max, mean, mean.default, 
 .gt, .gtn, order, rank, sort, sort.default, sort.int, sort.list, sort.POSIXlt, xtfrm, xtfrm.AsIs, xtfrm.Date, xtfrm.default, xtfrm.difftime, xtfrm.factor, xtfrm.numeric_version, xtfrm.POSIXct, xtfrm.POSIXlt, xtfrm.Surv, grouping, 
-pmax, pmax.int, pmin, pmin.int, .TAOCP1997init, set.seed, RNGkind, RNGversion, sample, sample.int, jitter, cummax, cummin, cumprod, cumsum, 
 which, which.max, which.min, 
+sum, min, max, mean, mean.default, 
+pmax, pmax.int, pmin, pmin.int, .TAOCP1997init, set.seed, RNGkind, RNGversion, sample, sample.int, jitter, cummax, cummin, cumprod, cumsum, 
+diff, diff.Date, diff.default, diff.difftime, diff.POSIXt, 
 
 # vector可以存储的数据类型
 The atomic modes are "logical", "integer", "numeric" (synonym "double"), "complex", "character" and "raw". 
