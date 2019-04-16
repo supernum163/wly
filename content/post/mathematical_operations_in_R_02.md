@@ -139,7 +139,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 我们已经知道了如何[从数组中筛选出特定的元素](# 2.3、数组合并、取子集)。但有些时候我们需要知道数组中特定元素的下标是什么，则可以使用命令`which(expr)`（其中`expr`为**条件表达式**）。有时候哦我们不想使用条件表达式，只想知道特定元素**n**在数组**x**中的位置，则可以使用命令`match(n, x)`。如果我们只是想知道数组**x**中是否包含元素**n**，则可以使用命令`n %in% x`。
 
-```
+```R
 > x <- c(10:1, NA)
 > which(x < 5)
 [1]  7  8  9 10
@@ -208,7 +208,7 @@ $$mad(x) = median(abs(x - center)) * constant（默认情况下center = median(x
 
 对于一个普通数组，我们可以通过命令`ts(data, start = 1, end = numeric(), frequency = 1, deltat = 1)`将其转化为一个时间序列。其中**data**即需要被转化的数组，**start、end**分别代表时间序列的起始与终止时刻，**frequency、deltat**则可以表示时间序列的**周期性**，不同的是，前者表示一个周期内有多少条**观测值**，后者表示一个观测值在一个周期中占的比重。
 
-```
+```R
 > ts(1:24, start = 2019, frequency = 12)
      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
 2019   1   2   3   4   5   6   7   8   9  10  11  12
@@ -225,7 +225,7 @@ $$mad(x) = median(abs(x - center)) * constant（默认情况下center = median(x
 
 对于一个时间序列，如果我们将其中的每个元素都按照时间向后推移**n**个位置，就可以得到该时间序列的**n阶时滞**。同理如果我们向前推移**n**个位置，就可以得到**n阶前导**，在R语言中这两种计算方式都可以通过`lag`函数完成。
 
-```
+```R
 > x <- ts(1:24, end = c(2019, 12), deltat = 1/12)
 > lag(x, 1)
      Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec
@@ -254,7 +254,7 @@ $$\begin{cases}
 
 注意卷积算法生成的数组与原始数组等长，其中每个位置上的值，都是原始数组中起始位置到该位置的所有元素，通过相应的算法（求和、求积等）生成的值。
 
-```
+```R
 > sum(1:5)
 [1] 15
 > cumsum(1:5)
@@ -279,7 +279,7 @@ $$\begin{cases}
 - **circular**只对**移动平均式的卷积**有效，表示是否循环利用原始数组。
 - **init**只对**自回归式的卷积**有效，可以用于生成卷积结果的初始值。
 
-```
+```R
 > filter(1:5, 1:3, "convolution")
 [1] NA 10 16 22 NA
 > filter(1:5, 1:3, "convolution", sides = 1)
@@ -298,7 +298,7 @@ $$\begin{cases}
 
 当我们进行预测时，尤其对于时间序列，**预测值**有时会超出可接受范围（比如预测出销量小于0）。此时我们就可以分别使用`pmin、pmax`将超出可接受范围的预测值设置为取值上、下限。
 
-```
+```R
 > pmin(1:5, 3)
 [1] 1 2 3 3 3
 > pmax(1:5, 3)

@@ -96,8 +96,6 @@ enableEmoji = true
   dateFormat = "2006-01-02"
   # 网站背景，修改为底色比较好
   cover = "#171314"
-  # 高亮代码，可用选项有: "highlight.js" (recommanded) and "prism.js" (experimental)
-  syntaxHighlighter = "highlight.js"
 
   # 是否插入Math.js, 在post的"math"中覆盖此设置
   math = false
