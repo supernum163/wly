@@ -1,6 +1,7 @@
 ---
 title: "使用R语言对数组进行数学运算"
 date: 2019-04-10
+lastmod: 2019-04-16
 math: true
 categories:
   - R语言
