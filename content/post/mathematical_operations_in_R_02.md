@@ -245,13 +245,17 @@ $$mad(x) = median(abs(x - center)) * constant（默认情况下center = median(x
 ```
 时滞与前导对于比较同一个时间序列中处于不同时间节点的数据非常有帮助。比如我们只需要使用`x - lag(x, -1)`，就可以计算**x**在每个时刻的**同比增长量**。时间序列与其时滞或前导之间的差值可以被称作**差分**。在R语言中我们可以使用命令`diff(x, lag = n, differences = m)`来计算差分。其中**lag**代表将**x**与其**n阶**前导进行差分，**differences**代表进行**m次**差分。这里我们计算的同比增长量其实就是计算一阶一次差分。
 
-$$diff(x, lag = 1, differences = 1) = x - lag(x, -1) 
-  diff(x, lag = 12, differences = 1) = x - lag(x, -12) 
-  diff(x, lag = 1, differences = 2) = (x - lag(x, -1)) - lag((x - lag(x, -1)), -1)$$
+$$diff(x, lag = 1, differences = 1) = x - lag(x, -1) \\\\ 
+diff(x, lag = 12, differences = 1) = x - lag(x, -12) \\\\ 
+diff(x, lag = 1, differences = 2) = (x - lag(x, -1)) - lag((x - lag(x, -1)), -1)$$
 
 <br>
 
 ## 8.3、卷积
+
+
+
+<br>
 
 ## 8.4、设置取值上、下限
 
