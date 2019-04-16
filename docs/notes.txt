@@ -27,6 +27,9 @@ A character string. The possible values are listed in the structure TypeTable in
 # R语言中调用底层函数的方式
 .Primitive, .Internal
 
+# R语言中的分布函数与随机数
+
+`dbeta、binom、dcauchy、dchisq、dexp、df、dgamma、dgeom、dhyper、dlnorm、dmultinom、dnbinom、dnorm、dpois、dt、dunif、dweibull`
 
 # 系统数据
 F, T, pi, letters, LETTERS, month.abb, month.name, version, R.version, R.version.string, 
