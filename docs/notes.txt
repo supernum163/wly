@@ -1,5 +1,5 @@
 # 使用R语言对数字进行数学运算
--, +, *, /,
+-, +, *, /, %/%, %%, 
 ^, exp, expm1, sqrt, log, log10, log1p, log2, logb, 
 sign, abs, floor, trunc, ceiling, round, signif, zapsmall, 
 sin, cos, tan, asin, acos, atan, atan2, sinpi, cospi, tanpi, 
@@ -13,10 +13,13 @@ mat.or.vec, seq, seq.default, seq_along, seq_len, seq.Date, seq.int, seq.POSIXt,
 unique, unique.default, unique.array, unique.data.frame, unique.matrix, unique.numeric_version, unique.POSIXlt, unique.warnings, 
 duplicated, duplicated.default, duplicated.array, duplicated.data.frame, duplicated.matrix, duplicated.numeric_version, duplicated.POSIXlt, duplicated.warnings, 
 .gt, .gtn, order, rank, sort, sort.default, sort.int, sort.list, sort.POSIXlt, xtfrm, xtfrm.AsIs, xtfrm.Date, xtfrm.default, xtfrm.difftime, xtfrm.factor, xtfrm.numeric_version, xtfrm.POSIXct, xtfrm.POSIXlt, xtfrm.Surv, grouping, 
-which, which.max, which.min, 
+%in%, match, which, which.max, which.min, 
 sum, min, max, mean, mean.default, 
 pmax, pmax.int, pmin, pmin.int, .TAOCP1997init, set.seed, RNGkind, RNGversion, sample, sample.int, jitter, cummax, cummin, cumprod, cumsum, 
 diff, diff.Date, diff.default, diff.difftime, diff.POSIXt, 
+
+# 使用R语言对矩阵进行数学运算
+%*%, %o%, %x%, 
 
 # vector可以存储的数据类型
 The atomic modes are "logical", "integer", "numeric" (synonym "double"), "complex", "character" and "raw". 
@@ -31,12 +34,13 @@ A character string. The possible values are listed in the structure TypeTable in
 
 `dbeta、binom、dcauchy、dchisq、dexp、df、dgamma、dgeom、dhyper、dlnorm、dmultinom、dnbinom、dnorm、dpois、dt、dunif、dweibull`
 
+
 # 系统数据
 F, T, pi, letters, LETTERS, month.abb, month.name, version, R.version, R.version.string, 
 .path.package, .Platform, .popath, .Last.value, .Options, options, getOption, .deparseOpts, default.stringsAsFactors, .OptRequireMethods, 
-.decode_numeric_version, .encode_numeric_version, .make_numeric_version, numeric_version, R.home, R.Version, R_system_version, getRversion, getLoadedDLLs, extSoftVersion, pcre_config, libcurlVersion, .Machine, l10n_info, licence, license, contributors, package_version, .standard_regexps, .F_dchdc, .F_dqrcf, .F_dqrdc2, .F_dqrqty, .F_dqrqy, .F_dqrrsd, .F_dqrxb, .F_dtrco, icuGetCollate, icuSetCollate, 
+.decode_numeric_version, .encode_numeric_version, .make_numeric_version, numeric_version, R.home, R.Version, R_system_version, getRversion, getLoadedDLLs, extSoftVersion, pcre_config, libcurlVersion, .Machine, l10n_info, licence, license, contributors, package_version, .standard_regexps, icuGetCollate, icuSetCollate, 
+.F_dchdc, .F_dqrcf, .F_dqrdc2, .F_dqrqty, .F_dqrqy, .F_dqrrsd, .F_dqrxb, .F_dtrco, 
 La_library, La_version, 
-Ops.data.frame, Ops.Date, Ops.difftime, Ops.factor, Ops.numeric_version, Ops.ordered, Ops.POSIXt, 
 
 # 程序包相关函数
 .First.sys, commandArgs, reg.finalizer, .isMethodsDispatchOn, interactive, capabilities, testPlatformEquivalence, .dynLibs, .expand_R_libs_env_var, importIntoEnv, search, searchpaths, .libPaths, .Library, .Library.site, library, library.dynam, library.dynam.unload, require, requireNamespace, attach, .detach, detach, dyn.load, dyn.unload, .AutoloadEnv, autoload, autoloader, setwd, getwd, dump, source, withAutoprint, parse, deparse, lazyLoad, lazyLoadDBexec, lazyLoadDBfetch, conflicts, 
@@ -51,7 +55,7 @@ any, anyDuplicated, anyDuplicated.array, anyDuplicated.data.frame, anyDuplicated
 
 .C, .Fortran, .Script getCallingDLL, getCallingDLLe, getDLLRegisteredRoutines, getDLLRegisteredRoutines.character, getDLLRegisteredRoutines.DLLInfo, .Device, .Devices, .Call, .Internal, .Primitive, builtins, call, callCC, .External, .External2, .External.graphics, .Call.graphics, taskCallbackManager, addTaskCallback, removeTaskCallback, getTaskCallbackNames, .C_R_getTaskCallbackNames, .C_R_addTaskCallback, .C_R_removeTaskCallback, 
 bitwAnd, bitwNot, bitwOr, bitwShiftL, bitwShiftR, bitwXor,
-function, args, nargs, .ArgsEnv, .NotYetImplemented, .NotYetUsed, chkDots, body, body<-, formals, formals<-, standardGeneric, UseMethod, NextMethod, for, while, switch, if, ifelse, try, tryCatch, withCallingHandlers, stop, stopifnot, break, next, missing, on.exit, invisible, withVisible, do.call, return, returnValue, Recall, local, force, forceAndCall, match, match.arg, match.call, match.fun, .tryResumeInterrupt, findRestart, .primTrace, .primUntrace, undebug, debug, debuggingState, debugonce, isdebugged, untrace, trace, tracemem, untracemem, retracemem, tracingState, traceback, .doTrace, .traceback, .Traceback, browser, browserCondition, browserSetDebug, browserText, warning, warnings, message, suppressMessages, suppressPackageStartupMessages, suppressWarnings, computeRestarts, .signalSimpleWarning, signalCondition, simpleCondition, invokeRestart, invokeRestartInteractively, restartDescription, restartFormals, withRestarts, .handleSimpleError, simpleError, simpleMessage, simpleWarning, conditionCall, conditionCall.condition, conditionMessage, conditionMessage.condition, last.warning, .packageStartupMessage, packageStartupMessage, geterrmessage, .maskedMsg, .makeMessage,
+function, args, nargs, .ArgsEnv, .NotYetImplemented, .NotYetUsed, chkDots, body, body<-, formals, formals<-, standardGeneric, UseMethod, NextMethod, for, while, switch, if, ifelse, try, tryCatch, withCallingHandlers, stop, stopifnot, break, next, missing, on.exit, invisible, withVisible, do.call, return, returnValue, Recall, local, force, forceAndCall, match.arg, match.call, match.fun, .tryResumeInterrupt, findRestart, .primTrace, .primUntrace, undebug, debug, debuggingState, debugonce, isdebugged, untrace, trace, tracemem, untracemem, retracemem, tracingState, traceback, .doTrace, .traceback, .Traceback, browser, browserCondition, browserSetDebug, browserText, warning, warnings, message, suppressMessages, suppressPackageStartupMessages, suppressWarnings, computeRestarts, .signalSimpleWarning, signalCondition, simpleCondition, invokeRestart, invokeRestartInteractively, restartDescription, restartFormals, withRestarts, .handleSimpleError, simpleError, simpleMessage, simpleWarning, conditionCall, conditionCall.condition, conditionMessage, conditionMessage.condition, last.warning, .packageStartupMessage, packageStartupMessage, geterrmessage, .maskedMsg, .makeMessage,
 bquote, sQuote, dQuote, shQuote, noquote, quote, enquote, substitute, eval, eval.parent, evalq, assign, delayedAssign, 
 sys.call, sys.calls, sys.frame, sys.frames, sys.parent, sys.parents, sys.status, sys.nframe, sys.on.exit, Sys.sleep, sys.function, Sys.setenv, Sys.unsetenv, system.file, unix.time, system.time, 
 Sys.getenv, Sys.getlocale, Sys.setlocale, Sys.chmod, Sys.setFileTime,  Sys.getpid, Sys.glob, Sys.info, Sys.localeconv, Sys.which, system, system2, 
@@ -72,7 +76,6 @@ $<-, $<-.data.frame,
 <, <=, ==, >, >=, 
 &, &.hexmode, &.octmode, &&, 
 |, |.hexmode, |.octmode, ||, 
-%*%, %/%, %%, %in%, %o%, %x%, 
 ~, 
 
 # 数据类型类函数
@@ -124,11 +127,10 @@ interaction, expand.grid,
 prettyNum, formatC, formatDL, format, format.AsIs, format.data.frame, format.Date, format.default, format.difftime, format.factor, format.hexmode, format.info, format.libraryIQR, format.numeric_version, format.octmode, format.packageInfo, format.POSIXct, format.POSIXlt, format.pval, format.summaryDefault, 
 
 # 统计类函数
-Math.data.frame, Math.Date, Math.difftime, Math.factor, Math.POSIXt, qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, solve, solve.default, solve.qr, .kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, besselI, besselJ, besselK, besselY, det, determinant, determinant.matrix, diag, diag<-, eigen, La.svd, svd, lower.tri, upper.tri, backsolve, forwardsolve, outer, chol, chol.default, chol2inv, crossprod, tcrossprod, prod, polyroot, margin.table, prop.table, scale, scale.default, sweep, norm, max.col, 
+qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, solve, solve.default, solve.qr, .kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, besselI, besselJ, besselK, besselY, det, determinant, determinant.matrix, diag, diag<-, eigen, La.svd, svd, lower.tri, upper.tri, backsolve, forwardsolve, outer, chol, chol.default, chol2inv, crossprod, tcrossprod, prod, polyroot, margin.table, prop.table, scale, scale.default, sweep, norm, max.col, 
 rowMeans, rowSums, colMeans, colSums, .rowMeans, .rowSums, .colMeans, .colSums, rowsum, rowsum.default, rowsum.data.frame, 
 .bincode, findInterval, cut, cut.Date, cut.default, cut.POSIXt, 
-rle, inverse.rle, table, tabulate, summary, summary.default, summary.connection, summary.data.frame, Summary.data.frame, summary.Date, summary.matrix, summary.POSIXct, summary.POSIXlt, summary.proc_time, summary.srcfile, summary.srcref, summary.table, 
-Summary.Date, Summary.difftime, Summary.factor, Summary.numeric_version, Summary.ordered, Summary.POSIXct, Summary.POSIXlt, summary.factor, 
+rle, inverse.rle, table, tabulate, summary, summary.default, summary.connection, summary.data.frame, Summary.data.frame, summary.Date, summary.matrix, summary.POSIXct, summary.POSIXlt, summary.proc_time, summary.srcfile, summary.srcref, summary.table, summary.factor, 
 
 # 文件资源管理类函数
 .readRDS, read.dcf, readBin, readChar, readline, readLines, readRDS, readRenviron, scan, load, curlGetHeaders, 
@@ -162,6 +164,11 @@ units, units.difftime, units<-, units<-.difftime,
 # 并发运算类函数
 apply, sapply, lapply, tapply, vapply, eapply, rapply,Map, mapply, .mapply, Vectorize, Reduce, Filter, Find, Negate, Position, 
 by, by.default, by.data.frame, print.by, .kronecker, kronecker, replicate, simplify2array, 
+
+# S3 Group Generic Functions
+Math.data.frame, Math.Date, Math.difftime, Math.factor, Math.POSIXt, 
+Ops.data.frame, Ops.Date, Ops.difftime, Ops.factor, Ops.numeric_version, Ops.ordered, Ops.POSIXt, 
+Summary.Date, Summary.difftime, Summary.factor, Summary.numeric_version, Summary.ordered, Summary.POSIXct, Summary.POSIXlt, 
 
 # 其他函数
 q, quit, .Deprecated, pretty, pretty.default,

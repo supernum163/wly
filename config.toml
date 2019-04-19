@@ -8,7 +8,7 @@ defaultContentLanguage = "zh-cn"
 # 网站标题
 title = "wly's notebook"
 # 主页面每页显示多少条post
-paginate = 7
+paginate = 5
 # 使用emoji
 enableEmoji = true
 
