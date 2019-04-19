@@ -99,13 +99,24 @@ $$ re(2 + 1i) = 2, \quad Im(2 + 1i) = 1, \quad Mod(2 + 1i) = \sqrt 5, \quad Arg(
 
 <br>
 
-## 2.6、求阶乘、排列组合、beta函数、gamma函数
+## 2.6、求阶乘、排列组合、二项式求根
 
 我们可以通过`factorial(x)`求`x`的阶乘，通过`choose(n, k)`的形式，求从`n`个样本中随机抽取`k`个有多少种不同的组合。
 
 $$ factorial(x) = x! \quad choose(n, k) = \frac {n!} {k!(n-k)!} $$
 
-我们还可以分别通过`gamma、digamma、trigamma`，来计算相应的gamma函数、gamma函数的一阶导数、amma函数的二阶导数， 通过`psigamma(x, deriv = 0)`来计算更高阶的gamma函数的导数，通过`beta(a, b)`来计算beta函数。
+我们可以通过`polyroot`求解方程$(1 + x) ^ n = 0$的复数根。注意**polyroot**函数需要使用**二项式系数**作为参数，这一点我们可以使用**choose**函数完成。
+
+```R
+> polyroot(choose(2, 0:2))
+[1] -1-0i -1+0i
+```
+
+<br>
+
+## 2.7、gamma函数、beta函数
+
+我们可以分别通过`gamma、digamma、trigamma`，来计算相应的gamma函数、gamma函数的一阶导数、gamma函数的二阶导数， 通过`psigamma(x, deriv = 0)`来计算更高阶的gamma函数的导数，通过`beta(a, b)`来计算beta函数。
 
 $$  gamma(x) = (x - 1)! \quad beta (a, b) = \gamma (a) * \gamma (b) / \gamma (a + b) $$
 
