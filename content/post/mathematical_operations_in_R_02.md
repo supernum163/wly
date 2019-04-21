@@ -32,14 +32,14 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 ## 2.1、生成数组
 
-在R语言中我们可以使用`c`函数生成数组，如下所示，我们生成了一个由1到10的整数组成的数组。
+在R语言中我们可以使用{{< hl-text primary >}}c{{< /hl-text >}}函数生成数组，如下所示，我们生成了一个由1到10的整数组成的数组。
 
 ```R
 > c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
 [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-有时我们需要生成一个按规律递增或递减（一阶导数为常数）的数列，这时`seq`函数就非常有用了。`seq`函数的使用方式如下：
+有时我们需要生成一个按规律递增或递减（一阶导数为常数）的数列，这时{{< hl-text primary >}}seq{{< /hl-text >}}函数就非常有用了。**seq**函数的使用方式如下：
 
 `seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, along.with = NULL, ...)`
 
@@ -48,7 +48,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 - 有时候我们不关心递增值，只想生成**n**个数字，则可以指定`length.out = n`
 - 有时我们需要生成一个与数组**x**等长的新数组，则可以指定`along.with = x`
 
-注意`by、length.out、along.with`只需要指定一个。
+注意**by、length.out、along.with**只需要指定一个。
 
 ```R
 > seq(1, 10, by = 1)
@@ -59,7 +59,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-此外，R语言中还定义了一些便捷函数，它们的功能都可以使用`seq`实现。比如:
+此外，R语言中还定义了一些便捷函数，它们的功能都可以使用**seq**实现。比如:
 
 - `n:m`相当于`seq(n, m, by = 1)`（当`n > m`时，`by = -1`）
 - `seq_len(n)`相当于`seq(1, n, by = 1)`
@@ -68,7 +68,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 ## 2.2、取数组下标、长度
 
-对于特定数组**x**，当我们需要知道**x**的数组下标或者长度时，可以分别使用`seq_along、lenght`函数来完成。注意`seq_along(x)`相当于`1:length(x)`
+对于特定数组**x**，当我们需要知道**x**的数组下标或者长度时，可以分别使用{{< hl-text primary >}}seq_along{{< /hl-text >}}、{{< hl-text primary >}}length{{< /hl-text >}}函数来完成。注意`seq_along(x)`相当于`1:length(x)`
 
 ```R
 > x <- seq(1, 10, by = 1)
@@ -82,7 +82,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 ## 2.3、数组合并、取子集
 
-对于两个数组**x、y**，如果需要将它们合并为一个数组，则可以使用命令`c(x, y)`，注意这里的数组生成函数`c`的最终运行结果会将两个数组中的元素合并到一个数组中，而不是生成一个数组包含两个元素，分别对应数组**x、y**。如果我们真的需要按照第二种方式合并**x、y**，则需要使用函数`list`。
+对于两个数组**x、y**，如果需要将它们合并为一个数组，则可以使用命令`c(x, y)`，注意这里的数组生成函数**c**的最终运行结果会将两个数组中的元素合并到一个数组中，而不是生成一个数组包含两个元素，分别对应数组**x、y**。如果我们真的需要按照第二种方式合并**x、y**，则需要使用函数{{< hl-text primary >}}list{{< /hl-text >}}。
 
 ```R
 > x <- 1:5; y <- 6:10
@@ -90,7 +90,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 [1]  1  2  3  4  5  6  7  8  9 10
 ```
 
-有时我们只需要使用到数组的部分元素，那么我们可以通过操作符`[]`使用数组下标来筛选出这部分元素。有时我们不关心数组下标，而只想从数组中筛选符合某个条件的元素（比如筛选出数组中所有小于5的元素），则可以使用命令`subset(x, subset)`。**subset**本质上调用了**[]**操作符，不同的是前者会忽略缺失值**NA**，而后者会保留**NA**。
+有时我们只需要使用到数组的部分元素，那么我们可以通过操作符{{< hl-text primary >}}[]{{< /hl-text >}}使用数组下标来筛选出这部分元素。有时我们不关心数组下标，而只想从数组中筛选符合某个条件的元素（比如筛选出数组中所有小于5的元素），则可以使用命令{{< hl-text primary >}}subset(x, subset){{< /hl-text >}}。**subset**本质上调用了**[]**操作符，不同的是前者会忽略缺失值**NA**，而后者会保留**NA**。
 
 ```R
 > x <- c(10:1, NA)
@@ -106,7 +106,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 ## 2.4、重复、去重数组元素
 
-有时我们需要生成一个元素按规律重复的数组，那么`rep`函数就非常实用了。`rep`函数的参数形式为：
+有时我们需要生成一个元素按规律重复的数组，那么{{< hl-text primary >}}rep{{< /hl-text >}}函数就非常实用了。**rep**函数的参数形式为：
 
 `rep(x, times = 1, length.out = NULL, each = NULL)`
 
@@ -115,7 +115,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 - 当我们指定`length.out = n`时，相当于取合并后的前n个元素
 - 当我们指定`each = n`时，相当于将每一个元素重复n次
 
-注意`times、length.out、each`只需要指定一个。
+注意**times、length.out、each**只需要指定一个。
 
 ```R
 > rep(1:2, times = 3)
@@ -126,7 +126,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 [1] 1 1 1 2 2 2
 ```
 
-有时候我们需要去除数组中重复的数据，则可以直接使用`unique`函数。当我们需要删除部分元素的重复数据，而保留另外部分元素的重复数据时，则可以在`unique`函数中使用`incomparables = x`（x为由需要保留的元素组成的数字或数组）的形式来指明那些元素的重复值需要被保留。有时我们需要从数组的右侧（或尾部）开始，取第一个不重复的元素，则可以指明`fromLast = TRUE`。
+有时候我们需要去除数组中重复的数据，则可以直接使用{{< hl-text primary >}}unique{{< /hl-text >}}函数。当我们需要删除部分元素的重复数据，而保留另外部分元素的重复数据时，则可以在**unique**函数中使用`incomparables = x`（x为由需要保留的元素组成的数字或数组）的形式来指明那些元素的重复值需要被保留。有时我们需要从数组的右侧（或尾部）开始，取第一个不重复的元素，则可以指明`fromLast = TRUE`。
 
 ```R
 > unique(rep(1:2, 3))
@@ -137,13 +137,13 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 [1] 1 1 1 2
 ```
 
-在R语言中，有一个与`unique`函数的使用方法几乎一致的函数`duplicated`。两者的区别在于，`unique`函数在计算完重复之后，会直接按规则取出*不重复*的值，而`duplicated`则会生成一个由逻辑值组成的数组，指示哪些元素会被取出，哪些元素不会。
+在R语言中，有一个与**unique**函数的使用方法几乎一致的函数{{< hl-text primary >}}duplicated{{< /hl-text >}}。两者的区别在于，**unique**函数在计算完重复之后，会直接按规则取出*不重复*的值，而**duplicated**`则会生成一个由逻辑值组成的数组，指示哪些元素会被取出，哪些元素不会。
 
 <br>
 
 ## 2.5、数组排序
 
-有时候我们需要对特定的数组排序，则可以使用`sort`函数（注意`sort`函数默认会从小到大排序，如果需要从大到小排序，则可以加上`decreasing = TRUE`）。如果我们不关心排序结果，而只想知道，排序后数组的每个元素会被放在新数组的什么位置，则可以使用`order`函数，两者关系如下：`sort(x) = x[order(x)]`。 如果想知道数组中每个元素的排名（由小到大），则可以使用`rank`函数，`rank`与`sort`的关系如下：`x = sort(x)[rank(x)]`。
+有时候我们需要对特定的数组排序，则可以使用{{< hl-text primary >}}sort{{< /hl-text >}}函数（注意**sort**函数默认会从小到大排序，如果需要从大到小排序，则可以加上`decreasing = TRUE`）。如果我们不关心排序结果，而只想知道，排序后数组的每个元素会被放在新数组的什么位置，则可以使用{{< hl-text primary >}}order{{< /hl-text >}}函数，两者关系如下：`sort(x) = x[order(x)]`。 如果想知道数组中每个元素的排名（由小到大），则可以使用{{< hl-text primary >}}rank{{< /hl-text >}}函数，**rank**与**sort**的关系如下：`x = sort(x)[rank(x)]`。
 
 ```R
 > sort(c(2.5, 4.5, 1.5, 3.5))
@@ -158,7 +158,7 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 ## 2.6、获取数组中特定元素的位置（下标）
 
-我们已经知道了如何[从数组中筛选出特定的元素](#2-3-数组合并-取子集)。但有些时候我们需要知道数组中特定元素的下标是什么，则可以使用命令`which(expr)`（其中`expr`为**条件表达式**）。有时候哦我们不想使用条件表达式，只想知道特定元素**n**在数组**x**中的位置，则可以使用命令`match(n, x)`。如果我们只是想知道数组**x**中是否包含元素**n**，则可以使用命令`n %in% x`。
+我们已经知道了如何[从数组中筛选出特定的元素](#2-3-数组合并-取子集)。但有些时候我们需要知道数组中特定元素的下标是什么，则可以使用命令{{< hl-text primary >}}which(expr){{< /hl-text >}} （其中**expr**为**条件表达式**）。有时候哦我们不想使用条件表达式，只想知道特定元素**n**在数组**x**中的位置，则可以使用命令{{< hl-text primary >}}match(n, x){{< /hl-text >}}。如果我们只是想知道数组**x**中是否包含元素**n**，则可以使用命令{{< hl-text primary >}}n %in% x{{< /hl-text >}}。
 
 ```R
 > x <- c(10:1, NA)
@@ -174,7 +174,11 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 # 3、数组的基本数学运算
 
-我们在上文中介绍过，R语言会以数组的形式存储**数字类型的对象**。所以上文介绍的所有针对数字进行数学运算的方法，对于数组依然适用。不同的是，如果数组与数字进行数学运算，则相当于数组中的每个元素分别与这个数字进行运算；如果两个等长数组进行数学运算，则相当于按照数组下标分别对相应的元素进行运算；如果参与数学运算的两个数组长度不同，则相当于将短数组[重复](#2-4-重复-去重数组元素)至与长数组等长，再进行运算。
+我们在上文中介绍过，R语言会以数组的形式存储**数字类型的对象**。所以上文介绍的所有针对数字进行数学运算的方法，对于数组依然适用。不同的是：
+
+- 如果数组与数字进行数学运算，则相当于数组中的每个元素分别与这个数字进行运算
+- 如果两个等长数组进行数学运算，则相当于按照数组下标分别对相应的元素进行运算
+- 如果参与数学运算的两个数组长度不同，则相当于将短数组[重复](#2-4-重复-去重数组元素)至与长数组等长，再进行运算。
 
 ```
 > 1:10 * 2
@@ -197,35 +201,35 @@ thumbnailImage: https://i.postimg.cc/Pf69QcfK/R.png
 
 ## 4.1、最大、最小值
 
-我们可以通过`max、min`函数分别取得数组的最大、最小值，如果我们需要知道数组的取值范围，则可以使用`range`函数。注意缺失值**NA**不能参与数学运算，所以当数组中包含缺失值时，直接求最大或最小值最终结果都是**NA**，正确的做法是在函数中加入`na.rm = TRUE`（下不赘述）。
+我们可以通过{{< hl-text primary >}}max{{< /hl-text >}}、{{< hl-text primary >}}min{{< /hl-text >}}函数分别取得数组的**最大值**、**最小值**，如果我们需要知道数组的**取值范围**，则可以使用{{< hl-text primary >}}range{{< /hl-text >}}函数。注意缺失值**NA**不能参与数学运算，所以当数组中包含缺失值时，直接求最大或最小值最终结果都是**NA**，正确的做法是在函数中加入`na.rm = TRUE`（下不赘述）。
 
 <br>
 
 ## 4.2、平均值与分位数
 
-我们可以通过`mean、median`函数分别取得数组的平均值与中位数。如果我们需要求数组的任意分位数（1/4分位数、3/4分位数等），则可以使用命令`quantile(x, probs)`。注意：`quantile(x, 0) = min(x)，quantile(x, 1) = max(x)`
+我们可以通过{{< hl-text primary >}}mean{{< /hl-text >}}、{{< hl-text primary >}}median{{< /hl-text >}}函数分别取得数组的**平均值**与**中位数**。如果我们需要求数组的**任意分位数**（1/4分位数、3/4分位数等），则可以使用命令{{< hl-text primary >}}quantile(x, probs){{< /hl-text >}}。注意：`quantile(x, 0) = min(x)，quantile(x, 1) = max(x)`
 
 实际应用中我们会经常遇到**特异值**（在一个数组中某些值特别大或者特别小，导致计算平均数等特征值时严重脱离实际）。对于特定的数组**x**，如何判断其中那些元素是特异值呢？从统计学的角度来看，如果超出了2.5倍的四分位距就可以算作特异着。这个范围用R语言代码表示就是：`[2.5*quantile(x, 1/4) - 1.5*median(x), 2.5*quantile(x, 3/4) - 1.5*median(x)]`
 
-此外R语言中还定义了一些快捷函数，它们的功能都可以用`quantile`函数实现。比如计算四分位距的`IQR`函数，计算数组五个特征值（最小值、1/4分位数、中位数、3/4分位数、最大值）的`fivenum`函数。注意：`IQR(x) = quantile(x, 3/4) - quantile(x, 1/4)`
+此外R语言中还定义了一些快捷函数，它们的功能都可以用**quantile**函数实现。比如计算**四分位距**的{{< hl-text primary >}}IQR{{< /hl-text >}}函数，计算数组五个特征值（最小值、1/4分位数、中位数、3/4分位数、最大值）的{{< hl-text primary >}}fivenum{{< /hl-text >}}函数。注意：`IQR(x) = quantile(x, 3/4) - quantile(x, 1/4)`
 
 <br>
 
 ## 4.3、计算数组离散程度
 
-对于一个长度为**n**的数组**x**，如果我们想知道数组中各元素的离散情况，则可以通过`var`函数求数组的方差，或者通过`sd`函数求数组的标准差。二者有以下关系：
+对于一个长度为**n**的数组**x**，如果我们想知道数组中各元素的离散情况，则可以通过{{< hl-text primary >}}var{{< /hl-text >}}函数求数组的**方差**，或者通过{{< hl-text primary >}}sd{{< /hl-text >}}函数求数组的**标准差**。二者有以下关系：
 
 $$var(x) = \frac {\sum_{i = 1}^n {(x_i - mean(x))^2}} {n - 1}, sd(x) = \sqrt {var(x)}$$
 
-当然我们也可以通过其它方式计算数组的离散程度，比如通过`mad`计算**绝对中位差**（与**离差**近似）：`mad(x) = median(abs(x - center)) * constant（默认情况下center = median(x), constant = 1.4826）`
+当然我们也可以通过其它方式计算数组的离散程度，比如通过{{< hl-text primary >}}mad{{< /hl-text >}}计算**绝对中位差**（与**离差**近似）：`mad(x) = median(abs(x - center)) * constant（默认情况下center = median(x), constant = 1.4826）`
 
 <br>
 
 # 5、时间序列类型的数组
 
-如果我们将一组拥有时间属性的元素，按照时间发生的先后顺序进行排列，最终生成的数组就可以被称作**时间序列**。比如R语言系统数据集中的`co2`数组就是一个时间序列，它记载了1959年至1997年间每个月份大气中二氧化碳的含量。
+如果我们将一组拥有时间属性的元素，按照时间发生的先后顺序进行排列，最终生成的数组就可以被称作**时间序列**。比如R语言系统数据集中的**co2**数组就是一个时间序列，它记载了1959年至1997年间每个月份大气中二氧化碳的含量。
 
-对于一个普通数组，我们可以通过命令`ts`将其转化为一个时间序列：
+对于一个普通数组，我们可以通过命令{{< hl-text primary >}}ts{{< /hl-text >}}将其转化为一个时间序列：
 
 `ts(data, start = 1, end = numeric(), frequency = 1, deltat = 1)`
 
@@ -248,7 +252,7 @@ $$var(x) = \frac {\sum_{i = 1}^n {(x_i - mean(x))^2}} {n - 1}, sd(x) = \sqrt {va
 
 ## 5.1、时滞、前导与差分
 
-对于一个时间序列，如果我们将其中的每个元素都按照时间向后推移**n**个位置，就可以得到该时间序列的**n阶时滞**。同理如果我们向前推移**n**个位置，就可以得到**n阶前导**，在R语言中这两种计算方式都可以通过`lag`函数完成。
+对于一个时间序列，如果我们将其中的每个元素都按照时间向后推移**n**个位置，就可以得到该时间序列的**n阶时滞**。同理如果我们向前推移**n**个位置，就可以得到**n阶前导**，在R语言中这两种计算方式都可以通过{{< hl-text primary >}}lag{{< /hl-text >}}函数完成。
 
 ```R
 > x <- ts(1:24, end = c(2019, 12), deltat = 1/12)
@@ -265,7 +269,15 @@ $$var(x) = \frac {\sum_{i = 1}^n {(x_i - mean(x))^2}} {n - 1}, sd(x) = \sqrt {va
 ```
 时滞与前导对于比较同一个时间序列中处于不同时间节点的数据非常有帮助。比如我们只需要使用`x - lag(x, -1)`，就可以计算**x**在每个时刻的**同比增长量**。
 
-时间序列与其时滞或前导之间的差值可以被称作**差分**。在R语言中我们可以使用命令`diff(x, lag = n, differences = m)`来计算差分。其中**lag**代表将**x**与其**n阶**前导进行差分，**differences**代表进行**m次**差分。这里我们计算的同比增长量其实就是计算一阶一次差分。
+时间序列与其时滞或前导之间的差值可以被称作**差分**。在R语言中我们可以使用函数{{< hl-text primary >}}diff{{< /hl-text >}}来计算差分：
+
+`diff(x, lag = n, differences = m)`
+
+- **x**即需要进行差分的时间序列
+- **lag**代表将**x**与其**n阶**前导进行差分
+- **differences**代表进行**m次**差分
+
+注意，这里我们计算同比增长量其实就是计算1阶1次差分，计算环比增长量实际上就是计算12阶1次差分。**时滞**、**前导**与**差分**有以下关系：
 
 $$\begin{cases}
   diff(x, 1, 1) = x - lag(x, -1) \\\\ 
@@ -277,7 +289,7 @@ $$\begin{cases}
 
 ## 5.2、时间序列的卷积算法
 
-我们可以使用`sum、prod`函数分别计算数组中所有元素的**和**、**连乘积**，但对于时间序列，有时候我们更想知道随着时间的推移，各元素的和、连乘积是如何变化的。这时候我们就可以分别使用`cumsum、cumprod`，分别求卷积的和或积。相应的，我们还可以分别使用`cummax、cummin`来求卷积的最大、最小值。
+我们可以使用{{< hl-text primary >}}sum{{< /hl-text >}}、{{< hl-text primary >}}prod{{< /hl-text >}}函数分别计算数组中所有元素的**和**、**连乘积**，但对于时间序列，有时候我们更想知道随着时间的推移，各元素的和、连乘积是如何变化的。这时候我们就可以分别使用{{< hl-text primary >}}cumsum{{< /hl-text >}}、{{< hl-text primary >}}cumprod{{< /hl-text >}}，分别求卷积的和或积。相应的，我们还可以分别使用{{< hl-text primary >}}cummax{{< /hl-text >}}、{{< hl-text primary >}}cummin{{< /hl-text >}}来求卷积的最大、最小值。
 
 注意卷积算法生成的数组与原始数组等长，其中每个位置上的值，都是原始数组中起始位置到该位置的所有元素，通过相应的算法（求和、求积等）生成的值。
 
@@ -296,34 +308,37 @@ $$\begin{cases}
 
 ## 5.3、时间序列的AR、MA卷积
 
-对于时间序列，有时候我们特别需要使用**移动平均系数**或**自相关系数**进行卷积，那么我们就可以使用`filter`函数：
+对于时间序列，有时候我们特别需要使用**移动平均系数**或**自相关系数**进行卷积，那么我们就可以使用{{< hl-text primary >}}filter{{< /hl-text >}}函数：
 
 `filter(x, filter, method = c("convolution", "recursive"), sides = 2, circular = FALSE, init)`
 
-- **x、filter**分别代表需要被卷积的数组和**卷积核**
-- **method**取值为**convolution**或**recursive**时，分别代表**移动平均式的卷积**、**自回归式的卷积**（对卷积结果进行卷积）
+- **x、filter**分别代表**原数组**和**卷积系数**
+- **method**取值为**convolution**或**recursive**时，分别代表**移动平均式的卷积**、**自回归式的卷积**
 - **sides**只对**移动平均式的卷积**有效，取值为**1**或**2**时，分别代表**向前卷积**、**向两端卷积**
 - **circular**只对**移动平均式的卷积**有效，表示是否循环利用原始数组
 - **init**只对**自回归式的卷积**有效，可以用于生成卷积结果的初始值
 
-```R
-> filter(1:5, 1:3, "convolution")
-[1] NA 10 16 22 NA
-> filter(1:5, 1:3, "convolution", sides = 1)
-[1] NA NA 10 16 22
-> filter(1:5, 1:3, "convolution", circular = TRUE)
-[1] 19 10 16 22 23
-> filter(1:5, 1:2, "recursive")
-[1]  1  3  8 18 39
-> filter(1:5, 1:2, "recursive", init = c(0,1))
-[1]  3  5 14 28 61
-```
+如果我们分别使用**x、y、f、p、o**代表**原数组、卷积后的数组、卷积系数、卷积系数的长度、偏移量**(注意偏移量仅与**sides**参数相关)，则**AR、MA卷积**过程可以分别用以下公式表示：
+
+$$y_i = x_i + f_1*y_{i-1} + … + f_p*y_{i-p} \\\\ 
+y_i = f_1*x_{i+o} + … + f_p*x_{i+o-(p-1)}$$
+
+$$o = \begin{cases}
+  0 (sides = 1)\\\\ 
+  p \\%\\% 2 (sides = 2) \\\\ 
+\end{cases}$$
+
+{{< image group="group:travel1" classes="fancybox nocaption fig-33" src="https://i.postimg.cc/x888V7k0/ARMA-1.gif" >}}
+{{< image group="group:travel1" classes="fancybox nocaption fig-33" src="https://i.postimg.cc/HWvj9pKj/ARMA-2.gif" >}}
+{{< image group="group:travel1" classes="fancybox nocaption fig-33 clear" src="https://i.postimg.cc/d3f1sBdG/ARMA-3.gif" >}}
+{{< image group="group:travel2" classes="fancybox nocaption fig-50" src="https://i.postimg.cc/RV3hPk5d/ARMA-4.gif" >}}
+{{< image group="group:travel2" classes="fancybox nocaption fig-50 clear" src="https://i.postimg.cc/yYwd2L7H/ARMA-5.gif" >}}
 
 <br>
 
 ## 5.4、设置取值上、下限
 
-当我们进行预测时，尤其对于时间序列，**预测值**有时会超出可接受范围（比如预测出销量小于0）。此时我们就可以分别使用`pmin、pmax`将超出可接受范围的预测值设置为取值上、下限。
+当我们进行预测时，尤其对于时间序列，**预测值**有时会超出可接受范围（比如预测出销量小于0）。此时我们就可以分别使用{{< hl-text primary >}}pmin{{< /hl-text >}}、{{< hl-text primary >}}pmax{{< /hl-text >}}将超出可接受范围的预测值设置为取值上、下限。
 
 ```R
 > pmin(1:5, 3)
