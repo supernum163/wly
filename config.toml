@@ -164,7 +164,7 @@ enableEmoji = true
     githubID = "supernum163"
     repo = "wly"
     ClientID = "40f2576aa2a372d81a1a"
-    ClientSecret = "be1df3e5286c5ccd1feec5bd3f297d298dd39037"
+    ClientSecret = "c7f5edfb420146da2eed5a09576aaea56f402d30"
 
   # algolia站内搜索系统
   #[params.algolia]
