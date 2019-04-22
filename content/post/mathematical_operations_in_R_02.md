@@ -318,14 +318,14 @@ $$\begin{cases}
 - **circular**只对**移动平均式的卷积**有效，表示是否循环利用原始数组
 - **init**只对**自回归式的卷积**有效，可以用于生成卷积结果的初始值
 
-如果我们分别使用**x、y、f、p、o**代表**原数组、卷积后的数组、卷积系数、卷积系数的长度、偏移量**(注意偏移量仅与**sides**参数相关)，则**AR、MA卷积**过程可以分别用以下公式表示：
+如果我们分别使用**X、Y、F、p、o**代表**原数组、卷积后的数组、卷积系数、卷积系数的长度、偏移量**(注意偏移量仅与**sides**参数相关)，则**AR、MA卷积**过程可以分别用以下公式表示：
 
-$$y_i = x_i + f_1*y_{i-1} + … + f_p*y_{i-p} \\\\ 
-y_i = f_1*x_{i+o} + … + f_p*x_{i+o-(p-1)}$$
+$$Yi = Xi + F_1*Y(i-1) + … + Fp*Y(i-p) \\\\ 
+Yi = F_1*X(i+o) + … + Fp*X(i+o-(p-1))$$
 
 $$o = \begin{cases}
-  0 (sides = 1)\\\\ 
-  p \\%\\% 2 (sides = 2) \\\\ 
+  0 &\text{if } (sides = 1)\\\\ 
+  (p \\%\\% 2) &\text{if } (sides = 2) \\\\ 
 \end{cases}$$
 
 {{< image group="group:travel1" classes="fancybox nocaption fig-33" src="https://i.postimg.cc/x888V7k0/ARMA-1.gif" >}}
