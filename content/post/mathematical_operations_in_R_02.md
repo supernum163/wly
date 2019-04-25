@@ -344,7 +344,7 @@ Yi = F_1*X(i+o) + … + Fp*X(i+o-(p-1))$$
 
 $$o = \begin{cases}
   0 &\text{if } (sides = 1)\\\\ 
-  (p \\%\\% 2) &\text{if } (sides = 2) \\\\ 
+  (p \\%\\% 2) &\text{if } (sides = 2) 
 \end{cases}$$
 
 {{< image group="group:travel1" classes="fancybox nocaption fig-33" src="https://i.postimg.cc/x888V7k0/ARMA-1.gif" >}}

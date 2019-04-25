@@ -14,6 +14,7 @@ besselI, besselJ, besselK, besselY,
 mat.or.vec, seq, seq.default, seq_along, seq_len, seq.Date, seq.int, seq.POSIXt, sequence, range, range.default, repeat, rep, rep_len, rep.Date, rep.factor, rep.int, rep.numeric_version, rep.POSIXct, rep.POSIXlt, replace, 
 unique, unique.default, unique.array, unique.data.frame, unique.matrix, unique.numeric_version, unique.POSIXlt, unique.warnings, 
 duplicated, duplicated.default, duplicated.array, duplicated.data.frame, duplicated.matrix, duplicated.numeric_version, duplicated.POSIXlt, duplicated.warnings, 
+union, intersect, setdiff, setequal, 
 .gt, .gtn, order, rank, sort, sort.default, sort.int, sort.list, sort.POSIXlt, xtfrm, xtfrm.AsIs, xtfrm.Date, xtfrm.default, xtfrm.difftime, xtfrm.factor, xtfrm.numeric_version, xtfrm.POSIXct, xtfrm.POSIXlt, xtfrm.Surv, grouping, 
 %in%, match, which, which.max, which.min, 
 prod, sum, min, max, mean, mean.default, 
@@ -128,7 +129,7 @@ isBaseNamespace, isIncomplete, isNamespace, isNamespaceLoaded,isRestart, isS4, i
  ISOdate, ISOdatetime, 
 
 # 数据处理类函数
-.__H__.cbind, .__H__.rbind, cbind, cbind.data.frame, rbind, rbind.data.frame, union, intersect, setdiff, setequal, append, merge, merge.default, merge.data.frame, 
+.__H__.cbind, .__H__.rbind, cbind, cbind.data.frame, rbind, rbind.data.frame, append, merge, merge.default, merge.data.frame, 
 .subset, .subset2, subset, subset.default, subset.data.frame, subset.matrix, unsplit, split, split.default, split.data.frame, split.Date, split.POSIXct, split<-, split<-.data.frame, split<-.default, 
 aperm, aperm.default, aperm.table, slice.index, 
 rev, rev.default, t, t.default, t.data.frame, transform, transform.default, transform.data.frame, 
