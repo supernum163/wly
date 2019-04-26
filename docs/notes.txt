@@ -25,7 +25,7 @@ diff, diff.Date, diff.default, diff.difftime, diff.POSIXt,
 diag, diag<-, isSymmetric, isSymmetric.matrix, lower.tri, upper.tri, 
 %*%, %o%, crossprod, tcrossprod,  %x%, .kronecker, kronecker, outer, solve, solve.default, solve.qr, backsolve, forwardsolve, eigen, det, determinant, determinant.matrix,
 qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, La.svd, svd, chol, chol.default, chol2inv,
-.kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, norm, 
+.kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, rcond, norm, 
 
 # 统计类函数
 sweep, margin.table, prop.table, scale, scale.default, max.col, rowMeans, rowSums, colMeans, colSums, .rowMeans, .rowSums, .colMeans, .colSums, rowsum, rowsum.default, rowsum.data.frame, 
