@@ -24,7 +24,7 @@ diff, diff.Date, diff.default, diff.difftime, diff.POSIXt,
 # 使用R语言对矩阵进行数学运算
 diag, diag<-, isSymmetric, isSymmetric.matrix, lower.tri, upper.tri, 
 %*%, %o%, crossprod, tcrossprod,  %x%, .kronecker, kronecker, outer, solve, solve.default, solve.qr, backsolve, forwardsolve, eigen, det, determinant, determinant.matrix,
-qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, La.svd, svd, chol, chol.default, chol2inv,
+is.qr, qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, La.svd, svd, chol, chol.default, chol2inv,
 .kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, rcond, norm, 
 
 # 统计类函数
@@ -121,7 +121,7 @@ as.matrix, as.matrix.data.frame, as.matrix.default, as.matrix.noquote, as.matrix
 as.POSIXct, as.POSIXct.date, as.POSIXct.Date, as.POSIXct.dates, as.POSIXct.default, as.POSIXct.numeric, as.POSIXct.POSIXlt, 
 as.POSIXlt, as.POSIXlt.character, as.POSIXlt.date, as.POSIXlt.Date, as.POSIXlt.dates, as.POSIXlt.default, as.POSIXlt.factor, as.POSIXlt.numeric, as.POSIXlt.POSIXct, 
 
-is.array, is.atomic, is.call, is.character, is.complex, is.data.frame, is.double, is.element, is.environment, is.expression, expression, is.factor, is.finite, is.function, is.infinite, is.integer, is.language, is.list, is.loaded, is.logical, is.matrix, is.name, is.object, is.ordered, is.package_version, is.pairlist, is.primitive, is.qr, is.R, is.raw, is.recursive, is.single, is.symbol, is.table, is.unsorted, is.vector, 
+is.array, is.atomic, is.call, is.character, is.complex, is.data.frame, is.double, is.element, is.environment, is.expression, expression, is.factor, is.finite, is.function, is.infinite, is.integer, is.language, is.list, is.loaded, is.logical, is.matrix, is.name, is.object, is.ordered, is.package_version, is.pairlist, is.primitive, is.R, is.raw, is.recursive, is.single, is.symbol, is.table, is.unsorted, is.vector, 
 is.null, is.nan, is.na, is.na.data.frame, is.na.numeric_version, is.na.POSIXlt, 
 is.na<-, is.na<-.default, is.na<-.factor, is.na<-.numeric_version, 
 is.numeric, is.numeric_version, is.numeric.Date, is.numeric.difftime, is.numeric.POSIXt, 

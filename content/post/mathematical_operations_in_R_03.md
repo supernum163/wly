@@ -163,10 +163,12 @@ $$\begin{cases}
 
 矩阵的乘法运算必须要求**X**的列数与**Y**的行数相同。但实际运用中我们经常会遇到两个行列相同的矩阵，此时如果想计算乘积，则需要对其中一个矩阵进行[行列互换](#-2-5-矩阵的行列互换)。当然我们也可以使用R语言中的两个快捷函数{{< hl-text primary >}}crossprod、 tcrossprod{{< /hl-text >}}，来以这种方式计算矩阵乘积。
 
-$$crossprod(x, y) = t(x) \%*\% y \\\\
-tcrossprod(x, y) = x \%*\% t(y)$$
+$$\begin{cases}
+  crossprod(x, y) = t(x) \%*\% y \\\\
+  tcrossprod(x, y) = x \%*\% t(y)
+\end{cases}$$
 
-对于两个长度分别为**n、m**的数组数组**x、y**，我们可以使用操作符{{< hl-text primary >}}%x%,{{< /hl-text >}}或者函数{{< hl-text primary >}}kronecker{{< /hl-text >}}来计算它们之间的**内积**，最终生成的结果相当于分别用**x**中的每个元素与**y**相乘，再将n个长度为m的数组合并为一个长度为*n \\* m*的数组。
+对于两个长度分别为**n、m**的数组数组**x、y**，我们可以使用操作符{{< hl-text primary >}}%x%,{{< /hl-text >}}或者函数{{< hl-text primary >}}kronecker{{< /hl-text >}}来计算它们之间的**内积**，最终生成的结果相当于分别用**x**中的每个元素与**y**相乘，再将n个长度为m的数组合并为一个长度为$n \times m$的数组。
 
 此外我们还可以通过操作符{{< hl-text primary >}}%o%{{< /hl-text >}}或者函数{{< hl-text primary >}}outer{{< /hl-text >}}来计算**x、y**的**外积**。计算结果相当于一个$n \times 1$阶矩阵与一个$1 \times m$阶矩阵相乘，最终会生成一个$n \times m$阶的矩阵。
 
@@ -176,7 +178,7 @@ tcrossprod(x, y) = x \%*\% t(y)$$
 
 ## 4.3、解矩阵方程
 
-假设$X %*% Y = Z$，当矩阵**X、Z**已知时，我们可以通过{{< hl-text primary >}}solve{{< /hl-text >}}函数求解矩阵**Y**。如果**X**为上、下三角矩阵时，我们则可以分别使用{{< hl-text primary >}}backsolve、forwardsolve{{< /hl-text >}}函数求解**Y**。
+假设$XY = Z$，当矩阵**X、Z**已知时，我们可以通过{{< hl-text primary >}}solve{{< /hl-text >}}函数求解矩阵**Y**。如果**X**为上、下三角矩阵时，我们则可以分别使用{{< hl-text primary >}}backsolve、forwardsolve{{< /hl-text >}}函数求解**Y**。
 
 假设$XY = YX = Z$, 其中**Z**为**单位矩阵**， 则**X、Y**互为**逆矩阵**。根据求解矩阵方程的规律，我们可以通过以下命令求解矩阵**X**的逆：`solve(X, diag(1, nrow(X)))`。
 
@@ -243,37 +245,51 @@ $v
 
 对于一个方阵**A**，如果$A*A^T = E$，其中**E**为**单位矩阵**，则称**A**为**正交矩阵**。
 
-**正交分解**的过程，就是将一个矩阵**A**，分解为一个正交矩阵**Q**与一个上三角矩阵**R**，即$A = Q %*% R$。
+**正交分解**的过程，就是将一个矩阵**A**，分解为一个正交矩阵**Q**与一个上三角矩阵**R**的乘积，即$A = Q %*% R$。
 
-$$qr.qy = Q %*% y \\\\
-qr.qty = t(Q) %*% y$$
+在R语言中我们可以通过{{< hl-text primary >}}qr{{< /hl-text >}}函数，对矩阵进行正交分解。注意这里正交分解后生成的对象，以压缩数据的方式存储了计算结果，我们可以分别对其使用{{< hl-text primary >}}qr.Q、qr.R、qr.X{{< /hl-text >}}函数，来提取出其中的**Q、R**及原矩阵**A**。此外，R语言中定义了两个快捷函数{{< hl-text primary >}}qr.qy、qr.qty{{< /hl-text >}}，可以方便我们求解**Q**与其它矩阵的乘积。
 
-qr, qr.Q, qr.R, qr.X, qr.default, qr.coef, qr.fitted, qr.resid, qr.qy, qr.qty, qr.solve, 
+$$\begin{cases}
+  qr.qy = Q %*% y \\\\
+  qr.qty = t(Q) %*% y
+\end{cases}$$
+
+正交分解对于求解多元方程组具有非常重要的意义。假设多元方程组$y = aX$，其中由自变量组成的矩阵**X**已知（或**X**的正交分解已知），由因变量组成的向量**y**已知。则我们可以分别对其使用{{< hl-text primary >}}qr.solve、qr.coef、qr.fitted、qr.resid{{< /hl-text >}}函数，求解多元方程、获取多元方程组的各项系数$a$
+，获取拟合值$\hat y$，获取拟合误差$y - \hat y$。
+
+<br>
 
 ## 4.8、三角分解
 
-$A = L^T %*% L$
+**三角分解**的过程，就是将一个矩阵**A**，分解为一个下三角矩阵**L**与一个上三角矩阵的乘积，即$A = L \enspace \%*\% \enspace L^T$。在R语言中我们可以通过{{< hl-text primary >}}chol{{< /hl-text >}}函数，对矩阵进行三角分解，最终生成的结果是一个上三角矩阵。
+
+三角分解对于矩阵求逆具有十分重要的意义。在R语言中我们可以对生成的上三角矩阵使用{{< hl-text primary >}}chol2inv{{< /hl-text >}}函数，来求解原矩阵的逆。
 
 ```
-cma <- chol(ma  <- cbind(1, 1:3, c(1,3,7)))
-ma = t(cma) %*% cma
-chol2inv(cma) = solve(ma, diag(1,3))
+chol_A <- chol(A  <- cbind(1, 1:3, c(1,3,7)))
+> identical(A, t(chol_A) %*% chol_A)
+[1] TRUE
+> identical(diag(1, nrow(A)), chol2inv(chol_A) %*% A)
+[1] TRUE
 ```
 
-chol, chol.default, chol2inv,
+<br>
 
 ## 4.9、矩阵条件数、范数
 
-.kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, rcond, norm, 
+矩阵的**条件数**、**范数**可以描述矩阵特某个特征（比如矩阵用于求解多项式系数时的可信度）。在R语言中我们可以分别通过{{< hl-text primary >}}kappa、rcond、norm{{< /hl-text >}}等函数，来求解这些值。
 
-```
-kappa(X) = max(svd(X)$d) / min(svd(X)$d)
-nrom(x, "O")，按列汇总后的最大值
-nrom(x, "I")，按行汇总后的最大值
-nrom(x, "F")，sqrt(sum(diag(t(x) %*% x)))
-nrom(x, "M")，max(x)
-nrom(x, "2")，largest singular value (svd) of x
-```
+| 函数          | 替代命令                            | 说明                                            | 
+| :------------ | :-----------------------------------| :-----------------------------------------------|
+| kappa(X)      | max(svd(X)$d) / min(svd(X)$d)       | 条件数估计值，X的最大奇异值与最小特征值之间的商 |
+| rcond(X)      | 1/kappa(X)                          | 条件数倒数估计值                                |
+| norm(X, "O")  | max(colSums(abs(X)))                | 按列汇总后的最大值                              |
+| norm(X, "I")  | max(rowSums(abs(X)))                | 按行汇总后的最大值                              |
+| norm(X, "M")  | max(abs(X))                         | X中的最大值                                     |
+| norm(X, "2")  | max(svd(X)$d)                       | X的最大奇异值                                   |
+| norm(X, "F")  | sqrt(sum(X^2))                      | X中各元素平方和的根                             |
+
+<br>
 
 # 5、结语
 
@@ -281,7 +297,8 @@ nrom(x, "2")，largest singular value (svd) of x
 
 {{< note "思考思考" "#e6e6ff" >}}
 - 如何用矩阵解决**鸡兔同笼**问题？
-
+- 根据上文提供的[行列式计算公式](#-4.4-行列式)，计算一个n阶段方阵的行列式，需要进行多少次加（减）法的迭代运算？
+- **rcond(X)**与**1/kappa(X)**之间存在的差异是计算误差吗？
 {{< /note >}}
 
 <br>
