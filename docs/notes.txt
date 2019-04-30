@@ -24,7 +24,7 @@ diff, diff.Date, diff.default, diff.difftime, diff.POSIXt,
 # 使用R语言对矩阵进行数学运算
 diag, diag<-, isSymmetric, isSymmetric.matrix, lower.tri, upper.tri, 
 %*%, %o%, crossprod, tcrossprod,  %x%, .kronecker, kronecker, outer, solve, solve.default, solve.qr, backsolve, forwardsolve, eigen, det, determinant, determinant.matrix,
-is.qr, qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, La.svd, svd, chol, chol.default, chol2inv,
+is.qr, as.qr, qr, qr.coef, qr.default, qr.fitted, qr.Q, qr.qty, qr.qy, qr.R, qr.resid, qr.solve, qr.X, La.svd, svd, chol, chol.default, chol2inv,
 .kappa_tri, kappa, kappa.default, kappa.lm, kappa.qr, rcond, norm, 
 
 # 统计类函数
@@ -54,7 +54,7 @@ F, T, pi, letters, LETTERS, month.abb, month.name, version, R.version, R.version
 La_library, La_version, 
 
 # 程序包相关函数
-.First.sys, commandArgs, reg.finalizer, .isMethodsDispatchOn, interactive, capabilities, testPlatformEquivalence, .dynLibs, .expand_R_libs_env_var, importIntoEnv, search, searchpaths, .libPaths, .Library, .Library.site, library, library.dynam, library.dynam.unload, require, requireNamespace, attach, .detach, detach, dyn.load, dyn.unload, .AutoloadEnv, autoload, autoloader, setwd, getwd, dump, source, withAutoprint, parse, deparse, lazyLoad, lazyLoadDBexec, lazyLoadDBfetch, conflicts, 
+.First.sys, commandArgs, reg.finalizer, .isMethodsDispatchOn, interactive, capabilities, testPlatformEquivalence, .dynLibs, .expand_R_libs_env_var, importIntoEnv, search, searchpaths, .libPaths, .Library, .Library.site, library, library.dynam, library.dynam.unload, require, requireNamespace, attach, .detach, detach, .AutoloadEnv, autoload, autoloader, setwd, getwd, dump, source, withAutoprint, parse, deparse, lazyLoad, lazyLoadDBexec, lazyLoadDBfetch, conflicts, 
 .rmpkg, .noGenerics, .Defunct, getHook, setHook, packageEvent, packageHasNamespace, .packages,  path.package, .find.package, find.package, findPackageEnv, 
 .knownS3Generics, .S3PrimitiveGenerics, .__S3MethodsTable__., .mergeExportMethods, .mergeImportMethods, registerS3method, registerS3methods, .getNamespace, ..getNamespace, .getNamespaceInfo, .getRequiredPackages, .getRequiredPackages2, .BaseNamespaceEnv, .methodsNamespace, parseNamespaceFile, loadNamespace, loadedNamespaces, loadingNamespaceInfo, getNamespace, getNamespaceExports, getNamespaceImports, getNamespaceInfo, getNamespaceName, getNamespaceUsers, getNamespaceVersion, getNativeSymbolInfo, namespaceExport, namespaceImport, namespaceImportClasses, namespaceImportFrom, namespaceImportMethods, asNamespace, attachNamespace, unloadNamespace, setNamespaceInfo, getExportedValue, 
 srcref, getSrcLines, srcfile, srcfilealias, srcfilecopy, 
@@ -64,7 +64,7 @@ xor, xor.hexmode, xor.octmode,
 all, all.names, all.vars, all.equal, all.equal.character, all.equal.default, all.equal.environment, all.equal.envRefClass, all.equal.factor, all.equal.formula, all.equal.language, all.equal.list, all.equal.numeric, all.equal.POSIXt, all.equal.raw, attr.all.equal, 
 any, anyDuplicated, anyDuplicated.array, anyDuplicated.data.frame, anyDuplicated.default, anyDuplicated.matrix, anyNA, anyNA.numeric_version, anyNA.POSIXlt, 
 
-.C, .Fortran, .Script getCallingDLL, getCallingDLLe, getDLLRegisteredRoutines, getDLLRegisteredRoutines.character, getDLLRegisteredRoutines.DLLInfo, .Device, .Devices, .Call, .Internal, .Primitive, builtins, call, callCC, .External, .External2, .External.graphics, .Call.graphics, taskCallbackManager, addTaskCallback, removeTaskCallback, getTaskCallbackNames, .C_R_getTaskCallbackNames, .C_R_addTaskCallback, .C_R_removeTaskCallback, 
+.Fortran, .C, .Call, dyn.load, dyn.unload, .Internal, .Primitive, .Script getCallingDLL, getCallingDLLe, getDLLRegisteredRoutines, getDLLRegisteredRoutines.character, getDLLRegisteredRoutines.DLLInfo, .Device, .Devices, builtins, call, callCC, .External, .External2, .External.graphics, .Call.graphics, taskCallbackManager, addTaskCallback, removeTaskCallback, getTaskCallbackNames, .C_R_getTaskCallbackNames, .C_R_addTaskCallback, .C_R_removeTaskCallback, 
 bitwAnd, bitwNot, bitwOr, bitwShiftL, bitwShiftR, bitwXor,
 function, args, nargs, .ArgsEnv, .NotYetImplemented, .NotYetUsed, chkDots, body, body<-, formals, formals<-, standardGeneric, UseMethod, NextMethod, for, while, switch, if, ifelse, try, tryCatch, withCallingHandlers, stop, stopifnot, break, next, missing, on.exit, invisible, withVisible, do.call, return, returnValue, Recall, local, force, forceAndCall, match.arg, match.call, match.fun, .tryResumeInterrupt, findRestart, .primTrace, .primUntrace, undebug, debug, debuggingState, debugonce, isdebugged, untrace, trace, tracemem, untracemem, retracemem, tracingState, traceback, .doTrace, .traceback, .Traceback, browser, browserCondition, browserSetDebug, browserText, warning, warnings, message, suppressMessages, suppressPackageStartupMessages, suppressWarnings, computeRestarts, .signalSimpleWarning, signalCondition, simpleCondition, invokeRestart, invokeRestartInteractively, restartDescription, restartFormals, withRestarts, .handleSimpleError, simpleError, simpleMessage, simpleWarning, conditionCall, conditionCall.condition, conditionMessage, conditionMessage.condition, last.warning, .packageStartupMessage, packageStartupMessage, geterrmessage, .maskedMsg, .makeMessage,
 bquote, sQuote, dQuote, shQuote, noquote, quote, enquote, substitute, eval, eval.parent, evalq, assign, delayedAssign, 
@@ -102,7 +102,7 @@ length, length.POSIXlt, length<-, length<-.factor, lengths, nrow, NROW, ncol, NC
 comment, comment<-, attr, attr<-, attributes, attributes<-, mostattributes<-, labels, labels.default, dontCheck, identity, identical, inherits, 
 names, names.POSIXlt, names<-, names<-.POSIXlt, colnames, colnames<-, make.names, make.unique, row.names, row.names.default, row.names.data.frame, row.names<-, row.names<-.default, row.names<-.data.frame, xpdrows.data.frame, rownames, rownames<-, dimnames, dimnames.data.frame, dimnames<-, dimnames<-.data.frame, .set_row_names, .row_names_info, unname, provideDimnames, 
 
-asS3, asS4, as.call, as.factor, as.hexmode, as.integer, as.complex, as.difftime, as.environment, as.name, as.octmode, as.ordered, as.pairlist, as.qr, as.raw, as.symbol, as.package_version, 
+asS3, asS4, as.call, as.factor, as.hexmode, as.integer, as.complex, as.difftime, as.environment, as.name, as.octmode, as.ordered, as.pairlist, as.raw, as.symbol, as.package_version, 
 as.single, as.single.default, 
 as.table, as.table.default, 
 as.vector, as.vector.factor, 
