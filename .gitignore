@@ -6,3 +6,4 @@
 .Rmarkdown
 public/
 grunt/
+docs/test*
