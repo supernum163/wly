@@ -28,7 +28,6 @@ enableEmoji = true
   bio = "令凤鸟飞腾兮，继之以昼夜"
   job = "数据分析师"
   location = "中国 上海"
-  # 当 Gravatar email 为空时, 作者头像
   picture = "https://i.postimg.cc/nhmB7j7T/image.png"
 
 # 侧边栏菜单
