@@ -92,15 +92,19 @@ class属性最主要的功能，是被用于**S3**类型函数的函数分发。
 
 ### dim属性
 
-数据的dim属性决定了数据的维度。
+数据的dim属性决定了数据的维度。在R语言中，我们经常会使用到**matrix、data.frame**类型的数据，但是R语言的底层存储结构中并没有这些类型，因为它们的存储类型与**vector、list**类型的数据是一致的，这些数据类型之间很重要的一个区别就是dim属性。比如以下命令中我们生成了一个数组，将其dim属性修改为`c(2, 5)`之后，数组就被自动转化为了矩阵。
 
-R’s base data structures are summarised in the table below, organised by their
-dimensionality and whether they’re homogeneous (all contents must be of the
-same type) or heterogeneous (the contents can be of different types):
+```R
+> x <- 1:10
+> dim(x) <- c(2, 5); x
+     [,1] [,2] [,3] [,4] [,5]
+[1,]    1    3    5    7    9
+[2,]    2    4    6    8   10
+```
 
-（在R语言中，原子类数据（**atomic**）一般指的是："logical"、"integer"、"numeric"、"complex"、"character"、 "raw"、 NULL）
+下表我们按照维度与存储内容是同质数组（所有元素的数据类型必须相同），或异质数组（可以存储不同类型的元素），对这些数据结构做了一个区分。注意在R语言中，单维数据是没有dim属性的。此外原子类数据（**atomic**）一般指的是："logical"、"integer"、"numeric"、"complex"、"character"、 "raw"、 NULL等类型的数据。
 
-|      | 同质数据       | 异质数据   |  
+|      | 同质数组       | 异质数组   |
 |:----:|----------------|------------|
 | 单维 | atomic vector  | list       |
 | 二维 | matrix 	      | data.frame |
