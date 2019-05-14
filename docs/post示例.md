@@ -46,6 +46,23 @@ gallery:
 <sup>上标文字测试</sup>, <sub>下标文字测试</sub> , 键盘文本测试<kdb>ctrl + c</kdb>, <cite>行内引用测试</cite>
 ， 缩写测试<acronym title="National Basketball Association">NBA</acronym>，简写测试<abbr title="Avenue">AVE</abbr>
 
+## 超链接测试
+
+This is an [example link](http://example.com/)
+
+### 引用链接
+
+I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].  
+
+[1]: http://google.com/        "Google" 
+[2]: http://search.yahoo.com/  "Yahoo Search" 
+[3]: http://search.msn.com/    "MSN Search"
+
+### 脚注链接
+
+这是一个链接到谷歌的[^脚注]。
+
+[^脚注]: http://www.google.com
 
 ## 列表测试
 
@@ -195,7 +212,7 @@ function $initHighlight(block, flags) {
 
 ![supernum.tech](https://www.supernum.tech/favicon.png)
 
-## 图片与链接结合
+### 图片与链接结合
 
 [![supernum.tech](https://www.supernum.tech/favicon.png)](http://www.supernum.tech)
 
