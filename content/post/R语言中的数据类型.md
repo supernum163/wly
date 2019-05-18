@@ -45,7 +45,7 @@ R语言中的底层代码都是由**C/C++**直接实现的，在R语言中所有
 | "numeric"     |	REALSXP	    |                    | 浮点型数组
 | "complex"     |	CPLXSXP	    | 15                 | 复数数组
 | "raw"         | RAWSXP      | 24                 | 二进制数组
-| "list"        | VECSXP      | 20                 | 列表
+| "list"        | VECSXP      | 19                 | 列表
 | "pairlist"    |	LISTSXP	    | 2                  | 列表
 | "S4"          | S4SXP       | 25                 | S4对象
 | "any"         | ANYSXP	    | 18                 | 任意类型的数组
@@ -53,7 +53,7 @@ R语言中的底层代码都是由**C/C++**直接实现的，在R语言中所有
 | "environment" |	ENVSXP      | 4                  | 命令执行环境
 | "symbol"      | SYMSXP      | 1                  | 变量名
 | "name"        | SYMSXP	    |                    | 变量名
-| "expression"  |	EXPRSXP	    | 19                 | 未执行的命令
+| "expression"  |	EXPRSXP	    | 20                 | 未执行的命令
 | "language"    |	LANGSXP     | 6                  | 未执行的命令
 | "promise"     |	PROMSXP     | 5                  | 未执行的命令与命令执行环境
 | "closure"     |	CLOSXP	    | 3                  | 函数
