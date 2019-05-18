@@ -26,6 +26,53 @@ R语言中的底层代码都是由**C/C++**直接实现的，在R语言中所有
 
 **SEXP**的另一部分是 *数据* ，根据存储内容的不同， *数据* 部分的结构也是不同的，比如R语言中**vector**类型的对象基本上都是存储在**vecsxp**结构体中，而**environment**类型的对象则是存储在**envsxp**结构体中。 *数据* 层面的差异是C语言中数据结构的差异，并不能直接体现在R语言层面。
 
+
+{{< tabbed-codeblock "Rinternals" "https://github.com/wch/r-source/blob/R-3-6-branch/src/include/Rinternals.h" "C++" >}}
+<!-- tab SEXPREC -->
+typedef struct SEXPREC {
+  SEXPREC_HEADER;                       // 头信息
+  union {
+	  struct primsxp_struct primsxp;      // 存储系统函数或操作号
+	  struct symsxp_struct symsxp;        // 存储变量名
+	  struct listsxp_struct listsxp;      // 存储pairlist型数据
+	  struct envsxp_struct envsxp;        // 存储promise型数据
+	  struct closxp_struct closxp;        // 存储函数
+	  struct promsxp_struct promsxp;      // 存储未执行的命令
+  } u;
+} SEXPREC;
+<!-- endtab -->
+<!-- tab VECTOR_SEXPRE -->
+typedef struct VECTOR_SEXPREC {
+  SEXPREC_HEADER;                       // 头信息
+  struct vecsxp_struct vecsxp;          // 存储vector型数据                        
+} VECTOR_SEXPREC, *VECSEXP;
+<!-- endtab -->
+<!-- tab SEXPREC_HEADER -->
+#define SEXPREC_HEADER 	\
+  struct sxpinfo_struct sxpinfo;        \   // sxpinfo
+  struct SEXPREC *attrib;               \   // 数据的属性
+  struct SEXPREC *gengc_next_node;      \   // 下一个节点
+  struct SEXPREC *gengc_prev_node;          // 上一个节点                         
+<!-- endtab -->
+<!-- tab sxpinfo_struct -->
+struct sxpinfo_struct {
+  SEXPTYPE type         :  TYPE_BITS;     // 数据存储类型标识，目前占用3个比特位
+  unsigned int scalar   :  1;             // 是否为长度为1的数值型数组
+  unsigned int obj      :  1;             // 是否包含class属性
+  unsigned int alt      :  1;             // 是否为ALTREP型的数据
+  unsigned int gp       : 16;             // ‘general purpose’，对不同数据类型有不同含义
+  unsigned int mark     :  1;             // 标记数据正在使用，不能被GC回收
+  unsigned int debug    :  1;             // 用于函数调试，参考R语言debug函数
+  unsigned int trace    :  1;             // 用于函数调试，参考R语言trace函数
+  unsigned int spare    :  1;             // 用于函数调试，参考R语言debugonce函数
+  unsigned int gcgen    :  1;             // GC generation，用于内存管理 
+  unsigned int gccls    :  3;             // node class，用于内存管理 
+  unsigned int named    : NAMED_BITS;     // 引用数据的指针数量
+  unsigned int extra    : 32 - NAMED_BITS;
+};  // 共占用8个字节
+<!-- endtab -->
+{{< /tabbed-codeblock >}}
+
 <br>
 
 ## 1、数据的存储类型

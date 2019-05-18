@@ -1,3 +1,18 @@
+{{ if .IsNamedParams }}
+  {{ $.Scratch.Add "tc-title" (.Get "title") }}
+  {{ $.Scratch.Add "tc-url" (.Get "url") }}
+  {{ $.Scratch.Add "tc-language" (.Get "language") }}
+{{ else }}
+  {{ if ge (len .Params) 1 }}
+    {{ $.Scratch.Add "tc-title" (.Get 0) }}
+  {{ end }}
+  {{ if ge .Params 2 }}
+    {{ $.Scratch.Add "tc-url" (.Get 1) }}
+  {{ end }}
+  {{ if ge .Params 3 }}
+    {{ $.Scratch.Add "tc-language" (.Get 2) }}
+  {{ end }}
+{{ end }}
 {{ $tabs := findRE "<!-- *[Tt][Aa][Bb] +(\\w*) *-->\\n([\\w\\W\\s\\S]*?)<!-- *[Ee][Nn][Dd][Tt][Aa][Bb] *-->" .Inner }}
 {{ range $index,$value := $tabs }}
   {{ $language := replaceRE "<!-- *[Tt][Aa][Bb] +(\\w*) *-->" "$1" (index (findRE "<!-- *[Tt][Aa][Bb] +(\\w*) *-->" .) 0) }}
@@ -5,17 +20,6 @@
   {{ $content := replaceRE "<!-- *[Tt][Aa][Bb] +(\\w*) *-->\\n([\\w\\W\\s\\S]*?)<!-- *[Ee][Nn][Dd][Tt][Aa][Bb] *-->" "$2" . }}
   {{ $.Scratch.Add "tc-languages" (slice $language) }}
   {{ $.Scratch.Add "tc-content" (slice $content) }}
-{{ end }}
-{{ if .IsNamedParams }}
-  {{ $.Scratch.Add "tc-title" (.Get "title") }}
-  {{ $.Scratch.Add "tc-url" (.Get "url") }}
-{{ else }}
-  {{ if ge (len .Params) 1 }}
-    {{ $.Scratch.Add "tc-title" (.Get 0) }}
-  {{ end }}
-  {{ if len .Params | eq 2 }}
-    {{ $.Scratch.Add "tc-url" (.Get 1) }}
-  {{ end }}
 {{ end }}
 <figure class="codeblock codeblock--tabbed">
   <figcaption>
@@ -38,10 +42,18 @@
           <tbody>
             <tr>
               <td class="gutter">
-                <pre>{{ range $index,$value := (split $trimmedContent "\n") }}<span>{{ add $index 1 }}</span><br>{{ end }}</pre>
+                <pre>{{ range $index,$value := (split $trimmedContent "\n") }}<span class="line">{{ add $index 1 }}</span><br>{{ end }}</pre>
               </td>
               <td class="code">
-                <pre class="code-highlight language-{{ index ($.Scratch.Get "tc-languages") $index }}"><code class="{{ index ($.Scratch.Get "tc-languages") $index }}">{{ $trimmedContent }}</code></pre>
+                {{ if ($.Scratch.Get "tc-language") }}
+                  {{ with $.Scratch.Get "tc-language" }}
+                    <pre class="code-highlight language-{{ . }}"><code class="{{ . }}">{{ $trimmedContent }}</code></pre>
+                  {{ end }}
+                {{ else }}
+                  {{ with index ($.Scratch.Get "tc-languages") $index }}
+                    <pre class="code-highlight language-{{ . }}"><code class="{{ . }}">{{ $trimmedContent }}</code></pre>
+                  {{ end }}
+                {{ end }}
               </td>
             </tr>
           </tbody>
