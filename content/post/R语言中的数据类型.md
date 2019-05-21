@@ -205,7 +205,7 @@ comment属性相当于数据的说明或备注，它实际上是一个无关紧�
 
 ## 4、数据的内存占用
 
-在R语言中，我们可以通过{{< hl-text primary >}}object.size{{< /hl-text >}}函数来查看数据占用了多少内存。注意空数组或者空列表（{{< hl-text primary >}}vector()、list(){{< /hl-text >}}）占用的内存并不为0，这是因为它们都包含**SEXP**的 *头信息* 。
+在R语言中，我们可以通过{{< hl-text primary >}}object.size{{< /hl-text >}}函数来查看数据占用了多少内存。注意空数组或者空列表（{{< hl-text primary >}}vector()、list(){{< /hl-text >}}）占用的内存总是为48字节，这是因为它们都包含一个 *头信息*（1个8字节的**sxpinfo**结构体，3个指针）， 一个**vecsxp**结构体（2个整形变量），以及一个长度不固定的填充变量。
 
 <br>
 
