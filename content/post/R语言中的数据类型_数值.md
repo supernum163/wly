@@ -56,7 +56,7 @@ thumbnailImage: https://i.postimg.cc/fbdrXS6P/R.png
 
 ## 3、二进制数组与比特位运算
 
-有时我们需要生成二进制（**byte**）类型的数组，虽然我们可以通过{{< hl-text primary >}}0x{{< /hl-text >}}前缀，输入十六进制数字，但这种方式输入的内容会被转换为整数而非二进制。真正的做法应该是使用{{< hl-text primary >}}as.raw{{< /hl-text >}}函数，注意**as.raw**只能转化取值范围在0-255的整数。
+有时我们需要生成二进制（**byte**）类型的数组，虽然我们可以通过{{< hl-text primary >}}0x{{< /hl-text >}}前缀，输入十六进制数字，但这种方式输入的内容会被转换为数值（**double**类型）而非二进制。真正的做法应该是使用{{< hl-text primary >}}as.raw{{< /hl-text >}}函数，注意**as.raw**只能转化取值范围在0-255的整数。
 
 如果我们想要取出整数或二进制数组中每一个比特位对应的值（0或1），则可以分别使用{{< hl-text primary >}}intToBits、rawToBits{{< /hl-text >}}函数。但遗憾的是R语言中并没有专用于存储比特位的对象，所以每个比特位所对应的值都会被存储在一个**byte**中，最终生成的二进制数组的顺序恰好与比特位的顺序相反。与这个过程相反，我们可以使用命令{{< hl-text primary >}}packBits(x, type = c("raw", "integer")){{< /hl-text >}}将由比特位构成的二进制数组（**Bits**）转换为整数或二进制数组。
 
