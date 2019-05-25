@@ -223,28 +223,22 @@ grepRaw(pattern, x, value = FALSE, invert = FALSE, offset = 1L, all = FALSE, ...
 - **regexpr、regexec、gregexpr**返还的值与**x**中每个元素的匹配位置一一对应，匹配长度则存放在与匹配长度对应的**match.length**属性中
 - **regexec**返回一个数组， **regexec**返回一个列表，列表中每个元素仅包含一个值，**gregexpr**也返回一个列表，但列表中每个元素可以包含多个值，
 
-{{< tabbed-codeblock title="regex" language="R" >}}
-<!-- tab regexpr -->
+```R
 > regexpr("ab", "abcabc")
 [1] 1
 attr(,"match.length")
 [1] 2
-<!-- endtab -->
-<!-- tab regexec -->
 > regexec("ab", "abcabc")
 [[1]]
 [1] 1
 attr(,"match.length")
 [1] 2
-<!-- endtab -->
-<!-- tab gregexpr -->
 > gregexpr("ab", "abcabc")
 [[1]]
 [1] 1 4
 attr(,"match.length")
 [1] 2 2
-<!-- endtab -->
-{{< /tabbed-codeblock >}}
+````
 
 <br>
 

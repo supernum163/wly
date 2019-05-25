@@ -27,6 +27,20 @@ R语言中的底层代码都是由**C/C++**直接实现的，在R语言中所有
 **SEXP**的另一部分是 *数据* ，根据存储内容的不同， *数据* 部分的结构也是不同的，比如R语言中**vector**类型的对象基本上都是存储在**vecsxp**结构体中，而**environment**类型的对象则是存储在**envsxp**结构体中。 *数据* 层面的差异是C语言中数据结构的差异，并不能直接体现在R语言层面。
 
 
+{{< codeblock "Rinternals" "https://github.com/wch/r-source/blob/R-3-6-branch/src/include/Rinternals.h" "C++" >}}
+typedef struct SEXPREC {
+  SEXPREC_HEADER;                       // 头信息
+  union {
+	  struct primsxp_struct primsxp;      // 存储系统函数或操作号
+	  struct symsxp_struct symsxp;        // 存储变量名
+	  struct listsxp_struct listsxp;      // 存储pairlist型数据
+	  struct envsxp_struct envsxp;        // 存储promise型数据
+	  struct closxp_struct closxp;        // 存储函数
+	  struct promsxp_struct promsxp;      // 存储未执行的命令
+  } u;
+} SEXPREC;
+{{< /codeblock >}}
+
 {{< tabbed-codeblock "Rinternals" "https://github.com/wch/r-source/blob/R-3-6-branch/src/include/Rinternals.h" "C++" >}}
 <!-- tab SEXPREC -->
 typedef struct SEXPREC {
