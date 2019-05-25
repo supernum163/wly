@@ -7,10 +7,10 @@
     {{ $.Scratch.Add "tc-title" (.Get 0) }}
   {{ end }}
   {{ if ge .Params 2 }}
-    {{ $.Scratch.Add "tc-url" (.Get 1) }}
+    {{ $.Scratch.Add "tc-language" (.Get 1) }}
   {{ end }}
   {{ if ge .Params 3 }}
-    {{ $.Scratch.Add "tc-language" (.Get 2) }}
+    {{ $.Scratch.Add "tc-url" (.Get 2) }}
   {{ end }}
 {{ end }}
 {{ $tabs := findRE "<!-- *[Tt][Aa][Bb] +(\\w*) *-->\\n([\\w\\W\\s\\S]*?)<!-- *[Ee][Nn][Dd][Tt][Aa][Bb] *-->" .Inner }}
