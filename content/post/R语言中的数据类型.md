@@ -11,7 +11,7 @@ keywords:
   - R语言
   - 数据类型
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/fbdrXS6P/R.png
+thumbnailImage: https://i.postimg.cc/SQXVYK02/1.png
 ---
 
 在**R语言**中一切皆为**对象**，不同类型的对象，其表现形式却又千差万别。对于新手来讲，理清R语言中不同对象的区别与关联确实不易。所以这篇文章及后续系列，我们将深入剖析R语言中的对象。

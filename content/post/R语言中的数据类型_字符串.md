@@ -11,7 +11,7 @@ keywords:
   - 数据类型
   - 字符串处理
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/fbdrXS6P/R.png
+thumbnailImage: https://i.postimg.cc/fRsvPjVm/3.png
 ---
 
 **文本信息**作为我们最常见的信息来源，当然也可以被用于数据分析。**文本分析**离不开强大的字符串处理能力，这篇文章将介绍如何在**R语言**中进行**字符串**处理。

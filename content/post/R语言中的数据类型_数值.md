@@ -11,7 +11,7 @@ keywords:
   - R语言
   - 数据类型
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/fbdrXS6P/R.png
+thumbnailImage: https://i.postimg.cc/PrY4KF5d/2.png
 ---
 
 在之前的**R语言中的数学运算**系列文章中，我们已经分别总结了如何对**0维**、**1维**、**n维**数值进行数学运算。这篇文章我们着重于从数据结构上总结R语言中 *广义* 的数值型数据。
