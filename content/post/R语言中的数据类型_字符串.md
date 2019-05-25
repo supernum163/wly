@@ -274,15 +274,19 @@ n为正整数，仅用于正则替换，表示引用正则表达式中第n个子
 [1] "Cc CC"
 ```
 
+<br>
+
 ## 3、模糊查找匹配
 
 模糊查找与模糊匹配可以从字符串（或字符串数组）中查找匹配与某个模式 *最相符* 的内容，但模糊查找与模糊匹配也需要遵守一定的规则，合理运用这些规则可以帮我们提高查找匹配的效率。
 
 ### 3.1、计算字符串相似度
 
-假设字符串**x**最少需要插入**a**次、删除**b**次、替换**c**次才能与字符串**y**相同，则**x、y**之间的 *距离* 即**a、b、c**的加权总和。在R语言中，我们可以使用{{< hl-text primary >}}adist(x, y = NULL, costs = NULL, counts = FALSE, ...){{< /hl-text >}}的形式，计算字符串之间的距离。其中：
+假设字符串**x**最少需要插入**a**次、删除**b**次、替换**c**次才能与字符串**y**相同，则**x、y**之间的 *距离* 即**a、b、c**的加权总和。比如将"kitten"转化为"sitting"，需要把“k”替换为“s”，把“e”替换为“i”，并在尾部插入“g”，所以共需1次插入、0次删除、2次替换，按照默认权重两者之间 *距离* 英该为3。
 
-- **costs**即插入、删除、替换次数的权重
+在R语言中，我们可以使用{{< hl-text primary >}}adist(x, y = NULL, costs = NULL, counts = FALSE, ...){{< /hl-text >}}的形式，计算字符串之间的距离。其中：
+
+- **costs**即插入（**insertions**）、删除（**deletions**）、替换（**substitutions**）次数的权重
 - **counts**表示是否输出插入、删除、替换次数
 - **partial**表示是否只进行局部匹配
 
@@ -295,31 +299,83 @@ ins del sub
 [1,]    1
 ```
 
+<br>
+
 ### 3.2、模糊查找
 
 我们可以通过{{< hl-text primary >}}agrep、agrepl{{< /hl-text >}}函数，进行模糊查找，这两个函数支持的参数与**grep\***家族函数的参数类似，此外还拥有两个特有参数：
 
-- **costs**即插入、删除、替换次数的权重
-- **max.distance**即可以接受的最大距离
+- **costs**即插入、删除、替换次数的权重，参考**adist**
+- **max.distance**即可以接受的最大距离，可以是插入、删除、替换的最大次数，也可以是三者之和（**alll**）的最大值，还可以是三者加权总和（**cost**）的最大值
+
+```R
+> agrep("lasy", c(" 1 lazy 2", "1 lasy 2"), max = list(sub = 0))
+[1] 2
+> agrep("laysy", c("1 lazy", "1", "1 LAZY"), max = 2, value = TRUE)
+[1] "1 lazy"
+```
+
+<br>
 
 ### 3.3、模糊匹配
 
-我们可以通过{{< hl-text primary >}}aregexec{{< /hl-text >}}函数，进行模糊匹配
+上文我们已经介绍了使用正则表达式的匹配规则，以及 **agrep\***家族函数的模糊查找规则，类似的我们可以通过{{< hl-text primary >}}aregexec{{< /hl-text >}}函数，进行模糊匹配。
 
+```R
+> x <- c("1 lazy", "1", "1 LAZY")
+> aregexec("laysy", x, max.distance = 2)
+[[1]]
+[1] 3
+attr(,"match.length")
+[1] 4
+
+[[2]]
+[1] -1
+attr(,"match.length")
+[1] -1
+
+[[3]]
+[1] -1
+attr(,"match.length")
+[1] -1
+> m <- aregexec("(lay)(sy)", x, max.distance = 2)
+> regmatches(x, m)
+[[1]]
+[1] "lazy" "la"   "zy"  
+
+[[2]]
+character(0)
+
+[[3]]
+character(0)
+```
+
+<br>
 
 ## 4、字符与编码
 
-iconv
+- **二进制字符**，计算机中的字符，本质上都是以一串二进制数据存储，通过特定的编码方式呈现在读者面前的。在R语言中，我们可以通过{{< hl-text primary >}}charToRaw、rawToChar{{< /hl-text >}}函数，在字符串与二进制数组之间互相转换。
 
-### 4.1、字符与二进制
+- **字符编码**，有时候我们从外部读如字符串数据，有可能因为编码设置不正确而显示乱码。此时我们可以通过{{< hl-text primary >}}Encoding{{< /hl-text >}}函数，查看并设置字符的编码。
 
-我们可以通过{{< hl-text primary >}}charToRaw rawToChar{{< /hl-text >}}函数，将字符串与二进制数组互相转换。
+- **字符转码**，有时候我们遇到乱码不是因为字符编码设置的不正确，而是当前计算机操作系统不支持以特定的编码方式显示字符。此时我们可以使用{{< hl-text primary >}}iconv(x, from, to, ...){{< /hl-text >}}的形式，将字符从一种编码方式转化为另一种编码方式。
 
+```R
+> x <- "abc\xE7"
+> charToRaw(x)
+[1] 61 62 63 e7
+> Encoding(x) <- "latin1"; x
+[1] "abcç"
+> iconv("abc\xE7", "latin1", "UTF-8")
+[1] "abcç"
+```
 
 <br>
 
 {{< note "思考思考" "#e6e6ff" >}}
 - 正则表达式`[^(ab)]`与`[^a^b]`有什么区别？
+- `agrep(..., costs = 1, max = list(sub = 2, ins = 1, del = 3, cost = 2))`能够匹配的字符 *距离* 是多少？
+- 修改字符串**x**的**Encoding**与对字符串进行转码（**iconv**）有什么区别？
 {{< /note >}}
 
 <br>
