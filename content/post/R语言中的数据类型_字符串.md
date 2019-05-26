@@ -378,6 +378,7 @@ character(0)
 - 正则表达式`[^(ab)]`与`[^a^b]`有什么区别？
 - `agrep(..., costs = 1, max = list(sub = 2, ins = 1, del = 3, cost = 2))`能够匹配的字符 *距离* 是多少？
 - 修改字符串**x**的**Encoding**与对字符串进行转码（**iconv**）有什么区别？
+
 {{< /note >}}
 
 <br>
