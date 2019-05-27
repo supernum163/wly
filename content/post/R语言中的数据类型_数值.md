@@ -10,7 +10,7 @@ tags:
 keywords:
   - R语言
   - 数据类型
-  - R语言数学运算
+  - 数学运算
 thumbnailImagePosition: left
 thumbnailImage: https://i.postimg.cc/PrY4KF5d/2.png
 ---
