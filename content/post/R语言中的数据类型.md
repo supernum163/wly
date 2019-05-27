@@ -56,8 +56,8 @@ typedef struct VECTOR_SEXPREC {
 <!-- tab sxpinfo_struct -->
 struct sxpinfo_struct {
   SEXPTYPE type         :  TYPE_BITS;     // 数据存储类型标识，目前占用3个比特位
-  unsigned int scalar   :  1;             // 是否为长度为1的数值型数组
-  unsigned int obj      :  1;             // 是否包含class属性
+  unsigned int scalar   :  1;             // 是否为长度为1的数组
+  unsigned int obj      :  1;             // 是否拥有class属性
   unsigned int alt      :  1;             // 是否为ALTREP型的数据
   unsigned int gp       : 16;             // ‘general purpose’，对不同数据类型有不同含义
   unsigned int mark     :  1;             // 标记数据正在使用，不能被GC回收
