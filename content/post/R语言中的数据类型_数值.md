@@ -10,6 +10,7 @@ tags:
 keywords:
   - R语言
   - 数据类型
+  - R语言数学运算
 thumbnailImagePosition: left
 thumbnailImage: https://i.postimg.cc/PrY4KF5d/2.png
 ---
@@ -84,6 +85,7 @@ thumbnailImage: https://i.postimg.cc/PrY4KF5d/2.png
 - R语言中支持单精度（**float**）类型的数值吗（参考`is.single`的帮助文档）？
 - 如何在R语言中实现**itoa**（将数值转化为n进制字符串）？
 - 如何在R语言中以二进制（0或1）的形式输出二进制数组？
+
 {{< /note >}}
 
 <br>
