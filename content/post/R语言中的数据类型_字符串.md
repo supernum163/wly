@@ -58,9 +58,9 @@ thumbnailImage: https://i.postimg.cc/fRsvPjVm/3.png
 
 ```R
 > x <- c("abcdefg", "ghijkl")
-> substr(x, 2, 4)
+> substr(x, start = 2, stop = 4)
 [1] "bcd" "hij"
-> substring(x[1], 1:6, 1:6)
+> substring(x[1], first = 1:6, last = 1:6)
 [1] "a" "b" "c" "d" "e" "f"
 > substr(x, 2, 4:5)
 [1] "bcd"  "hijk"
@@ -114,7 +114,7 @@ thumbnailImage: https://i.postimg.cc/fRsvPjVm/3.png
 R语言中正是大量使用了这里的字符查找模式，所以当我们调用函数时，很多情况下函数的参数名、参数取值都可以简写。
 
 ```R
-> pmatch(c("", "ab", "ab"), c("abc", "ab"), dup = FALSE)
+> pmatch(x = c("", "ab", "ab"), table = c("abc", "ab"), dup = FALSE)
 [1] NA  2  1
 > charmatch(c("", "ab", "ab"), c("abc", "ab"))
 [1] 0 2 2
@@ -129,7 +129,7 @@ R语言中正是大量使用了这里的字符查找模式，所以当我们调�
 ```R
 > c(toupper("aBcDeFg"), casefold("aBcDeFg"))
 [1] "ABCDEFG" "abcdefg"
-> chartr("大ABC", "小abc", "大写字母: ABC")
+> chartr(old = "大ABC", new = "小abc", x = "大写字母: ABC")
 [1] "小写字母: abc"
 ```
 
@@ -203,7 +203,7 @@ grepRaw(pattern, x, value = FALSE, invert = FALSE, offset = 1L, all = FALSE, ...
 其中**grepl**函数会返回逻辑值，表示是否查找到特定模式；**grep**函数会返回查找到的字符串，或者查找到的字符串所在字符串数组中的位置；**grepRaw**函数是按照字节查找，可以进行多次查找，但查找的模式与被查找的字符串都必须为单一的字符串，最终返回符合特定模式的内容在字符串中的位置（第多少个字节）。
 
 ```R
-> grepl("[ab]", c("abc", "def"))
+> grepl(pattern = "[ab]", x = c("abc", "def"))
 [1]  TRUE FALSE
 > grep("[ab]", c("abc", "def"), value = TRUE)
 [1] "abc"
@@ -224,7 +224,7 @@ grepRaw(pattern, x, value = FALSE, invert = FALSE, offset = 1L, all = FALSE, ...
 - **regexec**返回一个数组， **regexec**返回一个列表，列表中每个元素仅包含一个值，**gregexpr**也返回一个列表，但列表中每个元素可以包含多个值，
 
 ```R
-> regexpr("ab", "abcabc")
+> regexpr(pattern = "ab", x = "abcabc")
 [1] 1
 attr(,"match.length")
 [1] 2
@@ -249,7 +249,7 @@ n为正整数，仅用于正则替换，表示引用正则表达式中第n个子
 如果我们需要将字符串（或字符串数组）**x**中符合特定模式**pattern**的内容，替换为另外的内容**replacement**，则可以使用函数{{< hl-text primary >}}sub、gsub{{< /hl-text >}}。其中**sub**只会对**x**中的每个元素替换一次，而**gsub**则会替换所有符合**pattern**的内容。此外如果我们在**pattern**中定义了子表达式，则可以使用`\\num`的形式，在**replacement**中引用第**num**个子表达式所对应的内容。
 
 ```R
-> sub("(ab)c", "\\1" , "abc ABC")
+> sub(pattern = "(ab)c", replacement = "\\1" , x = "abc ABC")
 [1] "ab ABC"
 > gsub("ab", "C" , "abc abc")
 [1] "Cc Cc"
@@ -368,7 +368,7 @@ character(0)
 [1] 61 62 63 e7
 > Encoding(x) <- "latin1"; x
 [1] "abcç"
-> iconv("abc\xE7", "latin1", "UTF-8")
+> iconv("abc\xE7", from = "latin1", to = "UTF-8")
 [1] "abcç"
 ```
 

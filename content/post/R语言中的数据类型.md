@@ -118,7 +118,7 @@ struct sxpinfo_struct {
 
 我们已经知道，R语言中所有对象的 *头信息* 中都包含一个**attrib**指针用于表示数据的属性。数据的属性必须是一个**key-value**型的集合。我们可以使用{{< hl-text primary >}}attr(x, name){{< /hl-text >}}的形式，获取对象**x**的某个属性，也可以通过{{< hl-text primary >}}attribute{{< /hl-text >}}获取**x**的全部属性。
 
-当然我们可以给对象设置任意属性，但某些属性（{{< hl-text primary >}}class、comment、dim、dimnames、names、row.names、tsp、levels{{< /hl-text >}}）拥有特殊的意义，它们甚至可以直接决定对象在R语言层面会以怎样的数据结构解读。这些属性除了可以通过**attr**函数获取，也可以直接通过相应的命令获取（比如class属性可以通过**class**函数获取）。
+当然我们可以给对象设置任意属性，但某些属性（{{< hl-text primary >}}class、comment、dim、dimnames、names、row.names、tsp、levels{{< /hl-text >}}等）拥有特殊的意义，它们甚至可以直接决定对象在R语言层面会以怎样的数据结构解读。这些属性除了可以通过**attr**函数获取，也可以直接通过相应的命令获取（比如class属性可以通过**class**函数获取）。
 
 <br>
 
