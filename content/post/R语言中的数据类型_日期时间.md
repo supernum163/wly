@@ -82,3 +82,18 @@ thumbnailImage: https://i.postimg.cc/wxS2XdHW/4.png
 | %z        | +0800                                 | 时间距离当前时区的差值                                |
 | %Z        | CST                                   | 时区                                                  |
 
+掌握了R语言中的日期时间格式化表达符号，我们就可以分别通过{{< hl-text primary >}}strptime、strftime{{< /hl-text >}}函数，在日期时间类对象与字符串对象之间互相转换。
+
+此外R语言中还定义了一些便捷函数，比如我们可以分别通过{{< hl-text primary >}}weekdays、months、quarters{{< /hl-text >}}函数，取出日期中的**星期**、**月份**、**季度**。
+
+```R
+> x <- strptime("2019-06-02 13:24:56", format = "%Y-%m-%d %H:%M:%S"); x
+[1] "2019-06-02 13:24:56 CST"
+> strftime(x, format = "%Y/%m/%d %H:%M:%S")
+[1] "2019/06/02 13:24:56"
+> c(weekdays(x), months(x), months(x, abbreviate = TRUE), quarters(x))
+[1] "星期日" "六月"   "6月"    "Q2"  
+```
+
+<br>
+
