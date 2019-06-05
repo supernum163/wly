@@ -7,6 +7,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# gcc
+
+## gcc生成动态库
+gcc test.c -I . -I /usr/share/R/include/ -shared -o test.so
+
+## 在R语言中使用动态库中的函数
+dyn.load("docs/test.so")
+.Call("cxxf", 1, 2)
+
+
 
 # docker
 
