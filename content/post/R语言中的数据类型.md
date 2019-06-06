@@ -1,7 +1,7 @@
 ---
 title: "R语言中的数据类型"
 date: 2019-05-09
-lastmod: 2019-05-21
+lastmod: 2019-06-06
 categories:
   - R语言
   - 数据类型
@@ -92,19 +92,19 @@ struct sxpinfo_struct {
 | "complex"     |	CPLXSXP	    | 15                 | 复数数组
 | "raw"         | RAWSXP      | 24                 | 二进制数组
 | "list"        | VECSXP      | 19                 | 列表
-| "pairlist"    |	LISTSXP	    | 2                  | 列表
-| "S4"          | S4SXP       | 25                 | S4对象
-| "any"         | ANYSXP	    | 18                 | 任意类型的数组
-| "..."         | DOTSXP	    | 17                 | 不定长数组，仅用于函数
+| "pairlist"    |	LISTSXP	    | 2                  | 单向链表型列表
 | "environment" |	ENVSXP      | 4                  | 命令执行环境
 | "symbol"      | SYMSXP      | 1                  | 变量名
 | "name"        | SYMSXP	    |                    | 变量名
-| "expression"  |	EXPRSXP	    | 20                 | 未执行的命令
 | "language"    |	LANGSXP     | 6                  | 未执行的命令
+| "expression"  |	EXPRSXP	    | 20                 | 未执行的命令集合
 | "promise"     |	PROMSXP     | 5                  | 未执行的命令与命令执行环境
 | "closure"     |	CLOSXP	    | 3                  | 函数
 | "special"     |	SPECIALSXP  | 7                  | 系统函数或操作号
 | "builtin"     |	BUILTINSXP  | 8                  | 系统函数或操作号
+| "S4"          | S4SXP       | 25                 | S4对象
+| "any"         | ANYSXP	    | 18                 | 任意类型的数组
+| "..."         | DOTSXP	    | 17                 | 不定长数组，仅用于函数
 | "bytecode"    |	BCODESXP    | 21                 | 字节码，用于寻找已编译生成的C语言函数
 | "externalptr" |	EXTPTRSXP   | 22                 | 外部引用指针
 | "weakref"     | WEAKREFSXP  | 23                 | 弱引用，用于内存管理
@@ -116,7 +116,7 @@ struct sxpinfo_struct {
 
 ## 2、数据的属性
 
-我们已经知道，R语言中所有对象的 *头信息* 中都包含一个**attrib**指针用于表示数据的属性。数据的属性必须是一个**key-value**型的集合。我们可以使用{{< hl-text primary >}}attr(x, name){{< /hl-text >}}的形式，获取对象**x**的某个属性，也可以通过{{< hl-text primary >}}attribute{{< /hl-text >}}获取**x**的全部属性。
+我们已经知道，R语言中所有对象的 *头信息* 中都包含一个**attrib**指针用于表示数据的属性。数据的属性必须是一个**key-value**型的集合（**pairlist**）。我们可以使用{{< hl-text primary >}}attr(x, name){{< /hl-text >}}的形式，获取对象**x**的某个属性，也可以通过{{< hl-text primary >}}attribute{{< /hl-text >}}获取**x**的全部属性。
 
 当然我们可以给对象设置任意属性，但某些属性（{{< hl-text primary >}}class、comment、dim、dimnames、names、row.names、tsp、levels{{< /hl-text >}}等）拥有特殊的意义，它们甚至可以直接决定对象在R语言层面会以怎样的数据结构解读。这些属性除了可以通过**attr**函数获取，也可以直接通过相应的命令获取（比如class属性可以通过**class**函数获取）。
 
