@@ -93,7 +93,7 @@ struct sxpinfo_struct {
 | "raw"         | RAWSXP      | 24                 | 二进制数组
 | "list"        | VECSXP      | 19                 | 列表
 | "pairlist"    |	LISTSXP	    | 2                  | 单向链表型列表
-| "environment" |	ENVSXP      | 4                  | 命令执行环境
+| "environment" |	ENVSXP      | 4                  | 执行环境
 | "symbol"      | SYMSXP      | 1                  | 变量名
 | "name"        | SYMSXP	    |                    | 变量名
 | "language"    |	LANGSXP     | 6                  | 未执行的命令
