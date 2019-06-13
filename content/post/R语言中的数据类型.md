@@ -104,10 +104,10 @@ struct sxpinfo_struct {
 | "builtin"     |	BUILTINSXP  | 8                  | 系统函数
 | "S4"          | S4SXP       | 25                 | S4对象
 | "any"         | ANYSXP	    | 18                 | 任意类型的数组
-| "..."         | DOTSXP	    | 17                 | 不定长数组，仅用于函数
-| "bytecode"    |	BCODESXP    | 21                 | 字节码，用于寻找**.Internal**生成的函数体
+| "..."         | DOTSXP	    | 17                 | 不定长列表，仅用于函数
+| "bytecode"    |	BCODESXP    | 21                 | 字节码，用于寻找底层代码中定义的函数
 | "externalptr" |	EXTPTRSXP   | 22                 | 外部引用指针
-| "weakref"     | WEAKREFSXP  | 23                 | 弱引用，用于内存管理
+| "weakref"     | WEAKREFSXP  | 23                 | 弱引用
 | (char *)NULL  | -1	        |                    | 无效type，TYPEOF返回-1，typeof返回空值
 
 在以上表格中，某些存储类型是仅用于C语言层面的，还有些存储类型基本上可以对等（比如**symbol**与**name**）。所以R语言中定义了{{< hl-text primary >}}storage.mode、mode{{< /hl-text >}}等函数来精简**typeof**的输出，使用这些函数对我们而言更有意义的信息，比如| "closure"、 "special"、"builtin"类型的数据，在我们看来都是函数，所以**storage.mode、mode**会将它们归类为"function"。
