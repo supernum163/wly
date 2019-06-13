@@ -1,7 +1,7 @@
 ---
 title: "R语言中的数据类型"
 date: 2019-05-09
-lastmod: 2019-06-06
+lastmod: 2019-06-13
 categories:
   - R语言
   - 数据类型
@@ -96,16 +96,16 @@ struct sxpinfo_struct {
 | "environment" |	ENVSXP      | 4                  | 执行环境
 | "symbol"      | SYMSXP      | 1                  | 变量名
 | "name"        | SYMSXP	    |                    | 变量名
-| "language"    |	LANGSXP     | 6                  | 未执行的命令
-| "expression"  |	EXPRSXP	    | 20                 | 未执行的命令集合
-| "promise"     |	PROMSXP     | 5                  | 未执行的命令与命令执行环境
+| "language"    |	LANGSXP     | 6                  | 命令
+| "expression"  |	EXPRSXP	    | 20                 | 命令集
+| "promise"     |	PROMSXP     | 5                  | 延时命令
 | "closure"     |	CLOSXP	    | 3                  | 函数
-| "special"     |	SPECIALSXP  | 7                  | 系统函数或操作号
-| "builtin"     |	BUILTINSXP  | 8                  | 系统函数或操作号
+| "special"     |	SPECIALSXP  | 7                  | 系统函数
+| "builtin"     |	BUILTINSXP  | 8                  | 系统函数
 | "S4"          | S4SXP       | 25                 | S4对象
 | "any"         | ANYSXP	    | 18                 | 任意类型的数组
 | "..."         | DOTSXP	    | 17                 | 不定长数组，仅用于函数
-| "bytecode"    |	BCODESXP    | 21                 | 字节码，用于寻找已编译生成的C语言函数
+| "bytecode"    |	BCODESXP    | 21                 | 字节码，用于寻找**.Internal**生成的函数体
 | "externalptr" |	EXTPTRSXP   | 22                 | 外部引用指针
 | "weakref"     | WEAKREFSXP  | 23                 | 弱引用，用于内存管理
 | (char *)NULL  | -1	        |                    | 无效type，TYPEOF返回-1，typeof返回空值
