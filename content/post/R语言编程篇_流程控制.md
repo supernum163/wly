@@ -10,7 +10,7 @@ keywords:
   - R语言
   - 流程控制
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/43BcHgfN/image.png
+thumbnailImage: https://i.postimg.cc/Y9XvNgPJ/image.png
 ---
 
 R语言中的流程控制技巧。
