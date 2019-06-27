@@ -21,7 +21,7 @@ thumbnailImage: https://i.postimg.cc/jq8Hrrt6/Markdown-01.png
 
 # 1、markdown语法
 
-不同的**markdown语法解释器**对于markdown语法的支持会略有不同，但基本语法都大体相似。这里我们使用的**gitment评论系统**使用的是**github**的markdown语法解释器，你可以在[这里](https://guides.github.com/features/mastering-markdown/)查看github对其markdown语法解释器的官方说明。
+不同的**markdown语法解释器**对于markdown语法的支持会略有不同，但基本语法都大体相似。这里我们使用的**gitment评论系统**使用的是**github**的markdown语法解释器，你可以在 [这里](https://guides.github.com/features/mastering-markdown/)查看github对其markdown语法解释器的官方说明。
 
 以下内容是根据我个人的理解对markdown语法的归纳总结。其中，在**代码与效果对比框**中，背景色为灰色的部分是markdown语法格式，背景色为白色的部分是markdown语法效果。  
 
@@ -151,7 +151,7 @@ thumbnailImage: https://i.postimg.cc/jq8Hrrt6/Markdown-01.png
 
 ### 1.8.2、使用Emojj表情
 
-你可以使用{{< hl-text primary >}}:Emojj名称:{{< /hl-text >}}的格式插入Emojj表情，比如使用**see_no_evil**、 **hear_no_evil**、 **speak_no_evil**三个Emojj名称，分别插入{{< hl-text red >}}非礼勿视{{< /hl-text >}}:see_no_evil:、{{< hl-text red >}}非礼勿听{{< /hl-text >}}:hear_no_evil:、{{< hl-text red >}}非礼勿言{{< /hl-text >}}:speak_no_evil:。你可以在[这里](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)查看评论区支持的所有Emojj名称。
+你可以使用{{< hl-text primary >}}:Emojj名称:{{< /hl-text >}}的格式插入Emojj表情，比如使用**see_no_evil**、 **hear_no_evil**、 **speak_no_evil**三个Emojj名称，分别插入{{< hl-text red >}}非礼勿视{{< /hl-text >}}:see_no_evil:、{{< hl-text red >}}非礼勿听{{< /hl-text >}}:hear_no_evil:、{{< hl-text red >}}非礼勿言{{< /hl-text >}}:speak_no_evil:。你可以在 [这里](https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md)查看评论区支持的所有Emojj名称。
 
 <br>
 
