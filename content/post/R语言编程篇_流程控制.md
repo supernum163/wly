@@ -44,14 +44,43 @@ thumbnailImage: https://i.postimg.cc/Y9XvNgPJ/image.png
 
 ## 2、判断语句
 
+R语言中{{< hl-text primary >}}if...else...{{< /hl-text >}}式的**判断语句**具有以下格式：首先在**if**子语句中判断**cond**为真，则执行**expr**并结束，否则进入**else if**子语句（可以有多条）进行判断-执行操作，若以上判断结果都为假，则执行**else**语句中的**expr**。注意这里的**else if**及**else**子语句都可以省略，所以我们也可以使用**if(cond) expr**的句式，表示满足某一条件则执行代码，否则什么也不做。
+
+实际使用的过程中我们可能会经常用到**if(cond) expr else expr**的句式，表示满足某一条件则执行一段代码，否则执行另一段代码。为此R语言中定义了一个便捷函数{{< hl-text primary >}}ifelse{{< /hl-text >}}，其参数列表中的**yes**表示**cond**为真时需要执行的代码，**no**表示**cond**为假时需要执行的代码。
+
 ```R
 if(cond) expr else if(cond) expr ... else expr
-ifelse(cond, TRUE_expr, False_expr)
+ifelse(cond, yes, no)
 ```
 
 ## 3、分支语句
 
-switch
+**分支语句**完全可以使用上文介绍的条件语句替代，但条件语句每次判断只能处理表达式的两种状态，如果表达式可以对应多种状态，使用{{< hl-text primary >}}switch{{< /hl-text >}}函数可以使代码更加简洁。
+
+**switch**函数有两种使用方式，取决于其第一个参数**EXPR**对应的值是数值还是字符串。若**EXPR**是一个数值，则返回**EXPR**之后的参数列表中相应位置上的值。若**EXPR**是一个字符串，则返回**EXPR**之后的参数列表中相应参数的值，此时我们可以不给某个分支指定对应的值，表示该分支对应的值与下一个分支相同（**合并分支**）；还可以提供一个无名参数作为**缺省值**。
+
+```R
+# EXPR对应的值为数字
+switch(EXPR, expr1, expr2, expr3, ...)
+
+# EXPR对应的值为字符串
+switch(EXPR, 
+  case1 = ,
+  case2 = expr2,
+  case1 = expr3,
+  ...
+  default
+)
+```
+
+当我们不考虑合并分支及缺省值时，也可以使用从数组中筛选元素的形式实现分支语句：
+
+```R
+c(value1, value2, value3, ...)[EXPR]
+c(case1 = value1, case2 = value2, case1 = value3, ...)[EXPR]
+```
+
+<br>
 
 ## 4、循环语句
 
