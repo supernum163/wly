@@ -53,6 +53,8 @@ if(cond) expr else if(cond) expr ... else expr
 ifelse(cond, yes, no)
 ```
 
+<br>
+
 ## 3、分支语句
 
 **分支语句**完全可以使用上文介绍的条件语句替代，但条件语句每次判断只能处理表达式的两种状态，如果表达式可以对应多种状态，使用{{< hl-text primary >}}switch{{< /hl-text >}}函数可以使代码更加简洁。
@@ -84,18 +86,28 @@ c(case1 = value1, case2 = value2, case1 = value3, ...)[EXPR]
 
 ## 4、循环语句
 
+R语言中**循环语句**的使用方式如下，需要注意的地方在于：
+
+- **in**关键字只能用于{{< hl-text primary >}}for{{< /hl-text >}}循环中的**循环判断条件**，表示**var**将遍历**seq**（数组或列表）中的每一个元素，我们可以在**函数体**（**expr**）中调用**var**的值，也可以不掉用，循环次数取决于**seq**的长度。
+
+- 对于{{< hl-text primary >}}while{{< /hl-text >}}循环，只要**cond**为真，就执行**expr**。如果**cond**是一个命令或变量，我们可以在函数体中操作其中的变量，从而达到控制循环过程的目的。
+
+- 有时候我们会用到`while(TRUE) expr`的循环句式，通过函数体控制循环过程，而非通过循环判断条件。R语言中的{{< hl-text primary >}}repeat{{< /hl-text >}}函数，就是为了便利这种句式而设计的。
+
+```R
 for(var in seq) expr
 while(cond) expr
 repeat expr
-break
-next
+```
 
+为了在循环体内控制循环过程，我们可以使用{{< hl-text primary >}}break、next{{< /hl-text >}}函数，实现结束循环、进入下一次循环。这两个函数同时也是R语言中的关键字（参考`Reserved`帮助文档），所以使用时以调用函数的方式，或者以调用变量的方式是一样的。
 
 <br>
 
-
 {{< note "思考思考" "#e6e6ff" >}}
-- ？
+- 如何用`if...else...`实现`goto`类型的语句？
+- `case...when...`类型的分支语句与`switch`的本质区别是什么？
+- R语言中如何实现`do...while...`循环？
 
 {{< /note >}}
 
