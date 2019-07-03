@@ -48,7 +48,7 @@ thumbnailImage: https://i.postimg.cc/Y9XvNgPJ/image.png
 [1]  TRUE FALSE FALSE FALSE
 ```
 
-如果我们有一个逻辑值数组（或者生成逻辑值数组的表达式），需要判断数组中各元素是否**全部为真**或者**至少有一个为真**，则可以分别使用{{< hl-text danger >}}all、any{{< /hl-text >}}函数。
+如果我们有一个逻辑值数组（或者生成逻辑值数组的表达式），需要判断数组中各元素是否**全部为真**或者**至少有一个为真**，则可以分别使用{{< hl-text primary >}}all、any{{< /hl-text >}}函数。
 
 ```R
 # 数组中的元素全为真，则判断为真
@@ -60,7 +60,7 @@ thumbnailImage: https://i.postimg.cc/Y9XvNgPJ/image.png
 [1] TRUE
 ```
 
-此外，R语言中还有大量可以生成逻辑值的函数：判断数据类型的{{< hl-text danger >}}is.*{{< /hl-text >}}家族函数；强制将数据对象转换为逻辑值的{{< hl-text danger >}}as.logical{{< /hl-text >}}函数；以及某些看似不返回任何信息，实际上以逻辑值的形式返回是否执行成功的函数，比如{{< hl-text danger >}}require{{< /hl-text >}}函数；……
+此外，R语言中还有大量可以生成逻辑值的函数：判断数据类型的{{< hl-text blue >}}is.*{{< /hl-text >}}家族函数；强制将数据对象转换为逻辑值的{{< hl-text primary >}}as.logical{{< /hl-text >}}函数；以及某些看似不返回任何信息，实际上以逻辑值的形式返回是否执行成功的函数，比如{{< hl-text primary >}}require{{< /hl-text >}}函数；……
 
 <br>
 
