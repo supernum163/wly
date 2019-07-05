@@ -119,8 +119,9 @@ warning   #fdeece
 danger    #fee3e0
 
 
-
-
+# 使用彩色字体与彩色背景的字体
+<font color="#FF0000">找不到对象</font>
+{{< hl-text red >}}找不到对象{{< /hl-text >}}
 
 
 
