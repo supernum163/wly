@@ -83,7 +83,7 @@ thumbnailImage: https://i.postimg.cc/PrY4KF5d/2.png
 <br>
 
 {{< note "思考思考" "#e6e6ff" >}}
-- R语言中支持单精度（**float**）类型的数值吗（参考`is.single`的帮助文档）？
+- R语言中支持单精度（**float**）类型的数值吗（参考**is.single**的帮助文档）？
 - 如何在R语言中实现**itoa**（将数值转化为n进制字符串）？
 - 如何在R语言中以二进制（0或1）的形式输出二进制数组？
 

@@ -104,7 +104,7 @@ struct sxpinfo_struct {
 | "builtin"     |	BUILTINSXP  | 8                  | 系统函数
 | "S4"          | S4SXP       | 25                 | S4对象
 | "any"         | ANYSXP	    | 18                 | 任意类型的数组
-| "..."         | DOTSXP	    | 17                 | 不定长列表，仅用于函数
+| "..."         | DOTSXP	    | 17                 | 不定长参数列表，仅用于函数
 | "bytecode"    |	BCODESXP    | 21                 | 字节码，用于寻找底层代码中定义的函数
 | "externalptr" |	EXTPTRSXP   | 22                 | 外部引用指针
 | "weakref"     | WEAKREFSXP  | 23                 | 弱引用
