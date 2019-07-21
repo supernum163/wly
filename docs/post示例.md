@@ -226,7 +226,7 @@ group:      用于创建一个图片gallery，只能用于拥有fancybox属性�
 classes:  
   fancybox: 允许点击展示原图
   left、right、center: 图片位置
-  fig-[20、25、33、50、75、100]: 图片百分比大小
+  fig-[20、25、33、50、66、75、80、100]: 图片百分比大小
   clear: 另起一行
 ```
 {{< image classes="fig-100" src="//d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-15.jpg" thumbnail="//d1u9biwaxjngwg.cloudfront.net/tag-plugins-showcase/car-15-750.jpg" >}}
