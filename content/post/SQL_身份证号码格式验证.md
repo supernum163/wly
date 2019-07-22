@@ -41,15 +41,15 @@ thumbnailImage: https://i.postimg.cc/VLJB4m49/image.png
 ```SQL
 CREATE FUNCTION 身份证号码格式检查
 (
-	@CitizenID VARCHAR(64)
+	@citizenID VARCHAR(64)
 )
 	RETURNS INT
 AS BEGIN
 
 	DECLARE 
-		@birthDate CHAR,
+		@birthDate DATE,
 		@lastLetter CHAR,
-		@verIFyLetter CHAR,
+		@verIfyLetter CHAR,
 		@idx INT,
 		@tmpChar CHAR,
 		@tmpNum INT, 
@@ -58,14 +58,14 @@ AS BEGIN
 		
 
 	-- 身份张号码长度必须为18位
-	IF LEN(@CitizenID) != 18 or DATALENGTH(@CitizenID) != 18 BEGIN
+	IF LEN(@citizenID) != 18 or DATALENGTH(@citizenID) != 18 BEGIN
 	    RETURN 0
 	END
 
 	-- 身份证号码前17为必须为数字
 	SET @idx = 1
 	WHILE @idx < 18 BEGIN
-		SET @tmpChar = SUBSTRING(@CitizenID, @idx, 1)
+		SET @tmpChar = SUBSTRING(@citizenID, @idx, 1)
 		IF  @tmpChar < '0' OR @tmpChar > '9' BEGIN
 			RETURN 0
 		END
@@ -73,24 +73,24 @@ AS BEGIN
 	END
 
 	-- 身份证号码最后一位可以为数字或字母"X"
-	SET @tmpChar = SUBSTRING(@CitizenID, @idx, 1)
+	SET @tmpChar = SUBSTRING(@citizenID, @idx, 1)
 	IF (@tmpChar < '0' OR @tmpChar > '9') AND @tmpChar != 'X' BEGIN
 		RETURN 0
 	END
 
 	-- 出生日期检验
-	SET @birthDate = TRY_CAST(SUBSTRING(@CitizenID, 7, 8) AS DATE);
+	SET @birthDate = TRY_CONVERT(DATE, SUBSTRING(@citizenID, 7, 8), 112)
 	IF @birthDate IS NULL BEGIN
 		RETURN 0
 	END
 
 	-- 出生日期检验，超出150周岁
-	IF datedIFf(YEAR, @birthDate, getdate()) > 150 BEGIN
+	IF DATEDIFF(YEAR, @birthDate, GETDATE()) > 150 BEGIN
 		RETURN 0
 	END
 	
 	-- 出生日期检验，未满18周岁
-	IF datedIFf(YEAR, @birthDate, getdate()) < 18 BEGIN
+	IF DATEDIFF(YEAR, @birthDate, GETDATE()) < 18 BEGIN
 		RETURN 0
 	END
 
@@ -98,14 +98,14 @@ AS BEGIN
 	SET @idx = 1
 	SET @checksum = 0
 	WHILE @idx < 18 BEGIN
-		SET @tmpNum = TRY_PARSE(SUBSTRING(@CitizenID, @idx, 1) AS INT)
+		SET @tmpNum = TRY_PARSE(SUBSTRING(@citizenID, @idx, 1) AS INT)
 		SET @checksum = @checksum + @tmpNum * choose(@idx, 7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2)
 		SET @idx = @idx + 1
 	END
-	SET @lastLetter = SUBSTRING(@CitizenID, @idx, 1)
+	SET @lastLetter = SUBSTRING(@citizenID, @idx, 1)
 	SET @checksum = @checksum % 11 + 1
-	SET @verIFyLetter = choose(@checksum, '1','0','X','9','8','7','6','5','4','3','2')
-	IF @lastLetter != @verIFyLetter BEGIN
+	SET @verIfyLetter = choose(@checksum, '1','0','X','9','8','7','6','5','4','3','2')
+	IF @lastLetter != @verIfyLetter BEGIN
 		RETURN 0
 	END
 
@@ -118,22 +118,22 @@ END
 接下来让我们伪造几个身份证号码，检查刚刚编写的SQL函数能否给出正确的判断。
 
 ```
-SELECT 身份证号码格式检查("987654321")
+SELECT dbo.身份证号码格式检查('987654321')
 -- 返回结果为0，字符串长度不够18位
 
-SELECT 身份证号码格式检查("1234567890abcdefgh")
+SELECT dbo.身份证号码格式检查('1234567890abcdefgh')
 -- 返回结果为0，字符串中包含非法字符
 
-SELECT 身份证号码格式检查("123456789012345678")
+SELECT dbo.身份证号码格式检查('123456789012345678')
 -- 返回结果为0，出生日期无效
 
-SELECT 身份证号码格式检查("123456201001011234")
+SELECT dbo.身份证号码格式检查('123456201001011234')
 -- 返回结果为0，小于18周岁
 
-SELECT 身份证号码格式检查("123456199001011234")
+SELECT dbo.身份证号码格式检查('123456199001011234')
 -- 返回结果为0，校验码不符
 
-SELECT 身份证号码格式检查("12345619900101123X")
+SELECT dbo.身份证号码格式检查('123456199001011233')
 -- 返回结果为1，未检测出错误（注意：没有123456这个地址码）
 ```
 
