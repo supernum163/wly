@@ -1,6 +1,6 @@
 ---
 title: "向我打赏"
-metaAlignment: center
+metaAlignment:  center
 comments:       false
 showMeta:       false
 showActions:    false

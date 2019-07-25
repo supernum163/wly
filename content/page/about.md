@@ -1,6 +1,6 @@
 ---
 title: "关于博客"
-metaAlignment: center
+metaAlignment:  center
 comments:       false
 showMeta:       false
 showActions:    false
