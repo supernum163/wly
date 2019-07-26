@@ -6,4 +6,5 @@
 .Rmarkdown
 public/
 grunt/
-docs/test*
+docs/*
+!docs/docs.zip
