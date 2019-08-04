@@ -25,10 +25,11 @@ enableEmoji = true
 # 作者信息
 [author]
   name = "wly"
-  bio = "仍是年少不知愁 Still young. Still alive"
+  bio = "仍是年少不知愁"
+  bio_en = "Still young. Still alive"
   job = "数据分析师"
   location = "中国 上海"
-  picture = "https://i.postimg.cc/nhmB7j7T/image.png"
+  picture = "https://s2.ax1x.com/2019/08/04/eyNYVA.th.png"
 
 # 侧边栏菜单
 [[menu.main]]

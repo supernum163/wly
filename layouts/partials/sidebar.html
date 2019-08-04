@@ -8,6 +8,9 @@
       {{ with $.Site.Author.bio }}
         <h5 class="sidebar-profile-bio">{{ . | markdownify }}</h5>
       {{ end }}
+      {{ with $.Site.Author.bio_en }}
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">{{ . | markdownify }}</h5>
+      {{ end }}
     </div>
     <ul class="sidebar-buttons">
       {{ partial "menu.html" (dict "menu" .Site.Menus.main "root" $) }}

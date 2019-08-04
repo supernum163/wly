@@ -6,6 +6,9 @@
     <img id="about-card-picture" src="{{ .Site.Author.picture }}" alt="{{ i18n "global.author_picture" }}" />
     <h4 id="about-card-name">{{ .Site.Author.name }}</h4>
     {{ with .Site.Author.bio }}
+      <div id="about-card-bio" style="margin: 0">{{ . | markdownify }}</div>
+    {{ end }}
+    {{ with .Site.Author.bio_en }}
       <div id="about-card-bio">{{ . | markdownify }}</div>
     {{ end }}
     {{ with .Site.Author.job }}
