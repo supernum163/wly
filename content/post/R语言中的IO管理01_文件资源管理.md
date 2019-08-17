@@ -10,7 +10,7 @@ keywords:
   - R语言
   - 文件资源管理
 thumbnailImagePosition: left
-thumbnailImage: https://s2.ax1x.com/2019/08/04/eytzEn.png
+thumbnailImage: https://s2.ax1x.com/2019/08/17/muddIA.png
 ---
 
 这篇文章我们将介绍R语言中的**文件资源管理**。

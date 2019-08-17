@@ -9,7 +9,7 @@ keywords:
   - SQL Server
   - 定时语句
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/VLJB4m49/image.png
+thumbnailImage: https://s2.ax1x.com/2019/08/17/muNHqH.png
 ---
 
 **SQL Server** 中提供了**定时作业**的功能，可以帮助我们按照计划执行特定的任务，但这种方式每次都要在图形化界面设置一大堆条件才能启用。有没有一种便捷的方式，只需提供**计划执行时间**和**SQL语句**即可在规定时间执行相应的语句？这篇文章我们将介绍如何在 **SQL Server** 中打造**定时语句**系统。
@@ -128,10 +128,9 @@ END
 
 - 如果我们在 **SQL Server 代理**中设置了**操作员**，此时我们还可以在**警报**或者**通知**界面，选择当作业执行失败时以邮件等形式告知相关人员，真正做到 *无事不登数据库* 。
 
-{{< image group="group:作业" classes="fancybox nocaption fig-33" title="设置作业名称"
-thumbnail="" src="https://i.postimg.cc/a.png" >}}
-{{< image group="group:作业" classes="fancybox nocaption fig-33" title="设置执行步骤" src="https://i.postimg.cc/a.png" >}}
-{{< image group="group:作业" classes="fancybox nocaption fig-33 clear" title="设置执行计划" src="https://i.postimg.cc/a.png" >}}
+{{< image group="group:作业" classes="fancybox nocaption fig-33" title="设置作业名称" thumbnail="https://s2.ax1x.com/2019/08/17/mu16AK.png" src="https://s2.ax1x.com/2019/08/17/mu1s76.png" >}}
+{{< image group="group:作业" classes="fancybox nocaption fig-33" title="设置执行步骤" thumbnail="https://s2.ax1x.com/2019/08/17/mu1d1J.png" src="https://s2.ax1x.com/2019/08/17/mu1Dn1.png" >}}
+{{< image group="group:作业" classes="fancybox nocaption fig-33 clear" title="设置执行计划" thumbnail="https://s2.ax1x.com/2019/08/17/mu1wc9.png" src="https://s2.ax1x.com/2019/08/17/mu1r0x.png" >}}
 
 <br>
 
@@ -155,7 +154,7 @@ insert into mdb.dbo.tSchedule (execTime, execContent)
 select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''abc'')'
 ```
 
-{{< image classes="fancybox nocaption fig-100 clear" title="定时语句系统测试结果" src="https://i.postimg.cc/a.png" >}}
+{{< image classes="fancybox nocaption fig-100 clear" title="定时语句系统测试结果" src="https://s2.ax1x.com/2019/08/17/mu10XR.png" >}}
 
 <br>
 
