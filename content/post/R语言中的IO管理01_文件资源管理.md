@@ -8,12 +8,13 @@ tags:
   - R语言IO管理
 keywords:
   - R语言
+  - IO管理
   - 文件资源管理
 thumbnailImagePosition: left
 thumbnailImage: https://s2.ax1x.com/2019/08/17/muddIA.png
 ---
 
-这篇文章我们将介绍R语言中的**文件资源管理**。
+文件资源管理是一门计算机语言，通过对文件或文件夹的**查看**、**新建**、**修改**、**删除**，对资源的**连接**，**读写**，**关闭**等操作，管理自身输入输出的基础。这篇文章我们将介绍R语言中的**文件资源管理**。
 
 <!--more-->
 
@@ -67,11 +68,12 @@ dir.create(path, showWarnings = TRUE, recursive = FALSE, mode = "0777")
 Sys.chmod(paths, mode = "0777", use_umask = TRUE)
 Sys.umask(mode = NA)
 
+## 4、压缩、解压缩
+
+
 ## 5、stdout、stderr、file
 
 ## 3、sink与io流
-
-## 4、压缩、解压缩
 
 ## 6、read、write
 
