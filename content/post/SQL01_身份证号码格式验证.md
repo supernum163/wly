@@ -49,14 +49,13 @@ AS BEGIN
 
 	DECLARE 
 		@birthDate DATE,
-		@lastLetter CHAR,
-		@verIfyLetter CHAR,
 		@idx INT,
 		@tmpChar CHAR,
 		@tmpNum INT, 
-		@checksum INT
+		@checksum INT,
+		@verIfyLetter CHAR,
+		@lastLetter CHAR
 
-		
 
 	-- 身份张号码长度必须为18位
 	IF LEN(@citizenID) != 18 or DATALENGTH(@citizenID) != 18 BEGIN
