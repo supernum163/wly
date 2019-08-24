@@ -26,7 +26,7 @@ thumbnailImage: https://s2.ax1x.com/2019/08/17/muddIA.png
 
 在计算机中定位一个**文件/文件夹**，我们既可以使用**绝对路径**，也可以使用**相对路径**。
 
-绝对路径需要从文件系统**根目录**写起，写明需要从根目录开始依次向下查找的文件/文件夹的名称，并使用**路径分割符**将这些名称分割开来。对于linux系统而言，根目录与路径分割符都是英文斜杠——{{< hl-text red >}}/{{< /hl-text >}}，所以路径应该类似`/home/wly/Downloads/tmp.R`；而对于window系统而言，根目录是计算机中的某个磁盘，比如{{< hl-text red >}}C:\{{< /hl-text >}}，路径分割符是英文反斜杠——{{< hl-text red >}}\{{< /hl-text >}}，路径应该类似`C:\\Users\\wly\\Downloads\\tmp.R`（注意R语言的字符串中必须用两个反斜杠来表示一个反斜杠字符）。
+绝对路径需要从文件系统**根目录**写起，写明需要从根目录开始依次向下查找的文件/文件夹的名称，并使用**路径分割符**将这些名称分割开来。对于linux系统而言，根目录与路径分割符都是英文斜杠——{{< hl-text red >}}/{{< /hl-text >}}，所以路径应该类似`/home/wly/Downloads/tmp.R`；而对于window系统而言，根目录是计算机中的某个磁盘，比如{{< hl-text red >}}C:\{{< /hl-text >}}，路径分割符是英文反斜杠——{{< hl-text red >}}\{{< /hl-text >}}，路径应该类似`C:\\Users\\wly\\Downloads\\tmp.R`（注意R语言的字符串中必须用两个反斜杠来表示一个反斜杠字符），不过在最新版的R语言中，window操作系统下也支持用英文斜杠作为路径分割符。
 
 相对路径指的是相对某个路径开始查找文件/文件夹。大部分语言都支持在文件中，以文件所在的文件夹为相对路径，但是R语言中的相对路径只能是当前**工作路径**。我们可以分别使用{{< hl-text primary >}}getwd、setwd{{< /hl-text >}}函数，来获取、设置R语言的工作路径。
 
@@ -80,20 +80,31 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 
 <br>
 
-## 3、IO管理基础
+## 3、资源管理基础
 
 ### 3.1、资源管理权限
 
+在建立资源管理链接之前，我们必须了解资源的管理权限，否则有可能无法建立链接或者出现意料之外的结果。一般而言，资源链接可以分为**字符流**链接和**字节流**链接，前者以单个字符为最小单位从资源中读写数据，后者则以单个字节为最小单位。其次，我们可以对资源进行**读取**、**写入**、**追加**等操作，不同的操作模式拥有各自潜在的规则，具体如下：
+
 | 字符流          | 字节流          | 相应权限                                                      
-|:----------------|:----------------|:-------------------------
-| r 或 rt         | rb              | 读取
-| w 或 wt         | wb              | 写入
-| a 或 at         | ab              | 追加
-| r+              | r+b             | 读取与写入
-| w+              | w+b             | 读取与写入，会先删除文件中的内容
-| a+              | a+b             | 读取与追加
+|:----------------|:----------------|:-----------------------------------------------------------------------
+| r 或 rt         | rb              | 读取，文件必须存在
+| w 或 wt         | wb              | 写入，文件不存在则新建，文件已存在则删除文件中的内容
+| a 或 at         | ab              | 追加，文件不存在则新建，文件已存在则从文档末尾开始写入
+| r+              | r+b             | 读取与写入，文件必须存在
+| w+              | w+b             | 读取与写入，文件不存在则新建，文件已存在则删除文件中的内容
+| a+              | a+b             | 读取与追加，文件不存在则新建，文件已存在则写入时从文档末尾开始
+
+<br>
 
 ### 3.2、建立资源链接
+
+R语言中支持与多种类型的资源建立链接（见下表），如果使用第三方程序包，还可以建立更多类型的链接。不同类型的资源，相应的管理方式略有不同。比如函数url建立的网络资源（以**http**、**https**、**ftp**协议传输的文件）只能接受读取，以函数unz建立的资源（对zip压缩包中某个文件的链接）只能接受字节流形式的读取，以函数socketConnection建立的链接必须服务端与客户端同时在线才能读写。以下是这些函数中可能用到的关键参数：
+
+- **description**参数，即资源的描述信息，比如文件路径、网络地址等
+- **open**参数，即上文提到的资源管理权限
+- **encoding**参数，用于指明输入输出时需要用到的编码，只在字符流形式的资源链接中有效，默认情况下会使用**本地编码**（**native.enc**），所以一般情况下不需要设置，除非读写与操作系统默认编码不同的资源（比如在window下读写linux中的文件）。
+
 
 | 函数              | 解释说明                                                      
 |:------------------|:-----------------------------------------------------------------------
@@ -106,6 +117,18 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 | pipe              | 标准IO流
 | fifo              | 先入先出IO流
 | socketConnection  | 网络套接字资源链接
+
+For file the description is a path to the file to be opened or a complete URL (when it is the same as calling url), or "" (the default) or "clipboard" (see the ‘Clipboard’ section). U
+
+se "stdin" to refer to the C-level ‘standard input’ of the process (which need not be connected to anything in a console or embedded version of R, and is not in RGui on Windows). See also stdin() for the subtly different R-level concept of stdin. See nullfile() for a platform-independent way to get filename of the null device.
+
+If for a file or (on most platforms) a fifo connection the description is "", the file/fifo is immediately opened (in "w+" mode unless open = "w+b" is specified) and unlinked from the file system. This provides a temporary file/fifo to write to and then read from. 
+
+重点介绍file函数
+
+socket示例
+
+<br>
 
 ### 3.3、管理资源链接
 
@@ -120,6 +143,9 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 ## 5、stdout、stderr、sink、gzcon
 
 ## 6、read、write
+
+- readChar、writeChar
+- readBin、writeBin
 
 <br>
 
