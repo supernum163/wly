@@ -22,7 +22,9 @@ thumbnailImage: https://s2.ax1x.com/2019/08/17/muddIA.png
 
 <br>
 
-## 1、文件/文件夹路径
+## 1、文件/文件夹管理
+
+### 1.1、文件/文件夹路径
 
 在计算机中定位一个**文件/文件夹**，我们既可以使用**绝对路径**，也可以使用**相对路径**。
 
@@ -39,7 +41,7 @@ R语言中为了规避操作系统之间的差异，在程序启动时会自动�
 
 <br>
 
-## 2、文件/文件夹管理相关函数
+### 1.2、文件/文件夹管理相关函数
 
 在图形化界面中，我们一定会经常对文件/文件夹进行查看、新建、修改、删除等操作，相应的操作也可以在命令行中完成。R语言中融合了不同操作系统命令行下的文件/文件夹管理方式，比如文件/文件夹列举，在**bash**命令行中对应**ls**命令，在R语言中就有相应的**list.files**函数（R语言中的**ls**函数已被定义为列举执行环境中的变量）；在**cmd**命令行中对应**dir**命令，在R语言中就有相应的**dir**函数。注意R语言中名称以英文句点——{{< hl-text red >}}.{< /hl-text >}}开头的文件/文件夹会被认为是隐藏的，例举时默认不显示。我们需要设定列举函数中的参数`all.files = TRUE`来显示这些隐藏内容。
 
@@ -80,9 +82,9 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 
 <br>
 
-## 3、资源管理基础
+## 2、资源管理基础
 
-### 3.1、资源管理权限
+### 2.1、资源管理权限
 
 在建立资源管理链接之前，我们必须了解资源的管理权限，否则有可能无法建立链接或者出现意料之外的结果。一般而言，资源链接可以分为**字符流**链接和**字节流**链接，前者以单个字符为最小单位从资源中读写数据，后者则以单个字节为最小单位。其次，我们可以对资源进行**读取**、**写入**、**追加**等操作，不同的操作模式拥有各自潜在的规则，具体如下：
 
@@ -97,14 +99,23 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 
 <br>
 
-### 3.2、建立资源链接
+### 2.2、建立资源链接
 
 R语言中支持与多种类型的资源建立链接（见下表），如果使用第三方程序包，还可以建立更多类型的链接。不同类型的资源，相应的管理方式略有不同。比如函数url建立的网络资源（以**http**、**https**、**ftp**协议传输的文件）只能接受读取，以函数unz建立的资源（对zip压缩包中某个文件的链接）只能接受字节流形式的读取，以函数socketConnection建立的链接必须服务端与客户端同时在线才能读写。以下是这些函数中可能用到的关键参数：
 
 - **description**参数，即资源的描述信息，比如文件路径、网络地址等
 - **open**参数，即上文提到的资源管理权限
-- **encoding**参数，用于指明输入输出时需要用到的编码，只在字符流形式的资源链接中有效，默认情况下会使用**本地编码**（**native.enc**），所以一般情况下不需要设置，除非读写与操作系统默认编码不同的资源（比如在window下读写linux中的文件）。
-
+- **encoding**参数，用于指明输入输出时需要用到的编码，只在字符流形式的资源链接中有效，默认取值**native.enc**表示**本地编码**，所以一般情况下不需要设置，除非读写与操作系统默认编码不同的资源（比如在window下读写linux中的文件）
+- **blocking**参数，即是否使用阻塞模式进行读写。阻塞状态下读写会使用到缓冲区，而非阻塞状态则会直接对资源进行读写
+- **method**参数，建立文件或网络资源链接的方法，默认取值**default**表示：使用R语言底层函数（**internal**）建立文件链接，分别表示使用windows和类Unix下相应的库函数（**wininet**和**libcurl**）建立网络资源链接
+- **compression**参数，即**压缩率**，取值范围在0-9，值越大表示压缩效果越好，但压缩所需时间越久
+- **raw**参数，仅用于**file**函数，表示是否以字节流的方式建立链接，当打开压缩文件时可以跳过相应的检查
+- **headers**参数，仅用于**url**函数，即建立网络链接时需要发送的http头文件，参考`options("HTTPUserAgent")`
+- **filename**参数，仅用于**unz**函数，表示需要与压缩包中的那个文件建立链接
+- **host**参数，仅用于**socketConnection**函数，即套接字**网络地址**，如果作为服务器端来用，则只能建立在本地（**localhost**）
+- **host**参数，仅用于**socketConnection**函数，即套接字监听**端口**
+- **server**参数，仅用于**socketConnection**函数，即是否作为服务器端开放
+- **timeout**参数，仅用于**socketConnection**函数，即套接字的超时等待时间
 
 | 函数              | 解释说明                                                      
 |:------------------|:-----------------------------------------------------------------------
@@ -114,43 +125,68 @@ R语言中支持与多种类型的资源建立链接（见下表），如果使�
 | bzfile            | bz压缩文件资源链接
 | xzfile            | xz压缩文件资源链接
 | unz               | 压缩文件中的某个文件资源链接
-| pipe              | 标准IO流
+| pipe              | 系统标准IO流
 | fifo              | 先入先出IO流
 | socketConnection  | 网络套接字资源链接
 
-For file the description is a path to the file to be opened or a complete URL (when it is the same as calling url), or "" (the default) or "clipboard" (see the ‘Clipboard’ section). U
-
-se "stdin" to refer to the C-level ‘standard input’ of the process (which need not be connected to anything in a console or embedded version of R, and is not in RGui on Windows). See also stdin() for the subtly different R-level concept of stdin. See nullfile() for a platform-independent way to get filename of the null device.
-
-If for a file or (on most platforms) a fifo connection the description is "", the file/fifo is immediately opened (in "w+" mode unless open = "w+b" is specified) and unlinked from the file system. This provides a temporary file/fifo to write to and then read from. 
-
-重点介绍file函数
-
-socket示例
+这里我们需要重点介绍**file**函数，**file**函数不仅可以与本地存放的普通文件建立链接，还可以与远程文件建立链接，当其参数`description = ''`时，表示与系统临时文件建立链接；`description = 'clipboard'`表示与系统粘贴版建立链接，此时只允许从粘贴版读取，如需写入则可以使用第三方插件（例**xclip**）并配合系统标准IO流（`pipe("xclip -i", "w")`）的形式，macOS下需要分别使用`pipe("pbpaste")`和`pipe("pbcopy", "w")`的形式读写粘贴版；`description = 'stdin'`表示与系统标准输入流建立链接，当然我们也可以分别使用{{< hl-text primary >}}stdin、stdout、stderr、nullfile{{< /hl-text >}}函数，分别与系统的标准输入流、标准输出流、错误输出流、空文件建立链接，或者使用{{< hl-text primary >}}sink{{< /hl-text >}}函数，将R语言的标准输出流重点向到文件。
 
 <br>
 
-### 3.3、管理资源链接
+### 2.3、管理资源链接
 
-| 函数            | 解释说明                                                      
-|:----------------|:-----------------------------------------------------------------------
-| open            | 与某个资源建立链接
-| close           | 关闭资源链接
-| flush           | 将缓存的输出流写入资源
-| isOpen          | 判断资源链接是否开启
-| isIncomplete    | 判断资源链接中是否存在未完成的IO流
+| 函数                  | 解释说明                                                      
+|:----------------------|:-----------------------------------------------------------------------
+| open                  | 与某个资源建立链接
+| close                 | 关闭资源链接
+| flush                 | 将缓存的输出流写入资源
+| isOpen                | 判断资源链接是否开启，其**rw**参数还可以允许我们具体判断输入或输出链接是否开启
+| isIncomplete          | 判断资源链接中是否存在未完成的IO流
+| seek                  | 查看或修改文件当前读写指针所在位置（字节）
+| isSeekable            | 判断当前链接是否支持查找读写指针
+| truncate              | 从当前读写指针处截断文件，只对文件链接有效，非全平台支持
+| showConnections       | 列举当前建立的链接，其**all**参数表示是否列举所有链接（包括已关闭的及系统的链接）
+| getConnection         | 获取某个链接，其**what**参数需要与**showConnections**函数返回的链接所在行号对应
+| closeAllConnections   | 关闭所有链接
+| isatty                | 判断某个链接是否为系统链接（与终端交互的链接）
+| gzcon                 | 压缩资源链接传输时的数据
 
-## 5、stdout、stderr、sink、gzcon
+<br>
 
-## 6、read、write
+### 2.4、从资源链接读写数据
 
-- readChar、writeChar
-- readBin、writeBin
+|           | 字符流          | 字节流          |                                                  
+|:----------|:----------------|:----------------|
+| 读取      | readChar        | readBin         | 
+| 写入      | writeChar       | writeBin        |
+
+
+接下来让我们尝试使用上述函数，在R语言中实现套接字通信：
+
+```
+# 建立套接字链接
+> serv <- socketConnection(port = 1234, server = TRUE)
+> client <- socketConnection(port = 1234)
+
+# 服务端向客户端发送消息
+> writeLines("Hello client!", serv)
+> readLines(client)
+[1] "Hello client!"
+
+# 客户端向服务端发送消息
+> writeLines("Hello server!", client)
+> readLines(serv)
+
+# 关闭套接字链接
+> close(serv)
+> close(client)
+```
 
 <br>
 
 {{< note "思考思考" "#e6e6ff" >}}
-- R语言中的打包/压缩管理函数大多是调用命令行完成的吗 ？
+- R语言中的打包/压缩管理函数大多是调用命令行完成的吗？
+- 如何使用**pipe**函数，后台运行R语言命令？
 
 {{< /note >}}
 
