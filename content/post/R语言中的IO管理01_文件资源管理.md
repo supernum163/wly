@@ -128,12 +128,22 @@ R语言中支持与多种类型的资源建立链接（见下表），如果使�
 | pipe              | 系统标准IO流
 | fifo              | 先入先出IO流
 | socketConnection  | 网络套接字资源链接
+| textConnection       | 将R语言对象转化为字符资源链接（读取）
+| textConnectionValue  | 将R语言对象转化为字符资源链接（写入）
 
-这里我们需要重点介绍**file**函数，**file**函数不仅可以与本地存放的普通文件建立链接，还可以与远程文件建立链接，当其参数`description = ''`时，表示与系统临时文件建立链接；`description = 'clipboard'`表示与系统粘贴版建立链接，此时只允许从粘贴版读取，如需写入则可以使用第三方插件（例**xclip**）并配合系统标准IO流（`pipe("xclip -i", "w")`）的形式，macOS下需要分别使用`pipe("pbpaste")`和`pipe("pbcopy", "w")`的形式读写粘贴版；`description = 'stdin'`表示与系统标准输入流建立链接，当然我们也可以分别使用{{< hl-text primary >}}stdin、stdout、stderr、nullfile{{< /hl-text >}}函数，分别与系统的标准输入流、标准输出流、错误输出流、空文件建立链接，或者使用{{< hl-text primary >}}sink{{< /hl-text >}}函数，将R语言的标准输出流重点向到文件。
+这里我们需要重点介绍**file**函数，**file**函数不仅可以与本地存放的普通文件建立链接，还可以与远程文件建立链接，此外：
+
+- 当其参数`description = ''`时，表示与系统临时文件建立链接，当然我们也可以直接使用{{< hl-text primary >}}tempfile、tempdir{{< /hl-text >}}函数，分别建立**临时文件**、**临时文件夹**；
+- 当其参数`description = 'clipboard'`时，表示与系统的**粘贴版**建立链接，此时只允许从粘贴版读取，如需写入则可以使用第三方插件（例**xclip**）并配合系统标准IO流（`pipe("xclip -i", "w")`）的形式，macOS下需要分别使用`pipe("pbpaste")`和`pipe("pbcopy", "w")`的形式读写粘贴版；
+- 当其参数`description = 'stdin'`时，表示与系统标准输入流建立链接，当然我们也可以直接使用{{< hl-text primary >}}stdin、stdout、stderr、nullfile{{< /hl-text >}}函数，分别与系统的**标准输入流**、**标准输出流**、**错误输出流**、**空文件**建立链接，我们还可以使用{{< hl-text primary >}}sink{{< /hl-text >}}函数，将R语言的标准输出流重点向到文件。
 
 <br>
 
 ### 2.3、管理资源链接
+
+R语言中的资源链接对象，其取值是一个数字，表示当前链接建立时的序号（比如0、1、2往往分别表示标准输入流、标准输出流、错误输出流），而真正进行读写操作的**外部引用指针**实际上存放在其数据属性（比如**conn_id**）中。上文介绍到的的资源链接对象都是S3类型的对象，它们拥有各自的类，同时共同继承了**connection**类，但以下管理资源链接的函数大多直接调用了底层函数，只有少数函数是S3类型的分发函数。
+
+比如**seek**函数，在S3方法**seek.connection**中，**rw**参数可以用于选择查询或修改输入流还是输出流，**where**参数可以用于修改读写指针的位置，**origin**参数可以用于设置从文档起始处（**start**）或当前位置（**current**）开始查询或修改。
 
 | 函数                  | 解释说明                                                      
 |:----------------------|:-----------------------------------------------------------------------
@@ -142,7 +152,7 @@ R语言中支持与多种类型的资源建立链接（见下表），如果使�
 | flush                 | 将缓存的输出流写入资源
 | isOpen                | 判断资源链接是否开启，其**rw**参数还可以允许我们具体判断输入或输出链接是否开启
 | isIncomplete          | 判断资源链接中是否存在未完成的IO流
-| seek                  | 查看或修改文件当前读写指针所在位置（字节）
+| seek                  | 查询或修改文件当前**读写指针**所在位置（字节）
 | isSeekable            | 判断当前链接是否支持查找读写指针
 | truncate              | 从当前读写指针处截断文件，只对文件链接有效，非全平台支持
 | showConnections       | 列举当前建立的链接，其**all**参数表示是否列举所有链接（包括已关闭的及系统的链接）
@@ -155,38 +165,42 @@ R语言中支持与多种类型的资源建立链接（见下表），如果使�
 
 ### 2.4、从资源链接读写数据
 
-|           | 字符流          | 字节流          |                                                  
-|:----------|:----------------|:----------------|
-| 读取      | readChar        | readBin         | 
-| 写入      | writeChar       | writeBin        |
+R语言中有很多从资源链接中读写数据的函数（**read**家族与**write**家族函数），我们在之后的章节会逐一介绍。这里我们先简略的介绍几个R语言中最基本的资源读写函数：
 
+| 读取          | 写入          | 解释说明                                                      
+|:--------------|:--------------|:-----------------------------------------------------------------------
+| readBin       | writeBin      | 读写字节流，使用**what**参数指定读取的数据转化为特定的R语言对象
+| readChar      | writeChar     | 从字节流中读写字符
+| readLines     | writeLines    | 从字符流中按行读写数据
 
-接下来让我们尝试使用上述函数，在R语言中实现套接字通信：
+接下来让我们尝试使用上述函数，在R语言中实现套接字通信（**socket编程**）。这里必须启用两个R线程分别扮演服务端与客户端，为了便于理解，我们修改了R语言中的命令提示符（`options("prompt")`），**> s: **和**> c: **分别表示需要在服务端以及需要在客户端进行的操作。
 
 ```
 # 建立套接字链接
-> serv <- socketConnection(port = 1234, server = TRUE)
-> client <- socketConnection(port = 1234)
+> s: server <- socketConnection(port = 1234, server = TRUE, open = "a+b")
+> c: client <- socketConnection(port = 1234, open = "a+b")
 
 # 服务端向客户端发送消息
-> writeLines("Hello client!", serv)
-> readLines(client)
+> s: writeChar("Hello client!", server)
+> c: readChar(client, nchar = 30)
 [1] "Hello client!"
 
 # 客户端向服务端发送消息
-> writeLines("Hello server!", client)
-> readLines(serv)
+> c: writeBin("Hello server!", client)
+> s: readBin(server, what = "character")
+[1] "Hello server!"
 
 # 关闭套接字链接
-> close(serv)
-> close(client)
+> s: close(server)
+> c: close(client)
 ```
 
 <br>
 
 {{< note "思考思考" "#e6e6ff" >}}
-- R语言中的打包/压缩管理函数大多是调用命令行完成的吗？
+- R语言中的打包/压缩管理函数大多是调用命令行完成的，如何在R语言函数中使用命令行参数，实现加密压缩？
 - 如何使用**pipe**函数，后台运行R语言命令？
+- 如何在R语言中使用socket编程，实现远程命令行？
 
 {{< /note >}}
 
