@@ -195,6 +195,8 @@ R语言中有很多从资源链接中读写数据的函数（**read**家族与**
 > c: close(client)
 ```
 
+当然，我们也可以使用更简单的方式实现套接字编程——参考**utils**程序包中的{{< hl-text primary >}}make.socket、read.socket、write.socket、close.socket{{< /hl-text >}}函数。但需要注意的是，这些函数用到的的**socket**资源链接与上文介绍的不同，两者不能混合使用。
+
 <br>
 
 {{< note "思考思考" "#e6e6ff" >}}
