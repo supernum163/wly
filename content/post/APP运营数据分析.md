@@ -1,6 +1,6 @@
 ---
 title: "APP运营数据分析"
-date: 2019-09-30
+date: 2019-09-21
 categories:
   - 数据分析
 tags:
@@ -9,7 +9,7 @@ keywords:
   - APP运营
   - 数据分析
 thumbnailImagePosition: left
-thumbnailImage: https://s2.ax1x.com/2019/08/17/muNHqH.png
+thumbnailImage: https://s2.ax1x.com/2019/09/22/uShIHJ.png
 ---
 
 应用程序（**APP**）可以指计算机、手机或其它智能设备中的某个软件，也可以指依赖网络协议实现的某个应用。对于APP运营人员来说，了解数据分析无疑可以更好的推广APP、甚至决定APP的开发方向。
