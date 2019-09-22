@@ -11,7 +11,7 @@ keywords:
   - IO管理
   - 文件输入输出
 thumbnailImagePosition: left
-thumbnailImage: https://s2.ax1x.com/2019/08/17/muddIA.png
+thumbnailImage: https://s2.ax1x.com/2019/09/22/upQrUP.png
 ---
 
 这篇文章我们将介绍R语言常用文件输入输出。
