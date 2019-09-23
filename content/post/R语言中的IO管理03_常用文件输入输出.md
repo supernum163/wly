@@ -350,9 +350,9 @@ read.DIF(file, header = FALSE,
 
 <br>
 
-## 6、输入/输出JSON文件
+## 6、JSON文件
 
-使用**rjson**程序包中的**fromJSON、toJSON**读写 [json](http://www.json.org/)
+使用**rjson**程序包中的**fromJSON、toJSON**读写 [JSON](http://www.json.org/)
 
 ```R
 > fromJSON('[1,2,3]', simplify=TRUE)
@@ -369,17 +369,13 @@ read.DIF(file, header = FALSE,
 
 ## 7、YAML文件
 
-使用**yaml**程序包中的**read_yaml、write_yaml**函数读写 [yaml](https://yaml.org/)，**read_yaml**函数会根据读取内容的类型（字符串或文件）分别调用**yaml.load、yaml.load_file**函数，**write_yaml**会调用**as.yaml**函数。
+```yaml
 
-```R
-> fromJSON('[1,2,3]', simplify=TRUE)
-[1] 1 2 3
-> toJSON(1:3)
-[1] "[1,2,3]"
 ```
-- **error.label**即解析出错时，错误信息的标签
-- **eval.expr**即是否执行yaml中的命令
 
+我们可以使用**yaml**程序包中的{{< hl-text primary >}}read_yaml、write_yaml{{< /hl-text >}}函数读写 [yaml](https://yaml.org/)，注意**read_yaml**函数会根据读取内容的类型（字符串或文件）分别调用{{< hl-text primary >}}yaml.load、yaml.load_file{{< /hl-text >}}函数，而**write_yaml**会调用{{< hl-text primary >}}as.yaml{{< /hl-text >}}函数。以下为读写**yaml**时需要注意的参数：
+
+- **eval.expr**即读取时是否执行yaml中的命令
 - **column.major**即数据框转化为yaml时，是否按列转化
 - **omap**即列表转化为yaml时，是否在列表前写入**!omap**
 
@@ -388,74 +384,86 @@ read.DIF(file, header = FALSE,
 
 ## 8、xml类文件
 
-使用**XML**程序包读写XML文件，参考 [xpath](https://www.w3school.com.cn/xpath/xpath_syntax.asp)
+我们可以使用**XML**程序包读写XML类文件。**XML**是一种用于标记电子文件使其具有结构性的标记语言，类似的语言还有**HTML**、**SGML**等，以下是一段标准的XML语句。
 
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1"?>
 <bookstore>
-  <book>
-    <title lang="eng">Harry Potter</title>
-    <price>29.99</price>
-  </book>
-  <book>
-    <title lang="eng">Learning XML</title>
-    <price>39.95</price>
-  </book>
+    <book category="CHILDREN">
+        <title lang="en">Harry Potter</title>
+        <price>29.99</price>
+    </book>
+    <book category="WEB">
+        <title lang="en">Learning XML</title>
+        <price>39.95</price>
+    </book>
 </bookstore>
 ```
 
-| **xpath**  | 解释说明                                                      
-|:-----------|:----------------------------------------------------------------------------------
-| nodename   | 选取此节点的所有子节点
-| /          | 从根节点选取
-| //         | 从匹配选择的当前节点选择文档中的节点，而不考虑它们的位置
-| .          | 选取当前节点
-| ..         | 选取当前节点的父节点
-| @          | 选取属性
-| @*         | 匹配任何属性节点
-| *          | 匹配任何元素节点
-| node()     | 匹配任何类型的节点
+**HTML**与**XML**均被广泛的应用于互联网领域，两者最大的不同在于：**HTML**不允许用户自定义标签（节点）或属性，但**XML**中可以。我们可以分别使用{{< hl-text primary >}}xmlParse、htmlParse{{< /hl-text >}}函数，将xml或html文本转化为以R语言对象表示的XML结构树。接下来我们可以使用以下函数，在R语言中查看、修改、删除XML结构树中的内容。
 
+| 函数              | 解释说明                                                      
+|:------------------|:-----------------------------------------------------------------
+| xmlRoot           | 获取XML结构树的根结点
+| xmlChildren       | 获取或修改某个节点的子节点
+| xmlParent         | 获取或修改某个节点的父节点
+| xmlName           | 获取或修改某个节点的节点名称
+| xmlAttrs          | 获取或修改某个节点的所有节点属性
+| xmlGetAttr        | 获取或修改某个节点的某个节点属性
+| xmlValue          | 获取或修改某个节点的节点内容
+| addNode           | 添加节点
+| addAttributes     | 添加节点属性
+| addChildren       | 添加子节点
+| replaceNodes      | 替换节点
+| removeNode        | 删除节点
+| removeAttributes  | 删除节点元素
+| removeChildren    | 删除子节点
 
-htmlParse     将xml或html文本转化为以R语言对象表示的XML结构树
-xmlRoot       获取根结点
-xmlChildren   获取子节点
-xmlAttrs      获取节点属性
+当然我们也可以分别使用{{< hl-text primary >}}xmlToList、xmlToS4{{< /hl-text >}}函数，直接将XML结构树转化为R语言中的列表、S4对象。如果我们只需要获取XML结构树中的列表、表格，还可以分别使用{{< hl-text primary >}}readHTMLList、readHTMLTable{{< /hl-text >}}函数。
 
-getNodeSet    寻找节点
-xmlApply      并发处理节点对象组成的数组或列表
+此外我们还可以使用**xpath**，快速定位**XML**结构树中的内容，以下表格即**xpath**的语法格式。我们需要使用{{< hl-text primary >}}getNodeSet{{< /hl-text >}}函数，提取**xpath**对应的元素（可能是由节点对象构成的列表、数值、逻辑值、字符串）。为了更方便的处理**getNodeSet**函数返回的节点列表，我们还可以使用{{< hl-text primary >}}xmlApply{{< /hl-text >}}函数，以并发运算的方式处理节点对象组成的数组或列表。
 
-
-addNode           添加节点
-addAttributes     添加节点属性
-addChildren       添加子节点
-
-replaceNodes      替换节点
-
-removeNode        删除节点
-removeAttributes  删除节点元素
-removeChildren    删除子节点
-
-readHTMLList      从html文件中读取列表
-readHTMLTable     从html文件中读取表格
+| **xpath**         | 解释说明                                                      
+|:------------------|:-----------------------------------------------------------------
+| /                 | 从根节点开始查找，节点路径分割符，比如{{< hl-text blue >}}/bookstore/book{{< /hl-text >}}
+| //                | 从当前节点下的任意位置开始查找，比如{{< hl-text blue >}}//book{{< /hl-text >}}
+| .                 | 获取当前节点
+| ..                | 获取当前节点的父节点，比如{{< hl-text blue >}}//title/..{{< /hl-text >}}
+| node              | 获取d当前节点下的所有**node**节点
+| [n]               | 筛选第**n**个节点，比如{{< hl-text blue >}}/bookstore/book[2]{{< /hl-text >}}
+| [last()-n]        | 筛选倒数第**n**个节点，比如{{< hl-text blue >}}//book[last()]{{< /hl-text >}}，注意如果`//`之前的路径对应多个包含**book**的节点，则表示在每个节点中分别进行位置筛选
+| [position() < n]  | 筛选前**n-1**个节点，比如{{< hl-text blue >}}//book[position() < 3]{{< /hl-text >}}
+| @attr             | 筛选必须拥有**attr**属性，比如{{< hl-text blue >}}//book[@category{{< /hl-text >}}、{{< hl-text blue >}}//@category{{< /hl-text >}}
+| @attr = 'value'   | 筛选**attr**属性必须等于**value**，比如{{< hl-text blue >}}//book[@category='WEB']{{< /hl-text >}}
+| node > n          | 筛选**node**节点中的数值必须大于**n**，比如{{< hl-text blue >}}//book[price>35]{{< /hl-text >}}
+| *                 | 匹配任意节点，比如{{< hl-text blue >}}//book[1]/*{{< /hl-text >}}
+| @*                | 匹配任意属性，比如{{< hl-text blue >}}//book[@*]{{< /hl-text >}}、{{< hl-text blue >}}//book[1]/@*{{< /hl-text >}}
+| node()            | 匹配任意节点，等同于{{< hl-text blue >}}*{{< /hl-text >}}
+| text()            | 匹配任意节点内容，比如{{< hl-text blue >}}//title[1]/text(){{< /hl-text >}}
+| expr1 \| expr2  | 获取匹配**expr1**或**expr2**的元素，比如{{< hl-text blue >}}//book[1] | //book[@category='WEB']{{< /hl-text >}}
 
 <br>
 
 ## 9、图像类文件
 
-使用**png、jpep**程序包
+R语言虽然自带强大的图形化工具，但大多用于绘制、保存图像。为了方便提取图像中的信息进行数据分析（如图像识别），我们可以使用**png、jpep**等程序包中的函数，读写**png、jpeg**等图像文件。注意读入R语言的图像将以三维数组的形式表示，数组中的行列分别代表图片横向和纵向的像素点，数组第三个纬度上的四个元素分别表示相应像素点的RGB和透明度（均已被标量化，取值范围在0-1之间）。由于**png、jpeg**等图像文件以压缩的形式存储图像信息，读入内存后图像是以位图的形式表示的，所以占用的空间远大于存储时占用的空间。
+
+R语言中图像处理、大数据分析的方法并不是很丰富，但我们可以在R语言中使用第三方工具完成这些任务，参考**TensorFlow、keras、sparklyr**等程序包。
 
 <br>
 
-## 10、html、pdf、word、powerpoint
+## 10、阅读文档类文件
 
-使用**rmarkdown**程序包，结合R语言与**markdown**语法，输出**html、pdf、word、powerpoint**文件。
+*阅读文档类文件* 指的是为便于阅读、展示而产生的各种类型的文档，与 *纯文本文件* 不同的是，阅读文档类文件中除了要包含文本内容，还要包含文本的展示样式。所以读写这类文件往往需要特定的编辑器或者程序，否则很容易破坏文档的结构，从而导致文档实效。
+
+在R语言中，我们可以使用**knitr、rmarkdown**程序包，结合R语言与**markdown**语法，输出**html、pdf、word、powerpoint**文档。上文已经介绍了如何读取**html**文档中的内容，此外我们还可以使用**officer**程序包，读写**word、powerpoint**等文档中的内容。读取**pdf**文档中的内容，我们可以使用**pdftools**程序包，注意如果pdf文档中含有加密信息，我们需要提供相应的密码才能读取，还有一些pdf文档实际上是以图片的形式存储信息的，所以不能读取其中的文字。
 
 <br>
 
 
 {{< note "思考思考" "#e6e6ff" >}}
 - ？
+- **xpath**//@attr``与`//node()[@attr]`有什么区别？
 
 {{< /note >}}
 
