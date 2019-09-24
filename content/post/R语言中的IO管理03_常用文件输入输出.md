@@ -1,5 +1,5 @@
 ---
-title: R语言常用文件输入输出
+title: R语言中文件输入输出
 date: 2019-09-27
 categories:
   - R语言
@@ -14,7 +14,7 @@ thumbnailImagePosition: left
 thumbnailImage: https://s2.ax1x.com/2019/09/22/upQrUP.png
 ---
 
-这篇文章我们将介绍R语言常用文件输入输出。
+这篇文章我们将介绍R语言中的文件输入输出。
 
 <!--more-->
 
@@ -22,7 +22,7 @@ thumbnailImage: https://s2.ax1x.com/2019/09/22/upQrUP.png
 
 ## 1、二进制文件
 
-我们在之前的文章中介绍过使用{{< hl-text primary >}}readBin、writeBin{{< /hl-text >}}函数读写二进制文件
+我们可以分别使用{{< hl-text primary >}}readBin、writeBin{{< /hl-text >}}函数读写二进制文件。实际上我们可以使用二进制的模式读写任意文件，但是大部分非二进制文件都需要按照特定的规则存储数据，如果不按特定规则读写，读取到的内容对我们而言可能是没有意义的，写出的文件可能是无效的。
 
 ```R
 readBin(con, what, n = 1L, size = NA_integer_, signed = TRUE, endian = .Platform$endian)
@@ -38,6 +38,10 @@ writeBin(object, con, size = NA_integer_, endian = .Platform$endian, useBytes = 
 - **endian**即字节存储次序，默认与系统设定相同。小端格式的子节序(**Little-endian**)会将低序字节存储在起始地址（**低位编址**）。与之相反的，大端格式的子节序(**Big-endian**)会将高序字节存储在起始地址（**高位编址**）。
 - **useBytes**即是否以字节的形式读写字符串，如果`useBytes = FALSE`且R语言的系统编码与文件链接的编码不同，则读写字符串时会进行转码操作
 
+<br>
+
+我们可以分别{{< hl-text primary >}}readChar、writeChar{{< /hl-text >}}函数，从二进制文件（当然我们也可以将文本文件以二进制的模式打开）中读写字符串。
+
 ```R
 readChar(con, nchars, useBytes = FALSE)
 writeChar(object, con, nchars = nchar(object, type = "chars"), eos = "", useBytes = FALSE)
@@ -50,13 +54,13 @@ writeChar(object, con, nchars = nchar(object, type = "chars"), eos = "", useByte
 
 ## 2、文本文件
 
-**空字符**（**\x00**）与**空白字符**（**\x20**），**\r、\n、\r\n**都会（统一被替换为**\n**）被当作行结束标志符
+文本文件，**空字符**（**\x00**）与**空白字符**（**\x20**）不同
 
-| 简称      | 全称            | 解释说明                                                      
-|:----------|:----------------|:-------------------
-| EOS       | End Of String   | 字符串结束标志符
-| EOL       | End Of Line     | 行结束标志符
-| EOF       | End Of File     | 文件结束标志符
+| 简称      | 全称            | 对应字符          | 解释说明
+|:----------|:----------------|:------------------|:-------------------
+| EOS       | End Of String   | **\x00**          | 字符串结束标志符
+| EOL       | End Of Line     | **\r、\n、\r\n**  | 行结束标志符
+| EOF       | End Of File     |                   | 文件结束标志符
 
 <br>
 
@@ -66,6 +70,7 @@ writeChar(object, con, nchars = nchar(object, type = "chars"), eos = "", useByte
 readLines(con = stdin(), n = -1L, ok = TRUE, warn = TRUE, encoding = "unknown", skipNul = FALSE)
 writeLines(text, con = stdout(), sep = "\n", useBytes = FALSE)
 ```
+
 - **text**即需要被写入文件的字符串
 - **n**即需要从文件中读取多少行内容，取值为负数时表示读取全部内容
 - **ok**即是否允许实际行数小于需要读取的行数（**n**），取值为**FALSE**时会触发异常，并且不读取任何内容
@@ -76,36 +81,9 @@ writeLines(text, con = stdout(), sep = "\n", useBytes = FALSE)
 
 <br>
 
-## 3、DCF类文件
-
-R语言程序包中的**DESCRIPTION**文件
-
-```
-Package: myFirstPackage
-Version: 1.0.0
-Title: My First Package
-Description: Regression spline functions and classes,
-  problem shooting <somebody@me.com>
-Built: R 3.6.1; x86_64-pc-linux-gnu; 2019-07-26 13:35:28 UTC; unix
-```
-
-```R
-read.dcf(file, fields = NULL, all = FALSE, keep.white = NULL)
-
-write.dcf(x, file = "", append = FALSE, useBytes = FALSE,
-          indent = 0.1 * getOption("width"), width = 0.9 * getOption("width"),
-          keep.white = NULL)
-```
-
-- **fields**即需要从文件中读取的字段，默认为全部字段
-- **all**即当文件中包含两个同名字段时，是否将其内容合并为同一个字段（使用英文逗号分割）。若取值为**FALSE**，则只读取最后一个字段的值
-- **keep.white**即哪些字段的前后空格需要被保留，可以是一个字符串数组，也可以是**NULL**表示所有字段的前后空格都不保留
-- **indent**即字段换行时，需要在行首插入的空格数量
-- **width**即写出文件时每一行的最大宽度
-
-<br>
-
 ## 3、纯文本表格类文件
+
+R语言中的{{< hl-text primary >}}scan{{< /hl-text >}}函数可以按行读取文件，并且可以按照特定的分割符将每行中的内容切分成不同的元素，这对于读取表格类数据文件十分有帮助，下文介绍的**read.table**就调用了这一函数。
 
 ```R
 scan(file = "", what = double(), nmax = -1, n = -1, sep = "",
@@ -139,11 +117,21 @@ scan(file = "", what = double(), nmax = -1, n = -1, sep = "",
 
 <br>
 
-     
-read.table(file, header = FALSE, numerals = c("allow.loss", "warn.loss", "no.loss"),
-           row.names, col.names, as.is = !stringsAsFactors, colClasses = NA, nrows = -1,
-           check.names = TRUE, stringsAsFactors = default.stringsAsFactors(), ...)
-            
+我们可以使用{{< hl-text primary >}}read.table、write.table{{< /hl-text >}}函数，将从文件中读写表格类数据。这两个函数可以读写形式（行分割符、字段分割符）各异的表格文件，因此以下介绍到的读写特定格式（**CSV、TSV、FWF**等）表格文件的函数，本质上都是按照特定格式调用这两个函数读写数据的。
+
+```R
+read.table(file, header = FALSE, sep = "", quote = "\"'",
+           dec = ".", numerals = c("allow.loss", "warn.loss", "no.loss"),
+           row.names, col.names, as.is = !stringsAsFactors,
+           na.strings = "NA", colClasses = NA, nrows = -1,
+           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
+           strip.white = FALSE, blank.lines.skip = TRUE,
+           comment.char = "#",
+           allowEscapes = FALSE, flush = FALSE,
+           stringsAsFactors = default.stringsAsFactors(),
+           fileEncoding = "", encoding = "unknown", text, skipNul = FALSE)
+```
+
 - **header**即是否将文件第一行最为标题行（列名），默认如果首行元素个数比其它行少一个，则将其设为标题行
 - **numerals**即将文件中的数值转化为R语言对象（双精度浮点型）时是否允许精度损失，以及损失精度时是否触发异常
 - **row.names**即表格的行名，可以是与行数相同的字符串数组，也可以是一个数值或字符串，指明将表格中的哪一列作为行名。如果首行元素个数比其它行少一个，则其它行中每行的首个元素作为行名。默认或设置`row.names = NULL`，表示使用 *行位序数* （从1开始自动编号的数字）作为行名
@@ -153,8 +141,12 @@ read.table(file, header = FALSE, numerals = c("allow.loss", "warn.loss", "no.los
 - **check.names**即是否检查表格列名的合法性，若取值为**TRUE**，则列名重复时以数字后缀区分
 - **stringsAsFactors**即是否将字符串转化为因子，可以被**as.is、colClasses**的设定覆盖
 
-write.table(x, file = "", append = FALSE, qmethod = c("escape", "double"),
-            eol = "\n", na = "NA", row.names = TRUE, col.names = TRUE, ...)
+```R
+write.table(x, file = "", append = FALSE, quote = TRUE, sep = " ",
+            eol = "\n", na = "NA", dec = ".", row.names = TRUE,
+            col.names = TRUE, qmethod = c("escape", "double"),
+            fileEncoding = "")
+```
 
 - **append**即是否将输出结果附加到文件中，只有当**file**为文件名时有效
 - **qmethod**即以何种方式处理字符串中的英文引号，**escape**表示进行字符转义，**double**表示用两个引号代替单个引号
@@ -162,20 +154,25 @@ write.table(x, file = "", append = FALSE, qmethod = c("escape", "double"),
 - **na**即写出时以什么样的字符串表示R语言中的缺失值
 - **row.names、col.names**即是否将行名、列名写入文件
 
-与**write.table**相似的是**write**函数，**write**函数本质上相当于调用了**cat**函数，可以将R语言对象（通常是矩阵）写入文件，但只能写出数据部分，不能写出行列名称
+<br>
 
+与**write.table**相似的是{{< hl-text primary >}}write{{< /hl-text >}}函数，**write**函数本质上相当于调用了{{< hl-text primary >}}cat{{< /hl-text >}}函数，可以将R语言对象（通常是矩阵）写入文件，但只能写出数据部分，不能写出行列名称。此外**write**函数是按行写出的，但R语言矩阵中的元素是按列排列的，所以矩阵写出时相当于进行了行列互换。
+
+```R
 write(x, file = "data", append = FALSE, sep = " ",
       ncolumns = if(is.character(x)) 1 else 5)
-      
-- **ncolumns**即需要写出多少列内容，如果**x**的纬度属性与这里设置的不相符，则先修改纬度属性再写出。**write**函数是按行写出的，但R语言矩阵中的元素是按列排列的，所以矩阵写出时相当于进行了行列互换
+```
+
+- **ncolumns**即需要写出多少列内容，如果**x**的纬度属性与这里设置的不相符，则先修改纬度属性再写出。
 
 
 <br>
 
 ### 3.1、csv文件
 
-注意 **read.csv**中`sep = ",", dec = "."`,  **read.csv2*中`sep = ";", dec = ","`
+**csv**文件是默认以英文逗号（**,**）作为字段分割符的表格类数据文件，但有时候文件中表示小数点的符号也有可以能是英文逗号，此时就需要使用英文分号（**;**）作为分割符。我们可以使用以下函数读写**csv**文件，注意函数{{< hl-text primary >}}read.csv、write.csv{{< /hl-text >}}中的字段分割符是英文逗号，而函数{{< hl-text primary >}}read.csv2、write.csv2{{< /hl-text >}}中的字段分割符是英文分号。比如**read.csv**中`dec = ".", sep = ","`,  **read.csv2*中`dec = ",", sep = ";"`。
 
+```R
 read.csv(file, header = TRUE, sep = ",", quote = "\"",
          dec = ".", fill = TRUE, comment.char = "", ...)
 
@@ -184,21 +181,25 @@ read.csv2(file, header = TRUE, sep = ";", quote = "\"",
 
 write.csv(...)
 write.csv2(...)
-            
+```         
             
 ### 3.2、tsv文件
 
-注意 **read.delim**中`dec = "."`,  **read.delim2*中`dec = ","`
+**tsv**文件是默认以制表符（**\t**）作为字段分割符的表格类数据文件，我们可以使用{{< hl-text primary >}}read.delim、read.delim2{{< /hl-text >}}函数，读取**tsv**文件。注意两者最大的不同依然是表示小数点的符号存在差异， **read.delim**中`dec = "."`,  **read.delim2*中`dec = ","`。
 
+```R
 read.delim(file, header = TRUE, sep = "\t", quote = "\"",
            dec = ".", fill = TRUE, comment.char = "", ...)
 
 read.delim2(file, header = TRUE, sep = "\t", quote = "\"",
             dec = ",", fill = TRUE, comment.char = "", ...)
+```
 
 <br>
 
-### 3.3、fwf文件
+### 3.3、FWF文件
+
+我们可以使用{{< hl-text primary >}}read.fwf{{< /hl-text >}}函数，读取每个字段宽度相同的表格类数据文件。注意**FWF**文件与**TSV**文件的不同之处在于：**TSV**中每个字段需要以特定的分割符（**\t**等）隔开，所以每个字段的字段宽度可以是不同的；**FWF**中字段之间没有分割符，所以字段宽度必须是固定的。
 
 ```R
 read.fwf(file, widths, header = FALSE, sep = "\t",
@@ -214,6 +215,8 @@ read.fwf(file, widths, header = FALSE, sep = "\t",
 
 ### 3.4、Fortran类文件
 
+我们可以使用{{< hl-text primary >}}read.fortran{{< /hl-text >}}函数，以**Fortran**语法格式，读取字段宽度已知的表格类数据文件。注意**Fortran**文件与**fwf**文件的不同之处在于：**Fortran**文件中每个字段的宽度可以是不同的，所以读取时需要指明特定的格式（每个字段的宽度），以下是该函数的使用方法及需要注意的参数：
+
 ```R
 read.fortran(file, format, ..., as.is = TRUE, colClasses = NA)
 ```
@@ -224,7 +227,7 @@ read.fortran(file, format, ..., as.is = TRUE, colClasses = NA)
 
 R语言中的**ftable**类型的数据对象本质上是一个矩阵，但与矩阵不同的是，**ftable**对象可以有多个行列标签分别代表数据的不同纬度，其行列标签分别存储在**ftable**对象的数据属性**row.vars、col.vars**中，比如以下**ftable**对象的**col.vars**属性相当于`list("Class" = c("Lower", "Upper"), "Dead" = c("Yes", "No"))`
 
-```
+```text
                  "Class"  "Lower"    "Upper"    
                  "Dead"   "Yes" "No"
 "Race"  "Gender"                           
@@ -234,22 +237,34 @@ R语言中的**ftable**类型的数据对象本质上是一个矩阵，但与矩
         "Female"            22  36    2  58
 ```
 
+在R语言中，我们可以分别使用{{< hl-text primary >}}read.ftable、write.ftable{{< /hl-text >}}函数，从文件中读写**ftable**对象。需要注意的是，**ftable**文件本质上是一种拥有多个行名/列名的表格类文件，只用于保存R语言中的**ftable**对象，并没有严格的个是限制，所以写入和读取过程并不是完全可逆的，以下是这些函数的使用方法及需要注意的参数：
+
+```R
 read.ftable(file, sep = "", quote = "\"", skip = 0,
             row.var.names, col.vars)
 
 write.ftable(x, file = "", quote = TRUE, append = FALSE,
              digits = getOption("digits"), ...)
+```
 
 - **row.var.names**即行标签的标签名
 - **col.vars**即列标签
-- **quote**即文件中标识字符串类内容的左右引号，写入时只能选择不用，或使用英文双引号
+- **quote**即文件中标识字符串类内容的左右引号（英文双引号，或单个字符）
 - **digits**即R语言中的数值写入文件时需要保留的精度
+
+<br>
+
+### 3.6、DIF文件
+
+**DIF**是微软开发的一种数据交换格式，用于保存电子表格，以便于在不同应用程序之间导入导出，可以被**Excel、Access**等软件打开。
+
+在R语言中我们可以使用{{< hl-text primary >}}read.DIF{{< /hl-text >}}函数，读取**DIF**文件。需要注意的是，**DIF**文件可以是按列存储的，也可以是按行存储的，所以我们可能需要使用**transpose**参数，指明是否将读取到的内容进行行列互换。当然，我们也可以直接使用R语言中的{{< hl-text primary >}}t{{< /hl-text >}}函数，进行行列互换。
 
 <br>
 
 ## 4、其它统计软件的数据文件
 
-使用**foreign**程序包，可以读写**EpiInfo、Minitab、S-PLUS、SAS、SPSS、Stata、Systat**等统计软件的数据文件
+使用R语言进行统计分析时，可能需要与**EpiInfo、Minitab、S-PLUS、SAS、SPSS、Stata、Systat**等统计软件进行数据交换，R语言中并没有完成这项任务的系统函数，但我们可以使用{{< hl-text purple >}}foreign{{< /hl-text >}}程序包，读写这些统计软件的数据文件。以下为**foreign**程序包中的函数及相应功能：
 
 | 函数         | 相应统计软件 | 默认文件后缀 | 解释说明                                                      
 |:-------------|:-------------|:-------------|:------------------------------------------
@@ -271,72 +286,22 @@ write.ftable(x, file = "", quote = TRUE, append = FALSE,
 | write.dta    | stata    | .dta    | 写入 **stata**文件
 | write.foreign | Stata、SPSS、SAS |    | 写入 **Stata、SPSS、SAS**文件
 
+这里需要特别介绍的是{{< hl-text primary >}}write.foreign{{< /hl-text >}}函数，它不仅可以输出**SPSS、Stata、SAS**统计软件的数据文件，还可以输出代码文件，用于在相应的统计软件和总读入数据文集爱你，以下是其使用方式及需要注意的参数：
 
+```R
 write.foreign(df, datafile, codefile, package = c("SPSS", "Stata", "SAS"), ...)
-              
+```
+
 - **datafile**即保存数据的文件
 - **codefile**即保存代码的文件，用于在相应的统计软件中读入数据文件
 
 <br>
 
-## 5、带格式表格类文件
+## 5、Excel类文件
 
-### 5.1、DIF文件
+**Excel**可能是日常办公最常用的表格类文件了，R语言中也有可以直接与**xls、xlsx**等类型的**Excel**文件进行交互的方法。如果我们只是需要获取**Excel**文件中的数据，则可以使用{{< hl-text purple >}}readxl{{< /hl-text >}}程序包的{{< hl-text primary >}}read_excel{{< /hl-text >}}函数。**readxl**程序包中的底层函数调用了C语言，读取速度更快。如果我们需要读写**Excel**文件，或者操作**Excel**文件中的格式，则可以使用{{< hl-text purple >}}xlsx{{< /hl-text >}}程序包。**xlsx**程序包中的底层函数调用了**JAVA**，所以我们需要实现安装配置**rJava**程序包。
 
-```
-TABLE
-0,1
-"EXCEL"
-VECTORS
-0,5
-""
-TUPLES
-0,2
-""
-DATA
-0,0
-""
--1,0
-BOT
-1,0
-"Var1"
-1,0
-"Var2"
--1,0
-BOT
-0,2.7
-V
-1,0
-"A"
--1,0
-EOD
-```
-
-
-```R
-read.DIF(file, header = FALSE,
-         dec = ".", numerals = c("allow.loss", "warn.loss", "no.loss"),
-         row.names, col.names, as.is = !stringsAsFactors,
-         na.strings = "NA", colClasses = NA, nrows = -1,
-         skip = 0, check.names = TRUE, blank.lines.skip = TRUE,
-         stringsAsFactors = default.stringsAsFactors(),
-         transpose = FALSE, fileEncoding = "")
-````
-
-- **transpose**即是否将文件中的内容行列互换
-
-### 5.2、Excel类文件
-
-使用**readxl**程序包的{{< hl-text primary >}}read_excel{{< /hl-text >}}函数读取**xls、xlsx**类型的**Excel**文件。
-
-使用**xlsx**程序包中的{{< hl-text primary >}}read.xlsx、write.xlsx{{< /hl-text >}}函数，读写**xlsx**文件。使用{{< hl-text primary >}}addMergedRegion{{< /hl-text >}}函数，插入合并的单元格；使用{{< hl-text primary >}}CellStyle{{< /hl-text >}}函数，修改单元格属性。
-
-- **rowIndex**即需要选择哪些行
-- **colIndex**即需要选择哪些列
-- **startRow**即从哪一行的单元格开始
-- **endRow**即到哪一行的单元格结束
-- **startColumn**即从哪一列的单元格开始
-- **endColumn**即到哪一列的单元格结束
+我们可以使用**xlsx**程序包中的{{< hl-text primary >}}read.xlsx、write.xlsx{{< /hl-text >}}函数，读写**Excel**文件。此外我们还可以直接修改**Excel**文件中的格式，比如使用{{< hl-text primary >}}addAutoFilter、addMergedRegion、autoSizeColumn{{< /hl-text >}}函数，插入筛选器、插入合并的单元格、自动调整列宽，使用{{< hl-text primary >}}setCellStyle{{< /hl-text >}}函数，修改单元格属性。以下为修改单元格格式时，常用的函数及其参数：
 
 | 函数           | 解释说明                                                      
 |:---------------|:----------------------------------------------------------------------------------
@@ -347,19 +312,38 @@ read.DIF(file, header = FALSE,
 | Font           | 填充，如`Font(wb, color="blue", isItalic=TRUE)`，表示设置工作簿**wb**的字体为蓝色斜体字
 | CellProtection | 保护，如`CellProtection(locked=TRUE)`表示锁定单元格
 
+- **rowIndex**即需要选择哪些行
+- **colIndex**即需要选择哪些列
+- **startRow**即从哪一行的单元格开始
+- **endRow**即到哪一行的单元格结束
+- **startColumn**即从哪一列的单元格开始
+- **endColumn**即到哪一列的单元格结束
 
 <br>
 
 ## 6、JSON文件
 
-使用**rjson**程序包中的**fromJSON、toJSON**读写 [JSON](http://www.json.org/)
+[JSON](http://www.json.org/)是一款轻量级的数据序列化标准，它在易于阅读和编辑的同时，也易于被计算机解析、生成。以下是一段标准的**JSON**语句：
 
-```R
-> fromJSON('[1,2,3]', simplify=TRUE)
-[1] 1 2 3
-> toJSON(1:3)
-[1] "[1,2,3]"
+```JSON
+{
+  "menu": {
+    "doctype": "File",
+    "menuitem": [
+      {
+        "value": "Open",
+        "onclick": "OpenDoc()"
+      },
+      {
+        "value": "Close",
+        "onclick": "CloseDoc()"
+      }
+    ]
+  }
+}
 ```
+
+我们可以使用{{< hl-text purple >}}rjson{{< /hl-text >}}程序包中的{{< hl-text primary >}}fromJSON、toJSON{{< /hl-text >}}函数读写**JSON**，以下为读写**JSON**时需要注意的参数：
 
 - **simplify**即是否将只含有同一数据类型的**标量值**的json文本转化为数组而非列表
 - **indent**即格式化json文本时，每一个 *子行* 需要缩进的空格数量
@@ -369,22 +353,58 @@ read.DIF(file, header = FALSE,
 
 ## 7、YAML文件
 
-```yaml
+[YAML](https://yaml.org/)是一种面向所有计算机语言的、容易阅读的数据序列化标准，可以直接存储各种标量、数组、列表等类型的数据。**YAML**不是一种**标记语言**，但它可以通过换行与缩进等形式，以容易阅读的形式展示数据，所以被广泛用于各种配置文件、文件大纲等。以下是一段由**YAML**表示的**markdown**文章标题：
 
+```YAML
+title: "R语言文件输入输出"
+date: !expr Sys.Date()
+keywords:
+  - R语言
+  - IO管理
 ```
 
-我们可以使用**yaml**程序包中的{{< hl-text primary >}}read_yaml、write_yaml{{< /hl-text >}}函数读写 [yaml](https://yaml.org/)，注意**read_yaml**函数会根据读取内容的类型（字符串或文件）分别调用{{< hl-text primary >}}yaml.load、yaml.load_file{{< /hl-text >}}函数，而**write_yaml**会调用{{< hl-text primary >}}as.yaml{{< /hl-text >}}函数。以下为读写**yaml**时需要注意的参数：
+我们可以使用{{< hl-text purple >}}YAML{{< /hl-text >}}程序包中的{{< hl-text primary >}}read_yaml、write_yaml{{< /hl-text >}}函数读写**YAML** ，注意**read_yaml**函数会根据读取内容的类型（字符串或文件）分别调用{{< hl-text primary >}}yaml.load、yaml.load_file{{< /hl-text >}}函数，而**write_yaml**会调用{{< hl-text primary >}}as.yaml{{< /hl-text >}}函数。
 
-- **eval.expr**即读取时是否执行yaml中的命令
-- **column.major**即数据框转化为yaml时，是否按列转化
-- **omap**即列表转化为yaml时，是否在列表前写入**!omap**
+- **eval.expr**即读取时是否执行**YAML**中的命令（命令格式必须为`!expr 命令`）
+- **column.major**即数据框转化为**YAML**时，是否按列转化
+- **omap**即列表转化为**YAML**时，是否在列表前写入**!omap**
 
 <br>
 
+## 8、DCF文件
 
-## 8、xml类文件
+**DCF**(**Debian Control File**)文件是一种用于**Debian**操作系统的控制文件，其格式类似**YAML**，但只能以键值对的形式存储信息。R语言程序包中的**DESCRIPTION**等文件，就使用了这种格式存储信息。以下为一个示例**DESCRIPTION**文件：
 
-我们可以使用**XML**程序包读写XML类文件。**XML**是一种用于标记电子文件使其具有结构性的标记语言，类似的语言还有**HTML**、**SGML**等，以下是一段标准的XML语句。
+```
+Package: myFirstPackage
+Version: 1.0.0
+Title: My First Package
+Description: Not decided yet,
+  problem shooting <somebody@email.com>
+Built: R 3.6.1; x86_64-pc-linux-gnu; 2019-07-26 13:35:28 UTC; unix
+```
+
+我们可以使用R语言中的系统函数{{< hl-text primary >}}read.dcf、write.dcf{{< /hl-text >}}，读写**DCF**文件。当然我们也可以用读写**YAML**文件的方法，读写**DCF**。
+
+```R
+read.dcf(file, fields = NULL, all = FALSE, keep.white = NULL)
+
+write.dcf(x, file = "", append = FALSE, useBytes = FALSE,
+          indent = 0.1 * getOption("width"), width = 0.9 * getOption("width"),
+          keep.white = NULL)
+```
+
+- **fields**即需要从文件中读取的字段，默认为全部字段
+- **all**即当文件中包含两个同名字段时，是否将其内容合并为同一个字段（使用英文逗号分割）。若取值为**FALSE**，则只读取最后一个字段的值
+- **keep.white**即哪些字段的前后空格需要被保留，可以是一个字符串数组，也可以是**NULL**表示所有字段的前后空格都不保留
+- **indent**即字段换行时，需要在行首插入的空格数量
+- **width**即写出文件时每一行的最大宽度
+
+<br>
+
+## 9、XML类文件
+
+**XML**是一种用于标记电子文件使其具有结构性的标记语言，类似的语言还有**HTML**、**SGML**等。注意**HTML**与**XML**均被广泛的应用于互联网领域，两者最大的不同在于：**HTML**不允许用户自定义标签（节点）或属性，但**XML**中可以。以下是一段标准的**XML**语句：
 
 ```xml
 <?xml version="1.0" encoding="ISO-8859-1"?>
@@ -400,7 +420,7 @@ read.DIF(file, header = FALSE,
 </bookstore>
 ```
 
-**HTML**与**XML**均被广泛的应用于互联网领域，两者最大的不同在于：**HTML**不允许用户自定义标签（节点）或属性，但**XML**中可以。我们可以分别使用{{< hl-text primary >}}xmlParse、htmlParse{{< /hl-text >}}函数，将xml或html文本转化为以R语言对象表示的XML结构树。接下来我们可以使用以下函数，在R语言中查看、修改、删除XML结构树中的内容。
+我们可以使用{{< hl-text purple >}}XML{{< /hl-text >}}程序包读写**XML**类文件。首先我们可以使用{{< hl-text primary >}}xmlParse、htmlParse{{< /hl-text >}}函数，将**XML**或**HTML**文本转化为以R语言对象表示的**XML结构树**。接下来我们可以使用以下函数，在R语言中查看、修改、删除XML结构树中的内容。
 
 | 函数              | 解释说明                                                      
 |:------------------|:-----------------------------------------------------------------
@@ -444,26 +464,27 @@ read.DIF(file, header = FALSE,
 
 <br>
 
-## 9、图像类文件
+## 10、图像类文件
 
-R语言虽然自带强大的图形化工具，但大多用于绘制、保存图像。为了方便提取图像中的信息进行数据分析（如图像识别），我们可以使用**png、jpep**等程序包中的函数，读写**png、jpeg**等图像文件。注意读入R语言的图像将以三维数组的形式表示，数组中的行列分别代表图片横向和纵向的像素点，数组第三个纬度上的四个元素分别表示相应像素点的RGB和透明度（均已被标量化，取值范围在0-1之间）。由于**png、jpeg**等图像文件以压缩的形式存储图像信息，读入内存后图像是以位图的形式表示的，所以占用的空间远大于存储时占用的空间。
+R语言虽然自带强大的图形化工具，但大多用于绘制、保存图像。为了方便提取图像中的信息进行数据分析（如图像识别），我们可以使用{{< hl-text purple >}}png、jpep{{< /hl-text >}}等程序包中的函数，读写**png、jpeg**等图像文件。注意读入R语言的图像将以三维数组的形式表示，数组中的行列分别代表图片横向和纵向的像素点，数组第三个纬度上的四个元素分别表示相应像素点的RGB和透明度（均已被标量化，取值范围在0-1之间）。由于**png、jpeg**等图像文件以压缩的形式存储图像信息，读入内存后图像是以位图的形式表示的，所以占用的空间远大于存储时占用的空间。
 
-R语言中图像处理、大数据分析的方法并不是很丰富，但我们可以在R语言中使用第三方工具完成这些任务，参考**TensorFlow、keras、sparklyr**等程序包。
+R语言中图像处理、大数据分析的方法并不是很丰富，但我们可以在R语言中使用第三方工具完成这些任务，参考{{< hl-text purple >}}TensorFlow、keras、sparklyr{{< /hl-text >}}等程序包。
 
 <br>
 
-## 10、阅读文档类文件
+## 11、阅读文档类文件
 
 *阅读文档类文件* 指的是为便于阅读、展示而产生的各种类型的文档，与 *纯文本文件* 不同的是，阅读文档类文件中除了要包含文本内容，还要包含文本的展示样式。所以读写这类文件往往需要特定的编辑器或者程序，否则很容易破坏文档的结构，从而导致文档实效。
 
-在R语言中，我们可以使用**knitr、rmarkdown**程序包，结合R语言与**markdown**语法，输出**html、pdf、word、powerpoint**文档。上文已经介绍了如何读取**html**文档中的内容，此外我们还可以使用**officer**程序包，读写**word、powerpoint**等文档中的内容。读取**pdf**文档中的内容，我们可以使用**pdftools**程序包，注意如果pdf文档中含有加密信息，我们需要提供相应的密码才能读取，还有一些pdf文档实际上是以图片的形式存储信息的，所以不能读取其中的文字。
+在R语言中，我们可以使用{{< hl-text purple >}}knitr、rmarkdown{{< /hl-text >}}程序包，结合R语言与**markdown**语法，输出**html、pdf、word、powerpoint**文档。上文已经介绍了如何读取**html**文档中的内容，此外我们还可以使用{{< hl-text purple >}}officer{{< /hl-text >}}程序包，读写**word、powerpoint**等文档中的内容。读取**pdf**文档中的内容，我们可以使用{{< hl-text purple >}}pdftools{{< /hl-text >}}程序包，注意如果pdf文档中含有加密信息，我们需要提供相应的密码才能读取，还有一些pdf文档实际上是以图片的形式存储信息的，所以不能读取其中的文字。
 
 <br>
 
 
 {{< note "思考思考" "#e6e6ff" >}}
-- ？
-- **xpath**//@attr``与`//node()[@attr]`有什么区别？
+- R语言如何写出**fwf**类文件？
+- **xpath**——`//@attr='value'`有什么作用？
+- R语言中可以读写音频、视频类文件吗？
 
 {{< /note >}}
 
