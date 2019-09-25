@@ -1,5 +1,5 @@
 ---
-title: R语言中文件输入输出
+title: R语言中的文件输入输出
 date: 2019-09-23
 categories:
   - R语言
