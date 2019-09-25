@@ -1,6 +1,6 @@
 ---
 title: R语言中文件输入输出
-date: 2019-09-27
+date: 2019-09-23
 categories:
   - R语言
   - IO管理
@@ -14,7 +14,7 @@ thumbnailImagePosition: left
 thumbnailImage: https://s2.ax1x.com/2019/09/22/upQrUP.png
 ---
 
-这篇文章我们将介绍R语言中的文件输入输出。
+文件输入输出是一门计算机语言从存储设备中获取数据、将内存中的数据持久化的过程。这篇文章我们将介绍R语言中的文件输入输出。
 
 <!--more-->
 
@@ -22,7 +22,7 @@ thumbnailImage: https://s2.ax1x.com/2019/09/22/upQrUP.png
 
 ## 1、二进制文件
 
-我们可以分别使用{{< hl-text primary >}}readBin、writeBin{{< /hl-text >}}函数读写二进制文件。实际上我们可以使用二进制的模式读写任意文件，但是大部分非二进制文件都需要按照特定的规则存储数据，如果不按特定规则读写，读取到的内容对我们而言可能是没有意义的，写出的文件可能是无效的。
+我们可以分别使用{{< hl-text primary >}}readBin、writeBin{{< /hl-text >}}函数读写二进制文件。本质上所有文件都是以二进制的形式存储的，所以我们可以使用二进制的模式读写任意文件，但实际上大部分文件都需要按照特定的规则存储数据，如果不遵守相应的规则，读取到的内容对我们而言可能是没有意义的，写出的文件可能是无效的。
 
 ```R
 readBin(con, what, n = 1L, size = NA_integer_, signed = TRUE, endian = .Platform$endian)
@@ -40,7 +40,7 @@ writeBin(object, con, size = NA_integer_, endian = .Platform$endian, useBytes = 
 
 <br>
 
-我们可以分别{{< hl-text primary >}}readChar、writeChar{{< /hl-text >}}函数，从二进制文件（当然我们也可以将文本文件以二进制的模式打开）中读写字符串。
+我们可以分别{{< hl-text primary >}}readChar、writeChar{{< /hl-text >}}函数，从二进制文件（当然我们也可以将纯文本文件以二进制的模式打开）中读写字符串。
 
 ```R
 readChar(con, nchars, useBytes = FALSE)
@@ -52,9 +52,9 @@ writeChar(object, con, nchars = nchar(object, type = "chars"), eos = "", useByte
 
 <br>
 
-## 2、文本文件
+## 2、纯文本文件
 
-文本文件，**空字符**（**\x00**）与**空白字符**（**\x20**）不同
+纯文本文件是以单个字符为单位存储的文件，但某些字符在文本文件中拥有特定的含义（参考下表）。注意**空字符**（**\x00**）与**空白字符**（**\x20**）不同。
 
 | 简称      | 全称            | 对应字符          | 解释说明
 |:----------|:----------------|:------------------|:-------------------
@@ -62,9 +62,8 @@ writeChar(object, con, nchars = nchar(object, type = "chars"), eos = "", useByte
 | EOL       | End Of Line     | **\r、\n、\r\n**  | 行结束标志符
 | EOF       | End Of File     |                   | 文件结束标志符
 
-<br>
-
-**readline**从系统输入中读取一行内容，可以临时修改命令提示符。**readLines**需要手动提供需要读取多少行，注意此时可以使用**Ctrl+D**输入文件结束标志符，不能临时修改命令提示符
+我们可以分别{{< hl-text primary >}}readLines、writeLines{{< /hl-text >}}函数从纯文本文件中按行读写数据。这两个函数也可以读写标准输入，此时**readLines**与R语言中的{{< hl-text primary >}}readline{{< /hl-text >}}函数的功能十分类似。仅有的区别在于：**readline**可以临时修改命令提示符，从标准输入中读取一行内容；**readLines**不能临时修改命令提示符，需要自行提供读取多少行。
+注意如果使用**readLines**读取标准输入时，指定了读取全部内容（`n = -1`），需要使用快捷键**Ctrl+D**输入文件结束标志符。
 
 ```R
 readLines(con = stdin(), n = -1L, ok = TRUE, warn = TRUE, encoding = "unknown", skipNul = FALSE)
@@ -168,9 +167,9 @@ write(x, file = "data", append = FALSE, sep = " ",
 
 <br>
 
-### 3.1、csv文件
+### 3.1、CSV文件
 
-**csv**文件是默认以英文逗号（**,**）作为字段分割符的表格类数据文件，但有时候文件中表示小数点的符号也有可以能是英文逗号，此时就需要使用英文分号（**;**）作为分割符。我们可以使用以下函数读写**csv**文件，注意函数{{< hl-text primary >}}read.csv、write.csv{{< /hl-text >}}中的字段分割符是英文逗号，而函数{{< hl-text primary >}}read.csv2、write.csv2{{< /hl-text >}}中的字段分割符是英文分号。比如**read.csv**中`dec = ".", sep = ","`,  **read.csv2*中`dec = ",", sep = ";"`。
+**CSV**文件是默认以英文逗号（**,**）作为字段分割符的表格类数据文件，但有时候文件中表示小数点的符号也有可以能是英文逗号，此时就需要使用英文分号（**;**）作为分割符。我们可以使用以下函数读写**CSV**文件，注意函数{{< hl-text primary >}}read.csv、write.csv{{< /hl-text >}}中的字段分割符是英文逗号，而函数{{< hl-text primary >}}read.csv2、write.csv2{{< /hl-text >}}中的字段分割符是英文分号。比如**read.csv**中`dec = ".", sep = ","`,  **read.csv2*中`dec = ",", sep = ";"`。
 
 ```R
 read.csv(file, header = TRUE, sep = ",", quote = "\"",
@@ -183,9 +182,9 @@ write.csv(...)
 write.csv2(...)
 ```         
             
-### 3.2、tsv文件
+### 3.2、TSV文件
 
-**tsv**文件是默认以制表符（**\t**）作为字段分割符的表格类数据文件，我们可以使用{{< hl-text primary >}}read.delim、read.delim2{{< /hl-text >}}函数，读取**tsv**文件。注意两者最大的不同依然是表示小数点的符号存在差异， **read.delim**中`dec = "."`,  **read.delim2*中`dec = ","`。
+**TSV**文件是默认以制表符（**\t**）作为字段分割符的表格类数据文件，我们可以使用{{< hl-text primary >}}read.delim、read.delim2{{< /hl-text >}}函数，读取**TSV**文件。注意两者最大的不同依然是表示小数点的符号存在差异， **read.delim**中`dec = "."`,  **read.delim2*中`dec = ","`。
 
 ```R
 read.delim(file, header = TRUE, sep = "\t", quote = "\"",
@@ -215,7 +214,7 @@ read.fwf(file, widths, header = FALSE, sep = "\t",
 
 ### 3.4、Fortran类文件
 
-我们可以使用{{< hl-text primary >}}read.fortran{{< /hl-text >}}函数，以**Fortran**语法格式，读取字段宽度已知的表格类数据文件。注意**Fortran**文件与**fwf**文件的不同之处在于：**Fortran**文件中每个字段的宽度可以是不同的，所以读取时需要指明特定的格式（每个字段的宽度），以下是该函数的使用方法及需要注意的参数：
+我们可以使用{{< hl-text primary >}}read.fortran{{< /hl-text >}}函数，以**Fortran**语法格式，读取字段宽度已知的表格类数据文件。注意**Fortran**文件与**FWF**文件的不同之处在于：**Fortran**文件中每个字段的宽度可以是不同的，所以读取时需要指明特定的格式（每个字段的宽度），以下是该函数的使用方法及需要注意的参数：
 
 ```R
 read.fortran(file, format, ..., as.is = TRUE, colClasses = NA)
@@ -466,7 +465,7 @@ write.dcf(x, file = "", append = FALSE, useBytes = FALSE,
 
 ## 10、图像类文件
 
-R语言虽然自带强大的图形化工具，但大多用于绘制、保存图像。为了方便提取图像中的信息进行数据分析（如图像识别），我们可以使用{{< hl-text purple >}}png、jpep{{< /hl-text >}}等程序包中的函数，读写**png、jpeg**等图像文件。注意读入R语言的图像将以三维数组的形式表示，数组中的行列分别代表图片横向和纵向的像素点，数组第三个纬度上的四个元素分别表示相应像素点的RGB和透明度（均已被标量化，取值范围在0-1之间）。由于**png、jpeg**等图像文件以压缩的形式存储图像信息，读入内存后图像是以位图的形式表示的，所以占用的空间远大于存储时占用的空间。
+R语言虽然自带强大的图形化工具，但大多用于绘制、保存图像。为了方便提取图像中的信息进行数据分析（如图像识别），我们可以使用{{< hl-text purple >}}png、jpep{{< /hl-text >}}等程序包中的函数，读写**PNG、JPEG**等图像文件。注意读入R语言的图像将以三维数组的形式表示，数组中的行列分别代表图片横向和纵向的像素点，数组第三个纬度上的四个元素分别表示相应像素点的RGB和透明度（均已被标量化，取值范围在0-1之间）。由于**PNG、JPEG**等图像文件以压缩的形式存储图像信息，读入内存后图像是以位图的形式表示的，所以占用的空间远大于存储时占用的空间。
 
 R语言中图像处理、大数据分析的方法并不是很丰富，但我们可以在R语言中使用第三方工具完成这些任务，参考{{< hl-text purple >}}TensorFlow、keras、sparklyr{{< /hl-text >}}等程序包。
 
@@ -474,15 +473,15 @@ R语言中图像处理、大数据分析的方法并不是很丰富，但我们�
 
 ## 11、阅读文档类文件
 
-*阅读文档类文件* 指的是为便于阅读、展示而产生的各种类型的文档，与 *纯文本文件* 不同的是，阅读文档类文件中除了要包含文本内容，还要包含文本的展示样式。所以读写这类文件往往需要特定的编辑器或者程序，否则很容易破坏文档的结构，从而导致文档实效。
+*阅读文档类文件* 指的是为便于阅读、展示而产生的各种类型的文档，与**纯文本文件** 不同的是，阅读文档类文件中除了要包含文本内容，还要包含文本的展示样式。所以读写这类文件往往需要特定的编辑器或者程序，否则很容易破坏文档的结构，从而导致文档实效。
 
-在R语言中，我们可以使用{{< hl-text purple >}}knitr、rmarkdown{{< /hl-text >}}程序包，结合R语言与**markdown**语法，输出**html、pdf、word、powerpoint**文档。上文已经介绍了如何读取**html**文档中的内容，此外我们还可以使用{{< hl-text purple >}}officer{{< /hl-text >}}程序包，读写**word、powerpoint**等文档中的内容。读取**pdf**文档中的内容，我们可以使用{{< hl-text purple >}}pdftools{{< /hl-text >}}程序包，注意如果pdf文档中含有加密信息，我们需要提供相应的密码才能读取，还有一些pdf文档实际上是以图片的形式存储信息的，所以不能读取其中的文字。
+在R语言中，我们可以使用{{< hl-text purple >}}knitr、rmarkdown{{< /hl-text >}}程序包，结合R语言与**markdown**语法，输出**HTML、PDF、Word、PowerpPint**文档。上文已经介绍了如何读取**HTML**文档中的内容，此外我们还可以使用{{< hl-text purple >}}officer{{< /hl-text >}}程序包，读写**Word、PowerpPint**等文档中的内容。读取**PDF**文档中的内容，我们可以使用{{< hl-text purple >}}pdftools{{< /hl-text >}}程序包，注意如果pdf文档中含有加密信息，我们需要提供相应的密码才能读取，还有一些pdf文档实际上是以图片的形式存储信息的，所以不能读取其中的文字。
 
 <br>
 
 
 {{< note "思考思考" "#e6e6ff" >}}
-- R语言如何写出**fwf**类文件？
+- R语言如何写出**FWF**类文件？
 - **xpath**——`//@attr='value'`有什么作用？
 - R语言中可以读写音频、视频类文件吗？
 
