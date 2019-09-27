@@ -57,6 +57,7 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 |                 | file.mode       | 文件/文件夹权限，同**file.info**中的**mode**
 |                 | file.mtime      | 文件/文件夹修改时间，同**file.info**中的**mtime**
 |                 | file.size       | 文件/文件夹占用空间（字节），同**file.info**中的**size**
+|                 | Sys.setFileTime | 调整文件/文件夹的修改时间
 | 文件/文件夹管理 | file.create     | 创建文件
 |                 | file.exists     | 判断文件/文件夹是否存在
 |                 | file.remove     | 删除文件/文件夹
@@ -65,6 +66,7 @@ R语言中的文件/文件夹管理函数往往功能直观，使用起来非常
 |                 | file.copy       | 复制文件/文件夹，可以复制并替换，可以复制整个目录
 | 超链接管理      | file.symlink    | 创建指向文件/文件夹的**软链接**
 |                 | file.link       | 创建指向文件的**硬链接**，必须在同一个文件系统内创建
+|                 | Sys.readlink    | 读取链接指向的位置（不支持windows操作系统）
 | 文件夹管理      | dir.create      | 创建文件夹，可以递归创建尚不存在的所有父文件夹
 |                 | dir.exists      | 判断文件夹是否存在
 |                 | unlink          | 删除文件/文件夹，可以递归删除，可以强制删除
