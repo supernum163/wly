@@ -1,6 +1,6 @@
 ---
 title: R语言与数据库资源链接管理
-date: 2019-10-01
+date: 2019-09-25
 categories:
   - R语言
   - IO管理
@@ -36,9 +36,9 @@ R语言中建立并管理数据库资源连接的主流方式有两种，**ODBC*
 
 在window操作系统O中配置ODBC，我们只需要打开**ODBC 数据资源管理器**点击**添加**，接下来依次选择需要使用的数据库驱动程序、设置**DSN**（**Data Source Name**）及数据库所在服务器地址、设置登陆名及密码，设置其它必要信息并一路确定即可建立**ODBC 数据源**。更多帮助信息请参考： [ODBC 数据资源管理器 使用帮助](https://support.office.com/zh-cn/article/%e7%ae%a1%e7%90%86-odbc-%e6%95%b0%e6%8d%ae%e6%ba%90-b19f856b-5b9b-48c9-8b93-07484bfab5a7?ui=zh-CN&rs=zh-CN&ad=CN) 。
 
-{{< image group="group:ODBC" classes="fancybox nocaption fig-33" title="步骤一" thumbnail="https://s2.ax1x.com/2019/08/17/mu16AK.png" src="https://s2.ax1x.com/2019/08/17/mu1s76.png" >}}
-{{< image group="group:ODBC" classes="fancybox nocaption fig-33" title="步骤二" thumbnail="https://s2.ax1x.com/2019/08/17/mu1d1J.png" src="https://s2.ax1x.com/2019/08/17/mu1Dn1.png" >}}
-{{< image group="group:ODBC" classes="fancybox nocaption fig-33 clear" title="步骤三" thumbnail="https://s2.ax1x.com/2019/08/17/mu1wc9.png" src="https://s2.ax1x.com/2019/08/17/mu1r0x.png" >}}
+{{< image group="group:ODBC" classes="fancybox nocaption fig-33" title="步骤一" src="https://s2.ax1x.com/2019/09/28/uQV4q1.png" >}}
+{{< image group="group:ODBC" classes="fancybox nocaption fig-33" title="步骤二" src="https://s2.ax1x.com/2019/09/28/uQVIVx.png" >}}
+{{< image group="group:ODBC" classes="fancybox nocaption fig-33 clear" title="步骤三" src="https://s2.ax1x.com/2019/09/28/uQVoa6.png" >}}
 
 <br>
 
