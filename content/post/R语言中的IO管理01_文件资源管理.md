@@ -11,7 +11,7 @@ keywords:
   - IO管理
   - 文件资源管理
 thumbnailImagePosition: left
-thumbnailImage: https://s2.ax1x.com/2019/08/17/muddIA.png
+thumbnailImage: https://s2.ax1x.com/2019/09/28/uQEYc9.png
 ---
 
 文件资源管理是一门计算机语言，通过对文件或文件夹的**查看**、**新建**、**修改**、**删除**，对资源的**连接**，**读写**，**关闭**等操作，管理自身输入输出的基础。这篇文章我们将介绍R语言中的**文件资源管理**。

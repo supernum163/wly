@@ -12,7 +12,7 @@ keywords:
   - 系统文件
   - 线程设置
 thumbnailImagePosition: left
-thumbnailImage: https://s2.ax1x.com/2019/09/22/uShTE9.png
+thumbnailImage: https://s2.ax1x.com/2019/09/28/uQEGp4.png
 ---
 
 一门脚本语言往往需要依赖**系统文件** *持续化* 内存中的各类内容，或者向内存中 *初始化* 某些内容（即对当前线程进行个性化设置）。这篇文章我们将介绍R语言中的系统文件与线程设置。

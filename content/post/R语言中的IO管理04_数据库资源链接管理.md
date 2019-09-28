@@ -11,7 +11,7 @@ keywords:
   - IO管理
   - 数据库资源链接管理
 thumbnailImagePosition: left
-thumbnailImage: https:.png
+thumbnailImage: https://s2.ax1x.com/2019/09/28/uQE3hF.png
 ---
 
 R语言作为一门统计分析类计算机语言，与数据库对接读写数据是必不可少的操作。这篇文章我们将介绍R语言与数据库资源链接管理。

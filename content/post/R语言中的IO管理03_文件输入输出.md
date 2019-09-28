@@ -11,7 +11,7 @@ keywords:
   - IO管理
   - 文件输入输出
 thumbnailImagePosition: left
-thumbnailImage: https://s2.ax1x.com/2019/09/22/upQrUP.png
+thumbnailImage: https://s2.ax1x.com/2019/09/28/uQEJ1J.png
 ---
 
 文件输入输出是一门计算机语言从存储设备中获取数据、将内存中的数据持久化的过程。这篇文章我们将介绍R语言中的文件输入输出。
