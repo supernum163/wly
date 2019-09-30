@@ -1,6 +1,7 @@
 ---
 title: R语言中的文件资源管理
 date: 2019-08-27
+lastmod: 2019-09-30
 categories:
   - R语言
   - IO管理
