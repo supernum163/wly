@@ -135,8 +135,8 @@ R语言中支持与多种类型的资源建立链接（见下表），如果使�
 | pipe              | 系统标准IO流
 | fifo              | 先入先出IO流
 | socketConnection  | 网络套接字资源链接
-| textConnection       | 将R语言对象转化为字符串资源链接（读取）
-| textConnectionValue  | 将R语言对象转化为字符串资源链接（写入）
+| textConnection       | 将R语言对象转化为**字符串资源链接**（读写）
+| textConnectionValue  | 读取写入型**字符串资源链接**中的值
 
 这里我们需要重点介绍**file**函数，**file**函数不仅可以与本地存放的普通文件建立链接，还可以与远程文件建立链接，此外：
 
