@@ -1,5 +1,5 @@
 ---
-title: 使用R语言绘制图形
+title: R语言使用ggplot2绘制图形
 date: 2019-12-30
 categories:
   - R语言
