@@ -258,9 +258,9 @@ element_text(family = NULL, face = NULL, colour = NULL,
 <br>
 
 {{< note "思考思考" "#e6e6ff" >}}
+- **aes**函数是如何做到既可以接受变量名表示的变量，又可以接受字符串表示的变量？
+- 能否分别使用**discrete_scale、continuous_scale**函数，调整数列型、日期时间型变量对应的图形属性？
 - 如何使用**ggplot2**绘制扇形图、环形图、玫瑰图？
-- ？
-- ？
 
 {{< /note >}}
 
