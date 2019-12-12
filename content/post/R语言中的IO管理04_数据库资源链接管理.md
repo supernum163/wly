@@ -6,6 +6,7 @@ categories:
   - IO管理
 tags:
   - R语言IO管理
+  - R语言扩展包
 keywords:
   - R语言
   - IO管理
