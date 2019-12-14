@@ -116,10 +116,16 @@ arrange(data, desc(var), var2, ...)
 
 类似R语言系统函数中对数组进行交并合补，我们也可以使用{{< hl-text primary >}}intersect、union、setdiff{{< /hl-text >}}函数，取得两个数据框的交集、并集、补集。并使用{{< hl-text primary >}}setequal{{< /hl-text >}}函数判断两个数据框是否相同。此外，如果取并集时需要包含重复的观测值，则可以使用{{< hl-text primary >}}union_all{{< /hl-text >}}函数。
 
+{{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/QRBhp4.png" >}}
+
 我们可以使用{{< hl-text primary >}}left_join、right_join、inner_join、full_join、semi_join、anti_join{{< /hl-text >}}函数，将两个数据框按照一个或多个变量，进行左连接、右连接、内连接、外连接、半连接、反连接。
+
+{{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/QRBWhF.png" >}}
 
 
 获取更多速记手册，请前往 [这里](https://rstudio.com/resources/cheatsheets/)
+
+<!--https://s2.ax1x.com/2019/12/14/Q2vuCT.png-->
 
 <br>
 
