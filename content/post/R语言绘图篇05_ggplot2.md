@@ -1,6 +1,6 @@
 ---
 title: R语言使用ggplot2绘图
-date: 2019-12-30
+date: 2019-12-13
 categories:
   - R语言
   - 绘图
@@ -12,7 +12,7 @@ keywords:
   - 绘图
   - ggplot2
 thumbnailImagePosition: left
-thumbnailImage: https
+thumbnailImage: https://s2.ax1x.com/2019/12/14/Q2vZEq.png
 ---
 
 **ggplot2**是R语言中非常热门的一个绘图扩展包，可以允许我们以图层的形式逐一添加图形。这篇文章我们将介绍如何在R语言中使用ggplot2绘制优美的统计类图形。
@@ -111,7 +111,7 @@ thumbnailImage: https
 
 使用以上方式将变量映射到横纵坐标之外的图形属性时，变量并不会直接被作为图形属性值使用，而是根据变量的大小、类别选取合适的图形属性值。比如我们设置`aes(color = "blue")`，此时图形的轮廓颜色可能是红色（**ggplot2**默认调色板中的第一个颜色）。如果需要映射的变量即图形属性值本身，则应当使用相应的**scale_*_identity**函数来映射变量。此外如果我们需要手动设置分类变量每个取值应当对应的图形属性值，则可以使用相应的**scale_*_manual**函数。
 
-{{< image classes="fancybox center" src="https" >}}
+{{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/Q2jt1g.png" >}}
 
 <br>
 
@@ -145,7 +145,7 @@ thumbnailImage: https
 
 ggplot2中的颜色体系，与R语言本身的颜色体系类似。我们既可以通过关键字指定颜色（如**red**），也可以通过RGB颜色系统指定颜色（如**#FFFFFF**）。但ggplot2与R语言本身的调色板R略有不同，我们可以使用**RColorBrewer**程序包中的函数，查看、获取ggplot2中的系统调色板，以及调色板中的颜色。
 
-{{< image classes="fancybox center" src="https" >}}
+{{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/Q2jNcQ.png" >}}
 
 我修改**ggplot2**中的默认调色板时，我们既可以既可以从系统调色板中选择、也可以从某个色系（或颜色集合）中手动生成调色板。注意**ggplot2**中图形的轮廓颜色与填充颜色可以分别对应不同的调色板，这里我们以轮廓颜色的调色板为例展开说明，设置填充颜色的调色板也可以用同样的规律。
 
@@ -160,31 +160,6 @@ ggplot2中的颜色体系，与R语言本身的颜色体系类似。我们既可
 <br>
 
 ## 5、图形细节管理
-
-```R
-# ggplot2中的绘图细节
-ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb))) + 
-  geom_point() + facet_wrap(am~., labeller = labeller(am = c("0" = "自动", "1" = "手动"))) +
-  labs(x = "重量（千磅）", y = "每加仑英里数", color = "气缸数量", shape = "汽化器数量",
-       title = "汽车重量与每加仑英里数之间的关系", 
-       subtitle = "辅助分析因素：换挡类型、气缸数量、汽化器数量", 
-       caption = "汽车公路测试数据", tag = "车") +
-  theme_bw() + theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5),
-    plot.caption = element_text(hjust = 0.5),
-    plot.background = element_rect(color = "blue", size = 1),
-    panel.border = element_rect(color = "red"),
-    legend.box.background = element_rect(color = "green"),
-    legend.box.margin = margin(5, 5, 5, 5),
-    legend.box.just = "left",
-    legend.background = element_rect(color = "gray30"),
-    legend.key = element_rect(fill = "gray90"),
-    legend.key.width = unit(15, "pt"),
-  )
-```
-
-{{< image classes="fancybox center" src="https" >}}
 
 我们可以在**ggplot2**中使用{{< hl-text primary >}}theme{{< /hl-text >}}函数控制图形细节。对于图形中的边距、间距、矩形样式、线形样式、字体样式等细节的控制，需要是用到{{< hl-text primary >}}margin、unit、element_blank、element_line、element_rect、element_text{{< /hl-text >}}等函数生成的对象。注意对于矩形、线形、字体等类型的绘图细节，我们不能直接使用**NULL**值将其设置为空，而需要使用到{{< hl-text primary >}}element_blank{{< /hl-text >}}函数。
 
@@ -241,19 +216,45 @@ element_text(family = NULL, face = NULL, colour = NULL,
 - **legend.direction**设置图例中的对象按水平或垂直方向依次放置，取值可以是**horizontal、vertical**。
 - **legend.background**设置图例背景，继承自**rect**。
 - **legend.margin**设置图例边距。继承自**margin**。
-- **legend.spacing**设置图例各元素之间的间距。继承自**unit**。参数**legend.spacing.x, legend.spacing.y**略。
+- **legend.spacing**设置多个图例的之间的间隔。继承自**unit**。参数**legend.spacing.x, legend.spacing.y**略。
 - **legend.title**设置图例标题的样式，继承自**title**。
 - **legend.title.align**设置图例标题的对齐方式，取值范围在**0-1**之间（0表示左对齐；0.5表示居中；1表示右对齐）。
 - **legend.text**设置图例标签的样式，继承自**text**。
 - **legend.text.align**设置图例标签的对齐方式，取值范围在**0-1**之间。
-- **legend.key**设置图例形状的背景，继承自**rect**。
-- **legend.key.size**设置图例形状背景的大小。继承自**unit**。参数**legend.key.height、legend.key.width**略。
+- **legend.key**设置图例形状的背影，继承自**rect**。
+- **legend.key.size**设置图例形状背影的大小。继承自**unit**。参数**legend.key.height、legend.key.width**略。
 
-- **llegend.box**当有多个图例时，设置图例之间的排列方式。取值可以是**horizontal、vertical**。
-- **llegend.box.just**当有多个图例时，设置图例相对于图例外边框的对齐方式。取值可以是**left、right、bottom、top**。
-- **legend.box.background**设置多个图例的外边框背景。继承自**rect**。
-- **legend.box.margin**设置多个图例的外边距。继承自**margin**。
-- **legend.box.spacing**设置多个图例的之间的间隔距离。继承自**unit**。
+- **legend.box**当有多个图例时，设置图例之间的排列方式。取值可以是**horizontal、vertical**。
+- **legend.box.just**当有多个图例时，设置图例相对于图例外边框的对齐方式。取值可以是**left、right、bottom、top**。
+- **legend.box.background**当有多个图例时，设置图例外边框。继承自**rect**。
+- **legend.box.margin**设置图例外边框的边距。继承自**margin**。
+- **legend.box.spacing**设置图例外边框到主图区域的距离。继承自**unit**。
+
+
+```R
+# ggplot2中的绘图细节
+ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb))) + 
+  geom_point() + facet_wrap(am~., labeller = labeller(am = c("0" = "自动", "1" = "手动"))) +
+  labs(x = "重量（千磅）", y = "每加仑英里数", color = "气缸数量", shape = "汽化器数量",
+       title = "汽车重量与每加仑英里数之间的关系", 
+       subtitle = "辅助分析因素：换挡类型、气缸数量、汽化器数量", 
+       caption = "汽车公路测试数据", tag = "车") +
+  theme_bw() + theme(
+    plot.title = element_text(hjust = 0.5),
+    plot.subtitle = element_text(hjust = 0.5),
+    plot.caption = element_text(hjust = 0.5),
+    plot.background = element_rect(color = "blue", size = 1),
+    panel.border = element_rect(color = "red"),
+    legend.box.background = element_rect(color = "green"),
+    legend.box.margin = margin(5, 5, 5, 5),
+    legend.box.just = "left",
+    legend.background = element_rect(color = "gray30"),
+    legend.key = element_rect(fill = "gray90"),
+    legend.key.width = unit(15, "pt"),
+  )
+```
+
+{{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/Q2jUXj.png" >}}
 
 <br>
 

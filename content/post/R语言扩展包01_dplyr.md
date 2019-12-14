@@ -9,7 +9,7 @@ keywords:
   - R语言
   - dplyr
 thumbnailImagePosition: left
-thumbnailImage: https
+thumbnailImage: https://s2.ax1x.com/2019/12/14/Q2vm5V.png
 ---
 
 这篇文章我们将介绍。
