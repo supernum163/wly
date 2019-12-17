@@ -224,6 +224,17 @@ R语言中以程序包**dplyr**为核心，外加**rlang、magrittr、tibble、t
 
 {{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/QRBhp4.png" >}}
 
+```R
+> df1 <- tibble(k = c("A", "B", "C"), v = 1:3)
+> df2 <- tibble(k = c("B", "C", "D"), v = 2:4)
+# 取并集
+> union(df1, df2)
+# 取交集
+> intersect(df1, df2)
+# 取补集
+> setdiff(df1, df2)
+```
+
 <br>
 
 ## 10、数据框连接
@@ -235,15 +246,25 @@ R语言中以程序包**dplyr**为核心，外加**rlang、magrittr、tibble、t
 {{< image classes="fancybox center" src="https://s2.ax1x.com/2019/12/14/QRBWhF.png" >}}
 
 ```R
-# 连接时左右数据框用于连接的变量名称相同
-> band_members %>% left_join(band_instruments, by = "name")
-# 连接时左右数据框用于连接的变量名称不相同
-> band_members %>% right_join(band_instruments2, by = c("name" = "artist"))
+> df1 <- tibble(k = c("A", "B", "C"), v = 1:3)
+> df2 <- tibble(k = c("B", "C", "D"), v = 3:1, u = c("A", "B", "D"))
+# 左连接，左右数据框用于连接的变量名称相同
+> df1 %>% left_join(df2, by = "k")
+# 右连接，左右数据框用于连接的变量名称不相同
+> df1 %>% right_join(df2, by = c("k" = "u"))
+# 内连接，使用默认后缀处理同名变量
+> inner_join(df1, df2, by = "k")
+# 外连接，使用自定义后缀处理同名变量
+> full_join(df1, df2, by = "k", suffix = c("1",  "2"))
+# 半连接，类似于取差集
+> df1 %>% semi_join(df2, by = "k")
+# 反连接，类似于取补集
+> df1 %>% anti_join(df2, by = "k")
 ```
 
 <br>
 
-最后，我们可以通过下面的速记手册，快速了解使用**dplyr**整理数据时的整体框架与各项细节。获取更多速记手册，请前往 [这里](https://rstudio.com/resources/cheatsheets/) 。
+我们可以通过下面的速记手册，快速了解使用**dplyr**整理数据时的整体框架与各项细节。获取更多速记手册，请前往 [这里](https://rstudio.com/resources/cheatsheets/) 。
 
 {{< image classes="fancybox fig-50" group="dplyr"  src="https" >}}
 {{< image classes="fancybox fig-50 clear" group="dplyr" src="https" >}}
