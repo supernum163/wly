@@ -7,6 +7,7 @@ tags:
   - R语言扩展包
 keywords:
   - R语言
+  - 数据整理
   - dplyr
 thumbnailImagePosition: left
 thumbnailImage: https://s2.ax1x.com/2019/12/14/Q2vm5V.png
