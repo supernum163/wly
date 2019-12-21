@@ -9,7 +9,7 @@ keywords:
   - markdown
   - gitment
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/jq8Hrrt6/Markdown-01.png
+thumbnailImage: https://s2.ax1x.com/2019/08/04/eyNGbd.png
 ---
 
 **markdown**是一款轻量级网页内容生成语法，使用markdown语法，你可以轻松生成图文并茂的网页内容。这篇文章将带你了解如何在评论区使用markdown语法。
@@ -94,7 +94,7 @@ thumbnailImage: https://i.postimg.cc/jq8Hrrt6/Markdown-01.png
 你可以使用{{< hl-text primary >}}![图片Alt](图片链接地址){{< /hl-text >}}的格式插入一幅图片，注意图片与超链接的语法区别。你也可以直接拖放一张图片至评论区，图片代码将会自动生成。
 
 {{< codeshow >}}
-![图片Alt](https://i.postimg.cc/CLzjh6x3/Markdown-02.png)
+![图片Alt](https://s2.ax1x.com/2019/08/04/eyNtUI.png)
 {{< /codeshow >}}
 
 <br>

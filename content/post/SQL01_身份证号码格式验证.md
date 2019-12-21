@@ -10,7 +10,7 @@ keywords:
   - SQL Server
   - 身份证号码格式检查
 thumbnailImagePosition: left
-thumbnailImage: https://i.postimg.cc/VLJB4m49/image.png
+thumbnailImage: https://s2.ax1x.com/2019/08/04/eyNlvD.png
 ---
 
 如今搭建网络交易平台大多需要用户进行**实名认证**，但有时候用户填写的实名认证信息有可能是随手乱写的，也有可能是精心伪造的。尤其是**身份证号码**，必须进行**格式验证**才能入库。那么这篇文章，我们就将介绍如何使用**SQL**检查用户身份证号码格式。

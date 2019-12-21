@@ -129,6 +129,13 @@ updateNavlistPanel、updateNavbarPage、updateTabsetPanel
 
 <br>
 
+{{< image classes="fancybox fig-50" group="shiny"  src="https://s2.ax1x.com/2019/12/21/Qj8UZF.jpg" >}}
+{{< image classes="fancybox fig-50 clear" group="shiny" src="https://s2.ax1x.com/2019/12/21/Qj8BGR.jpg" >}}
+
+上方的的速记手册，可以帮助我们快速了解**shiny**的整体框架与各项细节。获取更多速记手册，请前往 [这里](https://rstudio.com/resources/cheatsheets/) 。
+
+<br>
+
 {{< note "思考思考" "#e6e6ff" >}}
 - 在**fluidPage**函数中使用**fillRow**会产生怎样的效果？
 - ？

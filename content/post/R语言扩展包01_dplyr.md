@@ -265,10 +265,10 @@ R语言中以程序包**dplyr**为核心，外加**rlang、magrittr、tibble、t
 
 <br>
 
-我们可以通过下面的速记手册，快速了解使用**dplyr**整理数据时的整体框架与各项细节。获取更多速记手册，请前往 [这里](https://rstudio.com/resources/cheatsheets/) 。
+{{< image classes="fancybox fig-50" group="dplyr"  src="https://s2.ax1x.com/2019/12/21/Qj88x0.jpg" >}}
+{{< image classes="fancybox fig-50 clear" group="dplyr" src="https://s2.ax1x.com/2019/12/21/Qj8YrT.jpg" >}}
 
-{{< image classes="fancybox fig-50" group="dplyr"  src="https" >}}
-{{< image classes="fancybox fig-50 clear" group="dplyr" src="https" >}}
+上方的的速记手册，可以帮助我们快速了解**dplyr**的整体框架与各项细节。获取更多速记手册，请前往 [这里](https://rstudio.com/resources/cheatsheets/) 。
 
 <br>
 
