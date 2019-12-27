@@ -114,7 +114,7 @@ shinyApp(ui = ui, server = server)
 > tags$script(src="example.js", type="text/javascript")
 ```
 
-此外**shiny**中还定义了{{< hl-text primary >}}includeCSS、includeScript、includeHTML、includeMarkdown、includeText{{< /hl-text >}}函数，可以方便我们将CSS文件、JS文件、HTML文件、排版后的MarkDown文件、文本文件中的内容插入到HTML中。文本文件与HTML中的纯文本，格式上可能会有所不同（比如即使输入多个空格，HTML中也只会显示一个空格），为了保持文本文件中原有的格式，我们可以使用**pre**标签包裹**includeText**函数。注意此类函数会先从特定文件中读取相应的内容，再使用合适的HTML标签将这些内容转化为HTML，所以文件路径是相对R语言工作目录而言的。
+此外**shiny**中还定义了{{< hl-text primary >}}includeCSS、includeScript、includeHTML、includeMarkdown、includeText{{< /hl-text >}}函数，可以方便我们将CSS文件、JS文件、HTML文件、排版后的MarkDown文件、文本文件中的内容插入到HTML中。文本文件与HTML中的纯文本，格式上可能会有所不同（比如即使输入多个空格，HTML中也只会显示一个空格），为了保持文本文件中原有的格式，我们可以使用**pre**标签包裹**includeText**函数。注意此类函数会先从特定文件中读取相应的内容，再使用合适的HTML标签将这些内容转化为HTML，所以使用当前**shiny**工程目录作为根目录。
 
 <br>
 
@@ -138,6 +138,7 @@ shinyApp(ui = ui, server = server)
 | textAreaInput             | 多行文本输入控件
 | fileInput                 | 文件输入控件
 | actionButton              | 动作按钮（默认值为0，每点击一次值加1）
+| actionLink                | 动作链接，与**actionButton**类似
 
 如果我们需要在网页中输出动态信息，则可以在**ui**端使用**Output**家族的函数，定义一个信息输出区域；并在**server**端使用**render**家族的函数，将信息传递到相应的区域。二者需要相互结合、一一对应。因此**Output**家族的函数都必须设置**outputId**参数，而且必须具有唯一性，**render**家族的函数需要将结果返回给相应的**outputId**，比如`output$outputId <- renderText(...)`。
 
@@ -150,7 +151,7 @@ shinyApp(ui = ui, server = server)
 | imageOutput         | renderImage             | 输出图片
 | plotOutput          | renderPlot              | 输出R语言绘制的图像
 | htmlOutput          | renderUI                | 输出HTML
-| uiOutput            | renderUI                | 输出UI
+| uiOutput            | renderUI                | 输出UI，与输出HTML相同
 
 注意以上仅是**shiny**程序包中的输入输出函数，如果我们借助其它程序包，还可以用到更多类似的函数。比如我们可以使用**plotly**程序包中的{{< hl-text primary >}}plotlyOutput、renderPlotly{{< /hl-text >}}函数，输出可交互的图像。
 
@@ -158,23 +159,113 @@ shinyApp(ui = ui, server = server)
 
 ## 5、事件响应
 
+**server**中的信息输出函数，默认情况下都是即时响应的。比如`output$textOutPut <- renderText(input$textInput)`，每次用户的输入信息**input$textInput**发生变化，输出函数**output$textOutPut**就会被执行一次。当然我们也可以在**server**中使用事件性响应函数，只有在某个事件发生、或某个条件成立时，才返还给用户相应的信息。比如上文介绍到的**conditionalPanel**函数。
+
+<br>
+
+首先每个用户输入信息都可以被看作是一个响应式变量，同时我们也可以使用{{< hl-text primary >}}reactiveVal、reactiveValues{{< /hl-text >}}函数，分别生成响应式变量、响应式变量组成的列表。我们只能在响应式函数中使用响应式变量，此时每当响应式变量的值发生改变，包含响应式变量的命令也会被重新计算。
+
+我们可以使用{{< hl-text primary >}}reactive、observe{{< /hl-text >}}函数生成响应式命令，注意**reactive**会返回一个无参函数作为响应式命令，我们可以在命令行使用{{< hl-text primary >}}isolate{{< /hl-text >}}函数包裹该函数，来查看响应式命令的执行结果；**observe**不会返回任何内容，我们可以在命令行使用`shiny:::flushReact()`的形式，执行其中的响应式命令。
+
+````R
+# 生成响应式变量
+> x <- reactiveVal(1)
+# 生成包含响应式变量的命令
+> y <- reactive( x() + 10 ); isolate(y())
+[1] 11
+# 响应式变量的值发生改变，响应式命令的值也会随之改变
+> x(2); isolate(y())
+[1] 12
+
+# 生成响应式列表
+> x <- reactiveValues(a = 1)
+# 生成包含响应式列表的命令
+> observe({ print(x$a + 10) }); shiny:::flushReact()
+[1] 11
+# 响应式列表的值发生改变，响应式命令的值也会随之改变
+> x$a <- 2; shiny:::flushReact()
+[1] 12
+````
+
+响应式变量有时会非常实用，比如基于响应式变量设计的{{< hl-text primary >}}reactiveTimer、reactiveFileReader{{< /hl-text >}}函数，可以使我们动态输出时间、根据修改时间动态读取文件。
+
+```R
+library(shiny)
+ui <- fluidPage( textOutput("datetime"), tableOutput("table") )
+server <- function(input, output, session) {
+    # 输出动态时间
+    datetime <- reactiveTimer(intervalMs = 1000, session)
+    output$datetime <- renderText( as.character(datetime()) )
+    # 动态读取文件
+    write.csv(mtcars, "mtcars.csv")
+    fileData <- reactiveFileReader(1000, session, 'mtcars.csv', read.csv)
+    output$table <- renderTable( fileData() )
+}
+shinyApp(ui, server)
+```
+
+响应式变量配合动作按钮会变得更加实用。我们可以使用{{< hl-text primary >}}observeEvent、eventReactive{{< /hl-text >}}函数，生成根据某个事件的变化而动态执行的命令。比如每次点击按钮时，执行一段特定的代码，或者将代码执行结果保存到某个响应式变量，以便于在之后的输出函数中使用。
+
+```R
+# 每次点击按钮时，输出系统时间
+observeEvent(input$actionButton, {
+  output$datetime <- renderText(Sys.time())
+})
+# 每次点击按钮时，将系统时间保存到响应式变量
+datetime <- eventReactive(input$actionButton, Sys.time())
+output$datetime <- renderText(datetime())
+```
+
+<br>
 
 
-submitButton                  提交按钮
-downloadLink                  下载链接
-downloadButton                下载按钮
-bookmarkButton                分享链接获取按钮
-showModal、modalDialog、modalButton  网页弹窗
+我们可以使用{{< hl-text primary >}}submitButton{{< /hl-text >}}函数，在**ui**端插入提交按钮。此时所有的用户输入信息，只有在提交按钮被点击之后才会生效。适合用于输出函数依赖完整的输入信息才能正常运行的情况。
 
-isolate、observeEent、reactive、eventReactive
+我们可以使用{{< hl-text primary >}}downloadLink、downloadButton{{< /hl-text >}}函数，在**ui**端插入下载链接、下载按钮。在**server**端处理下载请求需要用到{{< hl-text primary >}}downloadHandler{{< /hl-text >}}函数，该函数至少需要两个参数：文件名、文件写出函数，使用方式如下：
 
-updateNavlistPanel、updateNavbarPage、updateTabsetPanel
-snapshotPreprocessInput
+`downloadHandler(filename, content = function(filename) write.csv(data, filename))`
 
+我们可以使用{{< hl-text primary >}}bookmarkButton{{< /hl-text >}}函数，在**ui**端插入分享链接获取按钮。分享链接默认包含所有用户输入信息（使用{{< hl-text primary >}}enableBookmarking{{< /hl-text >}}函数来修改这一设定），可以用于在恢复之前的浏览状态。
 
-onFlush(fun, once = TRUE, session = getDefaultReactiveDomain())
-onFlushed(fun, once = TRUE, session = getDefaultReactiveDomain())
-onSessionEnded(fun, session = getDefaultReactiveDomain())
+我们可以使用{{< hl-text primary >}}showModal、modalDialog、modalButton{{< /hl-text >}}函数，在**server**端定义网页弹窗，并在特定事件发生时展示给用户。
+
+```R
+  observeEvent(input$show, {
+    showModal(modalDialog("弹窗正文", title = "弹窗标题", easyClose = TRUE,
+                          footer = modalButton("弹窗关闭按钮"),
+    ))
+  })
+```
+
+我们可以使用{{< hl-text primary >}}Progress{{< /hl-text >}}函数，在网页底部展示一个表示正在加载的标签。但这种方式并不能适用于所有耗时较长的输出函数，而只能用于循化次数已知的循环体内。
+
+```R
+server <- function(input, output, session) {
+  output$plot <- renderPlot({
+    progress <- Progress$new(session, min=1, max=15)
+    on.exit(progress$close())
+
+    progress$set(message = 'Calculation in progress',
+                 detail = 'This may take a while...')
+
+    for (i in 1:15) {
+      progress$set(value = i)
+      Sys.sleep(0.5)
+    }
+    plot(cars)
+  })
+}
+```
+
+最后我们还可以分别使用{{< hl-text primary >}}onBookmark、onBookmarked、onRestore、onRestored、onFlush onFlushed、onSessionEnded、onEnded{{< /hl-text >}}函数，注册以下情况发生时需要运行的函数：分享链接弹出时，分享链接弹出后、使用分享链接恢复页面时、使用分享链接恢复页面后、刷新页面时、刷新页面后、网页被关闭后、网页应用被停止时。
+
+```R
+server <- function(input, output, session) {
+    # 当网页打开时建立链接、网页被关闭后自动关闭链接
+    open(con, "r")
+    onSessionEnded( function() close(con) )
+}
+```
 
 <br>
 
@@ -188,7 +279,8 @@ onSessionEnded(fun, session = getDefaultReactiveDomain())
 {{< note "思考思考" "#e6e6ff" >}}
 - 在**fluidPage**函数中使用**fillRow**会产生怎样的效果？
 - ？
-- ？
+- 运行**shiny**网页应用时，遇到以下错误该如何应对？
+  <font color="#FF0000">Operation not allowed without an active reactive context.</font>
 
 {{< /note >}}
 
