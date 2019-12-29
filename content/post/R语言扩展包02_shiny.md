@@ -119,11 +119,11 @@ shinyApp(ui = ui, server = server)
 > tags$div(style = "margin: 0px;")
 > tags$button("点击这里", onclick = "alert('Hello')")
 
-# 使用style、script标签插入CSS、JS代码片段
+# 使用style、script标签插入CSS、JS代码块
 > tags$style("div { margin: 0px; }")
-> tags$script("function f() { alert('hello')")
+> tags$script("function f() { alert('hello') }")
 
-# 使用link、script标签链接CSS、JS代码文件
+# 使用link、script标签链接CSS、JS脚本文件
 > tags$link(href="example.css", type="text/css", rel="stylesheet")
 > tags$script(src="example.js", type="text/javascript")
 ```
