@@ -1,0 +1,34 @@
+
+theme.toml:   网站整体设置
+wly.Rproj:    R语言project管理
+.gitignore:   上传至github时需要忽略的内容
+data:         YAML、JSON、TOML类型的原始数据
+i18n:         网站语言包
+content:      网站子页面
+layouts:      网站页面布局模板
+archetypes:   生成page和post文件头的模板
+assets:       存放在assets文件夹的内容，只有在被引用才会被放入public
+static:       存放处理后的css、js、image等内容，该文件夹下的内容，将被原封不动的放入public
+  js:
+    jquery.min.js:                                            jquery v2.2.4
+    algoliasearch.min.js、moment-with-locales.min.js:         algolia站内搜索服务的脚本
+    highlight.min.js、prism.min.js:                           高亮代码的脚本
+    jquery.fancybox.min.js:                                   使用fancybox图片展示功能的脚本
+    gitment.js:                                               使用gitment评论功能的脚本
+    qrcode.min.js:                                            生成二维码的脚本
+    MathJax.js:                                               在网页生成数学符号、公式的脚本
+  css:
+    font-awesome.min.css:                                     使用font-awesome图标库的css
+    jquery.fancybox.min.css、jquery.fancybox-thumbs.min.css:  使用fancybox图片展示、缩略图功能的css
+    gitment.css:                                              使用gitment评论功能的css
+  fonts:                                               font-awesome的字体库
+  img/fancybox:                                        fancybox图形控件
+  highlight:                                           高亮代码的工程文件夹
+public:       hugo最终编译生成的静态网站
+docs：        说明与帮助文档
+grunt:        grunt工程文件夹
+  src:          存放原始css、js、image等内容
+  Gruntfile.js: Grunt 加密js文件
+  tasks:        Grunt tasks
+
+
