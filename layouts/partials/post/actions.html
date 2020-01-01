@@ -68,7 +68,7 @@
         </li>
       {{ end }}
       <li class="post-action">
-      {{ if and (not (eq .Params.showSocial false)) .Site.Params.gitment.enable }}
+      {{ if and (not (eq .Params.comments false)) .Site.Params.gitment.enable }}
         <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="{{ i18n "post_action.comment" }}">
         <i class="fa fa-commenting-o"></i>
       {{ else }}

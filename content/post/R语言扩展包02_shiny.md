@@ -110,7 +110,7 @@ shinyApp(ui = ui, server = server)
 
 ## 3、插入静态网页内容
 
-**shiny**中的**tags**对象保存了几乎所有HTML标签对应的函数，要了解这些标签的功用，请参考 [HTML5 标签列表](https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list) 。上文已经提到，我们可以在**ui**中直接使用HTML标签。插入相应的标签可以使用**tags**中相应的函数，比如插入超链接可以使用`tags$a("超链接", href = "https://example.com", ...)`，自定义网页布局可以使用`tags$div(style = "margin: 0px;", ...)`等。这些函数中有名参数会被用作标签属性，无名参数会被用作标签内容，而且绝大部分都可以嵌套使用。
+**shiny**中的**tags**对象保存了几乎所有HTML标签对应的函数，如果想了解这些标签的意义及作用，可以参考 [HTML 标签介绍](../../../2020/01/html标签介绍) 。上文已经提到，我们可以在**ui**中直接使用HTML标签。插入相应的标签可以使用**tags**中相应的函数，比如插入超链接可以使用`tags$a("超链接", href = "https://example.com", ...)`，自定义网页布局可以使用`tags$div(style = "margin: 0px;", ...)`等。这些函数中有名参数会被用作标签属性，无名参数会被用作标签内容，而且绝大部分都可以嵌套使用。
 
 在HTML中插入CSS、JS代码的方式大致有三种：首先我们可以在某些HTML标签中，通过**style**属性设置该标签的CSS样式，设置JS事件处理函数（如**onclick**事件）；其次我们可以在**style、script**标签的标签内容中分别插入CSS、JS代码片段；最后我们还可以使用**link、script**标签分别链接CSS、JS代码文件，注意此类直接生成HTML标签的函数，在HTML代码寻找文件时，会以当前**shiny**工程目录下的**www**文件夹作为根目录。当然我们还可以分别使用{{< hl-text primary >}}addResourcePath、removeResourcePath、resourcePaths{{< /hl-text >}}函数，添加、删除、查询网站资源目录，并在**shiny**网页中使用这些网站资源目录的**preifx**（参考**addResourcePath**函数），访问到其中的内容。
 

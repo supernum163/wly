@@ -9,10 +9,10 @@ keywords:
   - HTML
 comments: false
 thumbnailImagePosition: left
-thumbnailImage: https
+thumbnailImage: https://s2.ax1x.com/2020/01/01/l82QQf.png
 ---
 
-这篇文章我们将逐一介绍[^HTML标签]的作用及使用方法。
+**HTML**（Hypertext Marked Language，即超文本标记语言），作为一门被广泛使用的web语言，是以标签为基础构成的。这篇文章我们将逐一介绍 **HTML 标签** 的作用及使用方法。
 
 <!--more-->
 
@@ -20,7 +20,7 @@ thumbnailImage: https
 
 <br>
 
-## 整体框架
+## 1、整体框架
 
 |  标签               | 说明
 |:--------------------|:---------------------------------------------------------------------
@@ -39,7 +39,7 @@ thumbnailImage: https
 <html>
     <head>
         <meta charset="utf-8">
-        <title>网页标题</title>
+        <title> 网页标题 </title>
         <link rel="icon" href="favicon.ico">
         <meta name='keywords' content='关键词1,关键词2'>
         <meta name='description' content='网页摘要'>
@@ -53,7 +53,7 @@ thumbnailImage: https
 
 <br>
 
-## 插入CSS/JS
+## 2、插入CSS/JS
 
 |  标签               | 说明
 |:--------------------|:---------------------------------------------------------------------
@@ -83,7 +83,7 @@ thumbnailImage: https
 
 <br>
 
-## 章节
+## 3、章节
 
 |  标签               | 说明
 |:--------------------|:---------------------------------------------------------------------
@@ -102,13 +102,13 @@ thumbnailImage: https
   <aside> </aside>
   <article>
     <header>
-      <h2>文章标题</h2>
+      <h2> 文章标题 </h2>
       <nav> </nav>
     </header>
     <main>
       <section>
-        <h2>章节标题</h2>
-        <h2>章节内容</h2>
+        <h2> 章节标题 </h2>
+        <h2> 章节内容 </h2>
       </section>
     </main>
     <footer>
@@ -121,12 +121,12 @@ thumbnailImage: https
 <body>
   <main>
     <article>
-      <h2>文章一 标题</h2>
-      <h2>文章一 摘要</h2>
+      <h2> 文章一 标题 </h2>
+      <h2> 文章一 摘要 </h2>
     </article>
     <article>
-      <h2>文章二 标题</h2>
-      <h2>文章二 摘要</h2>
+      <h2> 文章二 标题 </h2>
+      <h2> 文章二 摘要 </h2>
     </article>
   </main>
 </body>
@@ -134,7 +134,7 @@ thumbnailImage: https
 
 <br>
 
-## 文本
+## 4、文本
 
 |  标签                           | 说明
 |:--------------------------------|:---------------------------------------------------------------------
@@ -147,7 +147,7 @@ thumbnailImage: https
 | `<hr>`                          | 分割线
 | `<br>`                          | 表示换行
 | `<wbr>`                         | 表示建议换行
-| `<a>`                           | <a href="https://example.com">超链接</a>
+| `<a>`                           | <a href="/">超链接</a>
 | `<i>`                           | <i>倾斜</i> 文本
 | `<b>`                           | <b>加粗</b> 文本
 | `<em>`                          | <em>强调</em> 文本
@@ -178,7 +178,7 @@ thumbnailImage: https
 
 <br>
 
-## 列表
+## 5、列表
 
 |  标签             | 说明
 |:------------------|:---------------------------------------------------------------------
@@ -191,31 +191,31 @@ thumbnailImage: https
 
 ```html
 <ol>
-  <li>有序列表 列表项 1</li>
+  <li> 有序列表 列表项 1 </li>
   <ol>
-    <li>有序列表 子列表项 1</li>
-    <li>有序列表 子列表项 2</li>
+    <li> 有序列表 子列表项 1 </li>
+    <li> 有序列表 子列表项 2 </li>
   </ol>
 </ol>
 
 <ul>
-  <li>无序列表 列表项 1</li>
+  <li> 无序列表 列表项 1 </li>
   <ul>
-    <li>无序列表 子列表项 1</li>
-    <li>无序列表 子列表项 2</li>
+    <li> 无序列表 子列表项 1 </li>
+    <li> 无序列表 子列表项 2 </li>
   </ul>
 </ul>
 
 <dl>
-  <dt>定义列表中的定义项</dt>
-  <dd>定义列表中的释义项</dd>
+  <dt> 定义列表中的定义项 </dt>
+  <dd> 定义列表中的释义项 </dd>
   <!-- 更多定义项、 释义项-->
 </dl>
 ```
 
 <br>
 
-## 表格
+## 6、表格
 
 |  标签             | 说明
 |:------------------|:---------------------------------------------------------------------
@@ -230,7 +230,7 @@ thumbnailImage: https
 
 ```html
 <table>
-  <caption>表格标题</caption>
+  <caption> 表格标题 </caption>
   <thead>
     <tr> <th> 表头单元格 1 </th> <th> 表头单元格 2 </th> </tr>
   </thead>
@@ -246,7 +246,7 @@ thumbnailImage: https
 
 <br>
 
-## 表单
+## 7、表单
 
 |  标签               | 说明
 |:--------------------|:---------------------------------------------------------------------
@@ -303,11 +303,11 @@ thumbnailImage: https
 <!-- 输出控件示例-->
 
 <form oninput="result.value=parseInt(a.value)+parseInt(b.value)">
-  <input type="range" name="b" value="50" /> +
-  <input type="number" name="a" value="10" /> =
+  <input type="range" name="b" value="50"> +
+  <input type="number" name="a" value="10"> =
   <output name="result"></output>
   <hr>
-  <meter min="200" max="500" value="350">350 degrees</meter>
+  <meter min="200" max="500" value="350"> 350 degrees </meter>
   <progress value="70" max="100"> 70 % </progress>
 </form>
 
@@ -345,7 +345,7 @@ thumbnailImage: https
 
 <br>
 
-## 其它结构
+## 8、其它结构
 
 |  标签                   | 说明
 |:------------------------|:---------------------------------------------------------------------
@@ -366,26 +366,26 @@ thumbnailImage: https
   点击右键展开菜单栏
 </div>
 <menu type="context" id="popup-menu">
-  <menuitem type="checkbox" checked>勾选选项</menuitem>
+  <menuitem type="checkbox" checked> 勾选选项 </menuitem>
   <!-- 更多 menuitem -->
 </menu>
 
 <!-- 折叠段落 -->
 <details>
-    <summary>折叠段落的标题</summary>
+    <summary> 折叠段落的标题 </summary>
    折叠段落
-</details>
+</details> 
 
 <!-- figure 结构体 -->
 <figure>
-  <figcaption>流内容标题</figcaption>
+  <figcaption> 流内容标题 </figcaption>
   流内容文本、图像等
 </figure>
 ```
 
 <br>
 
-## 嵌入内容
+## 9、嵌入内容
 
 |  标签               | 说明
 |:--------------------|:----------------------------------
@@ -412,9 +412,9 @@ thumbnailImage: https
 
 <!-- 数学公式 -->
 <math> 
-  <msup> <mi>A</mi> <mn>2</mn> </msup> <mo>+</mo>
-  <msup> <mi>B</mi> <mn>2</mn> </msup> <mo>=</mo>
-  <msup> <mi>C</mi> <mn>2</mn> </msup>
+  <msup> <mi> A </mi> <mn> 2 </mn> </msup> <mo> + </mo>
+  <msup> <mi> B </mi> <mn> 2 </mn> </msup> <mo> = </mo>
+  <msup> <mi> C </mi> <mn> 2 </mn> </msup>
 </math>
 
 <!-- 图像 -->
@@ -422,9 +422,9 @@ thumbnailImage: https
 
 <!-- 矢量图 -->
 <svg width="150" height="100" viewBox="0 0 3 2">
-  <rect width="1" height="2" x="0" fill="#008d46" />
-  <rect width="1" height="2" x="1" fill="#ffffff" />
-  <rect width="1" height="2" x="2" fill="#d2232c" />
+  <rect width="1" height="2" x="0" fill="#008d46">
+  <rect width="1" height="2" x="1" fill="#ffffff">
+  <rect width="1" height="2" x="2" fill="#d2232c">
 </svg>
 
 <!-- canvas 绘图区域 -->
@@ -470,7 +470,7 @@ thumbnailImage: https
 
 <br>
 
-## 特殊字符
+## 10、特殊字符
 
 | 字符串          | 说明
 |:----------------|:------------------------------------------------------
@@ -481,8 +481,8 @@ thumbnailImage: https
 | `&zwj;`         | 零宽连字，强制连字，多用于某些需要复杂排版的语言（如阿拉伯语、印地语）
 | `&zwnj;`        | 零宽不连字，抑制连字现象
 
-<br>
+<br><hr>
 
-[^HTML标签]: https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list
+**参考链接：** https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list
 
 
