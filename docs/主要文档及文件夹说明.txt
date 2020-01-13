@@ -1,5 +1,5 @@
 
-theme.toml:   网站整体设置
+config.toml:  网站整体设置
 wly.Rproj:    R语言project管理
 .gitignore:   上传至github时需要忽略的内容
 data:         YAML、JSON、TOML类型的原始数据
@@ -26,9 +26,5 @@ static:       存放处理后的css、js、image等内容，该文件夹下的�
   highlight:                                           高亮代码的工程文件夹
 public:       hugo最终编译生成的静态网站
 docs：        说明与帮助文档
-grunt:        grunt工程文件夹
-  src:          存放原始css、js、image等内容
-  Gruntfile.js: Grunt 加密js文件
-  tasks:        Grunt tasks
 
 
