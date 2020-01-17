@@ -355,6 +355,7 @@ text-shadow: 1px 1px 1px black;
   - **left、right**，左、右对齐
    - **center**，居中对齐
    - **justify**，两端对齐
+**text-indent**,设置段首缩进
 **Line height**属性，设置行高
 **letter-spacing**属性，设置字母之间的间隔
 **word-spacing**属性，设置单词之间的间隔

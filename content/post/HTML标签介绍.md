@@ -77,8 +77,8 @@ thumbnailImage: https://s2.ax1x.com/2020/01/01/l82QQf.png
 </script> 
 
 <!-- 使用link、script标签链接CSS、JS脚本文件 -->
-<link src="stylesheet.css" type="text/css" rel="stylesheet">
-<script src="javascript.js" type="text/javascript">
+<link href="stylesheet.css" type="text/css" rel="stylesheet">
+<script src="javascript.js" type="text/javascript"></script>
 ```
 
 <br>
