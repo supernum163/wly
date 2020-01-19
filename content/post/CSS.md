@@ -102,11 +102,6 @@ list-style-position: inside;
 | `tag`                     | 选择`tag`标签
 | `.class`                  | 选择属性`class="class"`的标签
 | `#id`                     | 选择属性`id="id"`的标签
-| `tag1, tag2`              | 选择`tag1`标签以及`tag2`标签
-| `tag1 tag2`               | 选择`tag1`标签内部的`tag2`标签
-| `tag1>tag2`               | 选择以`tag1`为父标签的`tag2`标签
-| `tag1+tag2`               | 选择紧接在`tag1`标签之后的`tag2`标签
-| `tag1~tag2`               | 选择`tag1`标签之后的`tag2`标签
 | `[attr]`                  | 匹配拥有`attr`属性
 | `[attr=value]`            | 匹配属性`attr`的值等以`value`
 | `[attr*=value]`           | 匹配属性`attr`的值中包含`value`
@@ -116,23 +111,13 @@ list-style-position: inside;
 | `[attr|=value]`           | 匹配属性`attr`的值等以`value`，或以`value`开头后面跟连字符
 | `[attr opt value i]`      | 匹配属性时忽略大小写
 | `[attr opt value s]`      | 匹配属性时区分大小写
-| `:link`                   | 选择未被点击的超链接，如`a:link`
-| `:visited`                | 选择已被点击的超链接
-| `:active`                 | 选择当前点击的超链接
-| `:hover`                  | 选择当前鼠标指针指向的超链接
-| `:target`                 | 选择当前跳转到的瞄点标签
-| `:enabled`                | 选择启用的输入控件，如`input:enabled`
-| `:disabled`               | 选择禁用的输入控件
-| `:required`               | 用于匹配必须填写的输入控件
-| `:optional`               | 用于匹配可以选择填写的输入控件
-| `:checked`                | 选择被选中的输入按钮
-| `:focus`                  | 选择当前光标所在的位置，或被Tab键选中的位置（链接、输入框等）
-| `:read-write`             | 选择可读写的输入控件
-| `:read-only`              | 选择只读的输入控件
-| `:in-range`               | 选择输入的值在指定区间之内的输入控件
-| `:out-of-range` 	        | 选择输入的值在指定区间之外的输入控件
-| `:valid`                  | 用于匹配输入值合法的输入控件
-| `:invalid`                | 用于匹配输入值不合法的输入控件
+
+| `tag1, tag2`              | 选择`tag1`标签以及`tag2`标签
+| `tag1 tag2`               | 选择`tag1`标签内部的`tag2`标签
+| `tag1>tag2`               | 选择以`tag1`为父标签的`tag2`标签
+| `tag1+tag2`               | 选择紧接在`tag1`标签之后的`tag2`标签
+| `tag1~tag2`               | 选择`tag1`标签之后的`tag2`标签
+
 | `:first-child`            | 选择某标签内部的，第一个特定的子标签，如`div p:first-child`
 | `:last-child`             | 选择某标签内部的，最后一个特定的子标签
 | `:only-child`             | 选择某标签内部的，唯一一个特定的子标签
@@ -143,15 +128,58 @@ list-style-position: inside;
 | `:only-of-type`           | 选择某标签内部的，唯一一个该类别的子标签
 | `:nth-of-type(n)`         | 选择某标签内部的，同类子标签中的第n个
 | `:nth-last-of-type(n)`    | 选择某标签内部的，同类子标签中的倒数第n个
-| `:root`                   | 选择根结点标签
+
+| `:link`                   | 选择未被点击的超链接，如`a:link`
+| `:hover`                  | 选择当前鼠标指针指向的超链接
+| `:active`                 | 选择当前点击的超链接
+| `:visited`                | 选择已被点击的超链接
+| `:any-link`               | 选择所有超链接，包括已点击的和未被点击的
+| `:target`                 | 选择当前跳转到的瞄点标签
+| `:enabled`                | 选择启用的输入控件，如`input:enabled`
+| `:disabled`               | 选择禁用的输入控件
+| `:required`               | 用于匹配必须填写的输入控件
+| `:optional`               | 用于匹配可以选择填写的输入控件
+| `:checked`                | 选择被选中的输入按钮
+| `:indeterminate`          | 选择暂不确定是否会被用户选中的选项
+| `:default`                | 选择默认选项
+| `:focus`                  | 选择当前光标所在的位置，或被Tab键选中的位置（链接、输入框等）
+| `:focus-visible`          | 选择当前可见的，光标在其内部的元素
+| `:focus-within`           | 选择光标在其内部，或在其子元素内部的元素
+| `:read-write`             | 选择可读写的输入控件
+| `:read-only`              | 选择只读的输入控件
+| `:in-range`               | 选择输入的值在指定区间之内的输入控件
+| `:out-of-range` 	        | 选择输入的值在指定区间之外的输入控件
+| `:valid`                  | 用于匹配输入值合法的输入控件
+| `:invalid`                | 用于匹配输入值不合法的输入控件
+| `:blank`                  | 选择空白的文本输入框
+| `:placeholder-shown`      | 选择包含占位符的文本输入框
+| `:defined`                | 选择所有被 *定义* 的元素，包含html标准标签及使用JS定义的标签
+| `:dir()`                  | 选择某种书写方向下的文字，如`:dir(rtl)`
+| `:lang()`                 | 选择某种语言下的文字，如`:lang(en)`，需要在标签定义**lang**属性
+
+| `:root`                   | 选择根结点
+| `:scope`                  | 选择某个预定义的范围，多用于JS
+| `:left`                   | 打印页面左边的页边距部分，如`@page :left`
+| `:right`                  | 打印页面右边的页边距部分
+| `:first`                  | 打印页面的第一页
+
+| `:fullscreen`             | 选择全屏展示的元素
 | `:empty`                  | 选择没有子标签的某个标签，如`p:empty`
-| `:not(selector)`          | 反向选择，如`:not(p)`
+| `:not()`                  | 反向选择，如`:not(p)`
+| `:is()`                   | 匹配多个选择器中的任意一个，如`:is(p, span)`
+| `:where()`                | 匹配多个复杂选择器中的任意一个，多用于JS
+| `:has()`                  | 匹配包含某个选择器选中对象的元素，如`a:has(> img)`，多用于JS
+
+| `::before`                | 用于在某个标签的内容之前插入内容，如`p::before{ content: '> '; }`
+| `::after`                 | 用于在某个标签的内容之后插入内容
 | `::first-letter`          | 选择段落中的首字母，如`p:first-letter`
 | `::first-line`            | 选择段落中的首行
 | `::selection`             | 选择当前选中的文本等，如`p::selection`
-| `::before`                | 用于在某个标签的内容之前插入内容，如`p::before{ content: '> '; }`
-| `::after`                 | 用于在某个标签的内容之后插入内容
-
+| `::placeholder`           | 选择输入框占位符，如`input::placeholder`
+| `::backdrop`              | 选择弹窗、视频等元素，全屏显示时的背景，如`video::backdrop`
+| `::spelling-error  `      | 选择拼写错误的文字
+| `::grammar-error`         | 选择语法错误的文字
+| `::marker`                | 选择列表项中的列表标记符，如`ul li::marker`
 
 <br>
 
