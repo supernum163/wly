@@ -123,8 +123,8 @@ enableEmoji = true
   description = "Hugo tranquilpeak theme demo"
 
   # 加入自定义CSS
-  # [[params.customCSS]]
-  #   href = "css/show-url.css"
+  [[params.customCSS]]
+    href = "css/custom.css"
 
   # 加入自定义js
   # [[params.customJS]]
