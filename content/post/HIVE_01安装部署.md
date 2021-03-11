@@ -181,10 +181,10 @@ sudo echo '
     <name>hive.metastore.local</name>  
     <value>true</value>  
   </property>  
-  <property>  
+  <property>
     <name>hive.metastore.warehouse.dir</name>  
-    <value>/usr/local/hive/warehouse</value>  
-  </property>  
+    <value>/user/hive/warehouse</value>  
+  </property>
   <property>
     <name>datanucleus.schema.autoCreateAll</name>
     <value>true</value>

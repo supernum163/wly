@@ -1,3 +1,5 @@
+# Hugo tranquilpeak theme
+
 # hugo汇编时需要忽略的文件与文件夹
 ignoreFiles = [".Rmd$", ".Rmarkdown$", "_files$", "_cache$"]
 # 网站根目录，可以是网址
@@ -120,7 +122,7 @@ enableEmoji = true
   # 全局关键字，在meta信息中
   keywords = ["wly的博客", "supernum"]
   # 网站默认description，在meta信息中
-  description = "Hugo tranquilpeak theme demo"
+  description = "wly的个人博客"
 
   # 加入自定义CSS
   [[params.customCSS]]
