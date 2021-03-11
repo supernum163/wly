@@ -9,7 +9,7 @@ keywords:
   - 大数据
   - Hadoop
   - Hive
-comments: false
+comments: true
 thumbnailImagePosition: left
 thumbnailImage: https://null.png
 ---
@@ -157,7 +157,14 @@ tar -zxvf db-derby-10.14.2.0-bin.tar.gz
 sudo mv db-derby-10.14.2.0-bin /usr/local/derby
 ```
 
-- 4.3.2、修改Hive配置文件。
+- 4.3.2、设置Derby环境变量。
+
+```sh
+echo export DERBY_HOME=/usr/local/derby >> .bashrc
+echo export CLASSPATH=$CLASSPATH:$DERBY_HOME/lib/*.jar >> .bashrc
+```
+
+- 4.3.3、修改Hive配置文件。
 
 ```sh
 sudo echo '
@@ -186,7 +193,7 @@ sudo echo '
 ' > $HIVE_HOME/conf/hive-site.xml
 ```
 
-- 4.3.3、初始化metastore。
+- 4.3.4、初始化metastore。
 
 ```sh
 # 初始化 MySQL metastore
@@ -244,7 +251,7 @@ sudo echo '
 
 ```sh
 # 初始化 Derby metastore
-schematool -dbType derby -initSchema
+schematool -dbType mysql -initSchema
 # 启动metastore服务
 hive --service metastore
 ```
