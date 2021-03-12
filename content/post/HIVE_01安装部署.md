@@ -145,7 +145,7 @@ echo export HIVE_HOME=/usr/local/hive >> .bashrc
 echo export PATH=$PATH:$HIVE_HOME/bin >> .bashrc
 ```
 
-- 4.2、此时我们已经可以进入Hive，但并不能执行HQL（Hive结构化查询语句），因为还未初始化metastore。接下来我们需要选择一种数据库作为Hive的metastore。
+- 4.2、此时我们已经可以进入Hive，但并不能执行HiveQL（Hive结构化查询语句），因为还未初始化metastore。接下来我们需要选择一种数据库作为Hive的metastore。
 
 ### 4.3、使用Derby做为matastore
 
