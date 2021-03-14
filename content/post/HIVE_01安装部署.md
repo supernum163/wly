@@ -11,7 +11,7 @@ keywords:
   - Hive
 comments: true
 thumbnailImagePosition: left
-thumbnailImage: https://null.png
+thumbnailImage: https://s2.ax1x.com/2019/09/28/uQE3hF.png
 ---
 
 **Hive**是架设在**Hadoop**之上的数据库仓库工具。可用于处理结构化数据。本章将介绍ubuntu虚拟机下安装配置Hive的整个过程。
