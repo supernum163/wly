@@ -93,6 +93,8 @@ sudo echo '
 # 安装ssh、pdsh
 sudo apt install -y ssh
 sudo apt install -y pdsh
+# 启动ssh服务
+sudo /etc/init.d/ssh start
 # 测试是否不用密码就可以连接上本地机器
 ssh localhost
 # 如果不能免密连接本地机器，则需要执行以下代码生成ssh密匙
@@ -196,8 +198,8 @@ sudo echo '
 - 4.3.4、初始化metastore。
 
 ```sh
-# 初始化 MySQL metastore
-schematool -dbType mysql -initSchema
+# 初始化 Derby metastore
+schematool -dbType derby -initSchema
 # 启动metastore服务
 hive --service metastore
 ```
@@ -250,7 +252,7 @@ sudo echo '
 - 4.4.4、初始化metastore。
 
 ```sh
-# 初始化 Derby metastore
+# 初始化 MySQL metastore
 schematool -dbType mysql -initSchema
 # 启动metastore服务
 hive --service metastore

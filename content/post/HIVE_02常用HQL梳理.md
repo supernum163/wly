@@ -10,7 +10,7 @@ keywords:
   - Hive
 comments: true
 thumbnailImagePosition: left
-thumbnailImage: https://null.png
+thumbnailImage: https://s2.ax1x.com/2019/09/28/uQE3hF.png
 ---
 
 **HiveQL**（Hive结构化查询语句）是Hive与底层数据交互的基础，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。
@@ -139,7 +139,7 @@ CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
   [LOCATION hdfs_path];
 
 # 示例，创建可以从csv中读取数据的表结构；
-create table test 
+create table student 
   ( id int, name varchar(10), class varchar(2) ) 
   comment "name：学生姓名，class：班级，year：入学年份" 
   partitioned by (year int)  
@@ -371,10 +371,12 @@ SHOW COMPACTIONS;
 
 ```hive
 # 查看数据库的各项信息;
-DESCRIBE (DATABASES|SCHEMAS) [EXTENDED] db_name;
-# 查看表、视图、分区、字段的各项信息;
-DESCRIBE [EXTENDED | FORMATTED]
-  [db_name.]table_name [PARTITION partition_spec] [col_name ( [.field_name] | [.'$elem$'] | [.'$key$'] | [.'$value$'] )* ];
+DESCRIBE (DATABASE|SCHEMA) [EXTENDED] db_name;
+# 查看表、视图、字段、复杂数据类型（array、map、struct、union）子对象的各项信息;
+DESCRIBE [EXTENDED|FORMATTED] 
+  [db_name.]table_name[ col_name ( [.'$elem$'] | [.'$key$'] | [.field_name] | [.'$value$'] )* ];
+# 查看分区的各项信息;
+DESCRIBE FORMATTED [db_name.]table_name column_name PARTITION (partition_spec);  
 # 查看函数的各项信息;
 DESCRIBE FUNCTION [EXTENDED] function_name;
 ```
