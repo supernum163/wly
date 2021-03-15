@@ -48,8 +48,6 @@ echo export PATH=$PATH:$JAVA_HOME/bin >> .bashrc
 source .bashrc
 ```
 
-<br>
-
 ## 3、安装配置Hadoop
 
 - 3.1、首先[^下载Hadoop]，解压后放入**/usr/local**目录下，并配置相关环境变量。

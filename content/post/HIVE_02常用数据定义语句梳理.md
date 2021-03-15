@@ -1,5 +1,5 @@
 ---
-title: "常用HiveQL梳理"
+title: "Hive常用数据定义语句梳理"
 date: 2021-03-15
 categories:
   - 进军大数据
@@ -8,12 +8,13 @@ tags:
 keywords:
   - 大数据
   - Hive
+  - DDL
 comments: true
 thumbnailImagePosition: left
 thumbnailImage: https://s2.ax1x.com/2019/09/28/uQE3hF.png
 ---
 
-**HiveQL**（Hive结构化查询语句）是Hive与底层数据交互的基础，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。
+Hive **DDL**（数据定义语句）用于描述Hive底层数据存储的具体实现，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。
 
 <!--more-->
 
@@ -126,8 +127,8 @@ CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
      [STORED AS DIRECTORIES]
   [
     [ROW FORMAT row_format] 
-    [STORED AS file_format] | STORED BY 'storage.handler.class.name' 
-    [WITH SERDEPROPERTIES (...)]
+    [STORED AS file_format]
+      | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
   ]
   [LOCATION hdfs_path]
   [TBLPROPERTIES (property_name=property_value, ...)]
@@ -144,8 +145,11 @@ create table student
   comment "name：学生姓名，class：班级，year：入学年份" 
   partitioned by (year int)  
   row format delimited 
-    fields terminated by "," 
-    lines terminated by "\n" 
+    fields terminated by "," escaped by "\\"
+    collection items terminated by ";"
+    map keys terminated by ":"
+    lines terminated by "\n"
+    null defined as "NULL"
   stored as textfile 
   tblproperties ("skip.header.line.count" = "1")
 ;
@@ -154,8 +158,6 @@ load data local inpath 'student.csv' into table student
   partition (year = 2012)
 ;
 # 示例，从Hive表中读入数据到分区表并覆盖
-set hive.exec.dynamic.partition=true ;
-set hive.exec.dynamic.partition.mode=nonstrict ;
 insert overwrite table student 
   partition (year = 2013)
   select id, name, class from student
@@ -329,7 +331,7 @@ DROP FUNCTION [IF EXISTS] function_name;
 RELOAD (FUNCTIONS|FUNCTION);
 ```
 
-## 5、show相关语句
+## 5、SHOW相关语句
 
 ```hive
 # 列举数据库;
@@ -367,7 +369,7 @@ SHOW TRANSACTIONS;
 SHOW COMPACTIONS;
 ```
 
-## 6、describe相关语句
+## 6、DESCRIBE相关语句
 
 ```hive
 # 查看数据库的各项信息;
@@ -389,8 +391,7 @@ ABORT TRANSACTIONS transactionID [ transactionID ...];
 
 ---
 参考：
-
-[HiveQL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual)
+[Hive DDL](https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL)
 [Hive参数配置](https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties)
 
 
