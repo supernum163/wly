@@ -9,40 +9,18 @@ desc function sum ;
 desc function extended sum ;
 ```
 
-## 当前系统信息
-restrict_information_schema
-current_database、current_user、current_groups、current_authorizer、logged_in_user
-uuid、version
 
 ## 基础数学运算
-+、-、*、/（div）、^（pow、power）、%（mod）、pmod
-e、pi、exp、ln、log、log2、log10、factorial
-sign、abs、positive、negative、round、floor、ceil（ceiling）、bround、format_number、trunc
-lag、lead
-## 进制转化
-conv、hex、unhex、bin
-## 三角函数
-degrees、radians、sin、tan、cos、asin、acos、atan
-## 比较运算
-<、<=、>、>=、=、==、!=、<>、<=>、between、in
-isnull、istrue、isfalse、isnotnull、isnottrue、isnotfalse
-## 按位运算
-~、&、|、shiftleft、shiftright、shiftrightunsigned
-## 逻辑运算
-and、or、not、!
-## 统计函数
-count、min、max、avg、sum、sqrt、cbrt、percentile、percentile_approx
-corr、covar_pop、covar_samp、std（stddev、stddev_pop）、stddev_samp、variance（var_pop）、var_samp
-rand、rank
+format_number、trunc
 
 # 窗口函数
-row_number、dense_rank、first_value、last_value、ntile、cume_dist、percent_rank
+row_number、dense_rank、first_value、last_value、ntile、cume_dist、percent_rank、lag、lead
+rand、rank、percentile、percentile_approx
 
 ## 筛选日期时间中的特定部分
 year、month、weekofyear、day、dayofmonth、dayofweek、last_day、next_day、hour、quarter、minute、second
 ## 日期时间向下取整
 floor_year、floor_month、floor_week、floor_day、floor_hour、floor_quarter、floor_minute、floor_second
-current_date、current_timestamp
 ## 日期时间加减函数
 datediff、months_between、date_add、date_sub、add_months
 internal_interval
@@ -111,9 +89,6 @@ assert_true
 
 ## NULL 值处理
 nullif、nvl
-
-## 多个参数生成唯一结果类函数
-greatest、least
 
 ## 行列转换
 collect_list、collect_set、explode、posexplode、inline、stack
