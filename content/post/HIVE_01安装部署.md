@@ -67,22 +67,26 @@ echo export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin >> .bashrc
 ```sh
 # 配置主节点
 sudo echo '
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
    <property> 
       <name>fs.default.name</name> 
       <value>hdfs://localhost:9000</value> 
    </property>
 </configuration>
-' >> $HADOOP_HOME/etc/hadoop/core-site.xml
+' > $HADOOP_HOME/etc/hadoop/core-site.xml
 # 配置分发节点
 sudo echo '
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
     <property>
         <name>dfs.replication</name>
         <value>1</value>
     </property>
 </configuration>
-' >> $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+' > $HADOOP_HOME/etc/hadoop/hdfs-site.xml
 ```
 
 - 3.3、分布模式下的Hadoop必须依赖ssh通信，我们可以通过以下代码安装并配置ssh。
@@ -118,7 +122,7 @@ start-dfs.sh
 
 ```sh
 # 在HDFS中创建目录
-hdfs dfs -mkdir /input
+hdfs dfs -mkdir input
 # 将文件放入HDFS
 hdfs dfs -put $HADOOP_HOME/etc/hadoop/*.xml input
 # 在HDFS中运行测试程序
@@ -168,6 +172,8 @@ echo export CLASSPATH=$CLASSPATH:$DERBY_HOME/lib/*.jar >> .bashrc
 
 ```sh
 sudo echo '
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>  
   <property>  
     <name>javax.jdo.option.ConnectionURL</name>  
@@ -263,6 +269,45 @@ select current_date();
 show databases;
 ```
 
+<!-- 安装配置Tez
+```sh
+# 安装Tez
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/tez/0.9.2/apache-tez-0.9.2-bin.tar.gz
+tar -zxvf apache-tez-0.9.2-bin.tar.gz
+sudo mv apache-tez-0.9.2-bin /usr/local/tez
+# 设置Tez环境变量
+echo export export HADOOP_HOME=/usr/local/hadoop >> .bashrc
+echo export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin >> .bashrc
+# 将Tez安装包移动到hadoop集群
+hdfs dfs -mkdir /etc
+hdfs dfs -put /media/sf_VM/apache-tez-0.9.2-bin.tar.gz /etc/tez.tar.gz
+# 配置tez-site.xml
+sudo echo '
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+<configuration>
+    <property>
+        <name>tez.lib.uris</name>
+        <value>${fs.defaultFS}/etc/tez.tar.gz</value>
+    </property>
+    <property>
+         <name>tez.use.cluster.hadoop-libs</name>
+         <value>true</value>
+    </property>
+    <property>
+         <name>tez.history.logging.service.class</name>
+         <value>org.apache.tez.dag.history.logging.ats.ATSHistoryLoggingService</value>
+    </property>
+</configuration>
+' > $HIVE_HOME/conf/tez-site.xml
+# 在hive-site.xml中加入以下配置参数
+<property>
+    <name>hive.execution.engine</name>
+    <value>tez</value>
+</property>
+```
+-->
+
 ## 5、Hive报错解决
 
 - [ ] 启动时报错：`Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument`
@@ -275,6 +320,19 @@ sudo cp $HADOOP_HOME/share/hadoop/common/lib/guava-27.0-jre.jar $HIVE_HOME/lib/
 
 - [ ] 初始化metastore时报错：`Error: FUNCTION 'NUCLEUS_ASCII' already exists. (state=X0Y68,code=30000)`
 - [x] 因为metastore_db文件夹已经存在了，删除主目录下的**metastore_db**文件夹
+
+- [ ] Hive修改、删除数据时报错：`hive Attempt to do update or delete using transaction manager that does not support these operations`
+- [x] 因为使用的事务管理器不支持这些操作，需要将`hive.txn.manager`设置为`org.apache.hadoop.hive.ql.lockmgr.DbTxnManager`。可以在`$HIVE_HOME/conf/hive-site.xml`文件中加入以下设置，然后重新进入Hive
+
+```xml
+<property>
+    <!-- 配置Hive事务 -->
+    <name>hive.txn.manager</name>
+    <value>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</value>
+</property>
+```
+
+
 
 
 [^下载Hadoop]: http://hadoop.apache.org 

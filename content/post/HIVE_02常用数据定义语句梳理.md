@@ -331,7 +331,7 @@ DROP FUNCTION [IF EXISTS] function_name;
 RELOAD (FUNCTIONS|FUNCTION);
 ```
 
-## 5、SHOW相关语句
+## 5、SHOW 相关语句
 
 ```hive
 # 列举数据库;
@@ -369,7 +369,7 @@ SHOW TRANSACTIONS;
 SHOW COMPACTIONS;
 ```
 
-## 6、DESCRIBE相关语句
+## 6、DESCRIBE 相关语句
 
 ```hive
 # 查看数据库的各项信息;
