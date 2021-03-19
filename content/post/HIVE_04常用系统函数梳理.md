@@ -121,6 +121,8 @@ select id + id from A;
 
 - 聚合函数
   - `count、min、max、avg、sum`计数、求最小值、求最大值、求平均值、求和
+  - `percentile`计算序列的n分位数
+  - `percentile_approx`为数值非常多的序列计算近似n分位数
   - `var_pop（variance）`计算方差，`var_pop(x) = sum(pow(x, 2)) / count(x) - pow(avg(x), 2)`
   - `var_samp`计算样本方差，`var_samp(x) = var_pop(x) * count(x) / ( count(x) - 1 )`
   - `stddev_pop（std、stddev）`计算标准差，`stddev_pop(x) = sqrt(var_pop(x))`
@@ -142,8 +144,6 @@ select id + id from A;
   - `binary`将字符转化为字节，`binary("abc") = hex("969798")`
   - `encode`将字符串按照特定的编码方式转化为字节，`encode("a", "ascii") = binary("a")`
   - `decode`将字节按照特定的编码方式转化为字符串，`decode(unhex("61"), "ascii") = "a"`
-  - `base64`将字节转化为base64表示的字符串，`base64(binary("abc 中文")) = "YWJjIOS4reaWhw=="`
-  - `unbase64`将base64表示的字符串转化为字节，`unbase64("YWJjIOS4reaWhw==") = binary("abc 中文")`
   
 - 字符串长度计算
   - `length（char_length、character_length）`计算字符串长度，`length("abc 中文") = 6`
@@ -229,13 +229,19 @@ select id + id from A;
   ```
 
 - 特征值计算
-hash、murmur_hash、mask_hash、soundex、md5、sha、sha1、sha2
-## aes加密解密
-aes_encrypt、aes_decrypt
-## 计算CRC码（循环冗余信息码）
-crc32
-
-
+  - `hash`计算哈希值（散列值），`hash(123, "abc", true) = 3105178`
+  - `murmur_hash`计算Murmur哈希值（非加密散列值），`murmur_hash(123, "abc", true) = -1738619680`
+  - `mask_hash`计算字符串哈希值，`mask_hash("abc") = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"`
+  - `base64`将字节转化为base64表示的字符串，`base64(binary("abc 中文")) = "YWJjIOS4reaWhw=="`
+  - `unbase64`将base64表示的字符串转化为字节，`unbase64("YWJjIOS4reaWhw==") = binary("abc 中文")`
+  - `aes_encrypt`将原文按照特定密匙进行**aes加密**，`base64(aes_encrypt('abc', '1234567890123456')) = "Iig1Q00eW0x+EAlVOUTDNw=="`
+  - `aes_decrypt`将密文按照特定密匙进行**aes解密**，`aes_decrypt(unbase64("Iig1Q00eW0x+EAlVOUTDNw=="), "1234567890123456") = "abc"`
+  - `soundex`计算**soundex code**（用于按英文发音索引姓名），`soundex("Miller") = "M460"`
+  - `crc32`计算**CRC码**（循环冗余信息码），`crc32("abc") = 891568578`
+  - `md5`计算**md5**，`md5("abc") = "900150983cd24fb0d6963f7d28e17f72"`
+  - `sha（sha1）`计算**sha**，`sha("abc") = "a9993e364706816aba3e25717850c26c9cd0d89d"`
+  - `sha2`计算**sha2**，可以选择输出多少个字节长度的结果，`sha2("abc", 256) = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"`
+  
 ## 4、日期时间处理函数
 
 - 日期时间转化
@@ -355,7 +361,62 @@ crc32
 - 分支语句
   - `if`三目运算，如果第一个参数为真则返回第二个参数，否则返回第三个参数，`if(null, 1, 2) = 2`
   - `case、when、else`多分支语句
+  - `assert_true`如果参数为真则返回NULL，否则抛出错误
 
+- 窗口&分析函数
+  - `first_value`获取序列中的第一个值
+  - `last_value`获取序列中的最后一个值
+  - `lag`将序列时滞n各周期
+  - `lead`将序列前导n各周期
+  - `row_number`获取序列号
+  - `rank`获取排名，排名相同时跳过之前的序号
+  - `dense_rank`获取排名，排名相同时舍弃之后的序号
+  - `percent_rank`计算(当前rank - 1) / (总记录数 - 1)
+  - `cume_dist`计算小于等于当前值的记录数 / 总记录数
+  - `ntile`将序列按照排序分成n组，返回组别编号
+  
+  ```hive
+  # 获取序列号，结果是 1 2 3;
+  select row_number() over(id) from student;
+  
+  ```
+
+- `rand`获取随机数
+- `format_number`将数值转化为特定格式的字符串，`format_number(1234.567, 2) = format_number(1234.567, "#,###.##") = "1,234.57"`
+- `trunc`将数值或日期时间向下取整
+```
+# 将数值保留最多两位有效小数，结果是 1234.56;
+select trunc(1234.567, 2);
+# 将十位数以上的有效数字，结果是 1200;
+select trunc(1234.567, -2);
+# 日期向下取整，精确到月份，结果是 "2021-02-01";
+select trunc("2021-02-03", "MM");
+```
+
+<!--
+
+- `in_file`返回某个字符串是否在文件中出现，文件不存在时会报错（只返回false？），`in_file("张三", "student.csv") = false`
+
+- `histogram_numeric`直方图统计信息
+SELECT histogram_numeric(val, 3) FROM src ;
+
+## 基础数学运算
+regr_avgx、regr_avgy、regr_count、regr_intercept、regr_r2、regr_slope、regr_sxx、regr_sxy、regr_syy
+
+## 行列转换
+collect_list、collect_set、explode、posexplode、inline、stack
+
+# 调用java方法
+reflect（java_method）、reflect2
+
+## 内部函数
+udftoboolean、udftobyte、udftoshort、udftolong、udftodouble、udftofloat、udftointeger、udftostring
+noop、noopstreaming、noopwithmap、noopwithmapstreaming
+$sum0、grouping、bloom_filter、in_bloom_filter、sq_count_check
+enforce_constraint、cardinality_violation、compute_stats、get_splits
+matchpath、replicate_rows、to_epoch_milli、width_bucket、windowingtablefunction
+
+-->
 
 
 [^银行家舍入]: 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
