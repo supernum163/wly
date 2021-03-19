@@ -307,7 +307,7 @@ select 5, string("e");
 
 ## 6、LATERAL VIEW 语句
 
-- `LATERAL VIEW` 常与表生成函数（如`explore`）一起使用，将原表中每条记录，与根据该记录生成的表交叉关联，最终生成包含两方数据的虚拟表。
+- `LATERAL VIEW` 常与表生成函数（如`explode`）一起使用，将原表中每条记录，与根据该记录生成的表交叉关联，最终生成包含两方数据的虚拟表。
 
 ```hive
 lateralView: LATERAL VIEW udtf(expression) tableAlias AS (columnAlias, ...)

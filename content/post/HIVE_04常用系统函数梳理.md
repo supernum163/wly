@@ -40,7 +40,23 @@ Hive 中的系统函数，可以帮助我们更高效的进行数据操作，本
 select true, e(), current_date(), uuid();
 ```
 
-## 2、基础数学运算函数
+## 2、空值处理函数
+
+  - `nvl`如果是空值则用特定的值替换，`nvl(NULL, 1) = 1`
+  - `nullif`如果等于特定的值则替换为空值，`nullif(1, 1) = NULL`
+  - `coalesce`返回多个参数中的第一个非空值，`coalesce(NULL, 1, 2) = 1`
+  
+## 3、逻辑运算函数
+
+  - `and、or、not、!`求与、或、非、反，`!true = false`
+  - `<、<=、>、>=、==（=）、!=（<>）`小于、小于等于、大于、大于等于、等于、不等于比较
+  - `<=>`不等于比较，双方都为NULL值时返回true
+  - `between`比较是否在两个数值之间（左右都包含），`where id between 2 and 3`
+  - `in`比较是否在某个数组中，`where id in ( select explode(array(2, 3)) )`
+  - `isnull、istrue、isfalse`比较是否为NULL、true、false
+  - `isnotnull、isnottrue、isnotfalse`比较是否不为NULL、true、false  
+
+## 4、基础数学运算函数
 
 - `+、-、*、/（div）、%（mod）`对两个数值、两个字段、字段与数值之间，进行加减乘除、求余运算;
 
@@ -59,17 +75,6 @@ select id + id from A;
 
 - `pmod`求正余数，`pmod(-7, 3) = 2`
 - `factorial`求从1开始到n为止的连乘积，`factorial(5) = 120`
-
-- 逻辑运算
-  - `and、or、not、!`求与、或、非、反，`!true = false`
-
-- 比较运算
-  - `<、<=、>、>=、==（=）、!=（<>）`小于、小于等于、大于、大于等于、等于、不等于比较
-  - `<=>`不等于比较，双方都为NULL值时返回true
-  - `between`比较是否在两个数值之间（左右都包含），`where id between 2 and 3`
-  - `in`比较是否在某个数组中，`where id in ( select explode(array(2, 3)) )`
-  - `isnull、istrue、isfalse`比较是否为NULL、true、false
-  - `isnotnull、isnottrue、isnotfalse`比较是否不为NULL、true、false
 
 - 最大、最小值运算
   - `greatest`求多个数值中最大的一个，`greatest(1, 2, 3) = 3`
@@ -135,7 +140,18 @@ select id + id from A;
   - `covar_samp`计算两个字段之间的样本协方差，`covar_samp(x) = covar_pop(x) * count(x) / ( count(x) - 1 )`
   - `corr`计算两个字段之间的相关系数，`corr(x, y) = covar_pop(x, y) / stddev_pop(x) / stddev_pop(y)`
 
-## 3、字符串处理函数
+- 线性回归相关聚合函数
+  - `regr_count`将两个变量的取值一一对应，计算总共有多少对（如果一对取值中任意一个为空值，则忽略）
+  - `regr_avgy`计算参数对中第一个参数的平均值
+  - `regr_avgx`计算参数对中第二个参数的平均值
+  - `regr_slope`计算参数对线性回归时的斜率，相当于`N*sum(x*y)-sum(x)*sum(y)) / (N*sum(x*x)-sum(x)*sum(x)`
+  - `regr_intercept`计算参数对线性回归时的截距，相当于`sum(y)*sum(x*x)-sum(X)*sum(x*y) )  /  ( N*sum(x*x)-sum(x)*sum(x)`
+  - `regr_sxx`用于计算regr_r2，相当于`sum(x*x)-sum(x)*sum(x)/N`
+  - `regr_syy`用于计算regr_r2，相当于`sum(y*y)-sum(y)*sum(y)/N`
+  - `regr_sxy`用于计算regr_r2，相当于`sum(x*y)-sum(x)*sum(y)/N`
+  - `regr_r2`计算R2系数，用于评估线性回归拟合优度，相当于`power(regr_sxy(y, x), 2)  / regr_sxx(y, x) / regr_syy(y, x) `
+
+## 5、字符串处理函数
 
 - 字符串生成
   - `space`生成n个空格，`space(2) = "  "`
@@ -246,7 +262,7 @@ select id + id from A;
   - `sha（sha1）`计算**sha**，`sha("abc") = "a9993e364706816aba3e25717850c26c9cd0d89d"`
   - `sha2`计算**sha2**，可以选择输出多少个字节长度的结果，`sha2("abc", 256) = "ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad"`
   
-## 4、日期时间处理函数
+## 6、日期时间处理函数
 
 - 日期时间转化
   - `from_unixtime`将时间戳（距**1970-01-01**过去了多少秒）转化为日期时间，`from_unixtime(1612310400) = "2021-02-03 00:00:00"`
@@ -287,9 +303,9 @@ select id + id from A;
   - `add_months`将指定日期加n个月，`add_months("2021-02-28", 1) = "2021-03-31"`
   - 给日期时间加减特定单位的时间（多少秒、天等），`to_date("2021-02-03") - interval 10 second = "2021-02-02 23:59:50"`
 
-## 5、复杂类型数据处理函数
+## 7、复杂类型对象处理函数
 
-- array类型数据操作函数
+- array类型对象操作函数
   - `array`生成数组，`array(1, 2, 3)`
   - `index`返回数组中的第n个元素，`index(array("a", "b", "c"), 2) = "c"`
   - `array_contains`查找数组中是否包含某个元素，`array_contains(array(1, 2, 3), 2) = true`
@@ -297,18 +313,28 @@ select id + id from A;
   - `sort_array`给数组排序，`sort_array(array("b", "c", "a")) = array("a", "b", "c")`
   - `sort_array_by`当数组由struct元素构成时，按照struct中的字段给数组排序，`sort_array_by(array(struct("b", 100), struct("a", 200)), "col1", "ASC") = array(struct("a", 200), struct("b", 100))`
   - `size`查询array、map中元素的个数，`size(array(1, 2, 3)) = 3`
+  
+  - `collect_list`将序列合并为一个数组
+  - `collect_set`将序列合并为一个数组（不包含重复值）
+  
+  ```hive
+  select collect_list(id) from A;
+  # 结果是 [1,2,2,3,4];
+  select collect_set(id) from A;
+  # 结果是 [1,2,3,4];
+  ```
 
-- map类型数据操作函数
+- map类型对象操作函数
   - `map`生成有名数组，`map("英语", 90, "物理", NULL)`
   - `str_to_map`将字符串按照元素分隔符、键值分隔符切分成有名数组，`str_to_map("英语:90,物理:NULL", ",", ":")`
   - `map_keys`获取有名数组中的键，`map_keys(map("英语", 90, "物理", NULL)) = array("英语", "物理")`
   - `map_values`获取有名数组中的值，`map_values(map("英语", 90, "物理", NULL)) = array(90, NULL)`
 
-- struct类型数据操作函数
+- struct类型对象操作函数
   - `struct`生成结构体，默认字段名称为 col1、col2、 ...,`struct(90, NULL)`
   - `named_struct`生成结构体，`named_struct("英语",90,"物理",NULL)`
 
-- union类型数据操作函数
+- union类型对象操作函数
   - `create_union`生成联合体,`create_union(1, cast(NULL as bigint), "8808-3124")`
   - `extract_union`将联合体解析为结构体，或者获取其中的某个字段,`extract_union(create_union(1, 13137218094, "8808-3124"), 0)`
 
@@ -355,7 +381,7 @@ select id + id from A;
   select json_tuple('{ "a": [1, 2], "b": {"c": "score", "d": 100} }', "a", "b");
   ```
 
-## 6、窗口&分析函数
+## 8、窗口&分析函数
 
 - `first_value`获取序列中的第一个值
 - `last_value`获取序列中的最后一个值
@@ -391,42 +417,69 @@ select ntile(2) over(order by id) from A;
 # 结果是 1 1 1 2 2;
 ```
 
-## 7、其它常用函数
+## 9、表生成类函数
 
-- 空值处理
-  - `nvl`如果是空值则用特定的值替换，`nvl(NULL, 1) = 1`
-  - `nullif`如果等于特定的值则替换为空值，`nullif(1, 1) = NULL`
-  - `coalesce`返回多个参数中的第一个非空值，`coalesce(NULL, 1, 2) = 1`
-  
-- 分支语句
-  - `if`三目运算，如果第一个参数为真则返回第二个参数，否则返回第三个参数，`if(null, 1, 2) = 2`
-  - `case、when、else`多分支语句
-  - `assert_true`如果参数为真则返回NULL，否则抛出错误
+- `explode`将数组、结构体等对象的每个元素转化为一条记录
+- `posexplode`将数组对象的每个元素转化为一条记录，包含元素在数组中的索引值
+- `inline`将以结构体为元素组成的数组，转化为每个结构体为一条记录，结构体中的每个字段为一个字段
+- `stack`将第2-k个参数，按照先行后列的方式转化为n条记录
+- `parse_url_tuple、json_tuple`见上文
 
+```hive
+select name, B.* from student A 
+  lateral view explode(score) B as class, score
+  where A.id = 1;
+result> name	b.class	b.score
+result> 张三	语文	60
+result> 张三	数学	70
+result> 张三	英语	80
+
+select name, B.* from student A 
+  lateral view posexplode(class) B
+  where A.id = 1;
+result> name	b.pos	b.val
+result> 张三	0	语文
+result> 张三	1	数学
+result> 张三	2	英语
+
+select inline(array(named_struct("a", 1, "b", 2), named_struct("a", 3, "b", 4))) ;
+result> a	b
+result> 1	2
+result> 3	4
+
+select stack(2, 1, 2, 3) ;
+result> col0	col1
+result> 1	2
+result> 3	NULL
+```
+
+## 10、其它常用函数
+
+- `if`三目运算，如果第一个参数为真则返回第二个参数，否则返回第三个参数，`if(null, 1, 2) = 2`
+- `case、when、else`多分支语句
+- `assert_true`如果参数为真则返回NULL，否则抛出错误
 - `rand`获取随机数
 - `format_number`将数值转化为特定格式的字符串，`format_number(1234.567, 2) = format_number(1234.567, "#,###.##") = "1,234.57"`
+
 - `trunc`将数值或日期时间向下取整
-```
-# 将数值保留最多两位有效小数，结果是 1234.56;
+```hive
+# 将数值保留最多两位有效小数，返回结果 1234.56;
 select trunc(1234.567, 2);
-# 将十位数以上的有效数字，结果是 1200;
+# 将十位数以上的有效数字，返回结果 1200;
 select trunc(1234.567, -2);
-# 日期向下取整，精确到月份，结果是 "2021-02-01";
+# 日期向下取整，精确到月份，返回结果 "2021-02-01";
 select trunc("2021-02-03", "MM");
+```
+
+- `histogram_numeric`统计将序列等分为n个区间之后，每个区间的代表值和频数（参考直方图）
+```hive
+select histogram_numeric(id, 3) from A ;
+# 结果是 [{"x":1.0,"y":1.0},{"x":2.333333333333333,"y":3.0},{"x":4.0,"y":1.0}];
 ```
 
 <!--
 
-- `in_file`返回某个字符串是否在文件中出现，文件不存在时会报错（只返回false？），`in_file("张三", "student.csv") = false`
-
-- `histogram_numeric`直方图统计信息
-SELECT histogram_numeric(val, 3) FROM src ;
-
-## 基础数学运算
-regr_avgx、regr_avgy、regr_count、regr_intercept、regr_r2、regr_slope、regr_sxx、regr_sxy、regr_syy
-
-## 行列转换
-collect_list、collect_set、explode、posexplode、inline、stack
+- `in_file`返回某个字符串是否在文件中出现，文件不存在则报错（只返回false？），`in_file("张三", "student.csv") = false`
 
 # 调用java方法
 reflect（java_method）、reflect2
