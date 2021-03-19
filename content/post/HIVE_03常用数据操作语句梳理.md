@@ -92,7 +92,7 @@ INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], ...) select_stateme
 INSERT INTO TABLE tablename PARTITION (partcol1[=val1], ...) select_statement FROM from_statement;
 
 # 示例，创建临时表;
-create table student1 (
+create temporary table student1 (
     id int, name varchar(10), birthday date, 
     class array<string>, score map<string, int>,
     addr struct<street:string, No:int>,
@@ -101,7 +101,7 @@ create table student1 (
   partitioned by (grade int)
   stored as orc TBLPROPERTIES ("transactional"="true")
 ;
-create table student2 like student1;
+create temporary table student2 like student1;
 alter table student2 set tblproperties ("transactional"="true");
 # 示例，插入数据;
 insert overwrite table student1 partition(grade=2018) 
@@ -260,8 +260,8 @@ join_condition:
     ON expression  
   
 # 示例，创建测试表;
-create table A (id int, name char(2));
-create table B like A;
+create temporary table A (id int, name char(2));
+create temporary table B like A;
 insert into table A values (1, "a"), (2, "a"), (3, "c");
 insert into table B values (1, "a"), (4, "d");
 # 示例，在where子句中指定连表方式;

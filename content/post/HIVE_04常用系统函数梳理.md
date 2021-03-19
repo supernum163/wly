@@ -45,16 +45,31 @@ select true, e(), current_date(), uuid();
 - `+、-、*、/（div）、%（mod）`对两个数值、两个字段、字段与数值之间，进行加减乘除、求余运算;
 
 ```hive
-# 示例，以下两个查询结果不同，前者只有一条记录，而后者中的记录数与表A的相同;
+create temporary table A (id int);
+insert into A values (1), (2), (2), (3), (4);
+
+# 以下两个查询结果不同，前者只有一条记录，而后者中的记录数与表A的相同;
 select 1 + 1;
 select 1 + 1 from A;
-# 示例，字段与数值相加时，相当于字段中的每个值分别与这个数值相加;
+# 字段与数值相加时，相当于字段中的每个值分别与这个数值相加;
 select id + 1 from A;
+# 两个数值型字段可以直接相加;
 select id + id from A;
 ```
 
 - `pmod`求正余数，`pmod(-7, 3) = 2`
 - `factorial`求从1开始到n为止的连乘积，`factorial(5) = 120`
+
+- 逻辑运算
+  - `and、or、not、!`求与、或、非、反，`!true = false`
+
+- 比较运算
+  - `<、<=、>、>=、==（=）、!=（<>）`小于、小于等于、大于、大于等于、等于、不等于比较
+  - `<=>`不等于比较，双方都为NULL值时返回true
+  - `between`比较是否在两个数值之间（左右都包含），`where id between 2 and 3`
+  - `in`比较是否在某个数组中，`where id in ( select explode(array(2, 3)) )`
+  - `isnull、istrue、isfalse`比较是否为NULL、true、false
+  - `isnotnull、isnottrue、isnotfalse`比较是否不为NULL、true、false
 
 - 最大、最小值运算
   - `greatest`求多个数值中最大的一个，`greatest(1, 2, 3) = 3`
@@ -107,17 +122,6 @@ select id + id from A;
   - `bin`将数值转化为2进制数值，`bin(4) = 100`
   - `hex`将2进制字节、10进制数值或字符串转化为16进制字符串，`hex(10) = "A"`
   - `unhex`将16进制数值或字符串转化为2进制字节，`unhex(61) = binary("a")`
-
-- 比较运算
-  - `<、<=、>、>=、==（=）、!=（<>）`小于、小于等于、大于、大于等于、等于、不等于比较
-  - `<=>`不等于比较，双方都为NULL值时返回true
-  - `between`比较是否在两个数值之间（左右都包含），`where id between 2 and 3`
-  - `in`比较是否在某个数组中，`where id in ( select explode(array(2, 3)) )`
-  - `isnull、istrue、isfalse`比较是否为NULL、true、false
-  - `isnotnull、isnottrue、isnotfalse`比较是否不为NULL、true、false
-
-- 逻辑运算
-  - `and、or、not、!`求与、或、非、反，`!true = false`
 
 - 聚合函数
   - `count、min、max、avg、sum`计数、求最小值、求最大值、求平均值、求和
@@ -351,9 +355,45 @@ select id + id from A;
   select json_tuple('{ "a": [1, 2], "b": {"c": "score", "d": 100} }', "a", "b");
   ```
 
-## 6、其它常用函数
+## 6、窗口&分析函数
 
-- **NULL**值处理
+- `first_value`获取序列中的第一个值
+- `last_value`获取序列中的最后一个值
+- `lag`将序列时滞n各周期
+- `lead`将序列前导n各周期
+- `row_number`获取序列号
+- `rank`获取排名，与row_number不同点在于，排名相同时都取靠前的序号
+- `dense_rank`获取排名，与rank不同点在于，排名相同的记录之后的排名，会紧接着上一个排名
+- `percent_rank`计算(当前rank - 1) / (总记录数 - 1)
+- `cume_dist`计算小于等于当前值的记录数 / 总记录数
+- `ntile`将序列按照排序分成n组，返回组别编号
+
+```hive
+select first_value(id) over(order by id) from A;
+# 结果是 1 1 1 1 1;
+select last_value(id) over(order by id) from A;
+# 结果是 4 4 4 4 4;
+select lag(id, 1) over(order by id) from A;
+# 结果是 NULL 1 2 2 3;
+select lead(id, 1) over(order by id) from A;
+# 结果是 2 2 3 4 NULL;
+select row_number() over(order by id) from A;
+# 结果是 1 2 3 4 5;
+select rank() over(order by id) from A;
+# 结果是 1 2 2 4 5;
+select dense_rank() over(order by id) from A;
+# 结果是 1 2 2 3 4;
+select percent_rank() over(order by id) from A;
+# 结果是 0.0 0.25 0.25 0.75 1.0;
+select cume_dist() over(order by id) from A;
+# 结果是 0.2 0.6 0.6 0.8 1.0;
+select ntile(2) over(order by id) from A;
+# 结果是 1 1 1 2 2;
+```
+
+## 7、其它常用函数
+
+- 空值处理
   - `nvl`如果是空值则用特定的值替换，`nvl(NULL, 1) = 1`
   - `nullif`如果等于特定的值则替换为空值，`nullif(1, 1) = NULL`
   - `coalesce`返回多个参数中的第一个非空值，`coalesce(NULL, 1, 2) = 1`
@@ -362,24 +402,6 @@ select id + id from A;
   - `if`三目运算，如果第一个参数为真则返回第二个参数，否则返回第三个参数，`if(null, 1, 2) = 2`
   - `case、when、else`多分支语句
   - `assert_true`如果参数为真则返回NULL，否则抛出错误
-
-- 窗口&分析函数
-  - `first_value`获取序列中的第一个值
-  - `last_value`获取序列中的最后一个值
-  - `lag`将序列时滞n各周期
-  - `lead`将序列前导n各周期
-  - `row_number`获取序列号
-  - `rank`获取排名，排名相同时跳过之前的序号
-  - `dense_rank`获取排名，排名相同时舍弃之后的序号
-  - `percent_rank`计算(当前rank - 1) / (总记录数 - 1)
-  - `cume_dist`计算小于等于当前值的记录数 / 总记录数
-  - `ntile`将序列按照排序分成n组，返回组别编号
-  
-  ```hive
-  # 获取序列号，结果是 1 2 3;
-  select row_number() over(id) from student;
-  
-  ```
 
 - `rand`获取随机数
 - `format_number`将数值转化为特定格式的字符串，`format_number(1234.567, 2) = format_number(1234.567, "#,###.##") = "1,234.57"`
