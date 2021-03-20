@@ -43,7 +43,7 @@ Hadoop、Hive都依赖Java才能运行，但Java版本过高可能会使Hadoop�
 sudo apt install -y openjdk-8-jdk
 # 设置JDK环境变量
 echo export JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-amd64 >> .bashrc
-echo export PATH=$PATH:$JAVA_HOME/bin >> .bashrc
+echo export PATH=\$PATH:\$JAVA_HOME/bin >> .bashrc
 # 使环境变量立即生效（后不赘述）
 source .bashrc
 ```
@@ -59,15 +59,14 @@ tar -zxvf hadoop-3.3.0.tar.gz
 sudo mv hadoop-3.3.0 /usr/local/hadoop
 # 设置Hadoop环境变量
 echo export export HADOOP_HOME=/usr/local/hadoop >> .bashrc
-echo export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin >> .bashrc
+echo export PATH=\$PATH:\$HADOOP_HOME/bin:\$HADOOP_HOME/sbin >> .bashrc
 ```
 
 - 3.2、Hadoop有独立操作、伪分布操作、完全分布操作三种运行模式。默认配置下，Hadoop运行在非分布模式，有助于调试。我们需要修改以下两个配置文件，使Hadoop在本地机器上实现伪分布模式。
 
 ```sh
 # 配置主节点
-sudo echo '
-<?xml version="1.0" encoding="UTF-8"?>
+sudo echo '<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
    <property> 
@@ -77,8 +76,7 @@ sudo echo '
 </configuration>
 ' > $HADOOP_HOME/etc/hadoop/core-site.xml
 # 配置分发节点
-sudo echo '
-<?xml version="1.0" encoding="UTF-8"?>
+sudo echo '<?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
     <property>
@@ -113,7 +111,7 @@ hadoop version
 # 格式化HDFS（Hadoop分布式文件系统）
 hdfs namenode -format
 # 启动HDFS守护程序
-start-dfs.sh
+sudo start-dfs.sh
 # 关闭HDFS守护程序
 # stop-dfs.sh
 ```
@@ -122,11 +120,11 @@ start-dfs.sh
 
 ```sh
 # 在HDFS中创建目录
-hdfs dfs -mkdir input
+hdfs dfs -mkdir -p input
 # 将文件放入HDFS
 hdfs dfs -put $HADOOP_HOME/etc/hadoop/*.xml input
 # 在HDFS中运行测试程序
-hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.2.2.jar grep input output 'dfs[a-z.]+'
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.0.jar grep input output 'dfs[a-z.]+'
 # 从HDFS中提取文件
 hdfs dfs -get output ./output
 # 列举HDFS中的文件
@@ -146,7 +144,7 @@ tar -zxvf apache-hive-3.1.2-bin.tar.gz
 sudo mv apache-hive-3.1.2-bin /usr/local/hive
 # 设置Hive环境变量
 echo export HIVE_HOME=/usr/local/hive >> .bashrc
-echo export PATH=$PATH:$HIVE_HOME/bin >> .bashrc
+echo export PATH=\$PATH:\$HIVE_HOME/bin >> .bashrc
 ```
 
 - 4.2、此时我们已经可以进入Hive，但并不能执行HiveQL（Hive结构化查询语句），因为还未初始化metastore。接下来我们需要选择一种数据库作为Hive的metastore。
@@ -165,14 +163,13 @@ sudo mv db-derby-10.14.2.0-bin /usr/local/derby
 
 ```sh
 echo export DERBY_HOME=/usr/local/derby >> .bashrc
-echo export CLASSPATH=$CLASSPATH:$DERBY_HOME/lib/*.jar >> .bashrc
+echo export CLASSPATH=\$CLASSPATH:\$DERBY_HOME/lib/*.jar >> .bashrc
 ```
 
 - 4.3.3、修改Hive配置文件。
 
 ```sh
-sudo echo '
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+sudo echo '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>  
   <property>  
@@ -205,7 +202,7 @@ sudo echo '
 # 初始化 Derby metastore
 schematool -dbType derby -initSchema
 # 启动metastore服务
-hive --service metastore
+# hive --service metastore
 ```
 
 ### 4.4、使用MySQL做为matastore
@@ -229,8 +226,7 @@ flush privileges ;
 - 4.4.3、修改Hive配置文件。
 
 ```sh
-sudo echo '
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+sudo echo '<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
 <configuration>
   <property>
@@ -259,7 +255,7 @@ sudo echo '
 # 初始化 MySQL metastore
 schematool -dbType mysql -initSchema
 # 启动metastore服务
-hive --service metastore
+# hive --service metastore
 ```
 
 - 4.5、至此Hive已经配置完毕，我们可以通过`hive`命令进入Hive，并执行以下命令查看Hive是否正常运行。
@@ -267,6 +263,7 @@ hive --service metastore
 ```hive
 select current_date();
 show databases;
+exit;
 ```
 
 <!-- 安装配置Tez
@@ -276,8 +273,8 @@ wget https://mirrors.tuna.tsinghua.edu.cn/apache/tez/0.9.2/apache-tez-0.9.2-bin.
 tar -zxvf apache-tez-0.9.2-bin.tar.gz
 sudo mv apache-tez-0.9.2-bin /usr/local/tez
 # 设置Tez环境变量
-echo export export HADOOP_HOME=/usr/local/hadoop >> .bashrc
-echo export PATH=$PATH:$HADOOP_HOME/bin:$HADOOP_HOME/sbin >> .bashrc
+echo export export TEZ_HOME=/usr/local/hadoop >> .bashrc
+echo export PATH=\$PATH:\TEZ_HOME/bin:\TEZ_HOME/sbin >> .bashrc
 # 将Tez安装包移动到hadoop集群
 hdfs dfs -mkdir /etc
 hdfs dfs -put /media/sf_VM/apache-tez-0.9.2-bin.tar.gz /etc/tez.tar.gz
@@ -308,9 +305,13 @@ sudo echo '
 ```
 -->
 
-## 5、Hive报错解决
+## 5、报错解决
 
-- [ ] 启动时报错：`Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument`
+- [ ] Hadoop运行命令`start-dfs.sh`时报错：`pdsh@ubuntu-home: localhost: rcmd: socket: Permission denied`
+- [x] 需要创建</etc/pdsh/rcmd_default>，并在其中写入`ssh`
+sudo echo ssh > 
+
+- [ ] Hive启动时报错：`Exception in thread "main" java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument`
 - [x] 因为guava.jar包在hadoop和hive里的版本不一致，需要用高版本覆盖低版本
 
 ```sh
@@ -318,7 +319,7 @@ sudo mv $HIVE_HOME/lib/guava-19.0.jar $HIVE_HOME/lib/guava_bk-19.0.jar
 sudo cp $HADOOP_HOME/share/hadoop/common/lib/guava-27.0-jre.jar $HIVE_HOME/lib/
 ```
 
-- [ ] 初始化metastore时报错：`Error: FUNCTION 'NUCLEUS_ASCII' already exists. (state=X0Y68,code=30000)`
+- [ ] Hive初始化metastore时报错：`Error: FUNCTION 'NUCLEUS_ASCII' already exists. (state=X0Y68,code=30000)`
 - [x] 因为metastore_db文件夹已经存在了，删除主目录下的**metastore_db**文件夹
 
 - [ ] Hive修改、删除数据时报错：`hive Attempt to do update or delete using transaction manager that does not support these operations`
