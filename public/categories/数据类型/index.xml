@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据类型 on wly&#39;s notebook</title>
+    <link>/categories/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+    <description>Recent content in 数据类型 on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Mon, 10 Jun 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R语言中的命令与执行环境</title>
+      <link>/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/</link>
+      <pubDate>Mon, 10 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;面向语言的编程&lt;/strong&gt;有时也被称作&lt;strong&gt;元编程&lt;/strong&gt;，指的是一种计算机语言以另一种计算机语言（或自身）为&lt;strong&gt;目标语言&lt;/strong&gt;，通过处理、执行目标语言来完成某项任务的过程。作为脚本语言的一种，&lt;strong&gt;R语言&lt;/strong&gt;也拥有强大且便捷的元编程能力。这篇文章将介绍R语言中元编程的基础——命令与执行环境。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言与日期时间管理</title>
+      <link>/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sat, 01 Jun 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;日期时间&lt;/strong&gt;作为日常生活中必不可少的一类信息，在数据分析中也有着非常重要的意义（尤其对于&lt;strong&gt;时序分析&lt;/strong&gt;而言）。这篇文章将介绍&lt;strong&gt;R语言&lt;/strong&gt;中的&lt;strong&gt;日期时间&lt;/strong&gt;管理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言与字符串处理</title>
+      <link>/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/</link>
+      <pubDate>Mon, 27 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;文本信息&lt;/strong&gt;作为我们最常见的信息来源，当然也可以被用于数据分析。&lt;strong&gt;文本分析&lt;/strong&gt;离不开强大的字符串处理能力，这篇文章将介绍如何在&lt;strong&gt;R语言&lt;/strong&gt;中进行&lt;strong&gt;字符串&lt;/strong&gt;处理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言中的数值</title>
+      <link>/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC/</link>
+      <pubDate>Wed, 22 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC/</guid>
+      <description>&lt;p&gt;在之前的&lt;strong&gt;R语言中的数学运算&lt;/strong&gt;系列文章中，我们已经分别总结了如何对&lt;strong&gt;0维&lt;/strong&gt;、&lt;strong&gt;1维&lt;/strong&gt;、&lt;strong&gt;n维&lt;/strong&gt;数值进行数学运算。这篇文章我们着重于从数据结构上总结R语言中 &lt;em&gt;广义&lt;/em&gt; 的数值型数据。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言中的数据类型</title>
+      <link>/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</link>
+      <pubDate>Thu, 09 May 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/</guid>
+      <description>&lt;p&gt;在&lt;strong&gt;R语言&lt;/strong&gt;中一切皆为&lt;strong&gt;对象&lt;/strong&gt;，不同类型的对象，其表现形式却又千差万别。对于新手来讲，理清R语言中不同对象的区别与关联确实不易。所以这篇文章及后续系列，我们将深入剖析R语言中的对象。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sql on wly&#39;s notebook</title>
+    <link>/tags/sql/</link>
+    <description>Recent content in Sql on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Thu, 29 Aug 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/sql/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>SQL Server 打造定时语句系统</title>
+      <link>/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/</link>
+      <pubDate>Thu, 29 Aug 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;SQL Server&lt;/strong&gt; 中提供了&lt;strong&gt;定时作业&lt;/strong&gt;的功能，可以帮助我们按照计划执行特定的任务，但这种方式每次都要在图形化界面设置一大堆条件才能启用。有没有一种便捷的方式，只需提供&lt;strong&gt;计划执行时间&lt;/strong&gt;和&lt;strong&gt;SQL语句&lt;/strong&gt;即可在规定时间执行相应的语句？这篇文章我们将介绍如何在 &lt;strong&gt;SQL Server&lt;/strong&gt; 中打造&lt;strong&gt;定时语句&lt;/strong&gt;系统。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>SQL Server 使用SQL检查用户身份证号码格式</title>
+      <link>/2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/</link>
+      <pubDate>Fri, 26 Jul 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/</guid>
+      <description>&lt;p&gt;如今搭建网络交易平台大多需要用户进行&lt;strong&gt;实名认证&lt;/strong&gt;，但有时候用户填写的实名认证信息有可能是随手乱写的，也有可能是精心伪造的。尤其是&lt;strong&gt;身份证号码&lt;/strong&gt;，必须进行&lt;strong&gt;格式验证&lt;/strong&gt;才能入库。那么这篇文章，我们就将介绍如何使用&lt;strong&gt;SQL&lt;/strong&gt;检查用户身份证号码格式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

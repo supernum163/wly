@@ -1,0 +1,951 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="markdown, gitment, wly的博客, supernum">
+<meta name="description" content="markdown是一款轻量级网页内容生成语法，使用markdown语法，你可以轻松生成图文并茂的网页内容。这篇文章将带你了解如何在评论区使用markdown语法。">
+
+
+  
+    <meta property="article:published_time" content="2019-03-22T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-03-22T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="web语言">
+    
+  
+  
+    
+      <meta property="article:tag" content="web语言">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在评论区使用markdown语法">
+<meta property="og:description" content="markdown是一款轻量级网页内容生成语法，使用markdown语法，你可以轻松生成图文并茂的网页内容。这篇文章将带你了解如何在评论区使用markdown语法。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/08/04/eyNGbd.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>在评论区使用markdown语法</title>
+
+    <link rel="canonical" href="../../../2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      在评论区使用markdown语法
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-03-22T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-03-22
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/web%e8%af%ad%e8%a8%80">web语言</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><strong>markdown</strong>是一款轻量级网页内容生成语法，使用markdown语法，你可以轻松生成图文并茂的网页内容。这篇文章将带你了解如何在评论区使用markdown语法。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#1-markdown语法">1、markdown语法</a>
+<ul>
+<li><a href="#1-1-标题语法">1.1、标题语法</a></li>
+<li><a href="#1-2-文字-段落语法">1.2、文字、段落语法</a></li>
+<li><a href="#1-3-引用语法">1.3、引用语法</a></li>
+<li><a href="#1-4-代码块语法">1.4、代码块语法</a></li>
+<li><a href="#1-5-图片语法">1.5、图片语法</a></li>
+<li><a href="#1-6-列表语法">1.6、列表语法</a></li>
+<li><a href="#1-7-表格语法">1.7、表格语法</a></li>
+<li><a href="#1-8-其它github特有的markdown语法">1.8、其它github特有的markdown语法</a>
+<ul>
+<li><a href="#1-8-1-回应某人">1.8.1、回应某人</a></li>
+<li><a href="#1-8-2-使用emojj表情">1.8.2、使用Emojj表情</a></li>
+</ul></li>
+<li><a href="#1-9-语法结合">1.9、语法结合</a></li>
+</ul></li>
+<li><a href="#2-使用html标签">2、使用html标签</a></li>
+<li><a href="#3-结语">3、结语</a></li>
+</ul>
+</nav>
+
+<p><br></p>
+
+<h1 id="1-markdown语法">1、markdown语法</h1>
+
+<p>不同的<strong>markdown语法解释器</strong>对于markdown语法的支持会略有不同，但基本语法都大体相似。这里我们使用的<strong>gitment评论系统</strong>使用的是<strong>github</strong>的markdown语法解释器，你可以在 <a href="https://guides.github.com/features/mastering-markdown/">这里</a>查看github对其markdown语法解释器的官方说明。</p>
+
+<p>以下内容是根据我个人的理解对markdown语法的归纳总结。其中，在<strong>代码与效果对比框</strong>中，背景色为灰色的部分是markdown语法格式，背景色为白色的部分是markdown语法效果。</p>
+
+<p><br></p>
+
+<h2 id="1-1-标题语法">1.1、标题语法</h2>
+
+<p>你可以使用<span class="highlight-text primary"># 标题名称</span>的格式插入标题，其中<span class="highlight-text primary">#</span>的数量代表标题级别，这里仅支持一至六级标题。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;"># 一级标题
+## 二级标题
+### 三级标题
+#### 四级标题
+##### 五级标题
+###### 六级标题
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <h1 id="一级标题">一级标题</h1>
+
+<h2 id="二级标题">二级标题</h2>
+
+<h3 id="三级标题">三级标题</h3>
+
+<h4 id="四级标题">四级标题</h4>
+
+<h5 id="五级标题">五级标题</h5>
+
+<h6 id="六级标题">六级标题</h6>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-2-文字-段落语法">1.2、文字、段落语法</h2>
+
+<p>你可以使用<span class="highlight-text primary">**粗体字**</span>或者<span class="highlight-text primary">__粗体字__</span>的格式加粗字体，使用<span class="highlight-text primary">*斜体字*</span>或者<span class="highlight-text primary">_斜体字_</span>的格式使字体倾斜，使用<span class="highlight-text primary">~~删除线~~</span>的格式在文字中插入一条删除线，使用<span class="highlight-text primary">`行内代码`</span> 的格式插入行内代码，使用<span class="highlight-text primary">[超链接](链接地址)</span>的格式插入超链接。</p>
+
+<p>对于段落而言，如需新开一行必须在上一行末尾插入两个空格，如需新开一个段落则需要先插入一个空行，注意markdown不支持通过换行符插入多个空行。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">- **粗体字**, __粗体字__
+- *斜体字*, _斜体字_
+- ~~删除线~~
+- `行内代码`
+- [超链接](https://wly.supernum.tech)
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li><strong>粗体字</strong>, <strong>粗体字</strong></li>
+<li><em>斜体字</em>, <em>斜体字</em></li>
+<li><del>删除线</del></li>
+<li><code>行内代码</code></li>
+<li><a href="https://wly.supernum.tech">超链接</a></li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-3-引用语法">1.3、引用语法</h2>
+
+<p>你可以使用<span class="highlight-text primary">> 应用内容</span>的格式插入引用的内容，引用的时候请注明来源。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">&gt; 引用他人的言论或网页、书籍中的内容
+&gt; ——引用来源
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <blockquote>
+<p>引用他人的言论或网页、书籍中的内容
+——引用来源</p>
+</blockquote>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-4-代码块语法">1.4、代码块语法</h2>
+
+<p>如果你需要插入多行代码，可以使用<span class="highlight-text primary">```</span>作为代码的首行和尾行，如需高亮代码，则可以在首行的<span class="highlight-text primary">```</span>之后标明代码类型。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">```html
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&#34;UTF-8&#34;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Hello World！
+  &lt;/body&gt;
+&lt;/html&gt;
+```
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <pre><code class="language-html">&lt;html&gt;
+  &lt;head&gt;
+    &lt;meta charset=&quot;UTF-8&quot;&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+  &lt;/head&gt;
+  &lt;body&gt;
+    Hello World！
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-5-图片语法">1.5、图片语法</h2>
+
+<p>你可以使用<span class="highlight-text primary">![图片Alt](图片链接地址)</span>的格式插入一幅图片，注意图片与超链接的语法区别。你也可以直接拖放一张图片至评论区，图片代码将会自动生成。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">![图片Alt](https://s2.ax1x.com/2019/08/04/eyNtUI.png)
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <img src="https://s2.ax1x.com/2019/08/04/eyNtUI.png" alt="图片Alt" />
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-6-列表语法">1.6、列表语法</h2>
+
+<p>你可以使用<span class="highlight-text primary">数字编号. 列表内容</span>的格式插入有序列表，使用<span class="highlight-text primary">- 列表内容</span>的格式插入无序列表，使用<span class="highlight-text primary">- [ ] 列表内容</span>的格式插入任务列表，如需表示任务已完成，可以在方括弧内输入一个英文字母<span class="highlight-text primary">x</span>。如需插入多级列表，则需要在子列表之前输入两个空格。</p>
+
+<ul>
+<li>有序列表</li>
+</ul>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">1. 列表内容1
+2. 列表内容2
+3. 列表内容3
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <ol>
+<li>列表内容1</li>
+<li>列表内容2</li>
+<li>列表内容3</li>
+</ol>
+
+  </div>
+</div>
+
+<ul>
+<li>无序列表</li>
+</ul>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">- 列表内容1
+  - 子列表内容1
+  - 子列表内容2
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li>列表内容1
+
+<ul>
+<li>子列表内容1</li>
+<li>子列表内容2</li>
+</ul></li>
+</ul>
+
+  </div>
+</div>
+
+<ul>
+<li>任务列表（gihub特有）</li>
+</ul>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">- [x] 已完成任务
+- [ ] 未完成任务
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <ul class="task-list">
+<li><label><input type="checkbox" checked disabled class="task-list-item"> 已完成任务</label></li>
+<li><label><input type="checkbox" disabled class="task-list-item"> 未完成任务</label></li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-7-表格语法">1.7、表格语法</h2>
+
+<p>如需插入表格，则需要以<span class="highlight-text primary"> | </span>来区分不同的列，以换行来区分不同的行，以多个<span class="highlight-text primary">-</span>来区分表头与表格内容，以<span class="highlight-text primary">:--</span>、<span class="highlight-text primary">--:</span>、<span class="highlight-text primary">:--:</span>来分别表示左对齐、右对齐和剧中对齐。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">| 第一列 | 第二列 |
+|:--------|:-------:|
+| 使用左对齐 | 使用居中对齐 |
+|             | 占位符       |
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <table>
+<thead>
+<tr>
+<th align="left">第一列</th>
+<th align="center">第二列</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">使用左对齐</td>
+<td align="center">使用居中对齐</td>
+</tr>
+
+<tr>
+<td align="left"></td>
+<td align="center">占位符</td>
+</tr>
+</tbody>
+</table>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h2 id="1-8-其它github特有的markdown语法">1.8、其它github特有的markdown语法</h2>
+
+<h3 id="1-8-1-回应某人">1.8.1、回应某人</h3>
+
+<p>你可以使用<span class="highlight-text primary">@github账户名</span>的格式，来特指某人。这种方式本质上只是生成了一个指向某个github用户主页的超链接，所以你也可以直接使用超链接的格式达到相同的效果。</p>
+
+<p><br></p>
+
+<h3 id="1-8-2-使用emojj表情">1.8.2、使用Emojj表情</h3>
+
+<p>你可以使用<span class="highlight-text primary">:Emojj名称:</span>的格式插入Emojj表情，比如使用<strong>see_no_evil</strong>、 <strong>hear_no_evil</strong>、 <strong>speak_no_evil</strong>三个Emojj名称，分别插入<span class="highlight-text red">非礼勿视</span>🙈、<span class="highlight-text red">非礼勿听</span>🙉、<span class="highlight-text red">非礼勿言</span>🙊。你可以在 <a href="https://github.com/ikatyang/emoji-cheat-sheet/blob/master/README.md">这里</a>查看评论区支持的所有Emojj名称。</p>
+
+<p><br></p>
+
+<h2 id="1-9-语法结合">1.9、语法结合</h2>
+
+<p>你可以结合使用不同的markdown语法，比如这里我们使用文字加粗、文字倾斜、超链接、以及列表语法，可以手动生成一个目录。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">- [**返回顶部**](#)
+  - [*返回文字、段落语法*](#1-2-文字-段落语法)
+  - [*返回列表语法*](#1-6-列表语法)
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li><a href="#"><strong>返回顶部</strong></a>
+
+<ul>
+<li><a href="#1-2-文字-段落语法"><em>返回文字、段落语法</em></a></li>
+<li><a href="#1-6-列表语法"><em>返回列表语法</em></a></li>
+</ul></li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+
+<h1 id="2-使用html标签">2、使用html标签</h1>
+
+<p>markdown本质上只是将你输入的内容转化为<strong>html</strong>语言，如果你觉得现有的markdown语法不够丰富，则完全可以直接通过html标签来实现更多功能。</p>
+
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid rgba(0,0,0,.1); border-radius:5px; overflow: hidden;">
+  <div style="background-color: rgba(0,0,0,.1); padding: 1rem; overflow: auto;">
+    <pre style="margin: 0;">2H&lt;sub&gt;2&lt;/sub&gt; &#43; O&lt;sub&gt;2&lt;/sub&gt; = 2H&lt;sub&gt;2&lt;/sub&gt;O
+</pre>
+  </div>
+  <div style="padding: 1rem;">
+    2H<sub>2</sub> + O<sub>2</sub> = 2H<sub>2</sub>O
+  </div>
+</div>
+
+<p><br></p>
+
+<h1 id="3-结语">3、结语</h1>
+
+<p>至此评论区的markdown语法基本上已经介绍完了，如果有遗漏或者介绍不当的地方，欢迎直接反馈给我。评论编辑器支持实时查看输入的markdown语法的展示结果，快来试试吧。</p>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/web%E8%AF%AD%E8%A8%80/">web语言</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '在评论区使用markdown语法',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数字进行数学运算">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数字进行数学运算">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F03%2F%25E5%259C%25A8%25E8%25AF%2584%25E8%25AE%25BA%25E5%258C%25BA%25E4%25BD%25BF%25E7%2594%25A8markdown%25E8%25AF%25AD%25E6%25B3%2595%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F03%2F%25E5%259C%25A8%25E8%25AF%2584%25E8%25AE%25BA%25E5%258C%25BA%25E4%25BD%25BF%25E7%2594%25A8markdown%25E8%25AF%25AD%25E6%25B3%2595%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, IO管理, 文件资源管理, wly的博客, supernum">
+<meta name="description" content="文件资源管理是一门计算机语言，通过对文件或文件夹的查看、新建、修改、删除，对资源的连接，读写，关闭等操作，管理自身输入输出的基础。这篇文章我们将介绍R语言中的文件资源管理。">
+
+
+  
+    <meta property="article:published_time" content="2019-08-27T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-09-30T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="IO管理">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言IO管理">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言中的文件资源管理">
+<meta property="og:description" content="文件资源管理是一门计算机语言，通过对文件或文件夹的查看、新建、修改、删除，对资源的连接，读写，关闭等操作，管理自身输入输出的基础。这篇文章我们将介绍R语言中的文件资源管理。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/uQEYc9.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言中的文件资源管理</title>
+
+    <link rel="canonical" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言中的文件资源管理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-08-27T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-08-27
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/io%e7%ae%a1%e7%90%86">IO管理</a>
+    
+  
+
+    
+      <span>&emsp;更新于</span>
+      <time itemprop="lastmod" datetime="2019-09-30T00:00:00Z">
+        2019-09-30
+      </time>
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>文件资源管理是一门计算机语言，通过对文件或文件夹的<strong>查看</strong>、<strong>新建</strong>、<strong>修改</strong>、<strong>删除</strong>，对资源的<strong>连接</strong>，<strong>读写</strong>，<strong>关闭</strong>等操作，管理自身输入输出的基础。这篇文章我们将介绍R语言中的<strong>文件资源管理</strong>。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-文件-文件夹管理">1、文件/文件夹管理</a>
+<ul>
+<li><a href="#1-1-文件-文件夹路径">1.1、文件/文件夹路径</a></li>
+<li><a href="#1-2-文件-文件夹管理相关函数">1.2、文件/文件夹管理相关函数</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<p><br></p>
+
+<h2 id="1-文件-文件夹管理">1、文件/文件夹管理</h2>
+
+<h3 id="1-1-文件-文件夹路径">1.1、文件/文件夹路径</h3>
+
+<p>在计算机中定位一个<strong>文件/文件夹</strong>，我们既可以使用<strong>绝对路径</strong>，也可以使用<strong>相对路径</strong>。</p>
+
+<p>绝对路径需要从文件系统<strong>根目录</strong>写起，写明需要从根目录开始依次向下查找的文件/文件夹的名称，并使用<strong>路径分割符</strong>将这些名称分割开来。对于linux系统而言，根目录与路径分割符都是英文斜杠——<span class="highlight-text red">/</span>，所以路径应该类似<code>/home/wly/Downloads/tmp.R</code>；而对于window系统而言，根目录是计算机中的某个磁盘，比如<span class="highlight-text red">C:\</span>，路径分割符是英文反斜杠——<span class="highlight-text red">\</span>，路径应该类似<code>C:\\Users\\wly\\Downloads\\tmp.R</code>（注意R语言的字符串中必须用两个反斜杠来表示一个反斜杠字符），不过在最新版的R语言中，window操作系统下也支持用英文斜杠作为路径分割符。</p>
+
+<p>相对路径指的是相对某个路径开始查找文件/文件夹。大部分语言都支持在文件中，以文件所在的文件夹为相对路径，但是R语言中的相对路径只能是当前<strong>工作路径</strong>。我们可以分别使用<span class="highlight-text primary">getwd、setwd</span>函数，来获取、设置R语言的工作路径。</p>
+
+<p>此外，我们还可以使用以下方式快速定位文件路径：<span class="highlight-text blue">~/</span>表示当前<strong>用户主目录</strong>（仅用于linux），<span class="highlight-text blue">./</span>表示当前工作路径（可省略），<span class="highlight-text blue">../</span>表示某个路径的<strong>上层目录</strong>。</p>
+
+<p>R语言中为了规避操作系统之间的差异，在程序启动时会自动装载一些系统变量，比如
+<span class="highlight-text blue">.Platform</span>中记录了当前操作系统中的路径分割符等信息（此外还有<span class="highlight-text blue">.Machine</span>），所以我们可以使用<span class="highlight-text primary">file.path</span>函数拼接路径，此时路径分割符会根据特定的操作系统自动完善。</p>
+
+<p>如果我们需要寻找R语言系统文件的路径，<span class="highlight-text primary">R.home</span>函数可以帮助我们找到R语言的安装目录，<span class="highlight-text blue">.Library</span>是程序包的默认安装位置，<span class="highlight-text blue">.Library.site</span>是本地程序包的寻找位置。当然我们也可以使用<span class="highlight-text primary">system.file(..., package)</span>的形式，快速定位某个程序包中的文件。</p>
+
+<p><br></p>
+
+<h3 id="1-2-文件-文件夹管理相关函数">1.2、文件/文件夹管理相关函数</h3>
+
+<p>在图形化界面中，我们一定会经常对文件/文件夹进行查看、新建、修改、删除等操作，相应的操作也可以在命令行中完成。R语言中融合了不同操作系统命令行下的文件/文件夹管理方式，比如文件/文件夹列举，在<strong>bash</strong>命令行中对应<strong>ls</strong>命令，在R语言中就有相应的<strong>list.files</strong>函数（R语言中的<strong>ls</strong>函数已被定义为列举执行环境中的变量）；在<strong>cmd</strong>命令行中对应<strong>dir</strong>命令，在R语言中就有相应的<strong>dir</strong>函数。注意R语言中名称以英文句点——<span class="highlight-text red">.{< /hl-text >}}开头的文件/文件夹会被认为是隐藏的，例举时默认不显示。我们需要设定列举函数中的参数`all.files = TRUE`来显示这些隐藏内容。
+
+R语言中的文件/文件夹管理函数往往功能直观，使用起来非常简单。虽然部分功能还不是特别完善，比如打包/压缩管理中不能使用密码，但是已经足够应对日常的文件/文件夹管理了。
+
+|                 | 函数            | 解释说明                                                      
+|:----------------|:----------------|:-----------------------------------------------------------------------
+| 文件/文件夹列举 | list.files      | 列举某个目录下的文件/文件夹，可以递归列举，可以使用正则表达式列举
+|                 | dir             | 同**list.files**
+|                 | list.dirs       | **list.files**的简洁版
+|                 | Sys.glob        | 根据操作系统的模糊查找法，列举所有符合特定模式的文件/文件夹
+| 文件/文件夹属性 | file.info       | 文件/文件夹属性
+|                 | file.mode       | 文件/文件夹权限，同**file.info**中的**mode**
+|                 | file.mtime      | 文件/文件夹修改时间，同**file.info**中的**mtime**
+|                 | file.size       | 文件/文件夹占用空间（字节），同**file.info**中的**size**
+|                 | file.access     | 判断文件/文件夹是否存在、是否可读、是否可写、是否可执行
+|                 | Sys.setFileTime | 调整文件/文件夹的修改时间
+| 文件/文件夹管理 | file.create     | 创建文件
+|                 | file.exists     | 判断文件/文件夹是否存在
+|                 | file.remove     | 删除文件/文件夹
+|                 | file.rename     | 重命名文件/文件夹
+|                 | file.append     | 将**第2个文件**中的内容追加到**第1个文件**中
+|                 | file.copy       | 复制文件/文件夹，可以复制并替换，可以复制整个目录
+| 超链接管理      | file.symlink    | 创建指向文件/文件夹的**软链接**
+|                 | file.link       | 创建指向文件的**硬链接**，必须在同一个文件系统内创建
+|                 | Sys.readlink    | 读取链接指向的位置（不支持windows操作系统）
+| 文件管理        | file.show       | 调用系统软件查看文件
+|                 | edit            | 调用系统软件编辑文件
+|                 | file.choose     | 调用系统软件选择文件
+| 文件夹管理      | dir.create      | 创建文件夹，可以递归创建尚不存在的所有父文件夹
+|                 | dir.exists      | 判断文件夹是否存在
+|                 | unlink          | 删除文件/文件夹，可以递归删除，可以强制删除
+| 权限管理        | Sys.chmod       | 修改文件/文件夹权限
+|                 | Sys.umask       | 设置文件/文件夹创建时的默认权限
+| 路径管理        | basename        | 获取文件名，包含**文件扩展名**
+|                 | dirname         | 获取路径名
+|                 | path.expand     | 将路径中的**~/**替换为用户主目录
+|                 | normalizePath   | 将相对路径转化为绝对路径
+|                 | file.path       | 将多个字符串拼接成路径
+| 打包/压缩管理   | zip             | 将一个或多个文件/文件夹打包为zip压缩包
+|                 | unzip           | 解压缩zip压缩包
+|                 | tar             | 将一个或多个文件/文件夹打包为tar压缩包（.tar.gz、.tar.bz、.tar.xz等）
+|                 | untar           | 解压缩tar压缩包
+
+<br>
+
+## 2、资源管理基础
+
+### 2.1、资源管理权限
+
+在建立资源管理链接之前，我们必须了解资源的管理权限，否则有可能无法建立链接或者出现意料之外的结果。一般而言，资源链接可以分为**字符流**链接和**字节流**链接，前者以单个字符为最小单位从资源中读写数据，后者则以单个字节为最小单位。其次，我们可以对资源进行**读取**、**写入**、**追加**等操作，不同的操作模式拥有各自潜在的规则，具体如下：
+
+| 字符流          | 字节流          | 相应权限                                                      
+|:----------------|:----------------|:-----------------------------------------------------------------------
+| r 或 rt         | rb              | 读取，文件必须存在
+| w 或 wt         | wb              | 写入，文件不存在则新建，文件已存在则删除文件中的内容
+| a 或 at         | ab              | 追加，文件不存在则新建，文件已存在则从文档末尾开始写入
+| r+              | r+b             | 读取与写入，文件必须存在
+| w+              | w+b             | 读取与写入，文件不存在则新建，文件已存在则删除文件中的内容
+| a+              | a+b             | 读取与追加，文件不存在则新建，文件已存在则写入时从文档末尾开始
+
+<br>
+
+### 2.2、建立资源链接
+
+R语言中支持与多种类型的资源建立链接（见下表），如果使用第三方程序包，还可以建立更多类型的链接。不同类型的资源，相应的管理方式略有不同。比如函数url建立的网络资源（以**http**、**https**、**ftp**协议传输的文件）只能接受读取，以函数unz建立的资源（对zip压缩包中某个文件的链接）只能接受字节流形式的读取，以函数socketConnection建立的链接必须服务端与客户端同时在线才能读写。以下是这些函数中可能用到的关键参数：
+
+- **description**参数，即资源的描述信息，比如文件路径、网络地址等
+- **open**参数，即上文提到的资源管理权限
+- **encoding**参数，用于指明输入输出时需要用到的编码，只在字符流形式的资源链接中有效，默认取值**native.enc**表示**本地编码**，所以一般情况下不需要设置，除非读写与操作系统默认编码不同的资源（比如在window下读写linux中的文件）
+- **blocking**参数，即是否使用阻塞模式进行读写。阻塞状态下读写会使用到缓冲区，而非阻塞状态则会直接对资源进行读写
+- **method**参数，建立文件或网络资源链接的方法，默认取值**default**表示：使用R语言底层函数（**internal**）建立文件链接，分别表示使用windows和类Unix下相应的库函数（**wininet**和**libcurl**）建立网络资源链接
+- **compression**参数，即**压缩率**，取值范围在0-9，值越大表示压缩效果越好，但压缩所需时间越久
+- **raw**参数，仅用于**file**函数，表示是否以字节流的方式建立链接，当打开压缩文件时可以跳过相应的检查
+- **headers**参数，仅用于**url**函数，即建立网络链接时需要发送的http头文件，参考`options("HTTPUserAgent")`
+- **filename**参数，仅用于**unz**函数，表示需要与压缩包中的那个文件建立链接
+- **host**参数，仅用于**socketConnection**函数，即套接字**网络地址**，如果作为服务器端来用，则只能建立在本地（**localhost**）
+- **host**参数，仅用于**socketConnection**函数，即套接字监听**端口**
+- **server**参数，仅用于**socketConnection**函数，即是否作为服务器端开放
+- **timeout**参数，仅用于**socketConnection**函数，即套接字的超时等待时间
+
+| 函数              | 解释说明                                                      
+|:------------------|:-----------------------------------------------------------------------
+| file              | 文件资源链接
+| url               | 网路资源链接
+| gzfile            | gz压缩文件资源链接
+| bzfile            | bz压缩文件资源链接
+| xzfile            | xz压缩文件资源链接
+| unz               | 压缩文件中的某个文件资源链接
+| pipe              | 系统标准IO流
+| fifo              | 先入先出IO流
+| socketConnection  | 网络套接字资源链接
+| textConnection       | 将R语言对象转化为**字符串资源链接**（读写）
+| textConnectionValue  | 读取写入型**字符串资源链接**中的值
+
+这里我们需要重点介绍**file**函数，**file**函数不仅可以与本地存放的普通文件建立链接，还可以与远程文件建立链接，此外：
+
+- 当其参数`description = ''`时，表示与系统临时文件建立链接，当然我们也可以直接使用<span class="highlight-text primary">tempfile、tempdir</span>函数，分别建立**临时文件**、**临时文件夹**；
+- 当其参数`description = 'clipboard'`时，表示与系统的**粘贴版**建立链接，此时只允许从粘贴版读取，如需写入则可以使用第三方插件（例**xclip**）并配合系统标准IO流（`pipe("xclip -i", "w")`）的形式，macOS下需要分别使用`pipe("pbpaste")`和`pipe("pbcopy", "w")`的形式读写粘贴版；
+- 当其参数`description = 'stdin'`时，表示与系统标准输入流建立链接，当然我们也可以直接使用<span class="highlight-text primary">stdin、stdout、stderr、nullfile</span>函数，分别与系统的**标准输入流**、**标准输出流**、**错误输出流**、**空文件**建立链接，我们还可以使用<span class="highlight-text primary">sink</span>函数，将R语言的标准输出流重点向到文件。
+
+<br>
+
+### 2.3、管理资源链接
+
+R语言中的资源链接对象，其取值是一个数字，表示当前链接建立时的序号（比如0、1、2往往分别表示标准输入流、标准输出流、错误输出流），而真正进行读写操作的**外部引用指针**实际上存放在其数据属性（比如**conn_id**）中。上文介绍到的的资源链接对象都是S3类型的对象，它们拥有各自的类，同时共同继承了**connection**类，但以下管理资源链接的函数大多直接调用了底层函数，只有少数函数是S3类型的分发函数。
+
+比如**seek**函数，在S3方法**seek.connection**中，**rw**参数可以用于选择查询或修改输入流还是输出流，**where**参数可以用于修改读写指针的位置，**origin**参数可以用于设置从文档起始处（**start**）或当前位置（**current**）开始查询或修改。
+
+| 函数                  | 解释说明                                                      
+|:----------------------|:-----------------------------------------------------------------------
+| open                  | 与某个资源建立链接
+| close                 | 关闭资源链接
+| flush                 | 将缓存的输出流写入资源
+| isOpen                | 判断资源链接是否开启，其**rw**参数还可以允许我们具体判断输入或输出链接是否开启
+| isIncomplete          | 判断资源链接中是否存在未完成的IO流
+| seek                  | 查询或修改文件当前**读写指针**所在位置（字节）
+| isSeekable            | 判断当前链接是否支持查找读写指针
+| truncate              | 从当前读写指针处截断文件，只对文件链接有效，非全平台支持
+| showConnections       | 列举当前建立的链接，其**all**参数表示是否列举所有链接（包括已关闭的及系统的链接）
+| getConnection         | 获取某个链接，其**what**参数需要与**showConnections**函数返回的链接所在行号对应
+| closeAllConnections   | 关闭所有链接
+| isatty                | 判断某个链接是否为系统链接（与终端交互的链接）
+| gzcon                 | 压缩资源链接传输时的数据
+
+<br>
+
+### 2.4、从资源链接读写数据
+
+R语言中有很多从资源链接中读写数据的函数（**read**家族与**write**家族函数），我们在之后的章节会逐一介绍。这里我们先简略的介绍几个R语言中最基本的资源读写函数：
+
+| 读取          | 写入          | 解释说明                                                      
+|:--------------|:--------------|:-----------------------------------------------------------------------
+| readBin       | writeBin      | 读写字节流，使用**what**参数指定读取的数据转化为特定的R语言对象
+| readChar      | writeChar     | 从字节流中读写字符
+| readLines     | writeLines    | 从字符流中按行读写数据
+
+接下来让我们尝试使用上述函数，在R语言中实现套接字通信（**socket编程**）。这里必须启用两个R线程分别扮演服务端与客户端，为了便于理解，我们修改了R语言中的命令提示符（`options("prompt")`），**> s: **和**> c: **分别表示需要在服务端以及需要在客户端进行的操作。
+
+```
+# 建立套接字链接
+> s: server <- socketConnection(port = 1234, server = TRUE, open = "a+b")
+> c: client <- socketConnection(port = 1234, open = "a+b")
+
+# 服务端向客户端发送消息
+> s: writeChar("Hello client!", server)
+> c: readChar(client, nchar = 30)
+[1] "Hello client!"
+
+# 客户端向服务端发送消息
+> c: writeBin("Hello server!", client)
+> s: readBin(server, what = "character")
+[1] "Hello server!"
+
+# 关闭套接字链接
+> s: close(server)
+> c: close(client)
+```
+
+当然，我们也可以使用更简单的方式实现套接字编程——参考**utils**程序包中的<span class="highlight-text primary">make.socket、read.socket、write.socket、close.socket</span>函数。但需要注意的是，这些函数用到的的**socket**资源链接与上文介绍的不同，两者不能混合使用。
+
+<br>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li>R语言中的打包/压缩管理函数大多是调用命令行完成的，如何在R语言函数中使用命令行参数，实现加密压缩？</li>
+<li>如何使用<strong>pipe</strong>函数，运行系统（终端/系统命令行）命令？</li>
+<li>如何在R语言中使用socket编程，实现远程命令行？</li>
+</ul>
+
+  </div>
+</div>
+
+<br>
+</span></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80io%E7%AE%A1%E7%90%86/">R语言IO管理</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言中的文件资源管理',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="R语言编程篇——并发运算">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/" data-tooltip="SQL Server 打造定时语句系统">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="R语言编程篇——并发运算">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/" data-tooltip="SQL Server 打造定时语句系统">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2596%2587%25E4%25BB%25B6%25E8%25B5%2584%25E6%25BA%2590%25E7%25AE%25A1%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2596%2587%25E4%25BB%25B6%25E8%25B5%2584%25E6%25BA%2590%25E7%25AE%25A1%25E7%2590%2586%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

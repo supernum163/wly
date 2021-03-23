@@ -1,0 +1,1611 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="HTML, wly的博客, supernum">
+<meta name="description" content="HTML（Hypertext Marked Language，即超文本标记语言），作为一门被广泛使用的web语言，是以标签为基础构成的。这篇文章我们将逐一介绍 HTML 标签 的作用及使用方法。">
+
+
+  
+    <meta property="article:published_time" content="2020-01-01T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-01-01T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="web语言">
+    
+  
+  
+    
+      <meta property="article:tag" content="web语言">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTML标签介绍">
+<meta property="og:description" content="HTML（Hypertext Marked Language，即超文本标记语言），作为一门被广泛使用的web语言，是以标签为基础构成的。这篇文章我们将逐一介绍 HTML 标签 的作用及使用方法。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2020/01/01/l82QQf.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>HTML标签介绍</title>
+
+    <link rel="canonical" href="../../../2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      HTML标签介绍
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2020-01-01T00:00:00Z">
+        
+  
+  
+  
+  
+    2020-01-01
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/web%e8%af%ad%e8%a8%80">web语言</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><strong>HTML</strong>（Hypertext Marked Language，即超文本标记语言），作为一门被广泛使用的web语言，是以标签为基础构成的。这篇文章我们将逐一介绍 <strong>HTML 标签</strong> 的作用及使用方法。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-整体框架">1、整体框架</a></li>
+<li><a href="#2-插入css-js">2、插入CSS/JS</a></li>
+<li><a href="#3-章节">3、章节</a></li>
+<li><a href="#4-文本">4、文本</a></li>
+<li><a href="#5-列表">5、列表</a></li>
+<li><a href="#6-表格">6、表格</a></li>
+<li><a href="#7-表单">7、表单</a></li>
+<li><a href="#8-其它结构">8、其它结构</a></li>
+<li><a href="#9-嵌入内容">9、嵌入内容</a></li>
+<li><a href="#10-特殊字符">10、特殊字符</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p><br></p>
+
+<h2 id="1-整体框架">1、整体框架</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;!DOCTYPE html&gt;</code></td>
+<td align="left">定义文档类型</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;!-- 注释 --&gt;</code></td>
+<td align="left">添加注释</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;html&gt;</code></td>
+<td align="left">文档的根节点</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;head&gt;</code></td>
+<td align="left">文档元数据的集合</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;title&gt;</code></td>
+<td align="left">文档的标题，将显示在浏览器的标题栏或标签页上</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;meta&gt;</code></td>
+<td align="left">定义其他 HTML 元素无法描述的元数据</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;base&gt;</code></td>
+<td align="left">为页面内的所有以相对路径表示的链接规定前缀</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;body&gt;</code></td>
+<td align="left">文档的内容区域</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;div&gt;</code></td>
+<td align="left">网页中通用的容器，常用于网页布局</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+    &lt;head&gt;
+        &lt;meta charset=&quot;utf-8&quot;&gt;
+        &lt;title&gt; 网页标题 &lt;/title&gt;
+        &lt;link rel=&quot;icon&quot; href=&quot;favicon.ico&quot;&gt;
+        &lt;meta name='keywords' content='关键词1,关键词2'&gt;
+        &lt;meta name='description' content='网页摘要'&gt;
+        &lt;base href=&quot;https://example.com&quot;&gt;
+    &lt;/head&gt;
+    &lt;body&gt;
+      &lt;!-- 网页内容 --&gt;
+    &lt;/body&gt;
+&lt;/html&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="2-插入css-js">2、插入CSS/JS</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;style&gt;</code></td>
+<td align="left">插入<strong>CSS</strong>代码块</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;link&gt;</code></td>
+<td align="left">链接<strong>CSS</strong>脚本等文件</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;script&gt;</code></td>
+<td align="left">插入<strong>JS</strong>代码块，或者链接<strong>JS</strong>脚本文件</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;noscript&gt;</code></td>
+<td align="left">定义当浏览器不支持<strong>JS</strong>脚本时显示的替代文字</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;template&gt;</code></td>
+<td align="left">通过<strong>JS</strong>在运行时实例化内容的容器</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;!-- 在HTML标签中设置CSS样式、JS事件 --&gt;
+&lt;div style = &quot;margin: 0px;&quot;&gt;&lt;/div&gt;
+&lt;button onclick = &quot;alert('Hello')&quot;&gt;点击这里&lt;/button&gt;
+
+&lt;!-- 使用style、script标签插入CSS、JS代码块 --&gt;
+&lt;style type=&quot;text/css&quot;&gt;
+  body { color:red; }
+&lt;/style&gt; 
+&lt;script type=&quot;text/css&quot;&gt;
+  function f() { alert('hello') }
+&lt;/script&gt; 
+
+&lt;!-- 使用link、script标签链接CSS、JS脚本文件 --&gt;
+&lt;link src=&quot;stylesheet.css&quot; type=&quot;text/css&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;script src=&quot;javascript.js&quot; type=&quot;text/javascript&quot;&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="3-章节">3、章节</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;header&gt;</code></td>
+<td align="left">文档或章节的头部，往往包含页面标题、目录等</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;footer&gt;</code></td>
+<td align="left">文档或章节的尾部，往往包含版权信息、地址信息、脚注链接等</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;main&gt;</code></td>
+<td align="left">文档中主要或重要的内容</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;article&gt;</code></td>
+<td align="left">文章区域文档中可以仅包含一篇文章，也可以包含多篇文章（如论坛帖子）</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;section&gt;</code></td>
+<td align="left">章节区域</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;nav&gt;</code></td>
+<td align="left">导航栏</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;aside&gt;</code></td>
+<td align="left">侧边栏</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;address&gt;</code></td>
+<td align="left">地址栏</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;!-- 网页文章 --&gt;
+&lt;body&gt;
+  &lt;aside&gt; &lt;/aside&gt;
+  &lt;article&gt;
+    &lt;header&gt;
+      &lt;h2&gt; 文章标题 &lt;/h2&gt;
+      &lt;nav&gt; &lt;/nav&gt;
+    &lt;/header&gt;
+    &lt;main&gt;
+      &lt;section&gt;
+        &lt;h2&gt; 章节标题 &lt;/h2&gt;
+        &lt;h2&gt; 章节内容 &lt;/h2&gt;
+      &lt;/section&gt;
+    &lt;/main&gt;
+    &lt;footer&gt;
+      &lt;address&gt; &lt;/address&gt;
+    &lt;/footer&gt;
+  &lt;/article&gt;
+&lt;/body&gt;
+
+&lt;!-- 文章列表 --&gt;
+&lt;body&gt;
+  &lt;main&gt;
+    &lt;article&gt;
+      &lt;h2&gt; 文章一 标题 &lt;/h2&gt;
+      &lt;h2&gt; 文章一 摘要 &lt;/h2&gt;
+    &lt;/article&gt;
+    &lt;article&gt;
+      &lt;h2&gt; 文章二 标题 &lt;/h2&gt;
+      &lt;h2&gt; 文章二 摘要 &lt;/h2&gt;
+    &lt;/article&gt;
+  &lt;/main&gt;
+&lt;/body&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="4-文本">4、文本</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;h1&gt; &lt;h2&gt; &lt;h3&gt; &lt;h4&gt; &lt;h5&gt; &lt;h6&gt;</code></td>
+<td align="left">1-6级标题</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;hgroup&gt;</code></td>
+<td align="left">标题组（结合多个标题）</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;p&gt;</code></td>
+<td align="left">段落，段首换行</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;span&gt;</code></td>
+<td align="left">一段没有特殊含义的文本，不会段首换行</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;blockquote&gt;</code></td>
+<td align="left">段落引用</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;pre&gt;</code></td>
+<td align="left">一段包含格式的文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;hr&gt;</code></td>
+<td align="left">分割线</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;br&gt;</code></td>
+<td align="left">表示换行</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;wbr&gt;</code></td>
+<td align="left">表示建议换行</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;a&gt;</code></td>
+<td align="left"><a href="../../../">超链接</a></td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;i&gt;</code></td>
+<td align="left"><i>倾斜</i> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;b&gt;</code></td>
+<td align="left"><b>加粗</b> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;em&gt;</code></td>
+<td align="left"><em>强调</em> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;strong&gt;</code></td>
+<td align="left"><strong>特别重要</strong> 的文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;q&gt;</code></td>
+<td align="left"><q>引用</q> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;mark&gt;</code></td>
+<td align="left"><mark>高亮</mark> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;u&gt;</code></td>
+<td align="left"><u>下划线</u> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;ins&gt;</code></td>
+<td align="left"><ins>插入线</ins> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;del&gt;</code></td>
+<td align="left"><del>删除线</del> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;s&gt;</code></td>
+<td align="left">表示 <s>不准确或不相关</s> 的文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;sup&gt;</code></td>
+<td align="left"><sup>上标</sup> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;sub&gt;</code></td>
+<td align="left"><sub>下标</sub> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;small&gt;</code></td>
+<td align="left"><small>小号</small> 文本，用于注释、版权、免责声明等</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;abbr&gt;</code></td>
+<td align="left">表示 <abbr title="全写">简写</abbr> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;dfn&gt;</code></td>
+<td align="left">用于 <dfn>下定义</dfn> 的文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;time&gt;</code></td>
+<td align="left"><time datetime="2001-01-01 01:01:01">时间</time> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;cite&gt;</code></td>
+<td align="left"><cite>参考文献</cite> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;var&gt;</code></td>
+<td align="left"><var>代码变量</var></td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;code&gt;</code></td>
+<td align="left"><code>代码</code> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;kbd&gt;</code></td>
+<td align="left">表示 <kbd>键盘输入</kbd> 的文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;samp&gt;</code></td>
+<td align="left">表示程序或电脑的 <samp>输出</samp> 文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;data&gt;</code></td>
+<td align="left">表示 取值 - <data value="取值">标签</data> 的文本</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;bdo&gt;</code></td>
+<td align="left">设置 <bdo dir="rtl">文本书写方向</bdo></td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;bdi&gt;</code></td>
+<td align="left">摆脱 <bdo dir="rtl"> <bdi>父元素</bdi> 文本书写方向 </bdo></td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;ruby&gt;</code></td>
+<td align="left">表示被ruby注释标记的文本，如 <ruby> 汉 字 <rp>(</rp> <rt>han zi</rt> <rp>)</rp></ruby></td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;rt&gt;</code></td>
+<td align="left">表示ruby注释</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;rp&gt;</code></td>
+<td align="left">定义当浏览器不支持ruby注释时显示的替代注释</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="5-列表">5、列表</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;ol&gt;</code></td>
+<td align="left">有序列表</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;ul&gt;</code></td>
+<td align="left">无序列表</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;li&gt;</code></td>
+<td align="left">列表中的一个列表项</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;dl&gt;</code></td>
+<td align="left">定义列表</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;dt&gt;</code></td>
+<td align="left">定义列表中的定义项</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;dd&gt;</code></td>
+<td align="left">定义列表中的释义项</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;ol&gt;
+  &lt;li&gt; 有序列表 列表项 1 &lt;/li&gt;
+  &lt;ol&gt;
+    &lt;li&gt; 有序列表 子列表项 1 &lt;/li&gt;
+    &lt;li&gt; 有序列表 子列表项 2 &lt;/li&gt;
+  &lt;/ol&gt;
+&lt;/ol&gt;
+
+&lt;ul&gt;
+  &lt;li&gt; 无序列表 列表项 1 &lt;/li&gt;
+  &lt;ul&gt;
+    &lt;li&gt; 无序列表 子列表项 1 &lt;/li&gt;
+    &lt;li&gt; 无序列表 子列表项 2 &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/ul&gt;
+
+&lt;dl&gt;
+  &lt;dt&gt; 定义列表中的定义项 &lt;/dt&gt;
+  &lt;dd&gt; 定义列表中的释义项 &lt;/dd&gt;
+  &lt;!-- 更多定义项、 释义项--&gt;
+&lt;/dl&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="6-表格">6、表格</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;table&gt;</code></td>
+<td align="left">定义表格</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;colgroup&gt;</code></td>
+<td align="left">表格中的一组串列，或多个列</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;thead&gt;</code></td>
+<td align="left">表头</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;tbody&gt;</code></td>
+<td align="left">表格主体</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;tfoot&gt;</code></td>
+<td align="left">表尾</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;th&gt;</code></td>
+<td align="left">表格中的头部单元格</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;tr&gt;</code></td>
+<td align="left">表格中的行</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;td&gt;</code></td>
+<td align="left">表格中的单元格</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;table&gt;
+  &lt;caption&gt; 表格标题 &lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt; &lt;th&gt; 表头单元格 1 &lt;/th&gt; &lt;th&gt; 表头单元格 2 &lt;/th&gt; &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tfoot&gt;
+    &lt;tr&gt; &lt;td&gt; 表尾单元格 1 &lt;/td&gt; &lt;td&gt; 表尾单元格 2 &lt;/td&gt; &lt;/tr&gt;
+  &lt;/tfoot&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt; &lt;td&gt; 单元格 1-1 &lt;/td&gt; &lt;td&gt; 单元格 1-2 &lt;/td&gt; &lt;/tr&gt;
+    &lt;tr&gt; &lt;td&gt; 单元格 2-1 &lt;/td&gt; &lt;td&gt; 单元格 2-2 &lt;/td&gt; &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="7-表单">7、表单</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;form&gt;</code></td>
+<td align="left">表示一个表单，由控件组成</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;fieldset&gt;</code></td>
+<td align="left">控件祖</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;legend&gt;</code></td>
+<td align="left">控件祖标题</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;label&gt;</code></td>
+<td align="left">控件标题</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;input&gt;</code></td>
+<td align="left">输入控件，如单选框、复选框、文本框等</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;button&gt;</code></td>
+<td align="left">按钮</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;select&gt;</code></td>
+<td align="left">下拉框</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;datalist&gt;</code></td>
+<td align="left">选项组，提供给其他控件一组预定义的选项</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;optgroup&gt;</code></td>
+<td align="left">选项分组</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;option&gt;</code></td>
+<td align="left">单个选项，用于<code>&lt;select&gt;</code>或<code>&lt;datalist&gt;</code></td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;textarea&gt;</code></td>
+<td align="left">段落文本输入控件</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;keygen&gt;</code></td>
+<td align="left">表单中的密匙生成控件，已弃用</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;output&gt;</code></td>
+<td align="left">输出计算值</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;progress&gt;</code></td>
+<td align="left">进度条</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;meter&gt;</code></td>
+<td align="left">温度计型进度条</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;!-- 输入控件示例--&gt;
+
+&lt;form action=&quot;https://example.com&quot; method=&quot;get&quot;&gt;
+  &lt;fieldset&gt;
+    &lt;legend&gt; 控件祖标题 &lt;/legend&gt;
+    
+    &lt;p&gt;
+      &lt;label for=&quot;name&quot;&gt; 输入文本 &lt;/label&gt;
+      &lt;input type=&quot;text&quot; name=&quot;name&quot; required&gt;
+    &lt;/p&gt;
+    
+    &lt;select name=&quot;select&quot;&gt;
+      &lt;optgroup label=&quot;下拉框组别 1&quot;&gt;
+        &lt;option value=&quot;value1&quot;&gt; 下拉框选项 1 &lt;/option&gt; 
+        &lt;option value=&quot;value2&quot;&gt; 下拉框选项 2 &lt;/option&gt;
+      &lt;/optgroup&gt; 
+      &lt;optgroup label=&quot;下拉框组别 2&quot;&gt;
+        &lt;option value=&quot;value3&quot; selected&gt; 下拉框选项 3 &lt;/option&gt;
+      &lt;/optgroup&gt; 
+    &lt;/select&gt;
+    
+    &lt;input list=&quot;datalist&quot; name=&quot;autoFill&quot; placeholder=&quot;自动填充项&quot;&gt;
+    &lt;datalist id=&quot;datalist&quot;&gt;
+      &lt;option value=&quot;自动填充项 1&quot;&gt;
+      &lt;option value=&quot;自动填充项 2&quot;&gt;
+    &lt;/datalist&gt;
+    
+    &lt;textarea name=&quot;textarea&quot; rows=&quot;5&quot; cols=&quot;50&quot;&gt; 段落文本输入控件 &lt;/textarea&gt;
+  &lt;/fieldset&gt;
+  &lt;button type=&quot;submit&quot;&gt; 点击提交 &lt;/button&gt;
+&lt;/form&gt;
+
+
+&lt;!-- 输出控件示例--&gt;
+
+&lt;form oninput=&quot;result.value=parseInt(a.value)+parseInt(b.value)&quot;&gt;
+  &lt;input type=&quot;range&quot; name=&quot;b&quot; value=&quot;50&quot;&gt; +
+  &lt;input type=&quot;number&quot; name=&quot;a&quot; value=&quot;10&quot;&gt; =
+  &lt;output name=&quot;result&quot;&gt;&lt;/output&gt;
+  &lt;hr&gt;
+  &lt;meter min=&quot;200&quot; max=&quot;500&quot; value=&quot;350&quot;&gt; 350 degrees &lt;/meter&gt;
+  &lt;progress value=&quot;70&quot; max=&quot;100&quot;&gt; 70 % &lt;/progress&gt;
+&lt;/form&gt;
+
+
+&lt;!-- 可用的输入控件--&gt;
+
+&lt;input type=&quot;button&quot; value=&quot;普通按钮&quot;&gt; 
+&lt;input type=&quot;submit&quot; value=&quot;点击提交&quot;&gt;
+&lt;input type=&quot;reset&quot; value=&quot;点击清空&quot;&gt;
+
+&lt;input type=&quot;radio&quot; value=&quot;单选选项&quot;&gt;
+&lt;input type=&quot;checkbox&quot; checked=&quot;复选选项 1&quot;&gt; 
+
+&lt;input type=&quot;number&quot; value=&quot;41.2&quot;&gt;
+&lt;input type=&quot;range&quot; value=&quot;41.2&quot; min=&quot;10&quot; max=&quot;50&quot;&gt; 
+
+&lt;input type=&quot;date&quot; value=&quot;2020-06-01&quot;&gt;
+&lt;input type=&quot;time&quot; value=&quot;13:30:01&quot;&gt;
+&lt;input type=&quot;month&quot; value=&quot;2020-06&quot;&gt;
+&lt;input type=&quot;week&quot; value=&quot;2020-W02&quot;&gt;
+&lt;input type=&quot;datetime-local&quot; value=&quot;2020-06-01T13:30:01&quot;&gt;
+
+&lt;input type=&quot;text&quot;&gt;
+&lt;input type=&quot;search&quot; minlength=&quot;4&quot; maxlength=&quot;8&quot; size=&quot;10&quot;&gt; 
+&lt;input type=&quot;password&quot; autocomplete=&quot;current-password&quot;&gt;
+&lt;input type=&quot;email&quot; pattern=&quot;.+@example.com&quot;&gt;
+&lt;input type=&quot;tel&quot; placeholder=&quot;123-4567-8901&quot;&gt;
+&lt;input type=&quot;url&quot; pattern=&quot;https://\w+.com&quot;&gt;
+&lt;input type=&quot;hidden&quot; value=&quot;隐藏的输入信息&quot;&gt;
+
+&lt;input type=&quot;color&quot; value=&quot;#ff0000&quot;&gt;
+&lt;input type=&quot;image&quot; width=&quot;50%&quot;&gt;
+&lt;input type=&quot;file&quot; name=&quot;file&quot; multiple&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="8-其它结构">8、其它结构</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;dialog&gt;</code></td>
+<td align="left">对话窗口</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;menu&gt;</code></td>
+<td align="left">菜单栏</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;menuitem&gt;</code></td>
+<td align="left">菜单栏中的选项</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;details&gt;</code></td>
+<td align="left">折叠段落</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;summary&gt;</code></td>
+<td align="left">折叠段落的标题</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;figure&gt;</code></td>
+<td align="left">页面中独立的流内容</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;figcaption&gt;</code></td>
+<td align="left">流内容标题</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;!-- 对话窗口 --&gt;
+&lt;dialog open&gt; 一个打开的对话窗口 &lt;/dialog&gt;
+
+&lt;!-- 菜单栏 --&gt;
+&lt;div contextmenu=&quot;popup-menu&quot;&gt;
+  点击右键展开菜单栏
+&lt;/div&gt;
+&lt;menu type=&quot;context&quot; id=&quot;popup-menu&quot;&gt;
+  &lt;menuitem type=&quot;checkbox&quot; checked&gt; 勾选选项 &lt;/menuitem&gt;
+  &lt;!-- 更多 menuitem --&gt;
+&lt;/menu&gt;
+
+&lt;!-- 折叠段落 --&gt;
+&lt;details&gt;
+    &lt;summary&gt; 折叠段落的标题 &lt;/summary&gt;
+   折叠段落
+&lt;/details&gt; 
+
+&lt;!-- figure 结构体 --&gt;
+&lt;figure&gt;
+  &lt;figcaption&gt; 流内容标题 &lt;/figcaption&gt;
+  流内容文本、图像等
+&lt;/figure&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="9-嵌入内容">9、嵌入内容</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">标签</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&lt;iframe&gt;</code></td>
+<td align="left">内联框架</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;math&gt;</code></td>
+<td align="left">数学公式</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;img&gt;</code></td>
+<td align="left">图像</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;svg&gt;</code></td>
+<td align="left">矢量图</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;canvas&gt;</code></td>
+<td align="left">canvas 绘图区域</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;map&gt;</code></td>
+<td align="left">与<code>&lt;area&gt;</code>元素共同定义图像映射区域</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;area&gt;</code></td>
+<td align="left">定义<code>&lt;map&gt;</code>中的某个区域对应的超链接</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;picture&gt;</code></td>
+<td align="left">图像，常用于响应式布局</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;video&gt;</code></td>
+<td align="left">视频</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;audio&gt;</code></td>
+<td align="left">音频</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;source&gt;</code></td>
+<td align="left">为<code>&lt;video&gt;</code>或<code>&lt;audio&gt;</code>等媒体元素指定媒体源</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;eventsource&gt;</code></td>
+<td align="left">定义由服务器发送的，<code>&lt;video&gt;</code>或<code>&lt;audio&gt;</code>等媒体元素的媒体源</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;track&gt;</code></td>
+<td align="left">为<code>&lt;video&gt;</code>或<code>&lt;audio&gt;</code>等媒体元素指定字幕</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;embed&gt;</code></td>
+<td align="left">嵌入外部资源，如应用程序、交互内容等</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;object&gt;</code></td>
+<td align="left">嵌入外部资源，如图片、HTML文档、插件等。</td>
+</tr>
+
+<tr>
+<td align="left"><code>&lt;param&gt;</code></td>
+<td align="left">表示<code>&lt;object&gt;</code>元素所指定的插件的参数</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-html">&lt;!-- 内联框架 --&gt;
+&lt;iframe title=&quot;嵌入内联框架&quot; src=&quot;https://example.com&quot; width=&quot;300&quot; height=&quot;200&quot;&gt;&lt;/iframe&gt;
+
+&lt;!-- 数学公式 --&gt;
+&lt;math&gt; 
+  &lt;msup&gt; &lt;mi&gt; A &lt;/mi&gt; &lt;mn&gt; 2 &lt;/mn&gt; &lt;/msup&gt; &lt;mo&gt; + &lt;/mo&gt;
+  &lt;msup&gt; &lt;mi&gt; B &lt;/mi&gt; &lt;mn&gt; 2 &lt;/mn&gt; &lt;/msup&gt; &lt;mo&gt; = &lt;/mo&gt;
+  &lt;msup&gt; &lt;mi&gt; C &lt;/mi&gt; &lt;mn&gt; 2 &lt;/mn&gt; &lt;/msup&gt;
+&lt;/math&gt;
+
+&lt;!-- 图像 --&gt;
+&lt;img src=&quot;https://example.com/example.jpg&quot; alt=&quot;图片无法加载时的替代文字&quot;&gt;
+
+&lt;!-- 矢量图 --&gt;
+&lt;svg width=&quot;150&quot; height=&quot;100&quot; viewBox=&quot;0 0 3 2&quot;&gt;
+  &lt;rect width=&quot;1&quot; height=&quot;2&quot; x=&quot;0&quot; fill=&quot;#008d46&quot;&gt;
+  &lt;rect width=&quot;1&quot; height=&quot;2&quot; x=&quot;1&quot; fill=&quot;#ffffff&quot;&gt;
+  &lt;rect width=&quot;1&quot; height=&quot;2&quot; x=&quot;2&quot; fill=&quot;#d2232c&quot;&gt;
+&lt;/svg&gt;
+
+&lt;!-- canvas 绘图区域 --&gt;
+&lt;canvas id=&quot;canvas&quot; width=&quot;300&quot; height=&quot;300&quot;&gt;
+  抱歉，您的浏览器不支持 canvas
+&lt;/canvas&gt;
+
+&lt;!-- 图像与映射区域 --&gt;
+&lt;img src=&quot;example.jpg&quot;  usemap=&quot;#map&quot;&gt;
+&lt;map id=&quot;map&quot;&gt;
+  &lt;area shape=&quot;circle&quot; coords=&quot;200,250,25&quot; href=&quot;https://example.com&quot;&gt;
+  &lt;area shape=&quot;default&quot;&gt;
+&lt;/map&gt;
+
+&lt;!-- 图像 --&gt;
+&lt;picture&gt;
+  &lt;source media=&quot;(min-width: 1028px)&quot; srcset=&quot;example1.jpg&quot;&gt;
+  &lt;source media=&quot;(min-width: 480px)&quot; srcset=&quot;example2.jpg&quot;&gt;
+  &lt;img src=&quot;example.jpg&quot;&gt;
+&lt;/picture&gt;
+
+&lt;!-- 视频 --&gt;
+&lt;video controls width=&quot;250&quot;&gt;
+  &lt;source src=&quot;example.webm&quot; type=&quot;video/webm&quot;&gt;
+  &lt;source src=&quot;example.mp4&quot; type=&quot;video/mp4&quot;&gt;
+  抱歉，您的浏览器不支持内嵌视频文件
+&lt;/video&gt;
+
+&lt;!-- 音频 --&gt;
+&lt;audio src=&quot;example.ogg&quot;&gt;
+  &lt;track kind=&quot;captions&quot; src=&quot;example.vtt&quot; srclang=&quot;zh&quot; label=&quot;中文字幕&quot;&gt;
+  抱歉，您的浏览器不支持内嵌音频文件
+&lt;/audio&gt; 
+
+&lt;!-- 外部资源 --&gt;
+&lt;embed type=&quot;video/quicktime&quot; src=&quot;movie.mov&quot; width=&quot;640&quot; height=&quot;480&quot;&gt;
+
+&lt;!-- 外部资源 --&gt;
+&lt;object type=&quot;application/pdf&quot; data=&quot;example.pdf&quot; width=&quot;250&quot; height=&quot;200&quot;&gt;
+  &lt;param name=&quot;name&quot; value=&quot;value&quot;&gt;
+&lt;/object&gt;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="10-特殊字符">10、特殊字符</h2>
+
+<table>
+<thead>
+<tr>
+<th align="left">字符串</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left"><code>&amp;nbsp;</code></td>
+<td align="left">空格，宽度受字体影响</td>
+</tr>
+
+<tr>
+<td align="left"><code>&amp;emsp;</code></td>
+<td align="left">全角空格，占据一个中文字符宽度（或两个英文字符宽度）</td>
+</tr>
+
+<tr>
+<td align="left"><code>&amp;ensp;</code></td>
+<td align="left">半角空格，占据全角空格的一半</td>
+</tr>
+
+<tr>
+<td align="left"><code>&amp;thinsp;</code></td>
+<td align="left">窄空格，占据全角空格的六分之一</td>
+</tr>
+
+<tr>
+<td align="left"><code>&amp;zwj;</code></td>
+<td align="left">零宽连字，强制连字，多用于某些需要复杂排版的语言（如阿拉伯语、印地语）</td>
+</tr>
+
+<tr>
+<td align="left"><code>&amp;zwnj;</code></td>
+<td align="left">零宽不连字，抑制连字现象</td>
+</tr>
+</tbody>
+</table>
+
+<p><br><hr></p>
+
+<p><strong>参考链接：</strong> <a href="https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list">https://developer.mozilla.org/zh-CN/docs/Web/Guide/HTML/HTML5/HTML5_element_list</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/web%E8%AF%AD%E8%A8%80/">web语言</a>
+
+                  </div>
+                
+              
+            
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="R语言搭建交互式网页应用——shiny">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#footer" data-tooltip="回到底部">
+        <i class="fa fa-arrow-down"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="R语言搭建交互式网页应用——shiny">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#footer" data-tooltip="回到底部">
+        <i class="fa fa-arrow-down"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2020%2F01%2Fhtml%25E6%25A0%2587%25E7%25AD%25BE%25E4%25BB%258B%25E7%25BB%258D%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2020%2F01%2Fhtml%25E6%25A0%2587%25E7%25AD%25BE%25E4%25BB%258B%25E7%25BB%258D%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

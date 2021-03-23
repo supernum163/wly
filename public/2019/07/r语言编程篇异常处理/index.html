@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 异常处理, wly的博客, supernum">
+<meta name="description" content="程序在执行的过程中，遇到错误输入，或者命令执行不当，往往需要抛出异常。因此处理异常、程序调试也是编程必不可少的一部分。这篇文集将总结R语言中的异常处理。">
+
+
+  
+    <meta property="article:published_time" content="2019-07-23T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-07-23T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="编程">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言编程">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言编程篇——异常处理">
+<meta property="og:description" content="程序在执行的过程中，遇到错误输入，或者命令执行不当，往往需要抛出异常。因此处理异常、程序调试也是编程必不可少的一部分。这篇文集将总结R语言中的异常处理。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/08/04/eytqgS.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言编程篇——异常处理</title>
+
+    <link rel="canonical" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言编程篇——异常处理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-07-23T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-07-23
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>程序在执行的过程中，遇到错误输入，或者命令执行不当，往往需要抛出<strong>异常</strong>。因此处理异常、程序调试也是编程必不可少的一部分。这篇文集将总结R语言中的<strong>异常处理</strong>。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-生成异常状态">1、生成异常状态</a></li>
+<li><a href="#2-抛出异常">2、抛出异常</a></li>
+<li><a href="#2-处理异常">2、处理异常</a></li>
+<li><a href="#4-函数调试">4、函数调试</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h2 id="1-生成异常状态">1、生成异常状态</h2>
+
+<p>R语言中的异常也可以被称为<strong>状态</strong>（<strong>condition</strong>），状态可以由两部分组成：<strong>异常信息、异常命令</strong>（<strong>message、call</strong>），可以分别表示 <em>为什么触发异常</em> 以及 <em>触发异常的命令</em> 。我们可以分别使用<span class="highlight-text primary">conditionCall、conditionMessage</span>函数，取出状态的这两个部分。</p>
+
+<p>默认情况下状态可以分为三种不同的类型：<strong>错误、警告、提示</strong>（<strong>error、warning、message</strong>），这三种类型的状态都是以S3对象的方式（class属性）继承了<strong>condition</strong>。我们可以分别使用<span class="highlight-text primary">simpleCondition、simpleError、simpleWarning、simpleMessage</span>函数，生成相应类型的状态。</p>
+
+<p>我们可以生成自定义类型的状态，最简单的方法就是修改class属性。之前我们就介绍过，class属性会影响到S3对象的继承关系以及S3函数的分发，之后的文章中我们将更加详细的总结这一点。总之，这里的class属性决定了状态的继承关系以及捕获状态的方式，所以修改时需要特别小心。保险起见我们也可以使用便捷函数，比如通过<span class="highlight-text primary">errorCondition(message, call, class)</span>的形式，生成一个自定义的错误状态。类似的，我们也可以使用<span class="highlight-text primary">warningCondition</span>函数，生成自定义的警告状态。</p>
+
+<pre><code class="language-R"># 状态可以由异常信息和异常命令组成
+&gt; simpleCondition(message = &quot;异常信息&quot;, call = quote(f(x)))
+&lt;simpleCondition in f(x): 异常信息&gt;
+
+# 自定义错误状态
+&gt; cond &lt;- errorCondition(&quot;错误状态&quot;, class = &quot;my_error&quot;); cond
+&lt;my_error: 错误状态&gt;
+&gt; class(cond)
+[1] &quot;my_error&quot;  &quot;error&quot;     &quot;condition&quot;
+</code></pre>
+
+<p><br></p>
+
+<h2 id="2-抛出异常">2、抛出异常</h2>
+
+<p>一般情况下，三种类型的状态分别对应三种不同的抛出异常方式，即R语言中的三个函数<span class="highlight-text primary">stop、warning、message</span>。其中<strong>stop</strong>函数默认抛出错误状态，表示代码执行到这里遇到了不可继续执行的命令，所以抛出异常并终止执行。<strong>warning</strong>函数默认抛出警告状态，表示代码执行到这里虽然遇到了错误，但是可以继续执行。而<strong>message</strong>函数默认抛出提示状态，表示代码执行到这里可能会产生错误或者使人迷惑的结果，需要提示使用者相应的信息。</p>
+
+<p>除了抛出异常状态，以上三个函数还可以直接将字符串转化为相应的状态抛出，此时如果在函数体内部或者函数调用命令中使用<strong>stop、warning</strong>，还可以使用<strong>call.</strong>参数决定是否将调用函数的命令作为状态的异常命令；对于<strong>message</strong>函数，我们还可以使用<strong>appendLF</strong>参数，决定是否将提示信息作为单独的一行。需要特别注意的是，<strong>warning</strong>函数默认会在命令结束时才打印警告信息，当然我们也可以通过<strong>immediate.</strong>参数修改这一设定。</p>
+
+<pre><code class="language-R"># 使用stop函数终止程序
+&gt; f &lt;- function() {
++   stop(&quot;命令执行失败！&quot;); 
++   print(1)
++ }; f()
+Error in f() : 命令执行失败！
+
+# 使用warning函数不会终止程序
+&gt; f &lt;- function() {
++   warning(&quot;命令执行出错！&quot;, immediate. = TRUE); 
++   print(1)
++ }; f()
+Warning in f() : 命令执行出错！
+[1] 1
+
+# 使用message函数
+&gt; cat(message(&quot;提示信息：&quot;, appendLF = F), &quot;def&quot;)
+提示信息： def
+</code></pre>
+
+<p>当然，除了以上三个函数，R语言中还有其它的快捷函数也可以抛出异常。比如我们在上一篇文章中介绍到的<strong>stopifnot</strong>函数，以及专用于打印程序包载入信息的<span class="highlight-text primary">packageStartupMessage</span>函数等。</p>
+
+<p><br></p>
+
+<h2 id="2-处理异常">2、处理异常</h2>
+
+<p>处理异常最简单的方法就是忽略异常，但这种方法不能从根本上解决异常，所以无法压抑<strong>stop</strong>函数抛出的异常。压抑不同函数抛出的异常需要用到<strong>supress</strong>家族中不同的函数。比如：对于<strong>warning</strong>函数抛出的异常，我们可以使用<span class="highlight-text primary">suppressWarnings</span>函数压抑，对于<strong>message</strong>函数抛出的异常，可以使用<span class="highlight-text primary">suppressMessages</span>函数压抑。</p>
+
+<p>我们也可以使用<span class="highlight-text primary">tryCatch(expr, ..., finally)</span>或者<span class="highlight-text primary">withCallingHandlers(expr, ...)</span>的形式处理异常，其中的不定长参数可以是任意多个<code>conditionClass = handler</code>形式的<strong>异常处理子句</strong>（<strong>restart</strong>），表示一旦执行<strong>expr</strong>时遇到某种<strong>condition</strong>，就执行<strong>handle</strong>。注意处理父类异常的子句也可以用于处理子类异常，而这里的异常处理顺序是按照子句的先后顺序进行的，所以处理多个异常时，我们最好按照异常的继承关系，先处理子类异常，再处理父类异常。</p>
+
+<p><strong>tryCatch、withCallingHandlers</strong>的区别主要在于：首先，<strong>tryCatch</strong>多了一个<strong>finally</strong>子句，表示无论是否遇到异常，在命令结束时都需要执行的内容，特别适用于关闭文件资源链接等情况。此外，<strong>withCallingHandlers</strong>处理了<strong>warning、message</strong>等函数抛出的异常后，还会继续执行<strong>expr</strong>，而<strong>tryCatch</strong>一旦处理了异常就不会再继续执行<strong>expr</strong>。最后，<strong>withCallingHandlers</strong>即使处理了异常，依然会打印异常信息，而<strong>tryCatch</strong>直接将异常传递给了异常处理子句，如果不在异常处理子句中显示的打印异常，异常就不会被打印。</p>
+
+<pre><code class="language-R"># 处理父类异常的异常处理子句也可以用于处理子类异常
+&gt; cond  &lt;- errorCondition(class = &quot;my_error&quot;, message = &quot;错误状态&quot;)
+&gt; tryCatch(stop(cond), 
++          error =  function(cond) print(&quot;处理父类错误状态...&quot;),
++          finally = print(&quot;错误处理完毕！&quot;))
+[1] &quot;处理父类错误状态...&quot;
+[1] &quot;错误处理完毕！&quot;
+</code></pre>
+
+<p>此外R语言中的<span class="highlight-text primary">try</span>函数也可以用于异常处理，它实际上调用了<strong>tryCatch</strong>函数，可以把错误信息重定向到文件、或者<strong>try-error</strong>类型的对象中。</p>
+
+<p><br></p>
+
+<h2 id="4-函数调试">4、函数调试</h2>
+
+<p>当调用函数遇到异常时，我们可能需要知道异常具体产生在什么位置（<strong>定位异常</strong>）。此时我们可以使用<span class="highlight-text primary">geterrmessage、warnings</span>函数，查看异常缓存区中的错误、警告信息。也可以使用<span class="highlight-text primary">traceback</span>函数，列出错误产生时所有压栈函数的调用命令。当然，我们还可以使用<span class="highlight-text primary">debug</span>家族的函数手动进行调试，这种方法结合<strong>Rstudio</strong>等R语言IDE工具会更加高效。</p>
+
+<p>对函数使用<strong>debug</strong>，相当于开启了函数的调试标识，此时我们再使用函数时就会进入<strong>函数调试模式</strong>。在函数调试模式中，我们可以输入<strong>n</strong>逐步执行命令（嵌套调用的命令在这里被认为是一步，相当于<strong>step over</strong>），输入<strong>s</strong>进入函数内部进行调试（相当于<strong>step into</strong>），输入<strong>f</strong>持续执行直到当前函数或循环执行完毕（相当于<strong>step out</strong>），输入<strong>c</strong>持续执行直到遇到断点，输入<strong>Q</strong>退出调试模式，输入<strong>where</strong>查看所有压栈函数被调用时的命令（相当于<strong>sys.calls</strong>），输入<strong>help</strong>查看以上使用帮助。或者我们也可以输入R语言代码，查看它们在函数内部执行的效果。</p>
+
+<p>在函数体内部调用<span class="highlight-text primary">browser</span>，相当于在函数中打上了断点。我们可以使用<strong>expr</strong>参数标记是否启用断点，一旦启用断点无论函数的调试标识是否打开，只要执行到<strong>browser</strong>语句处就会强制进入调试模式。</p>
+
+<p>我们还可以使用<span class="highlight-text primary">trace</span>家族的函数，追踪调试一个函数。<strong>trace</strong>函数中的<strong>at、tracer</strong>参数结合使用，表示当函数执行到第几步时，执行相应的命令；同理我们也可以使用<strong>exit</strong>参数，设定函数退出时需要执行的命令。</p>
+
+<p>最后，我们还可以使用<span class="highlight-text primary">recover</span>函数（<code>options(error = recover)</code>），我们可以选择错误产生时任一压栈函数的调用命令进行调试。</p>
+
+<p><br></p>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/08/04/eytLjg.png" title="debug" data-fancybox-group="group:异常处理">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/08/04/eytLjg.png"  alt="debug">
+  
+    </a>
+  
+  
+</div>
+
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/08/04/eytXuQ.png" title="recover" data-fancybox-group="group:异常处理">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/08/04/eytXuQ.png"  alt="recover">
+  
+    </a>
+  
+  
+</div>
+
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/08/04/eytoNt.png" title="browser" data-fancybox-group="group:异常处理">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/08/04/eytoNt.png"  alt="browser">
+  
+    </a>
+  
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-66" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/08/04/eytjBj.png" title="trace" data-fancybox-group="group:异常处理">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/08/04/eytjBj.png"  alt="trace">
+  
+    </a>
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li><strong>message</strong>函数与<strong>packageStartupMessage</strong>函数的差异何在？</li>
+<li>如何用<strong>tryCatch</strong>函数实现<strong>suppressWarnings</strong>函数？</li>
+<li>由<strong>recover</strong>函数开启的调试模式会增加新的压栈函数，这是设计败笔吗？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言编程篇——异常处理',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="R语言编程篇——面向函数的编程">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-tooltip="SQL Server 使用SQL检查用户身份证号码格式">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="R语言编程篇——面向函数的编程">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-tooltip="SQL Server 使用SQL检查用户身份证号码格式">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F07%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2582%25E5%25B8%25B8%25E5%25A4%2584%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F07%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2582%25E5%25B8%25B8%25E5%25A4%2584%25E7%2590%2586%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

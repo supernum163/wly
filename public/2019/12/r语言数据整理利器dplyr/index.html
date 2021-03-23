@@ -1,0 +1,1148 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 数据整理, dplyr, wly的博客, supernum">
+<meta name="description" content="R语言中以程序包dplyr为核心，外加rlang、magrittr、tibble、tidyr等程序包的实用函数，可以重新定义R语言中的数据整理模式。这篇文章我们将介绍这套数据整理模式下，如何对数据框进行增删改查、交并合补。">
+
+
+  
+    <meta property="article:published_time" content="2019-12-20T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-12-20T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言扩展包">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言数据整理利器——dplyr">
+<meta property="og:description" content="R语言中以程序包dplyr为核心，外加rlang、magrittr、tibble、tidyr等程序包的实用函数，可以重新定义R语言中的数据整理模式。这篇文章我们将介绍这套数据整理模式下，如何对数据框进行增删改查、交并合补。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/12/14/Q2vm5V.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言数据整理利器——dplyr</title>
+
+    <link rel="canonical" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言数据整理利器——dplyr
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-12-20T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-12-20
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>R语言中以程序包<strong>dplyr</strong>为核心，外加<strong>rlang、magrittr、tibble、tidyr</strong>等程序包的实用函数，可以重新定义R语言中的数据整理模式。这篇文章我们将介绍这套数据整理模式下，如何对数据框进行增删改查、交并合补。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-添加观测值-添加变量">1、添加观测值、添加变量</a></li>
+<li><a href="#2-修改行名-列名">2、修改行名、列名</a></li>
+<li><a href="#3-筛选变量">3、筛选变量</a></li>
+<li><a href="#4-转化变量">4、转化变量</a>
+<ul>
+<li><a href="#4-1-变量转化型函数">4.1、变量转化型函数</a></li>
+</ul></li>
+<li><a href="#5-排序观测值">5、排序观测值</a></li>
+<li><a href="#6-筛选观测值">6、筛选观测值</a></li>
+<li><a href="#7-汇总观测值">7、汇总观测值</a>
+<ul>
+<li><a href="#7-1-变量汇总型函数">7.1、变量汇总型函数</a></li>
+</ul></li>
+<li><a href="#8-分组">8、分组</a></li>
+<li><a href="#9-交并合补">9、交并合补</a></li>
+<li><a href="#10-数据框连接">10、数据框连接</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p><strong>dplyr</strong>对于处理以行列关系表示的数据框（每一行是一个观测值，每一列是一个维度）十分有效。首先<strong>dplyr</strong>与<strong>SQL</strong>语句十分类似，其中<strong>select、filter、mutate、summarise</strong>等几个关键的函数，可以帮助我们非常方便的筛选、修改、汇总数据。此外<strong>dplyr</strong>还可以使我们非常便捷的对数据集进行交并合补。最后<strong>dplyr</strong>中还引入了<strong>管道处理</strong>的概念（如<code>x %&gt;% f(y)</code>等同于<code>f(x, y)</code>），使我们可以将运算结果优雅的传递给下一个函数处理，避免了嵌套运用多个函数处理数据时，必须使用多层括号或多个临时变量的情形。</p>
+
+<p><br></p>
+
+<h2 id="1-添加观测值-添加变量">1、添加观测值、添加变量</h2>
+
+<p>我们可以使用<span class="highlight-text primary">add_row、add_column</span>函数，添加观测值、添加变量。类似于<strong>rbind、cbind</strong>函数，但这两个函数还可以在原数据框的任意位置插入行列。注意这两个函数是根据<strong>tibble</strong>类型的数据框实现的，不支持使用行名；此外<strong>add_row</strong>会对列名进行更加严格的检查，所以需要我们按照列名添加观测值。</p>
+
+<pre><code class="language-R">&gt; df &lt;- tibble(x = 1:3, y = 3:1)
+# 添加观测值
+&gt; add_row(df, x = 4, y = 0)
+# 添加变量
+&gt; add_column(df, z = -1:1, w = 0)
+</code></pre>
+
+<p><br></p>
+
+<h2 id="2-修改行名-列名">2、修改行名、列名</h2>
+
+<p>我们可以使用<span class="highlight-text primary">rename</span>函数，重命名数据框中的某个变量。此外我们还可以使用<span class="highlight-text primary">rename_all、rename_at、rename_if</span>函数，对所有变量、对某些变量、对满足特定条件的变量进行重命名。</p>
+
+<p>为了更好的在普通数据框与<strong>tibble</strong>类型的数据框之间转换，我们可以将行名转化为一个单独的变量。使用<span class="highlight-text primary">rownames_to_column、column_to_rownames</span>函数，将行名转化为变量、将变量转化为行名。此外我们还可以使用<span class="highlight-text primary">has_rownames、remove_rownames</span>函数，判断数据框是否有行名、删除行名。</p>
+
+<pre><code class="language-R"># 修改列名
+&gt; rename(mtcars, var1 = &quot;cyl&quot;, var2 =&quot;am&quot;)
+# 将行名转化为变量
+&gt; rownames_to_column(mtcars)
+</code></pre>
+
+<p><br></p>
+
+<h2 id="3-筛选变量">3、筛选变量</h2>
+
+<p>我们可以使用<span class="highlight-text primary">select</span>函数，筛选变量、反选（删除）变量、重命名变量、调整变量位置。此外我们还可以使用<span class="highlight-text primary">select_all、select_at、select_if</span>函数，对所有变量、对某些变量、对满足特定条件的变量进行筛选。注意筛选变量时我们既可以使用变量名，也可以使用字符串来筛选变量；反选变量时需要使用负号，此时相当于筛选除了该变量之外的所有变量；我们可以在同一条命令中筛选多次，此时相当于先按照筛选条件的先后顺序进行筛选，再取筛选结果的并集，即使某些变量多次被选择，也只会在结果中出现一次。此外我们还可以在筛选语句中使用以下帮助函数以提高筛选效率。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">starts_with、 ends_with</td>
+<td align="left">筛选变量名以某个字符串开头/结尾的变量（如<code>select(mtcars, ends_with(&quot;t&quot;))</code>）</td>
+</tr>
+
+<tr>
+<td align="left">contains</td>
+<td align="left">筛选变量名中包含某个字符串的变量（如<code>select(mtcars, contains(&quot;ar&quot;))</code>）</td>
+</tr>
+
+<tr>
+<td align="left">matches</td>
+<td align="left">筛选变量名中匹配某个正则表达式的变量（如<code>select(mtcars, matches(&quot;\\w{4}&quot;))</code>）</td>
+</tr>
+
+<tr>
+<td align="left">num_range</td>
+<td align="left">筛选从某个变量到某个变量之间的所有变量（如<code>select(mtcars, hp:am)</code>）</td>
+</tr>
+
+<tr>
+<td align="left">one_of</td>
+<td align="left">筛选变量名在某个字符串数组中出现的变量（如<code>select(mtcars, c(&quot;hp&quot;, &quot;am&quot;))</code>）</td>
+</tr>
+
+<tr>
+<td align="left">everything</td>
+<td align="left">筛选所有变量（如<code>select(mtcars, -hp, everything())</code>）</td>
+</tr>
+
+<tr>
+<td align="left">group_cols</td>
+<td align="left">筛选分组变量（如<code>mtcars %&gt;% group_by(hp) %&gt;% select(group_cols())</code>）</td>
+</tr>
+</tbody>
+</table>
+
+<pre><code class="language-R"># 筛选变量
+&gt; select(mtcars, hp : am)
+# 反选（删除）变量
+&gt; select(mtcars, -hp : -am)
+# 重命名变量
+&gt; select(mtcars, var1 = &quot;hp&quot;, var2 =&quot;am&quot;)
+# 调整变量位置
+&gt; select(mtcars, -hp, everything())
+</code></pre>
+
+<p><br></p>
+
+<h2 id="4-转化变量">4、转化变量</h2>
+
+<p>我们可以使用<span class="highlight-text primary">mutate</span>函数转化变量，并将新生成的变量添加到数据框中，或者直接用新生成的变量替换现有变量。但这种方式既会保留新生成的变量，也会保留原有的变量（除非我们使用<strong>NULL</strong>值来删除某个变量）。如果我们只希望保留新生成的变量，则可以使用<span class="highlight-text primary">transmute</span>函数。此外我们还可以使用<span class="highlight-text primary">mutate_all、mutate_at、mutate_if</span>函数，对所有变量、对某些变量、对满足特定条件的变量进行转化。注意以上函数转化变量时，我们使用的函数需要返回与原始变量长度一致的变量，否则返回值会被重复使用。</p>
+
+<pre><code class="language-R"># 转化变量
+&gt;  mutate(mtcars, wt = wt/mean(wt), am = NULL)
+# 对所有变量进行转化
+&gt; mutate_all(mtcars, round, digits = 2)
+# 对某些变量进行转化
+&gt; mutate_at(mtcars, vars(hp : am), round, digits = 2)
+# 对满足特定条件的变量进行转化
+&gt; mutate_if(mtcars, is.numeric, round, digits = 2)
+</code></pre>
+
+<p><br></p>
+
+<h3 id="4-1-变量转化型函数">4.1、变量转化型函数</h3>
+
+<p>我们在使用<strong>mutate</strong>函数转化变量时，往往需要用到变量转化型函数。这样的函数往往需要接收一个（或多个）变量作为参数，并返回一个与其等长的新变量。这样的函数可以是数学运算函数（如<strong>+、-、log</strong>等）、逻辑运算函数（如<strong>&amp;、|、!</strong>等）、位运算函数（如<strong>bitwAnd、bitwOr</strong>等）、字符串处理函数（如<strong>paste、sprintf</strong>等）。还可以是<strong>dplyr</strong>中提供的以下函数：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">lead</td>
+<td align="left">求数组的n阶前导，如<code>lead(co2, 12)</code></td>
+</tr>
+
+<tr>
+<td align="left">lag</td>
+<td align="left">求数组的n阶时滞</td>
+</tr>
+
+<tr>
+<td align="left">cumany</td>
+<td align="left">以累计的形式求是否有真值</td>
+</tr>
+
+<tr>
+<td align="left">cumall</td>
+<td align="left">以累计的形式求是否全为真值</td>
+</tr>
+
+<tr>
+<td align="left">cummean</td>
+<td align="left">以累计的形式求平均值，其它 <a href="../../04/使用r语言对数组进行数学运算/index.html#5-2-时间序列的累计算法">累计算法</a> 还有<strong>cummax、cummin、cummean、cumsum</strong>等</td>
+</tr>
+
+<tr>
+<td align="left">row_number</td>
+<td align="left">数组按从小到大的顺序排列之后对应的行号，如<code>mutate(mtcars, index = row_number())</code></td>
+</tr>
+
+<tr>
+<td align="left">ntile</td>
+<td align="left">将数组从小到大分为n个等级，如<code>ntile(euro, 5)</code></td>
+</tr>
+
+<tr>
+<td align="left">dense_rank</td>
+<td align="left">数组中的值，对应去重后从小到大排列的数组中的序号</td>
+</tr>
+
+<tr>
+<td align="left">min_rank</td>
+<td align="left">数组按从小到大的顺序排列之后对应的序号（大小一致的值取最小行号）</td>
+</tr>
+
+<tr>
+<td align="left">percent_rank</td>
+<td align="left">数组按从小到大的顺序排列之后对应的序号（大小一致的值取最小行号），再进行比例化</td>
+</tr>
+
+<tr>
+<td align="left">cume_dist</td>
+<td align="left">数组按从小到大的顺序排列之后对应的序号（大小一致的值取最大行号），再进行比例化</td>
+</tr>
+
+<tr>
+<td align="left">between</td>
+<td align="left">判断数值是否在某个范围内，如<code>between(euro, 1, 10)</code></td>
+</tr>
+
+<tr>
+<td align="left">near</td>
+<td align="left">判断两个数值是否在某个可接收范围内近似相等，如<code>near(sqrt(2) ^ 2, 2)</code></td>
+</tr>
+
+<tr>
+<td align="left">if_else</td>
+<td align="left">根据条件判断式，决定处理数组取值的方式，如<code>if_else(euro &gt; 10, &quot;10+&quot;, &quot;10-&quot;)</code></td>
+</tr>
+
+<tr>
+<td align="left">case_when</td>
+<td align="left">根据多个条件判断式，处理数组中取值，如<code>case_when(euro &gt; 100 ~ &quot;100+&quot;, euro &gt; 10 ~ &quot;10+&quot;, TRUE ~ &quot;0+&quot;)</code></td>
+</tr>
+
+<tr>
+<td align="left">na_if</td>
+<td align="left">以<strong>NA</strong>值替换数组中的某个值，如<code>na_if(starwars$eye_color, &quot;unknown&quot;)</code></td>
+</tr>
+
+<tr>
+<td align="left">coalesce</td>
+<td align="left">以某个值替换数组中的<strong>NA</strong>值，如<code>coalesce(c(1:10, NA), 0L)</code></td>
+</tr>
+
+<tr>
+<td align="left">recode</td>
+<td align="left">以某个值替换数组中的特定值，如<code>recode(1:10, &quot;10&quot; = 0L)</code></td>
+</tr>
+
+<tr>
+<td align="left">recode_factor</td>
+<td align="left">以某个值替换因子型数组中的特定因子，如<code>recode_factor(state.region, &quot;Northeast&quot; = &quot;East&quot;)</code></td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="5-排序观测值">5、排序观测值</h2>
+
+<p>我们可以使用<span class="highlight-text primary">arrange</span>函数，将数据框中的观测值按照某一个或多个变量的取值大小进行排序。这些变量可以是连续变量，也可以是分类变量，如果变量是由字符构成的，则会按照字符编码进行排序。使用多个变量排序时，会先按照第一个变量的取值进行排序，如果取值相同则再按照第二个变量进行排序，依次类推，如果所有变量取值都一致，则保持观测值的位置不变。排序时我们还可以使用<span class="highlight-text primary">desc</span>函数，获取某个变量的逆序。</p>
+
+<pre><code class="language-R"># 排序观测值
+&gt; arrange(mtcars, desc(carb), wt)
+</code></pre>
+
+<p><br></p>
+
+<h2 id="6-筛选观测值">6、筛选观测值</h2>
+
+<p>首先我们可以使用<span class="highlight-text primary">distinct</span>函数，根据某些变量，或全部变量筛选出不重复的观测值。即使我们只根据部分变量进行去重，也可以保留全部变量，此时保留的是第一条不重复的观测值。</p>
+
+<p>其次我们可以使用<span class="highlight-text primary">top_n、top_frac</span>函数，根据某个变量取值的大小，筛选出排在 <em>前面</em> 的一定数量或一定比例的观测值。这里结合使用<strong>row_number、desc</strong>等函数，即可像<strong>head、tail</strong>函数一样，筛选出数据框的前n条、后n条值（或者按比例）。此外我们可以使用<span class="highlight-text primary">sample_n、sample_frac</span>函数，随机筛选出一定数量或一定比例的观测值。</p>
+
+<p>再次我们还可以使用<span class="highlight-text primary">slice</span>函数，根据行号筛选、反选观测值。注意此时我们可以使用<code>n()</code>来表示最大行号。</p>
+
+<p>最后我们可以使用<span class="highlight-text primary">filter</span>函数，根据一个或多个逻辑数组（或生成逻辑数组的判断函数）筛选观测值。此外我们还可以使用<span class="highlight-text primary">mutate_all、mutate_at、mutate_if</span>函数，对所有变量、对某些变量、对满足特定条件的变量，按照特定的判断函数进行筛选。此时我们除了使用常规的比较运算函数（如<strong>&lt;、&gt;、==</strong>等）、逻辑运算函数（如<strong>&amp;、|、!</strong>等）、数据类型判断函数（如<strong>is.na</strong>等）之外，还可以使用<strong>between、near</strong>函数，来判断数值型变量的取值是否在某个范围内。</p>
+
+<pre><code class="language-R"># 根据特定变量去重，保留第一条不重复的观测值
+&gt; distinct(mtcars, cyl, gear, .keep_all = TRUE)
+# 筛选前10%的观测值
+&gt; top_frac(mtcars, 0.1, desc(row_number()))
+# 随机抽取50条观测值（可重复抽取）
+&gt; sample_n(mtcars, 50, replace = TRUE, weight = mpg)
+# 去除第5条至最后一条观测值
+&gt; slice(mtcars, -5:-n())
+# 筛选满足特定条件的观测值
+&gt; filter(mtcars, hp &gt; mean(hp), near(wt, 2.7, tol = .1))
+</code></pre>
+
+<p><br></p>
+
+<h2 id="7-汇总观测值">7、汇总观测值</h2>
+
+<p>我们可以使用<span class="highlight-text primary">tally、count</span>函数，查询数据框中有多少条观测值。二者的区别在于：<strong>tally</strong>常被用于计算数据框整体包含了多少条观测值，而<strong>count</strong>则常被用于计算某个变量取特定值时对应有多少条观测值。</p>
+
+<p>我们可以使用<span class="highlight-text primary">summarise</span>函数，对数据框进行汇总。此外我们还可以使用<span class="highlight-text primary">summarise_if、summarise_at、summarise_all</span>函数，对所有变量、对某些变量、对满足特定条件的变量进行汇总。注意汇总时需要使用的函数，往往只需要返回一个值作为汇总结果。</p>
+
+<pre><code class="language-R"># 汇总观测值数量
+&gt; summarise(mtcars, n())
+# 汇总去重后的观测值数量
+&gt; distinct(mtcars, wt) %&gt;% tally()
+# 汇总某个变量取特定值时对应有多少条观测值
+&gt; count(mtcars, cyl)
+</code></pre>
+
+<p><br></p>
+
+<h3 id="7-1-变量汇总型函数">7.1、变量汇总型函数</h3>
+
+<p>我们在使用<strong>summarise</strong>函数汇总变量时，往往需要用到变量汇总型函数。这样的函数往往需要接收一个（或多个）变量作为参数，并返回一个单一的值作为汇总结果。这样的函数可以是分位数计算函数（如<strong>median、min、max、quantile</strong>等）、特征值计算函数（如<strong>sum、mean、IQR、var、sd、mad</strong>等）、逻辑值汇总函数（如<strong>any、all</strong>等），还可以是<strong>dplyr</strong>中提供的以下函数：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">n</td>
+<td align="left">查询数组包含多个个值</td>
+</tr>
+
+<tr>
+<td align="left">n_distinct</td>
+<td align="left">查询数组包含多少个不同的值</td>
+</tr>
+
+<tr>
+<td align="left">first</td>
+<td align="left">获取数组的第一个值</td>
+</tr>
+
+<tr>
+<td align="left">last</td>
+<td align="left">获取数组的最后一个值</td>
+</tr>
+
+<tr>
+<td align="left">nth</td>
+<td align="left">获取数组的第n个值</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="8-分组">8、分组</h2>
+
+<p>我们可以使用<span class="highlight-text primary">group_by</span>函数，将数据框按某些变脸进行分组，对分组之后的数据框进行的任何操作，都相当于先在组内进行相应的操作，然后再依次合并操作结果。如果需要取消分组，则可以使用<span class="highlight-text primary">ungroup</span>函数。</p>
+
+<pre><code class="language-R"># 分组转化变量
+&gt; mtcars %&gt;% group_by(cyl) %&gt;% mutate(wt = wt/mean(wt))
+# 分组筛选最后一条数据
+&gt; mtcars %&gt;% group_by(cyl) %&gt;% top_n(1, row_number())
+# 分组汇总
+&gt; mtcars %&gt;% group_by(cyl) %&gt;% count()
+</code></pre>
+
+<p><br></p>
+
+<h2 id="9-交并合补">9、交并合补</h2>
+
+<p>我们可以使用<span class="highlight-text primary">bind_rows、bind_cols</span>函数，对两个数据框进行纵向、横向合并。类似于<strong>rbind、cbind</strong>函数，但这两个函数会对行列进行更加严格的检查，所以使用<strong>bind_rows</strong>纵向合并时，可以根据变量名合并数据；而使用<strong>bind_cols</strong>横向合并时，需要两个数据框拥有相同数量的观测值。</p>
+
+<pre><code class="language-R">&gt; df &lt;- tibble(x = 1:3, y = 3:1)
+&gt; df1 &lt;- tibble(x = 4, y = 0)
+&gt; df2 &lt;- tibble(z = -1:1, w = 0)
+# 纵向合并
+&gt; bind_rows(df, df1)
+# 横向合并
+&gt; bind_cols(df, df2)
+</code></pre>
+
+<p>类似R语言系统函数中对数组进行交并合补，我们也可以使用<span class="highlight-text primary">union、intersect、setdiff</span>函数，取得两个数据框的并集、交集、补集。并使用<span class="highlight-text primary">setequal</span>函数判断两个数据框是否相同。此外，如果取并集时需要包含重复的观测值，则可以使用<span class="highlight-text primary">union_all</span>函数。</p>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/14/QRBhp4.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/14/QRBhp4.png" >
+  
+    </a>
+  
+  
+</div>
+
+
+<pre><code class="language-R">&gt; df1 &lt;- tibble(k = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), v = 1:3)
+&gt; df2 &lt;- tibble(k = c(&quot;B&quot;, &quot;C&quot;, &quot;D&quot;), v = 2:4)
+# 取并集
+&gt; union(df1, df2)
+# 取交集
+&gt; intersect(df1, df2)
+# 取补集
+&gt; setdiff(df1, df2)
+</code></pre>
+
+<p><br></p>
+
+<h2 id="10-数据框连接">10、数据框连接</h2>
+
+<p>我们可以使用<span class="highlight-text primary">left_join、right_join、inner_join、full_join</span>函数，将两个数据框按照一个或多个变量，进行左连接、右连接、内连接、外连接。此时左右两个数据框用于连接的变量名称可以相同，也可以不同，我们可以使用<strong>by</strong>参数指定使用哪些同名变量进行连接，或者左右两个数据框的哪些变量应当一一对应；除此之外如果还包含其它同名变量，则连接后为了区分同名变量，默认会给左边数据框中的同名变量添加<strong>.x</strong>后缀，而给右边的添加<strong>.y</strong>后缀，我们可以使用<strong>suffix</strong>参数修改这一设定。</p>
+
+<p>此外我们还可以使用<span class="highlight-text primary">semi_join、anti_join</span>函数，进行半连接、反连接。这两种方式分别与取差集、补集的形式十分类似，但可以通过数据框中的部分变量来决定差集、补集。</p>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/14/QRBWhF.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/14/QRBWhF.png" >
+  
+    </a>
+  
+  
+</div>
+
+
+<pre><code class="language-R">&gt; df1 &lt;- tibble(k = c(&quot;A&quot;, &quot;B&quot;, &quot;C&quot;), v = 1:3)
+&gt; df2 &lt;- tibble(k = c(&quot;B&quot;, &quot;C&quot;, &quot;D&quot;), v = 3:1, u = c(&quot;A&quot;, &quot;B&quot;, &quot;D&quot;))
+# 左连接，左右数据框用于连接的变量名称相同
+&gt; df1 %&gt;% left_join(df2, by = &quot;k&quot;)
+# 右连接，左右数据框用于连接的变量名称不相同
+&gt; df1 %&gt;% right_join(df2, by = c(&quot;k&quot; = &quot;u&quot;))
+# 内连接，使用默认后缀处理同名变量
+&gt; inner_join(df1, df2, by = &quot;k&quot;)
+# 外连接，使用自定义后缀处理同名变量
+&gt; full_join(df1, df2, by = &quot;k&quot;, suffix = c(&quot;1&quot;,  &quot;2&quot;))
+# 半连接，类似于取差集
+&gt; df1 %&gt;% semi_join(df2, by = &quot;k&quot;)
+# 反连接，类似于取补集
+&gt; df1 %&gt;% anti_join(df2, by = &quot;k&quot;)
+</code></pre>
+
+<p><br></p>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/21/Qj88x0.jpg" data-fancybox-group="dplyr">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/21/Qj88x0.jpg" >
+  
+    </a>
+  
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/21/Qj8YrT.jpg" data-fancybox-group="dplyr">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/21/Qj8YrT.jpg" >
+  
+    </a>
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p>上方的的速记手册，可以帮助我们快速了解<strong>dplyr</strong>的整体框架与各项细节。获取更多速记手册，请前往 <a href="https://rstudio.com/resources/cheatsheets/">这里</a> 。</p>
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li><code>select(mtcars, -hp, everything())</code>与<code>select(mtcars, everything(), -hp)</code>有何不同？</li>
+<li>如何使用<strong>dplyr</strong>求7日移动平均？</li>
+<li>函数<strong>count</strong>与<strong>n</strong>有何区别？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/">R语言扩展包</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言数据整理利器——dplyr',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="R语言使用ggplot2绘图">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="R语言搭建交互式网页应用——shiny">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="R语言使用ggplot2绘图">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="R语言搭建交互式网页应用——shiny">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E6%2595%25B0%25E6%258D%25AE%25E6%2595%25B4%25E7%2590%2586%25E5%2588%25A9%25E5%2599%25A8dplyr%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E6%2595%25B0%25E6%258D%25AE%25E6%2595%25B4%25E7%2590%2586%25E5%2588%25A9%25E5%2599%25A8dplyr%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>绘图 on wly&#39;s notebook</title>
+    <link>/categories/%E7%BB%98%E5%9B%BE/</link>
+    <description>Recent content in 绘图 on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 13 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/%E7%BB%98%E5%9B%BE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R语言使用ggplot2绘图</title>
+      <link>/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;ggplot2&lt;/strong&gt;是R语言中非常热门的一个绘图扩展包，可以允许我们以图层的形式逐一添加图形。这篇文章我们将介绍如何在R语言中使用ggplot2绘制优美的统计类图形。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>使用R语言绘制图形</title>
+      <link>/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/</link>
+      <pubDate>Tue, 03 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/</guid>
+      <description>&lt;p&gt;统计类图形本质上是将数据的统计信息映射到图形的某种属性（位置、形状、大小、颜色等）。这篇文章我们不仅会介绍如何在R语言中绘制各类基础图形，还会介绍各种常见统计类图形的意义及绘制方式。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言中的绘图设备管理</title>
+      <link>/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Sat, 23 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;R语言中的绘图设备，不仅可以绘制图形，保存图像文件；还可以处理窗口事件，实现动态效果。只要运用的当，底层函数也可以实现高级功能。这篇文章我们将介绍R语言中的&lt;strong&gt;绘图设备管理&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言中的颜色管理</title>
+      <link>/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;颜色可以使我们更容易区分、对比不同信息，这对于绘制统计类图像来说无疑十分重要。这篇文章我们将介绍R语言中的&lt;strong&gt;颜色管理&lt;/strong&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言中的基础绘图方式介绍</title>
+      <link>/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/</link>
+      <pubDate>Sat, 09 Nov 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/</guid>
+      <description>&lt;p&gt;一图胜千言，作为一门专注于数据统计的计算机语言，必须拥有强大的数据可视化能力。这篇文章我们将介绍R语言本身最基础的绘图函数及绘图方式。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

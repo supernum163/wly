@@ -1,0 +1,2045 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 绘图, wly的博客, supernum">
+<meta name="description" content="统计类图形本质上是将数据的统计信息映射到图形的某种属性（位置、形状、大小、颜色等）。这篇文章我们不仅会介绍如何在R语言中绘制各类基础图形，还会介绍各种常见统计类图形的意义及绘制方式。">
+
+
+  
+    <meta property="article:published_time" content="2019-12-03T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-12-03T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="绘图">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言绘图">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用R语言绘制图形">
+<meta property="og:description" content="统计类图形本质上是将数据的统计信息映射到图形的某种属性（位置、形状、大小、颜色等）。这篇文章我们不仅会介绍如何在R语言中绘制各类基础图形，还会介绍各种常见统计类图形的意义及绘制方式。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/12/07/QNFDsO.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>使用R语言绘制图形</title>
+
+    <link rel="canonical" href="../../../2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      使用R语言绘制图形
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-12-03T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-12-03
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/%e7%bb%98%e5%9b%be">绘图</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>统计类图形本质上是将数据的统计信息映射到图形的某种属性（位置、形状、大小、颜色等）。这篇文章我们不仅会介绍如何在R语言中绘制各类基础图形，还会介绍各种常见统计类图形的意义及绘制方式。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-基础图形">1、基础图形</a>
+<ul>
+<li><a href="#1-1-绘制点形">1.1、绘制点形</a></li>
+<li><a href="#1-2-绘制线条">1.2、绘制线条</a></li>
+<li><a href="#1-3-绘制平面几何">1.3、绘制平面几何</a></li>
+<li><a href="#1-4-绘制文字">1.4、绘制文字</a></li>
+<li><a href="#1-5-绘制图像">1.5、绘制图像</a></li>
+</ul></li>
+<li><a href="#2-常见统计类图形">2、常见统计类图形</a>
+<ul>
+<li><a href="#2-1-茎叶图-直方图">2.1、茎叶图、直方图</a></li>
+<li><a href="#2-2-一维散点图-箱线图">2.2、一维散点图、箱线图</a></li>
+<li><a href="#2-3-扇形图-柱形图">2.3、扇形图、柱形图</a></li>
+<li><a href="#2-4-二维散点图-向日葵散点图-密度散点图">2.4、二维散点图、向日葵散点图、密度散点图</a></li>
+<li><a href="#2-5-折线图-阶梯线图">2.5、折线图、阶梯线图</a></li>
+<li><a href="#2-6-分组柱形图-脊柱图-克利夫兰点图">2.6、分组柱形图、脊柱图、克利夫兰点图</a></li>
+<li><a href="#2-7-雷达图-玫瑰图-各种矩阵类图形">2.7、雷达图、玫瑰图、各种矩阵类图形</a></li>
+<li><a href="#2-8-等高线图-地势图-密度图-三维曲面图">2.8、等高线图、地势图、密度图、三维曲面图</a></li>
+<li><a href="#2-9-马赛克图">2.9、马赛克图</a></li>
+<li><a href="#2-10-qq图">2.10、QQ图</a></li>
+<li><a href="#2-11-散点图矩阵-条件散点图-条件密度图-皮尔逊残差图-四象限图">2.11、散点图矩阵、条件散点图、条件密度图、皮尔逊残差图、四象限图</a></li>
+</ul></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>计算机图像都可以看作是由<strong>像素点阵</strong>组成的，但R语言中几乎所有的绘图函数，都是根据<strong>坐标系统</strong>绘制图形的。当然我们也可以使用以下命令，将坐标系统调整到与像素点阵一样大小，从而实现按像素点绘图。注意其中<strong>w、h</strong>分别表示图像横竖方向像素点的个数；此外R语言中绘制图形时，总是以图像左下角为坐标系统原点。</p>
+
+<pre><code class="language-R">w &lt;- 480; h &lt;- 480
+png(filename = &quot;Rplot.png&quot;, width = w, height = h)
+par(mar = rep(0, 4), xaxs = &quot;i&quot;, yaxs = &quot;i&quot;)
+plot.new()
+plot.window(xlim = c(1, w), ylim = c(1, h))
+</code></pre>
+
+<p><br></p>
+
+<h2 id="1-基础图形">1、基础图形</h2>
+
+<p>以下基础绘图函数，可以允许我们在R语言中绘制点、线、面、文字与图像等，基本上可以实现绝大多数情况下的绘图需求。</p>
+
+<p>之前我们已经介绍过了R语言中的系统绘图参数（参考<strong>par</strong>函数），下面要介绍到的基础绘图函数，基本上都会调用<strong>par</strong>中的参数或者向<strong>par</strong>传递参数。某些参数在以下基础绘图函数和<strong>par</strong>函数中名称相同，但是却可能拥有不同的意义。所以我们应当尽量将与图形相关的设置交由基础绘图函数处理，比如图形的位置、大小、颜色等；而将图像布局等设置交由<strong>par</strong>函数处理。</p>
+
+<p><br></p>
+
+<h3 id="1-1-绘制点形">1.1、绘制点形</h3>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure right" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtL69H.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtL69H.png" >
+  
+    </a>
+  
+  
+</div>
+
+
+<p>我们可以使用以下形式在R语言中绘制散点或单个字符，注意这里的<strong>col、bg、cex</strong>参数的意义与在<strong>par</strong>函数中的意义不同。</p>
+
+<pre><code class="language-R">points(x, y = NULL, pch = 1, col = &quot;black&quot;, bg = &quot;black&quot;, cex = 1, ...)
+</code></pre>
+
+<ul>
+<li><strong>pch</strong>参数即点形的类型，取值为<strong>0:25</strong>时分别对应以下图形，取值为<strong>32:127</strong>时表示绘制相应的ASCII字符，……</li>
+<li><strong>col</strong>参数即点形的（轮廓）颜色</li>
+<li><strong>bg</strong>参数即点形的填充颜色，仅当<strong>pch</strong>取值为<strong>21:25</strong>时有效</li>
+<li><strong>cex</strong>参数即点形的缩放程度</li>
+</ul>
+
+<p><br></p>
+
+<h3 id="1-2-绘制线条">1.2、绘制线条</h3>
+
+<p>R语言中可以绘制直线、折线、曲线，这些线形都可以通过<strong>par</strong>函数中的<strong>col、lty、lwd</strong>参数设置线条颜色、线条类型、线条宽度。</p>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLc3d.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLc3d.png" >
+  
+    </a>
+  
+  
+</div>
+
+
+<p><br></p>
+
+<p>首先我们可以通过以下形式绘制一条从点<strong>(x0, y0)</strong>到点<strong>(x1, y1)</strong>的直线。</p>
+
+<pre><code class="language-R">segments(x0, y0, x1 = x0, y1 = y0, ...)
+</code></pre>
+
+<ul>
+<li><strong>x0、y0、x1、y1</strong>参数即直线的起止位置</li>
+</ul>
+
+<p>其次我们可以通过以下形式绘制一条类似于回归线的直线，这里我们必须指定直线的表达式。注意以这种方式绘制的直线没有起始位置与终止位置，直线可以贯穿整个主图区域。</p>
+
+<pre><code class="language-R">abline(a, b, h, v, untf = FALSE, ...)
+</code></pre>
+
+<ul>
+<li><strong>a、b</strong>参数即直线的<strong>斜率</strong>与<strong>截距</strong></li>
+<li><strong>h、v</strong>参数即水平、垂直方向的直线对应的Y轴、X轴坐标</li>
+<li><strong>untf</strong>参数表示当坐标轴以对数的形式表示时，是否将直线也作相应的转化（例如：当X轴取对数时，将<code>y = a*x + b</code>转化为<code>y = a*log(x) + b</code>）</li>
+</ul>
+
+<p>接下来我们还可以通过以下形式绘制一条折线，折线会经过数据集<strong>x、y</strong>中的每一个点。此外该函数还可以绘制虚线折线、阶梯线等。</p>
+
+<pre><code class="language-R">lines(x, y, type = &quot;l&quot;, ...)
+</code></pre>
+
+<ul>
+<li><strong>x、y</strong>参数即折线中每个点的位置</li>
+<li><strong>type</strong>参数即图形类型，相当于<strong>plot</strong>函数中的<strong>type</strong>参数</li>
+</ul>
+
+<p>最后我们还可以通过以下形式绘制一条曲线，但我们必须首先要知道曲线的表达式。注意这里的曲线本质上依然是折线，只不过当折线任意的两个相邻点之间距离非常近时，折线就会趋近于曲线。</p>
+
+<pre><code class="language-R">curve(expr, from, to, n = 101, add = FALSE, ...)
+</code></pre>
+
+<ul>
+<li><strong>expr</strong>参数即曲线的表达式<strong>f(x)</strong>，如<code>sin(x)</code></li>
+<li><strong>from、to</strong>参数即曲线X轴坐标的起止位置</li>
+<li><strong>n</strong>参数即需要有多少个点来确定当前曲线</li>
+<li><strong>add</strong>参数即是否添加在原有的图形上</li>
+</ul>
+
+<p>另外我们还可以通过以下形式绘制一条<strong>箭头线</strong>，注意这里的箭头并不是实心箭头，可以看作是由两条直线构成的。</p>
+
+<pre><code class="language-R">arrows(x0, y0, x1 = x0, y1 = y0, length = 0.25, angle = 30, code = 2, ...)
+</code></pre>
+
+<ul>
+<li><strong>x0、x1、y0、y1</strong>参数表示箭头线的起止位置</li>
+<li><strong>length</strong>参数表示箭头的大小（英寸）</li>
+<li><strong>angle</strong>参数表示箭头的开口角度，取值范围在<strong>0：180</strong></li>
+<li><strong>code</strong>参数表示箭头的位置，取值为<strong>1、2、3</strong>时分别表示在起始位置、终止位置、两端绘制箭头</li>
+</ul>
+
+<p><br></p>
+
+<h3 id="1-3-绘制平面几何">1.3、绘制平面几何</h3>
+
+<p>R语言中的多边形，不仅可以使用纯色填充，还可以使用<strong>阴影线</strong>填充，因此以下参数在绘制多边形的底层函数中，与在<strong>par</strong>函数中的意义略有不同。</p>
+
+<ul>
+<li><strong>density、angle</strong>参数即多边形中阴影线的密集程度及倾斜程度</li>
+<li><strong>col</strong>参数即多边形的填充色或阴影线的颜色</li>
+<li><strong>border</strong>参数即多边形边框的颜色</li>
+<li><strong>lty、lwd</strong>参数即多边形边框及阴影线的线条类型、线条宽度</li>
+</ul>
+
+<p><br></p>
+
+<p>首先我们可以通过以下形式绘制一个矩形，但这种方式只能绘制与坐标轴水平/垂直的矩形，不能倾斜。</p>
+
+<pre><code class="language-R">rect(xleft, ybottom, xright, ytop, ...)
+</code></pre>
+
+<ul>
+<li><strong>xleft、ybottom、xright、ytop</strong>参数表示矩形的起止位置</li>
+</ul>
+
+<p>其次我们可以通过以下形式绘制一个多边形，多边形会逐一连接数据集<strong>x、y</strong>中的每一个点，并将首尾两点相连，我们可以在数据集中插入<strong>NA</strong>值，来绘制多个多边形。如果多个多边形重叠，填充时需要判断哪些是“内部”空间。</p>
+
+<pre><code class="language-R">polygon(x, y = NULL, ..., fillOddEven = FALSE)
+</code></pre>
+
+<ul>
+<li><strong>x、y</strong>参数即多边形中每个顶点的位置</li>
+<li><strong>fillOddEven</strong>参数表示使用<strong>奇偶原则</strong>或<strong>非零环绕原则</strong>填充多边形</li>
+</ul>
+
+<p>多边形与圆之间的关系，类似于折线与曲线。所以<strong>polygon</strong>函数也可以绘制圆形、扇形等包含弧线的平面几何，不过这里需要我们自己计算出弧线中每个点的位置，比如我们可以通过以下代码绘制圆环。</p>
+
+<pre><code class="language-R"># 计算圆环上每个点的坐标
+v &lt;- seq(0, 2*pi, length.out = 360)
+x1 &lt;- sin(v); y1 &lt;- cos(v)
+x2 &lt;- 0.8 * rev(x1); y2 &lt;- 0.8 * rev(y1)
+# 绘制圆环
+op &lt;- par(mar = rep(4, 4), fin = rep(min(dev.size()), 2))
+plot.new(); plot.window(xlim = c(-1, 1), ylim = c(-1, 1))
+polygon(c(x1, x2), c(y1, y2), col = 1, border = NA)
+par(op)
+</code></pre>
+
+<p>特别的我们可以通过以下形式，使用<strong>样条插值法</strong>，绘制样条曲线或平面几何。注意以这种方式绘制的平面几何不支持使用阴影线填充。</p>
+
+<pre><code class="language-R">xspline(x, y = NULL, shape = 0, open = TRUE, repEnds = TRUE, ...)
+</code></pre>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure right fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QNPeOg.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QNPeOg.png" >
+  
+    </a>
+  
+  
+</div>
+
+
+<ul>
+<li><strong>x、y</strong>参数即样条曲线或多边形中每个连接点的位置</li>
+<li><strong>shape</strong>参数即线条经过每个连接点时计算样条插值的方式，取值范围在<strong>-1:1</strong></li>
+<li><strong>open</strong>参数即是否开口（将首尾两点连接）</li>
+<li><strong>repEnds</strong>参数即是否重复首尾两个连接点，对于闭合型多边形非常重要</li>
+</ul>
+
+<p><br></p>
+
+<h3 id="1-4-绘制文字">1.4、绘制文字</h3>
+
+<p>R语言中绘制文字的底层函数着重于运用在统计类图形中，不能通过字号来调整字体大小，而只能使用缩放倍率；只能按照坐标轴的水平或垂直方向放置，而不能以任意角度旋转。</p>
+
+<p>这些绘制文字的底层函数，都可以通过<strong>par</strong>函数中的<strong>adj、cex、col、font</strong>参数设置对齐方式、缩放倍数、颜色、加粗与倾斜效果。</p>
+
+<p><br></p>
+
+<p>首先我们可以通过以下形式绘制统计类图形的各种标题，注意以下标题一般均绘制在边距位置。</p>
+
+<pre><code class="language-R">title(main = NULL, sub = NULL, xlab = NULL, ylab = NULL, line = NA, outer = FALSE, ...)
+</code></pre>
+
+<ul>
+<li><strong>main、sub、xlab、ylab</strong>参数即需要绘制的标题、副标题、X轴坐标标题、Y轴坐标标题</li>
+<li><strong>line</strong>参数可以设定这些标题距离主图区域的间隔，参考<code>par(&quot;mgp&quot;)</code></li>
+<li><strong>outer</strong>参数即标题是否应该绘制在外边距中</li>
+</ul>
+
+<p>其次我们还可以通过以下形式，在主图区域的任意位置绘制文字，不过这种形式通常用于绘制图形标签。</p>
+
+<pre><code class="language-R">text(x, y = NULL, labels = seq_along(x$x), pos = NULL, offset = 0.5, ...)
+</code></pre>
+
+<ul>
+<li><strong>x、y</strong>参数即文字的绘制位置</li>
+<li><strong>labels</strong>参数即需要绘制的文字</li>
+<li><strong>pos</strong>参数即文字相对于点<strong>c(x, y)</strong>的放置位置，取值为<strong>1：4</strong>分别表示<strong>下、左、上、右</strong></li>
+<li><strong>offset</strong>参数即文字相对于放置位置（由<strong>pos</strong>参数设置）的偏移量</li>
+</ul>
+
+<p>最后我们还可以通过以下形式，将文字绘制到边距区域。注意调整文字放置位置的方式（参考<strong>at、adj、padj</strong>参数）与以上函数不同。</p>
+
+<pre><code class="language-R">mtext(text, side = 3, line = 0, outer = FALSE, at = NA, adj = NA, padj = NA, ...)
+</code></pre>
+
+<ul>
+<li><strong>text</strong>参数即需要绘制的文字</li>
+<li><strong>side</strong>参数即文字需要被绘制在外边距的什么位置，取值为<strong>1、2、3、4</strong>分别表示<strong>下、左、上、右</strong></li>
+<li><strong>line、outer</strong>参数，同<strong>title</strong>函数中的相应参数</li>
+<li><strong>at</strong>参数即文字的X轴或Y轴坐标位置</li>
+<li><strong>adj</strong>参数即文字在主方向（对于上/下方文字即横向，对于左/右方文字即纵向）上的对齐方式，取值范围在<strong>0-1</strong>之间，<strong>0</strong>表示靠左/下对齐，<strong>1</strong>表示靠右/上对齐</li>
+<li><strong>padj</strong>参数即文字在辅方向上的对齐方式，取值范围在<strong>0-1</strong>之间，<strong>0</strong>表示靠右/上对齐，<strong>1</strong>表示靠左/下对齐</li>
+</ul>
+
+<p><br></p>
+
+<h3 id="1-5-绘制图像">1.5、绘制图像</h3>
+
+<p>我们可以通过以下形式，将一个由矩阵表示的<strong>栅格图</strong>绘制出来。这种方式如果结合图像文件读取函数，则可以将本地图片绘制到绘图设备中。</p>
+
+<pre><code class="language-R">rasterImage(image, xleft, ybottom, xright, ytop, angle = 0, interpolate = TRUE, ...)
+</code></pre>
+
+<ul>
+<li><strong>image</strong>参数即<strong>raster</strong>类型的图像对象，由颜色值构成的矩阵</li>
+<li><strong>xleft、ybottom、xright、ytop</strong>参数即图像的起止位置</li>
+<li><strong>angle</strong>参数即图像的倾斜角度</li>
+<li><strong>interpolate</strong>参数即是否使用线性渐变的方式填充颜色</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="2-常见统计类图形">2、常见统计类图形</h2>
+
+<p>统计类图形本质上是将数据的统计信息映射到图形的某种属性（位置、形状、大小、颜色等）。因此一幅图形总是可以包含多个纬度信息，比如对于<strong>symbols</strong>函数，可以绘制圆形、正方形（1纬）、矩形（2纬）、温度计形（3-4纬）、箱线形（5纬），其中每种类型的图形又可以添加轮廓色与填充色。然而以下统计类图形，我们将只介绍其可以包含的最主要的统计信息。</p>
+
+<p><br></p>
+
+<h3 id="2-1-茎叶图-直方图">2.1、茎叶图、直方图</h3>
+
+<p>茎叶图常用于一维数据，可以帮助我们快速掌握数据的分布情况。茎叶图实际上并不是一种图像，而是可以直接在命令行输出的一段统计信息。</p>
+
+<p>R语言中的茎叶图会首先将一串数值前端补零保证每个数值位数相同，再四舍五入保留最高位的两位数字分别作为主干部分和枝叶部分的特征值，最后再按主干部分的数字归纳展示。注意主干部分的数字不是连续的，枝叶部分的数字会有歧义。</p>
+
+<pre><code class="language-R"># 茎叶图
+&gt; stem(lh, scale = 0.25)
+
+  The decimal point is at the |
+
+  1 | 45577888999
+  2 | 0001112222333344445667777999
+  3 | 001223455
+</code></pre>
+
+<p>直方图展示的往往是一维连续型变量的统计信息（频率、比率等），这一点与茎叶图的理念十分相似，也常被用于展示数据的分布情况。但茎叶图可以在一定程度上保留原始数据，直方图则只保留统计汇总之后的信息。</p>
+
+<pre><code class="language-R"># 直方图
+hist(lh, breaks = 5, xlab = &quot;黄体生成素水平&quot;, ylab = &quot;频次&quot;,
+     main = &quot;黄体生成素水平（10分钟测量一次）&quot;)
+</code></pre>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLggA.png" title="直方图" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLggA.png"  alt="直方图">
+  
+    </a>
+  
+   
+    <span class="caption">直方图</span>
+  
+</div>
+
+
+<p><br></p>
+
+<h3 id="2-2-一维散点图-箱线图">2.2、一维散点图、箱线图</h3>
+
+<p>一维散点图、箱线图也可以用于展示一维数据的分布情况。同时还常被用于对比多组数据的整体情况。一维散点图与箱线图之间的区别，类似于茎叶图与直方图，其中一维散点图可以在一定程度上保留原始信息，而箱线图则只保留数据的统计信息。此外我们也可以使用底层函数<strong>rug</strong>，加入坐标轴须线来表示图像中点的集中趋势，这一点与一维散点图的功能类似。</p>
+
+<p>在箱线图中，矩形中部的直线代表中位数；中位数线到矩形的上、下边的距离分别代表上、下四分位距；中位数线到到矩形之外的上、下须线之间的距离，则代表<strong>2.5</strong>倍的上、下四分位距；超出上、下须线的数值可以被看作<strong>特异值</strong>，以点的形式表示。</p>
+
+<pre><code class="language-R"># 一维散点图
+stripchart(decrease ~ treatment, vertical = TRUE, log = &quot;y&quot;, data = OrchardSprays,
+           xlab = &quot;喷雾剂种类&quot;, ylab = &quot;蜜蜂数量&quot;, main = &quot;不同喷雾剂对蜜蜂的影响&quot;)
+           
+# 箱线图
+boxplot(count ~ spray, data = InsectSprays, col = &quot;lightgray&quot;,
+        xlab = &quot;杀虫剂种类&quot;, ylab = &quot;昆虫数量&quot;, main = &quot;不同杀虫剂对昆虫的影响&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtL2jI.png" title="一维散点图" data-fancybox-group="group:2.2">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtL2jI.png"  alt="一维散点图">
+  
+    </a>
+  
+   
+    <span class="caption">一维散点图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLfDP.png" title="箱线图" data-fancybox-group="group:2.2">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLfDP.png"  alt="箱线图">
+  
+    </a>
+  
+   
+    <span class="caption">箱线图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-3-扇形图-柱形图">2.3、扇形图、柱形图</h3>
+
+<p>扇形图、柱形图都可以用于展示是二维数据，即分类变量中的某个类别，对应连续变量中数值的大小。但二者的使用方式略有不同，<strong>barplot</strong>函数中需要分别指定一个连续变量和一个分类变量；<strong>pie</strong>函数中则只需要指定一个连续变量，分类变量可以作为连续变量的<strong>names</strong>属性提供.</p>
+
+<p>注意柱形图与直方图从图形方面来看是一样的，但直方图需要先统计一维数据的频率、比率等，再决定柱形的高低，而柱形图中柱形的高低则是由连续变量中数值的大小决定的。</p>
+
+<pre><code class="language-R"># 扇形图
+pie(table(state.division),  main = &quot;美国各州归类情况&quot;)
+
+# 柱形图
+barplot(demand ~ Time, data = BOD, 
+        xlab = &quot;时间（天）&quot;, ylab = &quot;需氧量（mg/l）&quot;, 
+        main = &quot;生化反应对氧需氧量随时间的变化&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLVhQ.png" title="扇形图" data-fancybox-group="group:2.3">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLVhQ.png"  alt="扇形图">
+  
+    </a>
+  
+   
+    <span class="caption">扇形图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLEtg.png" title="柱形图" data-fancybox-group="group:2.3">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLEtg.png"  alt="柱形图">
+  
+    </a>
+  
+   
+    <span class="caption">柱形图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-4-二维散点图-向日葵散点图-密度散点图">2.4、二维散点图、向日葵散点图、密度散点图</h3>
+
+<p>对于两个连续型变量，二维散点图可以帮助我们研究它们之间的关联关系。在二维散点图中，每个点表示一个观测值，其横纵坐标分别对应在两个连续型变量中的值。如这两个连续变量有关联关系，点形整体上会以一定的趋势集中分布，如果点形整体上无规律的散布在图像中，则证明这两个连续变量之间不具有关联关系。</p>
+
+<p>二维散点图中往往无法展示重叠（横纵坐标一致）的点形，但忽略大量重叠的点形可能会误导我们的判断。为此R语言中可以使用多种方式解决点形重叠的问题，比如使用<strong>jitter</strong>函数为重叠的点形添加一定量的横/纵坐标偏移量；或者绘制向日葵散点图，此时重叠的点形会以“葵花”的形式展现，花瓣的多寡代表重叠的点形的数量;如果重叠的点形非常多，我们还可以绘制密度散点图，此时图形中的散点越集中，在图形中对应的密度值越高。</p>
+
+<pre><code class="language-R"># 二维散点图
+plot(cars, xlab = &quot;速度&quot;, ylab = &quot;刹车距离&quot;, main = &quot;速度与刹车距离之间的关系&quot;)
+
+# 向日葵散点图
+sunflowerplot(Sepal.Width ~ Sepal.Length, data = iris, 
+              xlab = &quot;花萼长度&quot;, ylab = &quot;花萼宽度&quot;,
+              main = &quot;鸢尾花花萼长度与花萼宽度之间的关系&quot;)
+# 密度散点图     
+smoothScatter(iris$Sepal.Length, iris$Sepal.Width,
+              xlab = &quot;花萼长度&quot;, ylab = &quot;花萼宽度&quot;,
+              main = &quot;鸢尾花花萼长度与花萼宽度之间的关系&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLF78.png" title="二维散点图" data-fancybox-group="group:2.4">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLF78.png"  alt="二维散点图">
+  
+    </a>
+  
+   
+    <span class="caption">二维散点图</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLi0f.png" title="向日葵散点图" data-fancybox-group="group:2.4">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLi0f.png"  alt="向日葵散点图">
+  
+    </a>
+  
+   
+    <span class="caption">向日葵散点图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLAAS.png" title="密度散点图" data-fancybox-group="group:2.4">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLAAS.png"  alt="密度散点图">
+  
+    </a>
+  
+   
+    <span class="caption">密度散点图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-5-折线图-阶梯线图">2.5、折线图、阶梯线图</h3>
+
+<p>折线图、阶梯线图可以展示出两个连续变量之间（或时序变量等）的线性关系，绘制这两种图像时，最好确保数据集中的点沿着X轴方向从左到右（或从右到左）依次出现，这样才能更好的展现数据之间的线性关系（递增、递减等）。</p>
+
+<pre><code class="language-R"># 折线图
+plot(WWWusage, xlim = c(1, 10), ylim = c(83, 89),
+     xlab = &quot;时间&quot;, ylab = &quot;每分钟网络连接数&quot;, main = &quot;万维网施用情况&quot;)
+     
+# 阶梯线图
+plot(uspop, type = &quot;S&quot;, xlab = &quot;年份&quot;, ylab = &quot;人口（百万）&quot;,
+     main = &quot;1790–1970年间美国人口总数（每十年统计一次）&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLepj.png" title="折线图" data-fancybox-group="group:2.5">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLepj.png"  alt="折线图">
+  
+    </a>
+  
+   
+    <span class="caption">折线图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLm1s.png" title="阶梯线图" data-fancybox-group="group:2.5">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLm1s.png"  alt="阶梯线图">
+  
+    </a>
+  
+   
+    <span class="caption">阶梯线图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-6-分组柱形图-脊柱图-克利夫兰点图">2.6、分组柱形图、脊柱图、克利夫兰点图</h3>
+
+<p>分组柱形图是基于柱形图的一种扩展，展示的是两个有交互关系的分类变量（类别与子类别）对应连续变量的取值，分组柱形图中每一个组别里的柱形是堆叠放置还是并列放置，也可以表示不同意义。</p>
+
+<p>类似直方图与柱形图之间的关系，脊柱图是堆叠放置的分组柱形图的另一种实现方式。只不过脊柱图展示的是两个分类变量的频率，而分组柱形图展示的是汇总好数值。</p>
+
+<p>克利夫兰点图与并列放置的分组柱形图十分相似，只不过克利夫兰点图是以点形来表示数值的，而且往往以数值部分作为横轴，所以更容易区分数据的分布情况。</p>
+
+<pre><code class="language-R"># 分组柱形图
+barplot(cbind(Employed, Unemployed) ~ Year, data = longley, beside = FALSE, 
+        xlab = &quot;年份&quot;, ylab = &quot;就业/失业人数&quot;, main = &quot;1947至1962年间失业情况&quot;)
+
+# 脊柱图
+spineplot(margin.table(UCBAdmissions, c(3, 1)), xlab = &quot;院系&quot;, ylab = &quot;录取情况&quot;, 
+          main = &quot;伯克利分校1973年院系与录取情况&quot;)
+
+# 克利夫兰点图
+dotchart(VADeaths, xlim = c(0,100), xlab = &quot;死亡率&quot;, 
+         main = &quot;弗吉尼亚州1940年的死亡率&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50 right" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLQBV.png" title="克利夫兰点图" data-fancybox-group="group:2.6">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLQBV.png"  alt="克利夫兰点图">
+  
+    </a>
+  
+   
+    <span class="caption">克利夫兰点图</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLncn.png" title="分组柱形图" data-fancybox-group="group:2.6">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLncn.png"  alt="分组柱形图">
+  
+    </a>
+  
+   
+    <span class="caption">分组柱形图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLMn0.png" title="脊柱图" data-fancybox-group="group:2.6">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLMn0.png"  alt="脊柱图">
+  
+    </a>
+  
+   
+    <span class="caption">脊柱图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-7-雷达图-玫瑰图-各种矩阵类图形">2.7、雷达图、玫瑰图、各种矩阵类图形</h3>
+
+<p>如果我们需要观察一个矩阵，矩阵的每一行是一条观测值，每一列是一个观测纬度。那么此时可以使用雷达图、玫瑰图、以及各种矩阵类图形，一目了然的展示出每条观测值在各个纬度的取值情况。</p>
+
+<p>雷达图与玫瑰图本质上是一样的，只不过前者以点线的形式表示数值，而后者以扇形面积表示数值。单个玫瑰图与扇形图十分类似，但扇形图是以扇形的弧度表示数值大小的，扇形的半径是固定的，而玫瑰图则恰恰相反。</p>
+
+<p>使用<strong>matplot</strong>绘制出的散点图、折线图等各种矩阵类图形，本质上相当于分组散点图、分组折线图。上文提到的分组柱形图也可以看作是矩阵类图形的一种。</p>
+
+<pre><code class="language-R"># 雷达图
+stars(t(USPersonalExpenditure), locations = c(0, 0), key.loc =  c(0, 0), scale = TRUE, 
+      col.lines = rainbow(5), main = &quot;1940-1960年间美国居民在5个消费方面的情况&quot;)
+
+# 玫瑰图
+stars(USPersonalExpenditure ^ 0.25, scale = FALSE, 
+      locations = data.frame(x = c(8, 1, 8, 4, 1), y = c(1, 1, 6, 6, 6)),
+      draw.segments = TRUE, col.segments = rainbow(5),
+      labels = NULL, main = &quot;1940-1960年间美国居民在5个消费方面的情况&quot;)
+      
+# 分组折线图
+matplot(rownames(WorldPhones), WorldPhones, log = &quot;y&quot;, type = &quot;l&quot;, lty = 1, col = rainbow(7), 
+        xlab = &quot;年份&quot;, ylab = &quot;各州电话总数&quot;, main = &quot;7大洲在1952-1960年间的电话总数&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLl7T.png" title="雷达图" data-fancybox-group="group:2.7">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLl7T.png"  alt="雷达图">
+  
+    </a>
+  
+   
+    <span class="caption">雷达图</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtL3AU.png" title="玫瑰图" data-fancybox-group="group:2.7">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtL3AU.png"  alt="玫瑰图">
+  
+    </a>
+  
+   
+    <span class="caption">玫瑰图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtL8NF.png" title="分组折线图" data-fancybox-group="group:2.7">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtL8NF.png"  alt="分组折线图">
+  
+    </a>
+  
+   
+    <span class="caption">分组折线图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-8-等高线图-地势图-密度图-三维曲面图">2.8、等高线图、地势图、密度图、三维曲面图</h3>
+
+<p>等高线图是将高度相同的点连成环线投影到平面；地势图是在等高线图的基础上，以分层设色的方法表示高度；密度图与地势图类似，只不过密度图中的颜色，表示的是相应位置上的密度；三维曲面图可以使我们更加直观的观察三维几何，但这种方法每次只能从一个位置观察三维几何，而不能一次性得到三维几何的全貌。</p>
+
+<p>在R语言中绘制以上图形即可以使用点<strong>x、y、z</strong>的形式，指明二维坐标系中的某个点（<strong>c(x, y)</strong>），以及相应位置的高度、密度（<strong>z</strong>）等。也可以使用一个矩阵，矩阵的行列位置分别对应X轴、Y轴的位置，数值则表示对应位置的高度、密度等。</p>
+
+<p>R语言中的三维曲面图，实际上是一个三维几何在二维平面中的一个截面，我们可以使用<strong>theta、phi</strong>参数来控制截面的倾斜角度，从而实现在不同的位置观察三维几何。</p>
+
+<pre><code class="language-R"># 等高线图
+op &lt;- par(mar = c(2, 2, 4, 2))
+contour(volcano, axes = FALSE, frame.plot = TRUE, main = &quot;火山等高线图&quot;)
+par(op)
+
+# 地势图
+filled.contour(1:nrow(volcano), 1:ncol(volcano), volcano, main = &quot;火山地势图&quot;)
+
+# 三维曲面图
+op &lt;- par(mar = c(2, 2, 4, 2))
+persp(volcano, theta = 120, phi = 30, xlab = &quot;X&quot;, main = &quot;火山三维曲面图&quot;)
+par(op)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLY9J.png" title="等高线图" data-fancybox-group="group:2.8">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLY9J.png"  alt="等高线图">
+  
+    </a>
+  
+   
+    <span class="caption">等高线图</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLNcR.png" title="地势图" data-fancybox-group="group:2.8">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLNcR.png"  alt="地势图">
+  
+    </a>
+  
+   
+    <span class="caption">地势图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLUj1.png" title="三维曲面图" data-fancybox-group="group:2.8">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLUj1.png"  alt="三维曲面图">
+  
+    </a>
+  
+   
+    <span class="caption">三维曲面图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="2-9-马赛克图">2.9、马赛克图</h3>
+
+<p>马赛克图可以帮助我们快速了解高纬数组（1-n纬）中，每一个纬度上的数值分布情况。马赛克图中将一个矩形按照高纬数组的每个纬度，依次按行、列、子行、&hellip;，进行分割，最终图形中的每个矩形的大小，即对应高纬数组相应位置的数值。</p>
+
+<pre><code class="language-R"># 马赛克图
+mosaicplot(~ Sex + Age + Survived, data = Titanic, color = c(&quot;red&quot;, &quot;black&quot;),
+           xlab = &quot;性别&quot;, ylab = &quot;年龄&quot;, main = &quot;泰坦尼克号幸存着比率&quot;)
+</code></pre>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLdnx.png" title="马赛克图" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLdnx.png"  alt="马赛克图">
+  
+    </a>
+  
+   
+    <span class="caption">马赛克图</span>
+  
+</div>
+
+
+<p><br></p>
+
+<h3 id="2-10-qq图">2.10、QQ图</h3>
+
+<p>有时我们会关心两个变量之间各分位数的分布是否一致（尤其对于一元一次线性回归中的自变量与因变量）。那么我们可以使用<strong>qqplot</strong>函数，绘制这两个变量之间的QQ图（<strong>Quantile-Quantile Plots</strong>）。QQ图中从左到右各个点形分别对应这两个变量的<strong>0-100</strong>分位数，点形越接近对角线分布，越能说明这两个变量之间各分位数的分布是一致的。</p>
+
+<p>相比而言，有时我们更关心某个变量是否服从正态分布（尤其对于残差）。此时我们可以使用<strong>qqnorm</strong>函数，绘制样本百分位数与理论正态分布下的百分位数之间的散点图，即标准QQ图。同理，点形越接近对角线分布，越能说明这个变量服从正态分布。为了更加清楚的分辨这一点，我们还可以使用<strong>qqline</strong>函数，在标准QQ图中添加一条一元一次拟合线。</p>
+
+<pre><code class="language-R"># QQ图
+y &lt;- rt(200, df = 5)
+qqnorm(y, xlab = &quot;理论正态分布的百分位数&quot;, 
+       ylab = &quot;样本百分位数&quot;, main = &quot;标准QQ图&quot;)
+qqline(y, col = 2)
+</code></pre>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure center" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/10/QDd3Ix.png" title="QQ图" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/10/QDd3Ix.png"  alt="QQ图">
+  
+    </a>
+  
+   
+    <span class="caption">QQ图</span>
+  
+</div>
+
+
+<p><br></p>
+
+<h3 id="2-11-散点图矩阵-条件散点图-条件密度图-皮尔逊残差图-四象限图">2.11、散点图矩阵、条件散点图、条件密度图、皮尔逊残差图、四象限图</h3>
+
+<p>类似散点图可以分析两个连续变量之间的关联关系，散点图矩阵则可以使多个连续变量两两交互，逐一生成散点图并排列成矩阵。如果我们想要更明确的了解散点图矩阵中表示的关联关系，还可以使用<strong>panel.smooth</strong>函数在每幅散点图中都加上一条趋势线。</p>
+
+<p>两个连续变量之间的关联关系可能会受到第三个变量（或更多个）的影响，当第三个变量取特定值时，会呈现出一种关联关系，而当第三个变量取另一个值时，又会呈现出另一种关联关系。此时我们就可以使用条件散点图，查看这两个连续变量在满足特定条件的情况下（第三个变量取特定值）的关联关系。</p>
+
+<p>有时我们需要分析一个分类变量的取值如何受到一个连续变量的影响，此时线性分析的方式就不再适用了，但我们可以绘制条件密度图，展示出随着连续变量的变化，分类变量中各个取值的概率密度。</p>
+
+<p>我们分析两个分类变量之间的关联关系时，往往会计算二维列连表。但二维列连表有时并不能明确的表示这两个分类变量之间是否有相关关系，此时我们可以绘制皮尔逊残差图，展示真实值与行列无关时的理论值之间的差异（对于二维列连表<strong>t</strong>，点<strong>t[i, j]</strong>处的皮尔逊残差即<code>t[i, j] - t[i, j] ^ 2 / sum(t[i,]) / sum(t[,j]) * sum(t)</code>）。皮尔逊残差图中的柱形越高，表示变量变量之间的关联性越强。</p>
+
+<p>类似皮尔逊残差图，四象限图着重于分析两个二分类变量之间的关联关系。对于<strong>2 * 2</strong>矩阵<strong>t</strong>，我们可以计算其整体偏差<code>p = (t[1, 1] / t[1, 2]) / (t[2, 1] / t[2, 2])</code>，这个值越接近于1，越足以说明行列无关。因此默认情况下R语言中的四象限图，斜对角线和反斜对角线中扇形的面积分别对应<strong>p、1-p</strong>，弧形线条表示置信区间。当然我们也可以设置<strong>std</strong>参数，使扇形的面积对应相应位置的频数。</p>
+
+<pre><code class="language-R"># 散点图矩阵
+pairs(iris[1:4], panel = panel.smooth, main = &quot;鸢尾花花萼、花瓣长宽关联图&quot;,
+      pch = 21, bg = c(&quot;red&quot;, &quot;green3&quot;, &quot;blue&quot;)[unclass(iris$Species)])
+
+# 条件散点图
+coplot(Petal.Width ~ Petal.Length | Species, data = iris, 
+       xlab = &quot;花瓣长度&quot;, ylab = &quot;花瓣宽度&quot;)
+
+# 条件密度图
+cdplot(group ~ weight, data = PlantGrowth, xlab = &quot;产量&quot;, ylab = &quot;处理方式&quot;, 
+       main = &quot;不同处理方式对植物产量的影响&quot;)
+
+# 皮尔逊残差图
+assocplot(occupationalStatus, xlab = &quot;父系职业&quot;, ylab = &quot;子系职业&quot;, 
+          main = &quot;英国男性父子职业联系&quot;)
+
+# 四象限图
+x &lt;- margin.table(UCBAdmissions, 1:2)
+fourfoldplot(x, main = &quot;伯克利分校1973年男女生录取情况&quot;)
+</code></pre>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLwB6.png" title="散点图矩阵" data-fancybox-group="group:2.11">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLwB6.png"  alt="散点图矩阵">
+  
+    </a>
+  
+   
+    <span class="caption">散点图矩阵</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtL0HK.png" title="条件散点图" data-fancybox-group="group:2.11">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtL0HK.png"  alt="条件散点图">
+  
+    </a>
+  
+   
+    <span class="caption">条件散点图</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLDAO.png" title="条件密度图" data-fancybox-group="group:2.11">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLDAO.png"  alt="条件密度图">
+  
+    </a>
+  
+   
+    <span class="caption">条件密度图</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLrND.png" title="皮尔逊残差图" data-fancybox-group="group:2.11">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLrND.png"  alt="皮尔逊残差图">
+  
+    </a>
+  
+   
+    <span class="caption">皮尔逊残差图</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/12/07/QtLs4e.png" title="四象限图" data-fancybox-group="group:2.11">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/12/07/QtLs4e.png"  alt="四象限图">
+  
+    </a>
+  
+   
+    <span class="caption">四象限图</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li>R语言中有多少种方式绘制圆？</li>
+<li>R语言中如何绘制渐变线条/平面集合？</li>
+<li>如何计算三维几何在某个二维平面的投影？</li>
+<li>哪些统计类图形需要对接收的参数进行统计才能绘图，哪些可以直接绘图？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '使用R语言绘制图形',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的绘图设备管理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="R语言使用ggplot2绘图">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的绘图设备管理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="R语言使用ggplot2绘图">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F12%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BB%2598%25E5%2588%25B6%25E5%259B%25BE%25E5%25BD%25A2%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F12%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BB%2598%25E5%2588%25B6%25E5%259B%25BE%25E5%25BD%25A2%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 并发运算, apply家族函数, wly的博客, supernum">
+<meta name="description" content="并发运算指的是使用相同的运算方式（函数），同时作用于多个结构类似（数据类型相同）的数据。并发运算的运算结果互不影响，运算可以同时进行，因此可以极大的节省运算时间。这篇文章我们将介绍R语言中的并发运算。">
+
+
+  
+    <meta property="article:published_time" content="2019-08-12T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-08-12T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="编程">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言编程">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言编程篇——并发运算">
+<meta property="og:description" content="并发运算指的是使用相同的运算方式（函数），同时作用于多个结构类似（数据类型相同）的数据。并发运算的运算结果互不影响，运算可以同时进行，因此可以极大的节省运算时间。这篇文章我们将介绍R语言中的并发运算。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/08/04/eytzEn.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言编程篇——并发运算</title>
+
+    <link rel="canonical" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言编程篇——并发运算
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-08-12T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-08-12
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><strong>并发运算</strong>指的是使用相同的运算方式（<strong>函数</strong>），同时作用于多个结构类似（<strong>数据类型</strong>相同）的数据。并发运算的运算结果互不影响，运算可以同时进行，因此可以极大的节省运算时间。这篇文章我们将介绍R语言中的并发运算。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-对单维数组进行并发运算">1、对单维数组进行并发运算</a></li>
+<li><a href="#2-对多纬数组进行并发运算">2、对多纬数组进行并发运算</a></li>
+<li><a href="#3-对列表-或数组-进行并发运算">3、对列表（或数组）进行并发运算</a></li>
+<li><a href="#4-对执行环境进行并发运算">4、对执行环境进行并发运算</a></li>
+<li><a href="#5-对列表进行递归式的并发运算">5、对列表进行递归式的并发运算</a></li>
+<li><a href="#6-使用多个可变参数进行并发运算">6、使用多个可变参数进行并发运算</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>有时候我们编写的函数需要作用于单个对象（列表中的单个元素、矩阵中的行列，&hellip;），然而<strong>高维对象</strong>（<strong>Recursive Object</strong>）往往包含多个这样的元素，将函数作用于高维对象时，我们可以使用循环流程，当然我们也可以使用更加高效、便捷的方式——并发运算。</p>
+
+<p>将高纬对象中的每个元素都取出来，用相同的函数同时对它们进行运算，最后根据元素原来的先后次序，用运算结果生成新的高纬对象，这就是我们要介绍的并发运算的理念。R语言中实现这类理念的函数有很多，它们在底层代码中仍是以循环的方式实现的，并不能算是真正意义上的并发运算（ <em>伪并发运算</em> ？），但是相比直接在R语言中使用循环体则要高效很多。</p>
+
+<p><br></p>
+
+<h2 id="1-对单维数组进行并发运算">1、对单维数组进行并发运算</h2>
+
+<p>我们在之前的文章中已经介绍过，R语言中没有以单个值（数值或字符串）的形式存在的对象——<strong>标量值</strong>(<strong>scalars</strong>)，所有数看起来像是标量值的对象实际上都可以被当作<strong>单维数组</strong>（<strong>Atomic Vector</strong>）处理。大多数原则上只能作用于标量值的函数，在R语言中同样也能作用于数组（比如加法运算——<code>+</code>,可以将两个数组相应位置上的元素依次相加）。因此对于单维数组，绝大多数情况下都没有必要使用并发运算。</p>
+
+<p>但是有时候我们希望让某个<strong>命令</strong>（<strong>expr</strong>）运行指定次数，则可以使用<span class="highlight-text primary">replicate</span>函数。或者对于某些只能接受单个值作为参数的函数，我们则可以使用<span class="highlight-text primary">sapply</span>函数，将数组中的每个元素分别传递给该函数进行运算。</p>
+
+<pre><code class="language-R"># 使用replicate，运行5次rexp(2)
+&gt; replicate(5, rexp(2))
+         [,1]      [,2]      [,3]       [,4]      [,5]
+[1,] 2.039849 1.9329975 1.5113277 0.01557205 0.6002478
+[2,] 1.372845 0.6682618 0.8708184 0.62270078 0.1020941
+
+# 使用sapply，将数组c(3, 9)中的元素分别传递给seq
+&gt; sapply(c(3, 9), seq)
+[[1]]
+[1] 1 2 3
+
+[[2]]
+[1] 1 2 3 4 5 6 7 8 9
+
+</code></pre>
+
+<h2 id="2-对多纬数组进行并发运算">2、对多纬数组进行并发运算</h2>
+
+<p>对于矩阵或高纬数组，并发运算的意义就显得非常重要了（比如我们可能需要对矩阵进行行列汇总），此时我们可以使用<span class="highlight-text primary">apply</span>函数：</p>
+
+<p><code>apply(X, MARGIN, FUN, ...)</code></p>
+
+<ul>
+<li><strong>X</strong>即需要被处理的矩阵或高纬数组</li>
+<li><strong>MARGIN</strong>即需要按照哪一个纬度进行处理，对于矩阵而言，第一个纬度是列、第二个纬度是行，指定<strong>MARGIN</strong>为1表示列纬度不会被压缩，也就是按行汇总</li>
+<li><strong>FUN</strong>即需要进行运算的函数，高维对象<strong>X</strong>中<strong>MARGIN</strong>纬度上的每一个元素都会作为第一个参数传递给<strong>FUN</strong></li>
+<li><strong>&hellip;</strong>即需要传递给函数<strong>FUN</strong>的其余参数</li>
+</ul>
+
+<pre><code class="language-R"># 按列汇总数据集mtcars，求每一列的中位数及上下四分位数
+&gt; apply(mtcars, 2, quantile, c(.25, .5, .75))
+       mpg cyl    disp    hp  drat      wt    qsec vs am gear carb
+25% 15.425   4 120.825  96.5 3.080 2.58125 16.8925  0  0    3    2
+50% 19.200   6 196.300 123.0 3.695 3.32500 17.7100  0  0    4    2
+75% 22.800   8 326.000 180.0 3.920 3.61000 18.9000  1  1    4    4
+</code></pre>
+
+<p>除了<strong>apply</strong>函数外，还有许多函数也可以对矩阵或高纬数组进行类似并发运算的操作，它们大多是为了便于数学运算设计的。比如<span class="highlight-text primary">aggregate</span>函数，可以对矩阵进行分组汇总；<span class="highlight-text primary">sweep</span>函数，可以将高维数组某个纬度上的每一个元素，分别与其<strong>STATS</strong>参数对应的数据，进行相应的数学运算。</p>
+
+<p><br></p>
+
+<h2 id="3-对列表-或数组-进行并发运算">3、对列表（或数组）进行并发运算</h2>
+
+<p>类似对数组进行并发运算，我们可以分别使用<span class="highlight-text primary">lapply</span>函数对列表进行并发运算，此时我们就不需要指定<strong>MARGIN</strong>，因为<strong>lapply</strong>函数会将列表中的每个元素都作为第一个参数传递给<strong>FUN</strong>。</p>
+
+<p>有时候对列表进行并发运算时，<strong>FUN</strong>总是会生成数据类型、数据长度相同运算的结果，此时如果运用<strong>lapply</strong>函数，并发运算的结果总是列表，如果我们希望将原先的列表看作第一个纬度，并将<strong>FUN</strong>的运算结果看作是其余纬度，从而将最终并发运算的结果装入数组类型的数据中，则可以使用<span class="highlight-text primary">sapply</span>函数。</p>
+
+<p>类似<strong>sapply</strong>函数，我们可以使用更加稳定、高效的<span class="highlight-text primary">vapply</span>函数，通过<strong>FUN.VALUE</strong>参数指定<strong>FUN</strong>的返回值类型、长度，此时也可以生成数组类型的并发运算结果。</p>
+
+<p><code>lapply(X, FUN, ...)</code>
+<code>sapply(X, FUN, ..., simplify = TRUE, USE.NAMES = TRUE)</code>
+<code>vapply(X, FUN, FUN.VALUE, ..., USE.NAMES = TRUE)</code></p>
+
+<ul>
+<li><strong>simplify</strong>即并发运算的结果，在数据结构方面是否需要被简化。取值也可以为字符串<code>c(&quot;vector&quot;, &quot;matrix&quot;, &quot;array&quot;)</code>，表示需要被简化为特定类型的对象</li>
+<li><strong>FUN.VALUE</strong>即<strong>FUN</strong>的返回值类型、长度</li>
+<li><strong>USE.NAMES</strong>即是否自动为并发运算的结果关联<strong>names</strong>属性</li>
+</ul>
+
+<pre><code class="language-R">&gt; X &lt;- list(a = seq(3), b = seq(9))
+
+# 使用lapply，并发运算的结果仍是列表类型的数据
+&gt; lapply(X, range)
+$a
+[1] 1 3
+
+$b
+[1] 1 9
+
+# 使用sapply，并发运算的结果是数组类型的数据
+&gt; sapply(X, range)
+     a b
+[1,] 1 1
+[2,] 3 9
+
+# 使用vapply，并发运算的结果是数组类型的数据
+&gt; vapply(X, range, c(最小值 = 0, 最大值 = 0))
+       a b
+最小值 1 1
+最大值 3 9
+</code></pre>
+
+<p><br></p>
+
+<h2 id="4-对执行环境进行并发运算">4、对执行环境进行并发运算</h2>
+
+<p>类似使用<strong>lapply</strong>函数对列表进行并发运算，我们也可以对执行环境进行并发运算，此时我们需要用到<span class="highlight-text primary">eapply</span>函数：</p>
+
+<p><code>eapply(env, FUN, ..., all.names = FALSE, USE.NAMES = TRUE)</code></p>
+
+<ul>
+<li><strong>env</strong>即需要被处理的执行环境</li>
+<li><strong>all.names</strong>表示是否使用执行环境中所有的变量，默认情况下不使用<strong>隐藏变量</strong>——以英文句点<strong>.</strong>开头的变量。</li>
+</ul>
+
+<pre><code class="language-R">&gt; e &lt;- as.environment(X)
+
+#使用eapply，求执行环境e中各对象的五分位数
+&gt; eapply(e, fivenum)
+$b
+[1] 1 3 5 7 9
+
+$a
+[1] 1.0 1.5 2.0 2.5 3.0
+
+</code></pre>
+
+<p><br></p>
+
+<h2 id="5-对列表进行递归式的并发运算">5、对列表进行递归式的并发运算</h2>
+
+<p>有时列表中包含的元素数据类型各不相同，或者列表中包含子列表。如果我们希望便利列表的每一个元素，遇到子列表则进行递归（遍历子列表的每一个元素），并且只对其中特定数据类型的 <em>数据节点</em> 进行运算，则可以使用<span class="highlight-text primary">rapply</span>函数：</p>
+
+<p><code>rapply(X, FUN, classes = &quot;ANY&quot;, deflt = NULL, how = c(&quot;unlist&quot;, &quot;replace&quot;, &quot;list&quot;), ...)</code></p>
+
+<ul>
+<li><strong>classes</strong>即<strong>X</strong>中那些数据类型的元素需要被运算，取值为<strong>ANY</strong>时表示任意类型的数据</li>
+<li><strong>deflt</strong>即没有被运算的元素在并发运算结果中对应的默认值，当<strong>how</strong>参数取值为<strong>replace</strong>时，此参数无效</li>
+<li><strong>how</strong>即如何决定并发运算结果的数据结构，取值为<strong>list</strong>表示保留原有的列表结构，<strong>unlist</strong>表示使用数组结构，<strong>replace</strong>表示用运算结果替代原有的元素，未被运算的元素不变</li>
+</ul>
+
+<pre><code class="language-R">&gt; X &lt;- list(list(a = pi, b = list(c = 1L)), d = &quot;a test&quot;)
+
+# 使用rapply对列表进行递归式的并发运算
+&gt; rapply(X, sqrt, classes = c(&quot;numeric&quot;, &quot;integer&quot;), 
++        deflt = NA_real_, how = &quot;unlist&quot;)
+       a      b.c        d 
+1.772454 1.000000       NA 
+</code></pre>
+
+<p><strong>rapply</strong>函数对于树状结构的列表数据非常有效，类似的，在<strong>聚类分析</strong>中我们会经常用到树状图，要修改树状图中每一个节点的属性，我们可以使用<span class="highlight-text primary">dendrapply</span>函数。</p>
+
+<p><br></p>
+
+<h2 id="6-使用多个可变参数进行并发运算">6、使用多个可变参数进行并发运算</h2>
+
+<p>以上<strong>apply</strong>家族函数中，我们每次只能将<strong>X</strong>中的一个元素传递给<strong>FUN</strong>参数对应的函数，如果我们希望<strong>FUN</strong>每次都要接收多个取值可变的数据参数，那么就需要用到<span class="highlight-text primary">mapply</span>函数：</p>
+
+<p><code>mapply(FUN, ..., MoreArgs = NULL, SIMPLIFY = TRUE, USE.NAMES = TRUE)</code></p>
+
+<ul>
+<li><strong>&hellip;</strong>即<strong>FUN</strong>每次被调用时，需要接收的取值可变的参数，注意这里数组或列表中相应位置上的元素需要一一对应，作为<strong>FUN</strong>中参数的取值</li>
+<li><strong>MoreArgs</strong>即<strong>FUN</strong>每次被调用时，需要接收的取值相同的参数</li>
+</ul>
+
+<pre><code class="language-R"># 使用mapply，相当于调用了2次rep函数
+# rep(x = 4,  times = 3) 
+# rep(x = 3,  times = 4) 
+&gt; mapply(rep, x = 4:3, times = 3:4)
+[[1]]
+[1] 4 4 4
+
+[[2]]
+[1] 3 3 3 3
+
+</code></pre>
+
+<p><br></p>
+
+<p>除了上文介绍到的并发运算，R语言中还有许多其它的方式可以提高工作效率，比如使用<strong>servr</strong>程序包开启后台程序，使用<strong>parallel</strong>程序包实现集群运算，&hellip;</p>
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li>对数据框使用<strong>sapply</strong>函数进行按列求均值，最终会生成那种数据类型的结果？</li>
+<li><strong>rapply</strong>函数中的<strong>classes</strong>支持类继承关系吗？</li>
+<li><strong>Map</strong>函数设计的意义是什么？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言编程篇——并发运算',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/" data-tooltip="R语言编程篇——函数分发">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的文件资源管理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/" data-tooltip="R语言编程篇——函数分发">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的文件资源管理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25B9%25B6%25E5%258F%2591%25E8%25BF%2590%25E7%25AE%2597%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25B9%25B6%25E5%258F%2591%25E8%25BF%2590%25E7%25AE%2597%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

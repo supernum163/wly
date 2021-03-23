@@ -1,0 +1,943 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 开发程序包, wly的博客, supernum">
+<meta name="description" content="R语言中的程序包极大的扩展了R语言的功能性，这篇文章我们将根据 rLua 程序包的开发实例，介绍开发R语言程序包的一般流程。">
+
+
+  
+    <meta property="article:published_time" content="2019-10-20T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-10-20T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="编程">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言编程">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言编程篇——开发程序包">
+<meta property="og:description" content="R语言中的程序包极大的扩展了R语言的功能性，这篇文章我们将根据 rLua 程序包的开发实例，介绍开发R语言程序包的一般流程。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/12/14/Q2j8tf.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言编程篇——开发程序包</title>
+
+    <link rel="canonical" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言编程篇——开发程序包
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-10-20T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-10-20
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>R语言中的程序包极大的扩展了R语言的功能性，这篇文章我们将根据 <a href="https://github.com/supernum163/rLua">rLua</a> 程序包的开发实例，介绍开发R语言程序包的一般流程。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-源程序包主要文件及目录简介">1、源程序包主要文件及目录简介</a></li>
+<li><a href="#2-编写源程序包帮助文档与配置文件">2、编写源程序包帮助文档与配置文件</a></li>
+<li><a href="#3-打包与发布程序包">3、打包与发布程序包</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h2 id="1-源程序包主要文件及目录简介">1、源程序包主要文件及目录简介</h2>
+
+<p>在制作程序包之前，我们首先需要将编写好的R语言程序连同需要打包的R语言数据一同读入执行环境，并使用命令<code>package.skeleton(name = &quot;rLua&quot;, list = ls(), path = &quot;./&quot;)</code>，生成程序包模板。这里的<strong>list</strong>参数即需要打包的R语言对象，<strong>path</strong>参数即生成的程序包模板（文件夹）存放位置。</p>
+
+<p>R语言的源程序包程序包中可以存放以下文件/文件夹，注意并非所有文件/文件夹都是必须的，使用<strong>package.skeleton</strong>函数时，会根据需要打包的R语言对象自动生成相应的文件/文件夹，当然我们也可以手动增删其中的文件/文件夹，但除以下内容之外的文件/文件夹可能不会被打包放入最终的程序包。</p>
+
+<ul>
+<li><strong>data</strong>文件夹，存放已被序列化的R语言数据，每个数据对象对应一个文件</li>
+<li><strong>R</strong>文件夹，存放R语言函数源文件，每个函数对应一个文件</li>
+<li><strong>man</strong>文件夹，存放帮助文档源文件，一般而言每个R语言对象对应一个帮助文档，但也可以进行合并</li>
+<li><strong>po</strong>文件夹，存放对照翻译源文件</li>
+<li><strong>src</strong>文件夹，存放C/C++、Fortman等编程语言源文件</li>
+<li><strong>exec</strong>文件夹，存放已经编译好的可执行文件</li>
+<li><strong>tools</strong>文件夹，存放工具软件</li>
+<li><strong>tests</strong>文件夹，存放R语言测试脚本，程序包检查时（运行<code>R CMD check rLua</code>）会逐一运行其中的脚本</li>
+<li><strong>demo</strong>文件夹，存放R语言示例脚本文件，可以在R语言中使用<span class="highlight-text primary">demo</span>函数运行示例</li>
+<li><strong>vignettes</strong>文件夹，存放以 <em>话题</em> 为基础的帮助文档，可以在R语言中使用<span class="highlight-text primary">vignettes</span>函数获取相应的话题</li>
+<li><strong>inst</strong>文件夹，存放在该文件夹中的内容在安装时会被移到程序包根目录，为了避免与程序包系统目录（如<strong>man、help、html、Meta</strong>等）冲突，可以在根目录中设置<strong>.Rinstignore</strong>文件。</li>
+<li><strong>configure</strong>（windows下应为<strong>configure.win</strong>）文件，即程序包安装时需要首先运行的操作系统脚本文件，一般用于配置程序包安装环境</li>
+<li><strong>cleanup</strong>（windows下应为<strong>cleanup.win</strong>）文件，即程序包安装时需要最后运行的操作系统脚本文件，一般用于清除程序包安装缓存</li>
+<li><strong>NAMESPACE</strong>文件，规范程序包被载入时，需要向程序包执行环境中导入导出的函数</li>
+<li><strong>DESCRIPTION</strong>文件，用于介绍程序包主要信息</li>
+<li><strong>NEWS.md</strong>文件，用于描述程序包的新特性</li>
+<li><strong>INSTALL、README、README.md</strong>文件，用于介绍程序包的安装方法</li>
+<li><strong>CITATION</strong>文件，即引用说明文件，可以在R语言中使用<span class="highlight-text primary">citation</span>函数获取引用说明</li>
+</ul>
+
+<p><br></p>
+
+<h2 id="2-编写源程序包帮助文档与配置文件">2、编写源程序包帮助文档与配置文件</h2>
+
+<p>接下来我们需要将C语言源文件放入<strong>src</strong>文件夹中，并根据实际情况修改程序包模板中的文件/文件夹：</p>
+
+<ul>
+<li><p>编写<strong>DESCRIPTION</strong>文件，该文件是对程序包功能、所有权的整体描述。我们可以在<strong>man</strong>文件夹下的帮助文档中，使用类似<span class="highlight-text red">\packageDescription{rLua}</span>的形式取出其中的相应内容。</p></li>
+
+<li><p>逐一编写<strong>man</strong>文件夹下的源帮助文档（<strong>.Rd</strong>文件），源帮助文档中的<strong>name</strong>参数即帮助文档页眉，<strong>alias</strong>参数即该帮助文档对应哪些函数，<strong>title</strong>参数即帮助文档的标题，其它参数均以<code>二级标题 + 内容</code>的形式显示。需要特别注意的是<strong>rLua-package.Rd</strong>文件，该文件是对程序包整体的帮助文档，我们可以在其中介绍程序包整体的设计思路及使用方法，这样使用者直接查找程序包（<code>?rLua</code>）的帮助文档就可以一目了然的了解到该程序包的功能。</p></li>
+
+<li><p>编写<strong>configure</strong>文件，用于在安装程序包时对程序包依赖的系统环境作出配置，注意windows下运行<strong>configure.win</strong>的命令行并不是<strong>CMD</strong>，而是<strong>Rtools</strong>工具包提供的<strong>ash</strong>，但我们依然可以在windows下运行系统命令（比如<strong>where</strong>）。如果我们编写的C/C++程序只用到了R语言系统API，安装程序包时R语言会自动帮我们编译源文件，不需要我们手动配置编译过程。但这里我们的源文件还需要用到lua的头文件、动态链接库，所以需要将这些文件的路径配置到个<strong>src/Makevars</strong>文件中。<strong>Makevars</strong>相当于<strong>Makefile</strong>文件，我们可以配置的参数有<strong>PKG_CFLAGS、PKG_CXXFLAGS、PKG_LIBS</strong>等。</p></li>
+
+<li><p>编写<strong>NAMESPACE</strong>文件，该文件决定了程序包中的哪些函数需要被导出到执行环境，我们可以使用<code>exportPattern(&quot;^[alpha]+&quot;)</code>的形式导出全部函数，当然也可以导出直接面向使用者的函数，此时底层函数仍然可以被同程序包的其它函数调用，但可以避免使用者直接调用底层函数。注意程序包被导入时，父执行环境只有<strong>base</strong>，所以使用到<strong>base</strong>程序包之外的函数时需要导入。</p></li>
+
+<li><p>编写程序包加载事件处理函数。rLua程序包中的函数需要依赖动态链接库，所以我们可以定义<span class="highlight-text primary">.onLoad、.onUnload</span>R语言函数，在程序包载入/脱载时自动载入/脱载动态链接库，注意这两个函数运行时父环境只有<strong>base</strong>。此外我们还可以定义<span class="highlight-text primary">.onAttach、.onDetach</span>R语言函数，在程序包载入之后或脱载之前完成某些操作（比如打印载入/脱载信息等）。注意R语言退出时不会触发脱载程序包事件。我们可以在<strong>R</strong>目录下的任何R语言脚本中定义这些函数，不过大多数程序包开发者都会将这些函数放入<strong>R/zzz.R</strong>文件中。</p></li>
+</ul>
+
+<p>以下是<strong>DESCRIPTION、man/lua_exec.Rd、configure、NAMESPACE、R/zzz.R</strong>文件的简单示例，实际内容请参考源项目。</p>
+
+
+  
+    
+  
+  
+    
+  
+  
+    
+  
+
+
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+  
+  
+  
+  
+  
+
+<figure class="codeblock codeblock--tabbed">
+  <figcaption>
+    
+      <span><a href="https://github.com/supernum163/rLua">rLua</a></span>
+    
+    <ul class="tabs">
+      
+        <li class="tab active">description</li>
+      
+        <li class="tab ">man_lua_exec</li>
+      
+        <li class="tab ">configure</li>
+      
+        <li class="tab ">namespace</li>
+      
+        <li class="tab ">r_zzz</li>
+      
+    </ul>
+  </figcaption> 
+  <div class="tabs-content">
+    
+      
+      <figure class="highlight language-description" style="display: block;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+              </td>
+              <td class="code">
+                
+                  
+                    <pre class="code-highlight language-text"><code class="text">    Package: rLua
+    Type: Package
+    Title: Run &#34;lua&#34; from within &#34;R&#34;
+    Version: 1.0
+    Date: 2019-10-20
+    Author: supernum
+    Maintainer: supernum &lt;supernum@163.com&gt;
+    Description: An C level interface between &#34;R&#34; and &#34;lua&#34;. Allow users run &#34;lua&#34; from within &#34;R&#34;.
+    SystemRequirements: lua (&gt;= 5.3.5) and lua headers and libraries
+    URL: https://github.com/supernum163/rLua/
+    License: GPL-2
+  </code></pre>
+                  
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-man_lua_exec" style="display: none;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre>
+              </td>
+              <td class="code">
+                
+                  
+                    <pre class="code-highlight language-text"><code class="text">    \name{lua status machine management}
+    \alias{lua_init}
+    \alias{lua_stop}
+    \title{ Start and stop lua status machine }
+    \description{
+      These functions are designed internally to start and stop the lua status machine. See **details**.
+    }
+    \usage{
+      lua_init()
+      lua_stop()
+    }
+    \details{
+      Lua code must run within lua status machine. So there will be a lua status machine automatically started/stoped when rLua package namespace loaded/unloaded. Users are not supposed to run these functions. In case the lua status machine corrupted accidently, users can call **lua_init**.
+    }
+    \references{ 
+      \url{http://www.lua.org/manual/5.3/manual.html#luaL_newstate} 
+    }
+  </code></pre>
+                  
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-configure" style="display: none;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre>
+              </td>
+              <td class="code">
+                
+                  
+                    <pre class="code-highlight language-text"><code class="text">    #!/bin/sh
+    
+    # configure src/Makevars
+    if [ -f &#34;~/lua.config&#34; ]; then
+      source ~/lua.config;
+      echo  PKG_CFLAGS = -I $lua_inc &gt;&gt; src/Makevars
+      echo  PKG_LIBS = -L $lua_lib -l lua &gt;&gt; src/Makevars
+    else
+      echo &#34;Warning: configuration file \&#34;lua.config\&#34; not found in \&#34;~/\&#34;&#34;;
+      exit 1;
+    fi
+  </code></pre>
+                  
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-namespace" style="display: none;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre>
+              </td>
+              <td class="code">
+                
+                  
+                    <pre class="code-highlight language-text"><code class="text">    # 载入动态链接库，也可以定义**.onLoad**函数实现，参考**R/zzz.R**
+    # useDynLib(rLua, .registration=TRUE)
+    
+    # 从其它程序包中导入函数
+    # import(methods)
+    # importFrom(utils, head)
+    
+    # 将程序包中的函数导出到执行环境
+    exportPattern(&#34;^lua&#34;)
+    # 如果只有S3分发函数被导出，而S3分发方法未导出
+    # 此时S3分发函数可以正常使用，但用户不能直接调用S3分发方法
+    export(lua_exec)
+    # exportClasses没有任何作用，但可以用于标识导出的分发函数
+    # exportClasses(lua_exec)
+    # exportMethods没有任何作用，但可以用于标识导出的分发方法
+    # exportMethods(lua_exec.factor)
+    
+    # 为已有函数添加一个S3方法
+    # S3method( &#34;&lt;-&#34;, &#34;lua_object&#34; )
+  </code></pre>
+                  
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+      
+      <figure class="highlight language-r_zzz" style="display: none;">   
+        <table>
+          <tbody>
+            <tr>
+              <td class="gutter">
+                <pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre>
+              </td>
+              <td class="code">
+                
+                  
+                    <pre class="code-highlight language-text"><code class="text">    .onLoad &lt;- function( libname, pkgname ){
+      library.dynam(&#34;rLua&#34;, pkgname, libname)
+      .C(&#34;lua_init&#34;, PACKAGE = &#34;rLua&#34;)
+    }
+    .onUnload &lt;- function( libpath ){
+      .C(&#34;lua_stop&#34;, PACKAGE = &#34;rLua&#34;)
+      library.dynam.unload(&#34;rLua&#34;, libpath)
+    }
+  </code></pre>
+                  
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </figure>
+    
+  </div>
+</figure>
+
+<p><br></p>
+
+<h2 id="3-打包与发布程序包">3、打包与发布程序包</h2>
+
+<p>接下来我们可以在操作系统命令行中使用<code>R CMD build rLua</code>的形式，将编写好的源程序包打包成可直接安装的程序包。该命令会进行最基本的程序包检查（判断程序包能做在本机安装），并在源程序包中生成一个<strong>build</strong>文件夹用以存放安装时的必要步骤，最后打包生成压缩文件。</p>
+
+<p>此外我们还可以使用操作系统命令<code>R CMD check rLua</code>进行更严格的审查，该命令可以能会给出各种错误信息或警告信息，比如源程序包中包含隐藏文件、帮助文档中出现格式错误的章节、C/C++程序声明的返回值与实际返回值类型可能不同等，但这些错误或警报有时并不影响程序包的安装使用，尤其是<strong>LaTeX Error: &hellip;</strong>。不过如果我们要在<strong>CRAN</strong>上发布程序包，这一步检查是必不可少的。</p>
+
+<p>当然，如果我们使用Rstudio建立rLua程序包工程，则可以直接在<strong>Build</strong>窗口中完成这些操作。</p>
+
+<p><br></p>
+
+<p>如果我们想要将制作的程序包分享给其他人使用，则可以直接将源程序包中的文件/文件夹上传到github仓库中，此时其他人就可以直接在R语言中，通过<code>devtools::install_github(repo = &quot;https://github.com/supernum163/rLua&quot;)</code>的形式安装该程序包了。</p>
+
+<p>要将程序包发布到<strong>CRAN</strong>上，则需要程序包交由R语言组织进行审核。首先在操作系统命令行中通过<code>ftp -u ftp://cran.R-project.org/incoming/ rLua.tar.gz</code>的形式，将打包后的程序包上传；然后使用程序包维护人员（对应<strong>DESCRIPTION</strong>中的<strong>Maintainer</strong>）的邮箱发送一封确认邮件给到<span class="highlight-text red">cran@r-project.org</span>，邮件内容可以参考下文；接着R语言组织会尝试在不同机器、不同版本的R语言中安装该程序包，并反馈错误信息，修改这些 <em>bug</em> 之后再次上传，直到不再出现 <em>bug</em> 为止，程序包就可以被上传到<strong>CRAN</strong>了。</p>
+
+<pre><code class="language-text">subject: CRAN submission rLua 1.0
+
+bHello, I just uploaded rLua to CRAN. Please let me know if
+anything goes wrong. Thank you. 
+
+supernum
+</code></pre>
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li>源码包下的<strong>configure.ac</strong>文件有何作用？</li>
+<li>如何解决 <font color="#FF0000">LaTeX Error: File `inconsolata.sty&rsquo; not found</font> ？</li>
+<li>程序包加载的哪个阶段会触发<span class="highlight-text primary">.Last.lib</span>事件？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言编程篇——开发程序包',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="R语言编程篇——调用外部函数">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="R语言编程篇——调用外部函数">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2580%25E5%258F%2591%25E7%25A8%258B%25E5%25BA%258F%25E5%258C%2585%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2580%25E5%258F%2591%25E7%25A8%258B%25E5%25BA%258F%25E5%258C%2585%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

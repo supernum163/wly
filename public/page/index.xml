@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Pages on wly&#39;s notebook</title>
+    <link>/page/</link>
+    <description>Recent content in Pages on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    
+	<atom:link href="/page/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>关于博客</title>
+      <link>/page/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/about/</guid>
+      <description>&lt;p&gt;当你第一次浏览这个博客时，心中一定会有些许疑问：这个博客是谁创建的？为什么要创建这个博客？这个博客将展现什么样的内容？这篇文章将尝试解答这些问题。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>向我打赏</title>
+      <link>/page/donate/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/page/donate/</guid>
+      <description>&lt;p&gt;如果你喜欢我的文章，并且有能力提供支持，欢迎扫描下方二维码向我打赏。你的鼓励和支持，是我最大的前进动力！&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

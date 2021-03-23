@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 数学运算, wly的博客, supernum">
+<meta name="description" content="R语言作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对矩阵进行数学运算的。">
+
+
+  
+    <meta property="article:published_time" content="2019-04-28T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-04-28T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="数学运算">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言数学运算">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用R语言对矩阵进行数学运算">
+<meta property="og:description" content="R语言作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对矩阵进行数学运算的。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/08/04/eyNM8K.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>使用R语言对矩阵进行数学运算</title>
+
+    <link rel="canonical" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      使用R语言对矩阵进行数学运算
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-04-28T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-04-28
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/%e6%95%b0%e5%ad%a6%e8%bf%90%e7%ae%97">数学运算</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><strong>R语言</strong>作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对<strong>矩阵</strong>进行数学运算的。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#1-什么是矩阵">1、什么是矩阵</a></li>
+<li><a href="#2-矩阵的生成与运用">2、矩阵的生成与运用</a>
+<ul>
+<li><a href="#2-1-生成矩阵">2.1、生成矩阵</a></li>
+<li><a href="#2-2-矩阵的维度与长度">2.2、矩阵的维度与长度</a></li>
+<li><a href="#2-3-矩阵的维度名称">2.3、矩阵的维度名称</a></li>
+<li><a href="#2-4-矩阵合并-取子集">2.4、矩阵合并、取子集</a></li>
+<li><a href="#2-5-矩阵的行列互换">2.5、矩阵的行列互换</a></li>
+</ul></li>
+<li><a href="#3-矩阵的基本数学运算">3、矩阵的基本数学运算</a></li>
+<li><a href="#4-矩阵特有的数学运算">4、矩阵特有的数学运算</a>
+<ul>
+<li><a href="#4-1-取对角矩阵-上下三角矩阵">4.1、取对角矩阵、上下三角矩阵</a></li>
+<li><a href="#4-2-矩阵相乘与内积-外积">4.2、矩阵相乘与内积、外积</a></li>
+<li><a href="#4-3-解矩阵方程">4.3、解矩阵方程</a></li>
+<li><a href="#4-4-行列式">4.4、行列式</a></li>
+<li><a href="#4-5-特征值与特征向量">4.5、特征值与特征向量</a></li>
+<li><a href="#4-6-奇异值分解">4.6、奇异值分解</a></li>
+<li><a href="#4-7-正交分解">4.7、正交分解</a></li>
+<li><a href="#4-8-三角分解">4.8、三角分解</a></li>
+<li><a href="#4-9-矩阵条件数-范数">4.9、矩阵条件数、范数</a></li>
+</ul></li>
+<li><a href="#5-结语">5、结语</a></li>
+</ul>
+</nav>
+
+<p><br></p>
+
+<h1 id="1-什么是矩阵">1、什么是矩阵</h1>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-50" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/08/04/eyNQgO.png" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/08/04/eyNQgO.png" >
+  
+    </a>
+  
+  
+</div>
+
+
+<p>在R语言中，<strong>Matrix</strong>（矩阵）是一个由行列结构组成的数据对象。与 <a href="../../使用R语言对数组进行数学运算/#1-什么是数组">数组</a>不同的是，矩阵是二维数据对象，而数组是一维数据对象。所以我们可以结合使用矩阵的<strong>行下标</strong>、<strong>列下标</strong>，来筛选出矩阵中的特定元素。</p>
+
+<p>在R语言中除了 <a href="../../使用R语言对数字进行数学运算">数字</a>（0维）、 <a href="../../使用R语言对数组进行数学运算">数组</a>（1维）、 <a href="#">矩阵</a>（2维），还存在更高维度的数据对象——<strong>Array</strong>（高纬数组）。高纬数组在其每一个维度上都拥有相应的<strong>维度下标</strong>和取值，我们可以通过特定维度的下标获取相应的取值。</p>
+
+<p><br></p>
+
+<h1 id="2-矩阵的生成与运用">2、矩阵的生成与运用</h1>
+
+<h2 id="2-1-生成矩阵">2.1、生成矩阵</h2>
+
+<p>在R语言中我们可以使用<span class="highlight-text primary">matrix</span>函数生成矩阵:</p>
+
+<p><code>matrix(data = NA, nrow = 1, ncol = 1, byrow = FALSE, dimnames = NULL)</code></p>
+
+<ul>
+<li><strong>data</strong>即用于生成矩阵的数组，当数组的长度<strong>n</strong>小于$nrow * ncol$时，数组中的元素会被重复使用；反之，只有数组中的前$nrow * ncol$个元素会被使用</li>
+<li><strong>nrow、ncol</strong>即矩阵的<strong>行、列数目</strong>，默认情况下会生成一个<strong>n行1列</strong>（<strong>n*1</strong>）的矩阵，相当于指定了<code>ncol = 1</code></li>
+<li><strong>byrow</strong>表示数组是否应该按行排列生成最终的矩阵，默认取值为<strong>FALSE</strong>，代表按列排列</li>
+<li><strong>dimnames</strong>即矩阵的<strong>维度名称</strong>（行列名），可以为<strong>NULL</strong>，代表没有行列名（默认）；或是被<strong>list</strong>包裹的两个数组，分别代表行名、列名</li>
+</ul>
+
+<pre><code class="language-R">&gt; matrix(1:6, nrow = 2, byrow = TRUE, dimnames = list(NULL, letters[1:3]))
+     a b c
+[1,] 1 2 3
+[2,] 4 5 6
+</code></pre>
+
+<p><br></p>
+
+<h2 id="2-2-矩阵的维度与长度">2.2、矩阵的维度与长度</h2>
+
+<p>我们可以分别使用<span class="highlight-text primary">nrow、ncol</span>函数，来获取矩阵的行数、列数。我们还可以使用<span class="highlight-text primary">dim</span>函数，获取数组在各个维度的长度（对于矩阵，其行、列分别对应其第一、第二个维度，所以矩阵的维度是一个长度为2的数组）。</p>
+
+<p>对于一维数组，我们可以使用<span class="highlight-text primary">length</span>计算数组长度，同样的我们也可以对矩阵使用<strong>length</strong>函数，从而计算矩阵中包含多少个元素。</p>
+
+<pre><code class="language-R">&gt; (x &lt;- matrix(1:6, nrow = 2))
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+</code></pre>
+
+<table>
+<thead>
+<tr>
+<th align="left">nrow(x)</th>
+<th align="left">ncol(x)</th>
+<th align="left">dim(x)</th>
+<th align="left">length(x)</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">2</td>
+<td align="left">3</td>
+<td align="left">c(2, 3)</td>
+<td align="left">6</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="2-3-矩阵的维度名称">2.3、矩阵的维度名称</h2>
+
+<p>我们已经总结了如何在生成矩阵的时候，使用<strong>dimnames</strong>参数为矩阵指定维度名称。对于已经生成的矩阵，我们可以通过<span class="highlight-text primary">dimnames</span>函数来取得或设定维度名称，通过<span class="highlight-text primary">rownames、colnames</span>函数来取得或设定行名、列名。</p>
+
+<pre><code class="language-R">&gt; dimnames(x) &lt;- list(NULL, LETTERS[1:3]); x
+     A B C
+[1,] 1 3 5
+[2,] 2 4 6
+</code></pre>
+
+<h2 id="2-4-矩阵合并-取子集">2.4、矩阵合并、取子集</h2>
+
+<p>对于两个矩阵（或一维数组），我们可以分别使用<span class="highlight-text primary">rbind、cbind</span>实现按行、按列合并。</p>
+
+<p>我们已经总结了如何使用<strong>[]</strong>函数筛选数组中的特定元素，这个函数也可以适用于矩阵。我们可以在<strong>[]</strong>中传入两个数组并以逗号隔开，分别代表行、列的<strong>筛选条件</strong>，当筛选条件为空时则代表全选。其中：</p>
+
+<ul>
+<li>当筛选条件为<strong>数值类</strong>的数组时，代表在特定维度筛选<strong>维度下标</strong>等于该数组的值</li>
+<li>当筛选条件为<strong>字符类</strong>的数组时，代表在特定维度筛选<strong>维度名称</strong>等于该数组的值</li>
+<li>当筛选条件为<strong>逻辑值类</strong>的数组时（此时数组需要与维度的长度相同，否则数组中的值会被重复利用），代表特定维度相应位置的值是否应该被保留。</li>
+</ul>
+
+<p>注意当我们在某个维度筛选特定值时，筛选结果往往会比之前少一个维度。所以<code>x[1,]</code>会筛选出一个数组，而非矩阵。</p>
+
+<p>此外，对于矩阵筛选，我们可以在<strong>[]</strong>中只传入一个数组，此时相当于将矩阵按照默认方式转化为数组然后在进行筛选。我们还可以传入一个与矩阵等规模（行列相同）的<strong>逻辑矩阵</strong>时，相当于筛选与逻辑矩阵中<strong>TRUE</strong>元素所在位置对应的元素。</p>
+
+<pre><code class="language-R">&gt; x &lt;- matrix(1:6, nrow = 2)
+&gt; rbind(x, x[1,])
+     [,1] [,2] [,3]
+[1,]    1    3    5
+[2,]    2    4    6
+[3,]    1    3    5
+&gt; cbind(x, 7:8)
+     [,1] [,2] [,3] [,4]
+[1,]    1    3    5    7
+[2,]    2    4    6    8
+</code></pre>
+
+<h2 id="2-5-矩阵的行列互换">2.5、矩阵的行列互换</h2>
+
+<p>在R语言中，我们可以使用<span class="highlight-text primary">t</span>函数对矩阵进行列互换。特别的，<strong>t</strong>函数也可以转置数组，转化后会生成一个$1 \times n$（1行n列）的矩阵。</p>
+
+<pre><code class="language-R">&gt; t(matrix(1:6, nrow = 2))
+     [,1] [,2]
+[1,]    1    2
+[2,]    3    4
+[3,]    5    6
+&gt; t(1:3)
+     [,1] [,2] [,3]
+[1,]    1    2    3
+</code></pre>
+
+<p><br></p>
+
+<h1 id="3-矩阵的基本数学运算">3、矩阵的基本数学运算</h1>
+
+<p>我们在 <a href="../../使用r语言对数组进行数学运算/#3-数组的基本数学运算">上文</a>中总结了对数组进行数学运算时的规律，类似的规律对于矩阵也同样适用：如果两个行列数目相同的矩阵进行数学运算，相当于分别对矩阵中行列下标对应的元素进行数学运算，否则长度较短的矩阵中的元素会被重复利用。</p>
+
+<p><br></p>
+
+<h1 id="4-矩阵特有的数学运算">4、矩阵特有的数学运算</h1>
+
+<h2 id="4-1-取对角矩阵-上下三角矩阵">4.1、取对角矩阵、上下三角矩阵</h2>
+
+<p>我们可以使用<span class="highlight-text primary">diag</span>函数来取矩阵的对角元素，或者生成一个<strong>对角矩阵</strong>。通过<span class="highlight-text primary">isSymmetric</span>函数，我们可以判断一个矩阵是否为对角矩阵。通过<span class="highlight-text primary">lower.tri、upper.tri</span>函数，我们可以生成一个由逻辑值组成的<strong>上、下三角矩阵</strong>，结合矩阵筛选的规则，我们就可以取出矩阵上、下三角区域的元素。</p>
+
+<pre><code class="language-R">&gt; diag(matrix(1:9, nrow = 3))
+[1] 1 5 9
+&gt; diag(1, nrow = 2, ncol = 4)
+     [,1] [,2] [,3] [,4]
+[1,]    1    0    0    0
+[2,]    0    1    0    0
+&gt; upper.tri(matrix(1:6, nrow = 2))
+      [,1]  [,2] [,3]
+[1,] FALSE  TRUE TRUE
+[2,] FALSE FALSE TRUE
+</code></pre>
+
+<p><br></p>
+
+<h2 id="4-2-矩阵相乘与内积-外积">4.2、矩阵相乘与内积、外积</h2>
+
+<p>我们可以通过运算符<span class="highlight-text primary">%*%</span>计算两个矩阵之间的乘积，注意向量的乘积与普通乘法的区别。假设<strong>X、Y、Z</strong>均为矩阵：</p>
+
+<p>$$\begin{cases}
+  Z[i,j] = X[i,] * Y[,j] &amp;\text{if } (Z = X \enspace \%*\% \enspace Y) \\
+  Z[i,j] = X[i,j] * Y[i,j] &amp;\text{if } (Z = X * Y)
+\end{cases}$$</p>
+
+<p>矩阵的乘法运算必须要求<strong>X</strong>的列数与<strong>Y</strong>的行数相同。但实际运用中我们经常会遇到两个行列相同的矩阵，此时如果想计算乘积，则需要对其中一个矩阵进行 <a href="#-2-5-矩阵的行列互换">行列互换</a>。当然我们也可以使用R语言中的两个快捷函数<span class="highlight-text primary">crossprod、 tcrossprod</span>，来以这种方式计算矩阵乘积。</p>
+
+<p>$$\begin{cases}
+  crossprod(X, Y) = X^TY \\
+  tcrossprod(X, Y) = XY^T
+\end{cases}$$</p>
+
+<p>对于两个长度分别为<strong>n、m</strong>的数组数组<strong>x、y</strong>，我们可以使用操作符<span class="highlight-text primary">%x%,</span>或者函数<span class="highlight-text primary">kronecker</span>来计算它们之间的<strong>内积</strong>，最终生成的结果相当于分别用<strong>x</strong>中的每个元素与<strong>y</strong>相乘，再将n个长度为m的数组合并为一个长度为$n \times m$的数组。</p>
+
+<p>此外我们还可以通过操作符<span class="highlight-text primary">%o%</span>或者函数<span class="highlight-text primary">outer</span>来计算<strong>x、y</strong>的<strong>外积</strong>。计算结果相当于一个$n \times 1$阶矩阵与一个$1 \times m$阶矩阵相乘，最终会生成一个$n \times m$阶的矩阵。</p>
+
+<p>注意内积与外积算法同样也可以运用于矩阵、高纬数组，其规律与数组类似。计算内积时生成结果的维度等于两个参数中最大的维度，而计算外积时生成结果的维度等于两个参数的维度之和。</p>
+
+<p><br></p>
+
+<h2 id="4-3-解矩阵方程">4.3、解矩阵方程</h2>
+
+<p>假设$XY = Z$，当矩阵<strong>X、Z</strong>已知时，我们可以通过<span class="highlight-text primary">solve</span>函数求解矩阵<strong>Y</strong>。如果<strong>X</strong>为上、下三角矩阵时，我们则可以分别使用<span class="highlight-text primary">backsolve、forwardsolve</span>函数求解<strong>Y</strong>。</p>
+
+<p>假设$XY = YX = Z$, 其中<strong>Z</strong>为<strong>单位矩阵</strong>， 则<strong>X、Y</strong>互为<strong>逆矩阵</strong>。根据求解矩阵方程的规律，我们可以通过以下命令求解矩阵<strong>X</strong>的逆：<code>solve(X, diag(1, nrow(X)))</code>。</p>
+
+<p><br></p>
+
+<h2 id="4-4-行列式">4.4、行列式</h2>
+
+<p>对于一个方阵<strong>X</strong>，我们可以使用<span class="highlight-text primary">det</span>函数来求解其<strong>行列式</strong>。注意矩阵的行列式可以写成以下形式：</p>
+
+<p>$$det(X) = \sum (-1)^K * X_{1k_1} * X_{2k_2} * &hellip; * X_{nk_n}$$</p>
+
+<p>其中$k_1, k_2, &hellip;, k_n$为数组<strong>1:n</strong>的一个排列，<strong>K</strong>为该排列中的逆序数。</p>
+
+<p><br></p>
+
+<h2 id="4-5-特征值与特征向量">4.5、特征值与特征向量</h2>
+
+<p>假设$Ax = \lambda x$，其中<strong>A</strong>为<strong>方阵</strong>，<strong>x</strong>为向量，$\lambda$为数字。则$\lambda$、<strong>x</strong>分别为矩阵<strong>A</strong>的<strong>特征值</strong>与<strong>特征向量</strong>（注意矩阵的特征值与特征向量可能不止有一个）。</p>
+
+<p>在R语言中我们可以通过<span class="highlight-text primary">eigen</span>函数，来求解矩阵的特征值与特征向量。</p>
+
+<pre><code class="language-R">&gt; eigen(cbind(c(1,-1), c(-1,1)))
+eigen() decomposition
+$values
+[1] 2 0
+
+$vectors
+           [,1]       [,2]
+[1,] -0.7071068 -0.7071068
+[2,]  0.7071068 -0.7071068
+</code></pre>
+
+<p>注意这里显示的运算结果中：<strong>$values</strong>中每个值都是一个特征值，<strong>$vectors</strong>中每个一列都是一个特征向量，特征值与特征向量是一一对应的。</p>
+
+<p><br></p>
+
+<h2 id="4-6-奇异值分解">4.6、奇异值分解</h2>
+
+<p>假设$X = UDV^T$，其中<strong>D</strong>为<strong>对角矩阵</strong>，<strong>U、V</strong>均为由<strong>单位向量</strong>组成的方阵。则<strong>D</strong>中对角线上的元素为矩阵<strong>X</strong>的<strong>奇异值</strong>，<strong>U、V</strong>分别为矩阵<strong>X</strong>的<strong>左、右奇异矩阵</strong>。</p>
+
+<p>在R语言中我们可以通过<span class="highlight-text primary">svd</span>函数，对矩阵进行奇异值分解。</p>
+
+<pre><code class="language-R">&gt; svd(matrix(1:4, 2))
+$d
+[1] 5.4649857 0.3659662
+
+$u
+           [,1]       [,2]
+[1,] -0.5760484 -0.8174156
+[2,] -0.8174156  0.5760484
+
+$v
+           [,1]       [,2]
+[1,] -0.4045536  0.9145143
+[2,] -0.9145143 -0.4045536
+</code></pre>
+
+<p>注意这里显示的运算结果中：<strong>$d</strong>为<strong>D</strong>中对角线上的元素（奇异值），<strong>$u、$v</strong>分别对应<strong>U、V</strong>。</p>
+
+<p><br></p>
+
+<h2 id="4-7-正交分解">4.7、正交分解</h2>
+
+<p>对于一个方阵<strong>A</strong>，如果$AA^T = E$，其中<strong>E</strong>为<strong>单位矩阵</strong>，则称<strong>A</strong>为<strong>正交矩阵</strong>。</p>
+
+<p><strong>正交分解</strong>的过程，就是将一个矩阵<strong>A</strong>，分解为一个正交矩阵<strong>Q</strong>与一个上三角矩阵<strong>R</strong>的乘积，即$A = QR$。</p>
+
+<p>在R语言中我们可以通过<span class="highlight-text primary">qr</span>函数，对矩阵进行正交分解。注意这里正交分解后生成的对象，以压缩数据的方式存储了计算结果，我们可以分别对其使用<span class="highlight-text primary">qr.Q、qr.R、qr.X</span>函数，来提取出其中的<strong>Q、R</strong>及原矩阵<strong>A</strong>。此外，R语言中定义了两个快捷函数<span class="highlight-text primary">qr.qy、qr.qty</span>，可以方便我们求解<strong>Q</strong>与其它矩阵的乘积。</p>
+
+<p>$$\begin{cases}
+  qr.qy(Q, Y) = QY \\
+  qr.qty(Q, Y) = Q^TY
+\end{cases}$$</p>
+
+<p>正交分解对于求解多元方程组具有非常重要的意义。假设多元方程组$y = aX$，其中由自变量组成的矩阵<strong>X</strong>已知（或<strong>X</strong>的正交分解已知），由因变量组成的向量<strong>y</strong>已知。则我们可以分别对其使用<span class="highlight-text primary">qr.solve、qr.coef、qr.fitted、qr.resid</span>函数，求解多元方程、获取多元方程组的各项系数$a$
+，获取拟合值$\hat y$，获取拟合误差$y - \hat y$。</p>
+
+<p><br></p>
+
+<h2 id="4-8-三角分解">4.8、三角分解</h2>
+
+<p><strong>三角分解</strong>的过程，就是将一个矩阵<strong>A</strong>，分解为一个下三角矩阵<strong>L</strong>与一个上三角矩阵的乘积，即$A = L L^T$。在R语言中我们可以通过<span class="highlight-text primary">chol</span>函数，对矩阵进行三角分解，最终生成的结果是一个上三角矩阵。</p>
+
+<p>三角分解对于矩阵求逆具有十分重要的意义。在R语言中我们可以对生成的上三角矩阵使用<span class="highlight-text primary">chol2inv</span>函数，来求解原矩阵的逆。</p>
+
+<pre><code class="language-R">chol_A &lt;- chol(A  &lt;- cbind(1, 1:3, c(1,3,7)))
+&gt; identical(A, t(chol_A) %*% chol_A)
+[1] TRUE
+&gt; identical(diag(1, nrow(A)), chol2inv(chol_A) %*% A)
+[1] TRUE
+</code></pre>
+
+<p><br></p>
+
+<h2 id="4-9-矩阵条件数-范数">4.9、矩阵条件数、范数</h2>
+
+<p>矩阵的<strong>条件数</strong>、<strong>范数</strong>可以描述矩阵特某个特征（比如矩阵用于求解多项式系数时的可信度）。在R语言中我们可以分别通过<span class="highlight-text primary">kappa、rcond、norm</span>等函数，来求解这些值。</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">替代命令</th>
+<th align="left">说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">kappa(X)</td>
+<td align="left">with(svd(X), max(d)/min(d))</td>
+<td align="left">条件数估计值，X的最大、最小奇异值之商</td>
+</tr>
+
+<tr>
+<td align="left">rcond(X)</td>
+<td align="left">1/kappa(X)</td>
+<td align="left">条件数倒数估计值</td>
+</tr>
+
+<tr>
+<td align="left">norm(X, &ldquo;O&rdquo;)</td>
+<td align="left">max(colSums(abs(X)))</td>
+<td align="left">按列汇总后的最大值</td>
+</tr>
+
+<tr>
+<td align="left">norm(X, &ldquo;I&rdquo;)</td>
+<td align="left">max(rowSums(abs(X)))</td>
+<td align="left">按行汇总后的最大值</td>
+</tr>
+
+<tr>
+<td align="left">norm(X, &ldquo;M&rdquo;)</td>
+<td align="left">max(abs(X))</td>
+<td align="left">X中的最大值</td>
+</tr>
+
+<tr>
+<td align="left">norm(X, &ldquo;2&rdquo;)</td>
+<td align="left">max(svd(X)$d)</td>
+<td align="left">X的最大奇异值</td>
+</tr>
+
+<tr>
+<td align="left">norm(X, &ldquo;F&rdquo;)</td>
+<td align="left">sqrt(sum(X^2))</td>
+<td align="left">X中各元素平方和的根</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h1 id="5-结语">5、结语</h1>
+
+<p>至此我们已经分别总结了R语言中如何对各种由数字组成的<strong>数据对象</strong>进行数学运算。当然R语言中还可以对一些其它类型的数据对象进行数学运算，这点我们会在之后总结相应的数据对象时介绍到。</p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li>如何用矩阵解决<strong>鸡兔同笼</strong>问题？</li>
+<li>根据上文提供的 <a href="#-4.4-行列式">行列式计算公式</a>，计算一个n阶段方阵的行列式，需要进行多少次加（减）法的迭代运算？</li>
+<li><strong>rcond(X)</strong>与<strong>1/kappa(X)</strong>之间存在的差异是计算误差吗？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">R语言数学运算</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: '使用R语言对矩阵进行数学运算',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数组进行数学运算">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-tooltip="R语言中的数据类型">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数组进行数学运算">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-tooltip="R语言中的数据类型">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F04%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AF%25B9%25E7%259F%25A9%25E9%2598%25B5%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%25B0%25E5%25AD%25A6%25E8%25BF%2590%25E7%25AE%2597%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F04%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AF%25B9%25E7%259F%25A9%25E9%2598%25B5%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%25B0%25E5%25AD%25A6%25E8%25BF%2590%25E7%25AE%2597%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML' async></script>
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      CommonHTML: { linebreaks: { automatic: true } },
+      tex2jax: { inlineMath: [ ['$', '$'], ['\\(','\\)'] ], displayMath: [ ['$$','$$'], ['\\[', '\\]'] ], processEscapes: false },
+      messageStyle: 'none'
+    });
+  </script>
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

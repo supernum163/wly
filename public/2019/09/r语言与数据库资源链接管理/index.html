@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, IO管理, 数据库资源链接管理, wly的博客, supernum">
+<meta name="description" content="R语言作为一门统计分析类计算机语言，与数据库对接读写数据是必不可少的操作。这篇文章我们将介绍R语言与数据库资源链接管理。">
+
+
+  
+    <meta property="article:published_time" content="2019-09-25T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-09-25T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="IO管理">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言IO管理">
+    
+      <meta property="article:tag" content="R语言扩展包">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言与数据库资源链接管理">
+<meta property="og:description" content="R语言作为一门统计分析类计算机语言，与数据库对接读写数据是必不可少的操作。这篇文章我们将介绍R语言与数据库资源链接管理。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/uQE3hF.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言与数据库资源链接管理</title>
+
+    <link rel="canonical" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言与数据库资源链接管理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-09-25T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-09-25
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/io%e7%ae%a1%e7%90%86">IO管理</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>R语言作为一门统计分析类计算机语言，与数据库对接读写数据是必不可少的操作。这篇文章我们将介绍R语言与数据库资源链接管理。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-odbc方式">1、ODBC方式</a>
+<ul>
+<li><a href="#1-1-window操作系统odbc配置">1.1、window操作系统ODBC配置</a></li>
+<li><a href="#1-2-unix类操作系统odbc配置">1.2、unix类操作系统ODBC配置</a></li>
+<li><a href="#1-3-r语言中使用odbc">1.3、R语言中使用ODBC</a></li>
+</ul></li>
+<li><a href="#2-dbi方式">2、DBI方式</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<p>R语言中建立并管理数据库资源连接的主流方式有两种，<strong>ODBC</strong>（<strong>Open Database Connectivity</strong>）方式，<strong>DBI</strong>（<strong>R Database Interface</strong>）方式。其中ODBC方式需要我们在操作系统中，使用ODBC管理软件事先配置好数据库链接方式。而DBI方式本质上是<strong>JDBC</strong>（<strong>Java Database Connectivity</strong>）在R语言中的实现，所以我们需要事先安装并配置<span class="highlight-text purple">rjava</span>程序包。</p>
+
+<p><br></p>
+
+<h2 id="1-odbc方式">1、ODBC方式</h2>
+
+<p>使用ODBC方式连接数据库，需要用到ODBC管理软件。window操作系统下自带<strong>ODBC 数据资源管理器</strong>，而对于<strong>unix</strong>类操作系统，我们可能需要手动安装 <a href="http://www.unixodbc.org/">unixODBC</a> 软件。</p>
+
+<p>接下来我们需要安装与数据库相应的<strong>ODBC驱动程序</strong>，大部分驱动程序都可以在数据库相应的官方网站中直接下载，比如 <a href="https://dev.mysql.com/downloads/connector/odbc/">MySQL ODBC Driver</a> 、 <a href="https://docs.microsoft.com/en-us/sql/connect/odbc/download-odbc-driver-for-sql-server">SQL Server ODBC Driver</a> 。</p>
+
+<p><br></p>
+
+<h3 id="1-1-window操作系统odbc配置">1.1、window操作系统ODBC配置</h3>
+
+<p>在window操作系统O中配置ODBC，我们只需要打开<strong>ODBC 数据资源管理器</strong>点击<strong>添加</strong>，接下来依次选择需要使用的数据库驱动程序、设置<strong>DSN</strong>（<strong>Data Source Name</strong>）及数据库所在服务器地址、设置登陆名及密码，设置其它必要信息并一路确定即可建立<strong>ODBC 数据源</strong>。更多帮助信息请参考： <a href="https://support.office.com/zh-cn/article/%e7%ae%a1%e7%90%86-odbc-%e6%95%b0%e6%8d%ae%e6%ba%90-b19f856b-5b9b-48c9-8b93-07484bfab5a7?ui=zh-CN&amp;rs=zh-CN&amp;ad=CN">ODBC 数据资源管理器 使用帮助</a> 。</p>
+
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/09/28/uQV4q1.png" title="步骤一" data-fancybox-group="group:ODBC">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/09/28/uQV4q1.png"  alt="步骤一">
+  
+    </a>
+  
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/09/28/uQVIVx.png" title="步骤二" data-fancybox-group="group:ODBC">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/09/28/uQVIVx.png"  alt="步骤二">
+  
+    </a>
+  
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure nocaption fig-33" >
+  
+    <a class="fancybox" href="https://s2.ax1x.com/2019/09/28/uQVoa6.png" title="步骤三" data-fancybox-group="group:ODBC">
+  
+    <img class="fig-img" src="https://s2.ax1x.com/2019/09/28/uQVoa6.png"  alt="步骤三">
+  
+    </a>
+  
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+
+<p><br></p>
+
+<h3 id="1-2-unix类操作系统odbc配置">1.2、unix类操作系统ODBC配置</h3>
+
+<p>在unix类操作系统O中配置ODBC，我们可以安装unixODBC图形化界面，像在windows操作系统中一样配置ODBC。当然我们也可以直接修改unixODBC的配置文件（配置文件大多在<code>/etc</code>或<code>/usr/local/etc</code>文件夹下），其中<strong>odbcinst.ini</strong>文件中需要配置数据库驱动程序，<strong>odbc.ini</strong>文件中需要配置<strong>DSN</strong>相关信息。最后我们可以在命令行使用<code>isql DSN UID PWD</code>的形式测试链接是否有效。</p>
+
+<pre><code>## odbcinst.ini
+[mssqlDriver]
+Driver=/opt/microsoft/msodbcsql17/lib64/libmsodbcsql-17.3.so.1.1
+
+## odbc.ini
+[mssql]
+Driver = mssqlDriver
+Server = tcp: 192.168.1.10, 1433
+Database = mdb
+</code></pre>
+
+<p><br></p>
+
+<h3 id="1-3-r语言中使用odbc">1.3、R语言中使用ODBC</h3>
+
+<p>以ODBC的方式连接数据库，需要使用<span class="highlight-text purple">RODBC</span>程序包。注意RODBC连接到数据库时，用到的<strong>dsn</strong>参数必须是在ODBC管理软件中设置的。</p>
+
+<pre><code class="language-R">conn &lt;- RODBC::odbcConnect(dsn = &quot;dsnName&quot;, uid = 'userName', pwd = 'password')
+</code></pre>
+
+<p>RODBC中的函数包含两大类，其中的以<strong>odbc</strong>开头的函数主要负责管理数据库连接、作为底层命令查询及获取数据；而以<strong>sql</strong>开头的函数则可以看作是使用者层面的函数，主要用于执行SQL语句，增删改查表格等。以下是RODBC中的一些常用函数：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">odbcConnect</td>
+<td align="left">建立数据库链接</td>
+</tr>
+
+<tr>
+<td align="left">odbcReConnect</td>
+<td align="left">重新建立数据库链接</td>
+</tr>
+
+<tr>
+<td align="left">odbcClose</td>
+<td align="left">关闭数据库链接</td>
+</tr>
+
+<tr>
+<td align="left">odbcCloseAll</td>
+<td align="left">关闭所有数据库链接</td>
+</tr>
+
+<tr>
+<td align="left">odbcGetInfo</td>
+<td align="left">获取当前数据库链接的各项信息（服务器名称、数据库名称、数据库驱动信息等）</td>
+</tr>
+
+<tr>
+<td align="left">getSqlTypeInfo</td>
+<td align="left">通过数据库驱动名称（由<strong>odbcGetInfo</strong>获取），获取R语言对象在数据库中对应的数据类型</td>
+</tr>
+
+<tr>
+<td align="left">setSqlTypeInfo</td>
+<td align="left">通过数据库驱动名称，修改R语言对象在数据库中对应的数据类型</td>
+</tr>
+
+<tr>
+<td align="left">odbcSetAutoCommit</td>
+<td align="left">开启一次SQL语句批处理，<code>autoCommit = TRUE</code>时会自动提交处理结果，每条语句都是独立的</td>
+</tr>
+
+<tr>
+<td align="left">odbcEndTran</td>
+<td align="left">提交或放弃SQL语句批处理结果</td>
+</tr>
+
+<tr>
+<td align="left">sqlQuery</td>
+<td align="left">在数据库中执行SQL语句，并直接取出结果</td>
+</tr>
+
+<tr>
+<td align="left">sqlTypeInfo</td>
+<td align="left">获取当前数据库中所有数据类型信息</td>
+</tr>
+
+<tr>
+<td align="left">sqlTables</td>
+<td align="left">列举数据库中包含的表格（包括表格、视图等）</td>
+</tr>
+
+<tr>
+<td align="left">sqlColumns</td>
+<td align="left">列举数据库中某个表格的字段信息</td>
+</tr>
+
+<tr>
+<td align="left">sqlPrimaryKeys</td>
+<td align="left">列举数据库中某个表格的主键信息</td>
+</tr>
+
+<tr>
+<td align="left">sqlFetch</td>
+<td align="left">读取数据库中的某个表格（也可以读取前<strong>n</strong>行）</td>
+</tr>
+
+<tr>
+<td align="left">sqlFetchMore</td>
+<td align="left">读取<strong>sqlFetch</strong>未读取完毕的表格中的剩余部分</td>
+</tr>
+
+<tr>
+<td align="left">sqlSave</td>
+<td align="left">向数据库中存入一个表格，或向已存在的表格中插入数据</td>
+</tr>
+
+<tr>
+<td align="left">sqlUpdate</td>
+<td align="left">向数据库中的某个表格插入数据</td>
+</tr>
+
+<tr>
+<td align="left">sqlCopy</td>
+<td align="left">将数据库中某条语句对应的查询结果存储到表格中</td>
+</tr>
+
+<tr>
+<td align="left">sqlCopyTable</td>
+<td align="left">将数据库中的某个表格拷贝到另一个表格中</td>
+</tr>
+
+<tr>
+<td align="left">sqlClear</td>
+<td align="left">删除数据库中某个表格的所有数据</td>
+</tr>
+
+<tr>
+<td align="left">sqlDrop</td>
+<td align="left">删除数据库中的某个表格</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+<h2 id="2-dbi方式">2、DBI方式</h2>
+
+<p>使用DBI方式连接数据库时，首先需要安装<span class="highlight-text purple">DBI</span>程序包，但DBI并不负责直接与数据库连接，而是提供了一系列的连接规范，类似于Java中的接口类。所以我们还需要安装与数据库相对应的驱动程序包，比如<span class="highlight-text purple">RMySQL、RSQLServer、RSQLite</span>等。当然我们也可以使用ODBC的驱动程序，此时需要使用<span class="highlight-text purple">odbc</span>程序包。</p>
+
+<p>由于DBI中的函数可以被各种类型的驱动程序包实现，所以使用这些函数操作不同类型的数据库时，使用方式、返回结果可能会稍有不同，或者有些函数未被实现、有些函数的实现方式与设计理念不符。其中最大的差别应该是数据库的连接方式：</p>
+
+<pre><code class="language-R"># 连接 SQLServer
+conn &lt;- DBI::dbConnect(drv = RSQLServer::SQLServer(), 
+  server = &quot;serverIP/hostName&quot;, port = &quot;port&quot;, database = 'dbName', 
+  properties = list(user=&quot;userName&quot;, password='password'))
+# 连接 MySQL
+conn &lt;- DBI::dbConnect(drv = RMySQL::MySQL(), 
+  host = &quot;serverIP/hostName&quot;, port = &quot;port&quot;, dbname = &quot;dbName&quot;, 
+  uid = 'userName', pwd = 'password')
+# 连接 SQLite
+conn &lt;- DBI::dbConnect(drv = RSQLite::SQLite(), 
+  dbname = 'dbName.db')
+# 使用odbc驱动连接数据库
+conn &lt;- DBI::dbConnect(drv = odbc::odbc(), 
+  dsn = &quot;dsnName&quot;, dbname = &quot;dbName&quot;, 
+  uid = 'userName', pwd = 'password')
+</code></pre>
+
+<p>DBI中的函数大部分以<strong>db</strong>开头，功能包含了管理链接、增删改查等各个方面。其它函数大多属于底层函数，主要负责使上层函数使用起来更加人性化。以下是DBI中的一些常用函数：</p>
+
+<table>
+<thead>
+<tr>
+<th align="left">函数</th>
+<th align="left">解释说明</th>
+</tr>
+</thead>
+
+<tbody>
+<tr>
+<td align="left">dbCanConnect</td>
+<td align="left">判断能否与某个数据库建立链接</td>
+</tr>
+
+<tr>
+<td align="left">dbConnect</td>
+<td align="left">建立数据库链接</td>
+</tr>
+
+<tr>
+<td align="left">dbDisconnect</td>
+<td align="left">断开数据库链接</td>
+</tr>
+
+<tr>
+<td align="left">dbIsValid</td>
+<td align="left">判断当前数据库链接是否为有效链接</td>
+</tr>
+
+<tr>
+<td align="left">dbIsReadOnly</td>
+<td align="left">判断当前数据库链接是否为只读链接</td>
+</tr>
+
+<tr>
+<td align="left">dbExecute</td>
+<td align="left">在数据库中执行SQL语句，并直接取出结果（有多少行受影响），用于增删改</td>
+</tr>
+
+<tr>
+<td align="left">dbGetQuery</td>
+<td align="left">在数据库中执行SQL语句，并直接取出结果，用于查询</td>
+</tr>
+
+<tr>
+<td align="left">dbSendStatement</td>
+<td align="left">向数据库中发送需要执行的SQL语句，返回SQL执行结果外部指针（<strong>DBIResult</strong>），用于增删改</td>
+</tr>
+
+<tr>
+<td align="left">dbGetRowsAffected</td>
+<td align="left">查询受当前SQL执行结果影响的记录数</td>
+</tr>
+
+<tr>
+<td align="left">dbSendQuery</td>
+<td align="left">向数据库中发送需要执行的SQL语句，返回SQL执行结果外部指针，用于查询</td>
+</tr>
+
+<tr>
+<td align="left">dbListResults</td>
+<td align="left">列举数据库中所有需要执行的SQL语句</td>
+</tr>
+
+<tr>
+<td align="left">dbHasCompleted</td>
+<td align="left">查询需要执行的SQL语句是否已经执行完毕，或者说SQL执行结果是否完成</td>
+</tr>
+
+<tr>
+<td align="left">dbGetStatement</td>
+<td align="left">查询获取当前SQL执行结果的SQL语句</td>
+</tr>
+
+<tr>
+<td align="left">dbColumnInfo</td>
+<td align="left">查询SQL执行结果中的字段类型</td>
+</tr>
+
+<tr>
+<td align="left">dbFetch、fetch</td>
+<td align="left">从SQL执行结果中取出数据</td>
+</tr>
+
+<tr>
+<td align="left">dbGetRowCount</td>
+<td align="left">查询已从SQL执行结果中取出了多少条记录</td>
+</tr>
+
+<tr>
+<td align="left">dbBind</td>
+<td align="left">按行合并SQL执行结果与R语言中的对象</td>
+</tr>
+
+<tr>
+<td align="left">dbClearResult</td>
+<td align="left">清除SQL执行结果</td>
+</tr>
+
+<tr>
+<td align="left">dbBegin</td>
+<td align="left">开启一次SQL语句批处理</td>
+</tr>
+
+<tr>
+<td align="left">dbCommit</td>
+<td align="left">提交SQL语句批处理结果</td>
+</tr>
+
+<tr>
+<td align="left">dbRollback</td>
+<td align="left">放弃SQL语句批处理结果，即 <em>回滚</em></td>
+</tr>
+
+<tr>
+<td align="left">dbWithTransaction</td>
+<td align="left">执行SQL语句批处理，如果没有异常则提交，有异常则回滚</td>
+</tr>
+
+<tr>
+<td align="left">dbBreak</td>
+<td align="left">在<strong>dbWithTransaction</strong>中提前退出，并回滚</td>
+</tr>
+
+<tr>
+<td align="left">dbListConnections</td>
+<td align="left">列举某个数据库驱动建立的数据库链接数量</td>
+</tr>
+
+<tr>
+<td align="left">dbListObjects</td>
+<td align="left">列举数据库中包含的对象（包括表格、视图等）</td>
+</tr>
+
+<tr>
+<td align="left">dbListTables</td>
+<td align="left">列举数据库中包含的表格</td>
+</tr>
+
+<tr>
+<td align="left">dbListFields</td>
+<td align="left">列举数据库中的某个表格包含的字段</td>
+</tr>
+
+<tr>
+<td align="left">dbDataType</td>
+<td align="left">判断R语言中的某个对象，在数据库中应该对应的数据类型</td>
+</tr>
+
+<tr>
+<td align="left">dbReadTable</td>
+<td align="left">读取数据库中的某个表格</td>
+</tr>
+
+<tr>
+<td align="left">dbCreateTable</td>
+<td align="left">在数据库中创建一个表格</td>
+</tr>
+
+<tr>
+<td align="left">dbWriteTable</td>
+<td align="left">向数据库中存入一个表格</td>
+</tr>
+
+<tr>
+<td align="left">dbAppendTable</td>
+<td align="left">向数据库中的某个表格插入数据</td>
+</tr>
+
+<tr>
+<td align="left">dbRemoveTable</td>
+<td align="left">删除数据库中的某个表格</td>
+</tr>
+
+<tr>
+<td align="left">dbExistsTable</td>
+<td align="left">判断数据库中是否存在某个表格</td>
+</tr>
+
+<tr>
+<td align="left">sqlColumnToRownames</td>
+<td align="left">将某个字段转化为行名</td>
+</tr>
+
+<tr>
+<td align="left">sqlRownamesToColumn</td>
+<td align="left">将行名转化为单独的字段</td>
+</tr>
+</tbody>
+</table>
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li><strong>ODBC</strong>可以建立连接到<strong>Access、Excel</strong>的数据源吗？</li>
+<li>如果获取所有的数据库链接列表？</li>
+<li><strong>DBI</strong>如何关闭所有数据库链接？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80io%E7%AE%A1%E7%90%86/">R语言IO管理</a>
+
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/">R语言扩展包</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言与数据库资源链接管理',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="R语言中的文件输入输出">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="R语言中的文件输入输出">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F09%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%258E%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E8%25B5%2584%25E6%25BA%2590%25E9%2593%25BE%25E6%258E%25A5%25E7%25AE%25A1%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F09%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%258E%25E6%2595%25B0%25E6%258D%25AE%25E5%25BA%2593%25E8%25B5%2584%25E6%25BA%2590%25E9%2593%25BE%25E6%258E%25A5%25E7%25AE%25A1%25E7%2590%2586%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

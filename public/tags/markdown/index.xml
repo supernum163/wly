@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Markdown on wly&#39;s notebook</title>
+    <link>/tags/markdown/</link>
+    <description>Recent content in Markdown on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Fri, 22 Mar 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/markdown/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>在评论区使用markdown语法</title>
+      <link>/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/</link>
+      <pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;markdown&lt;/strong&gt;是一款轻量级网页内容生成语法，使用markdown语法，你可以轻松生成图文并茂的网页内容。这篇文章将带你了解如何在评论区使用markdown语法。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

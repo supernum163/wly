@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>数据分析 on wly&#39;s notebook</title>
+    <link>/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+    <description>Recent content in 数据分析 on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 28 Sep 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>APP运营数据分析</title>
+      <link>/2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</link>
+      <pubDate>Sat, 28 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/</guid>
+      <description>&lt;p&gt;应用程序（&lt;strong&gt;APP&lt;/strong&gt;）可以指计算机、手机或其它智能设备中的某个软件，也可以指依赖网络协议实现的某个应用。对于APP运营人员来说，了解数据分析无疑可以更好的推广APP、甚至决定APP的开发方向。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

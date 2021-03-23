@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>R语言扩展包 on wly&#39;s notebook</title>
+    <link>/tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/</link>
+    <description>Recent content in R语言扩展包 on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 28 Dec 2019 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>R语言搭建交互式网页应用——shiny</title>
+      <link>/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/</link>
+      <pubDate>Sat, 28 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;shiny&lt;/strong&gt;是R语言中的一个可交互式的网页应用框架，可以非常便利的使我们从使用者那里接收输入、控制信息，并给使用者展示、反馈需要的信息，这篇文章我们将介绍如何使用&lt;strong&gt;shiny&lt;/strong&gt;搭建网页应用。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言数据整理利器——dplyr</title>
+      <link>/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/</link>
+      <pubDate>Fri, 20 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/</guid>
+      <description>&lt;p&gt;R语言中以程序包&lt;strong&gt;dplyr&lt;/strong&gt;为核心，外加&lt;strong&gt;rlang、magrittr、tibble、tidyr&lt;/strong&gt;等程序包的实用函数，可以重新定义R语言中的数据整理模式。这篇文章我们将介绍这套数据整理模式下，如何对数据框进行增删改查、交并合补。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言使用ggplot2绘图</title>
+      <link>/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/</link>
+      <pubDate>Fri, 13 Dec 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;ggplot2&lt;/strong&gt;是R语言中非常热门的一个绘图扩展包，可以允许我们以图层的形式逐一添加图形。这篇文章我们将介绍如何在R语言中使用ggplot2绘制优美的统计类图形。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>R语言与数据库资源链接管理</title>
+      <link>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/</link>
+      <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
+      
+      <guid>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/</guid>
+      <description>&lt;p&gt;R语言作为一门统计分析类计算机语言，与数据库对接读写数据是必不可少的操作。这篇文章我们将介绍R语言与数据库资源链接管理。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

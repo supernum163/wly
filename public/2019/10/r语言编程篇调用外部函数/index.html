@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="R语言, 调用外部函数, wly的博客, supernum">
+<meta name="description" content="在R语言中调用C/C&#43;&#43;、java、python等计算机语言、运行操作系统命令行命令，可以极大的扩展R语言的功能。这篇文章我们将介绍R语言中如何调用外部函数。">
+
+
+  
+    <meta property="article:published_time" content="2019-10-10T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-10-10T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="R语言">
+    
+      <meta property="article:section" content="编程">
+    
+  
+  
+    
+      <meta property="article:tag" content="R语言编程">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="R语言编程篇——调用外部函数">
+<meta property="og:description" content="在R语言中调用C/C&#43;&#43;、java、python等计算机语言、运行操作系统命令行命令，可以极大的扩展R语言的功能。这篇文章我们将介绍R语言中如何调用外部函数。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmiuIf.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>R语言编程篇——调用外部函数</title>
+
+    <link rel="canonical" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/">
+    <link rel="icon" href="../../../img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="../../../#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="../../../#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="../../../index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      R语言编程篇——调用外部函数
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2019-10-10T00:00:00Z">
+        
+  
+  
+  
+  
+    2019-10-10
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+    
+      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>在R语言中调用<strong>C/C++、java、python</strong>等计算机语言、运行操作系统命令行命令，可以极大的扩展R语言的功能。这篇文章我们将介绍R语言中如何<strong>调用外部函数</strong>。</p>
+
+<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<ul>
+<li>
+<ul>
+<li><a href="#1-r语言系统内部函数">1、R语言系统内部函数</a></li>
+<li><a href="#2-调用用户编写的c-c-程序">2、调用用户编写的C/C++程序</a>
+<ul>
+<li><a href="#2-1-编写c-c-程序">2.1、编写C/C++程序</a></li>
+<li><a href="#2-2-管理动态链接库">2.2、管理动态链接库</a></li>
+<li><a href="#2-3-在r语言中调用c-c-程序">2.3、在R语言中调用C/C++程序</a></li>
+<li><a href="#2-4-使用第三方程序包调用c-c-程序">2.4、使用第三方程序包调用C/C++程序</a></li>
+</ul></li>
+<li><a href="#3-调用操作系统命令行命令">3、调用操作系统命令行命令</a></li>
+<li><a href="#4-调用其它计算机语言">4、调用其它计算机语言</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h2 id="1-r语言系统内部函数">1、R语言系统内部函数</h2>
+
+<p>R语言的底层函数绝大部分都是由C语言实现的，用户调用这些底层函数时，这些函数会使用<span class="highlight-text primary">.Primitive、.Internal</span>函数，调用系统内部函数来实现特定的功能。</p>
+
+<p>使用<strong>.Primitive</strong>调用的内部函数，可以直接与C语言对接，使用形式类似<code>.Primitive(name)(args)</code>。这种形式可以直接通过<strong>name</strong>调用C语言中的某个函数，所以运行速度更快。R语言中的操作符、基础数学运算函数、流程控制类函数等，为了提高运行效率，都是以<strong>.Primitive</strong>直接调用内部函数的方式存在的，比如函数<strong>abs</strong>相当于<code>.Primitive(&quot;abs&quot;)</code>。但是这类函数没有函数体、参数列表、定义环境，所以不遵守R语言中的参数查找、函数分发等机制（参考 <a href="../../2019/07/r语言编程篇面向函数的编程">这里</a>），只适合简单明确的传参形式。这类函数的数据类型大多为<strong>builtin</strong>，但其中一些函数会将未执行的命令作为参数传递给内部函数，所以数据类型为<strong>special</strong>，比如操作符<strong>&amp;&amp;</strong>在内部函数中才会决定是否计算第二个参数。</p>
+
+<p>使用<strong>.Internal</strong>调用的内部函数，参数可以被R语言处理后，再与C语言对接，使用形式类似<code>.Internal(call)</code>。以这种方式作为函数体（或函数体中的一条语句）的函数，本质上与普通函数无异。但需要注意的是，<strong>.Internal</strong>也是用<strong>.Primitive</strong>函数实现的，相当于<code>.Primitive(&quot;.Internal&quot;)</code>。</p>
+
+<pre><code class="language-R">&gt; .Primitive(&quot;+&quot;)(1:10, -1)
+ [1] 0 1 2 3 4 5 6 7 8 9
+&gt; .Internal(strtoi(&quot;13141F&quot;, base = 16L))
+[1] 1250335
+</code></pre>
+
+<p>实际上无论以何种方式调用的内部函数，都以<strong>do_</strong>作为函数名的前缀，且都只能接受4个<strong>SEXP</strong>类型的参数，其中<strong>op</strong>的作用在于，当该内部函数对应R语言中的多个函数时（比如R语言中的操作符<strong>&lt;-、&lt;&lt;-、=</strong>，都是由C语言中的<strong>do_set</strong>函数实现的），区分是哪个R语言函数调用了该内部函数；<strong>call、args、env</strong>分别为R语言中调用该内部函数时的命令、参数列表、执行环境。此外这些内部函数除非抛出异常信息，否则必须且只能返回一个<strong>SEXP</strong>类型的数据。</p>
+
+<p>R语言的底层代码中，维护了一张R语言函数与C语言函数的对照表—— <a href="https://svn.r-project.org/R/trunk/src/main/names.c">(R_FunTab</a>，其中规定了哪些函数可以使用<strong>.Primitive</strong>直接调用，哪些函数需要使用<strong>.Internal</strong>调用；特定内部函数的<strong>op</strong>值（即<strong>offset</strong>）；R语言中调用特定内部函数时的参数列表，是需要在R语言中提前执行，还是需要在内部函数中执行……</p>
+
+<p><br></p>
+
+<h2 id="2-调用用户编写的c-c-程序">2、调用用户编写的C/C++程序</h2>
+
+<p>除了系统内部函数，R语言也可以调用用户编写的C/C++程序。但用户编写的C/C++程序必须满足一定的规范才可以被R语言调用，否则直接调用可能会导致R语言崩溃。R语言的标准C/C++接口，在安装目录中的<strong>include</strong>文件夹下，我们可以在R语言中使用命令<code>R.home(&quot;include&quot;)</code>找到该文件夹所在路径。</p>
+
+<p><br></p>
+
+<h3 id="2-1-编写c-c-程序">2.1、编写C/C++程序</h3>
+
+<p>我们在编写C/C++程序时，一般需要包含<strong>Rinternals.h</strong>头文件，该文件规定了R语言中的各种数据类型、数据的创建与筛选方式等。同时我们编写的函数参数与返回值必须是<strong>SEXP</strong>类型的数据（除非我们使用R语言中的<strong>.C</strong>函数作为C/C++程序的调用接口）。要在<strong>SEXP</strong>类型的数据与C语言标准类型的数据之间进行转化，我们可以使用<strong>Rinternals.h</strong>头文件中提供的标准函数。比如以下代码中，我们使用了<span class="highlight-text blue">STRING_ELT</span>函数，截取了字符串数组<strong>x</strong>中的首个元素；我们还使用了<span class="highlight-text blue">CHAR</span>函数，将<strong>CHARSXP</strong>类型的数据转化为了C语言中的字符串；此外我们还可以使用<span class="highlight-text blue">allocVector</span>函数创建一个R语言数组；使用<span class="highlight-text blue">SET_VECTOR_ELT</span>函数修改R语言数组中某个元素的值……</p>
+
+<pre><code class="language-C">#include &lt;Rinternals.h&gt;
+
+SEXP ParseEval(SEXP x){
+  const char * expr = CHAR(STRING_ELT(x, 0));
+  SEXP result = R_ParseEvalString(expr, R_GlobalEnv);
+  return result;
+};
+</code></pre>
+
+<p><br></p>
+
+<h3 id="2-2-管理动态链接库">2.2、管理动态链接库</h3>
+
+<p>接下来我们需要将编写好的C/C++程序保存在一个文件中（比如<strong>ParseEval.c</strong>），并在操作系统的命令行下，使用以下命令编译生成动态链接库。注意这里我的标准接口头文件存放在<strong>/usr/share/R/include/</strong>中。当然我们也可以使用R语言系统编译动态链接库的方法——<strong>SHLIB</strong>，但这种方法会将汇编过程与链接过程分开执行。</p>
+
+<pre><code class="language-bash"># 使用gcc编译生成动态链接库
+gcc -o ParseEval.so ParseEval.c -I . -I /usr/share/R/include/ -shared -fpic
+# 使用SHLIB编译生成动态链接库
+R CMD SHLIB -o ParseEval.so ParseEval.c
+</code></pre>
+
+<p>接下来我们需要在R语言中载入、管理编译好的动态链接库文件。我们可以分别使用<span class="highlight-text primary">dyn.load、dyn.unload</span>函数，载入、脱载动态链接库；使用<span class="highlight-text primary">getLoadedDLLs</span>函数查看所有已被载入的动态链接库；使用<span class="highlight-text primary">is.loaded</span>函数查看动态链接库中的某个函数是否已被载入。</p>
+
+<p><br></p>
+
+<h3 id="2-3-在r语言中调用c-c-程序">2.3、在R语言中调用C/C++程序</h3>
+
+<p>理论上，R语言中载入动态链接库后，就可以直接使用<span class="highlight-text primary">.C、.Call、.External</span>等函数，调用动态链接库中的C/C++程序。以上三个函数的区别在于：<strong>.C</strong>函数会将<strong>SEXP</strong>类型的R语言参数，转化为C语言中相应类型的数据（详情请参照帮助文档中的转化对照表），且<strong>.C</strong>函数被调用后返回值即传递的参数，不能从C/C++程序中接收返回值；<strong>.Call</strong>函数会直接将接收到的参数传递给C/C++程序，并从C/C++程序接收返回值传递给R语言；<strong>.External</strong>函数会将接收到的所有参数作为一个<strong>pairlist</strong>类型的参数列表传递给C/C++程序，其它方面与<strong>.Call</strong>函数一致，所以<strong>.External</strong>函数可以适用于参数个数不确定的程序（如<strong>sum</strong>函数）。</p>
+
+<pre><code class="language-R">&gt; .Call(&quot;ParseEval&quot;, &quot;1:10 - 1&quot;)
+ [1] 0 1 2 3 4 5 6 7 8 9
+</code></pre>
+
+<p>如果我们在R语言中直接调用C/C++程序，可能会存在一些问题，比如C/C++程序可能无法处理R语言中的NULL、NA、零长度数组等值，或者我们需要使用R语言的参数处理、函数分发等机制。所以我们可能需要在R语言中编写一个包裹函数，专门用于处理这类不确定因素，并把处理好的参数传递给C/C++程序。</p>
+
+<pre><code class="language-R">&gt; ParseEval &lt;- function(x){
++   if(!is.character(x) || length(x) == 0)
++     stop(&quot;'x'必须是字符串&quot;)
++ 
++   x &lt;- paste(x, collapse = &quot;;&quot;)
++     .Call(&quot;ParseEval&quot;, x)
++ }
+</code></pre>
+
+<p><br></p>
+
+<h3 id="2-4-使用第三方程序包调用c-c-程序">2.4、使用第三方程序包调用C/C++程序</h3>
+
+<p>通过上述步骤，我们已经可以在R语言中调用C/C++程序了，但以上步骤还可以更加精简。我们可以使用<span class="highlight-text purple">inline</span>程序包中的<span class="highlight-text primary">cfunction、cxxfunction</span>函数，只需写明C/C++程序的参数类型及函数体，即可直接由C/C++程序实现的R语言函数，编译、载入动态链接库、编写包裹函数等过程都可以交由<strong>inline</strong>程序包完成。</p>
+
+<pre><code class="language-R">&gt; library(inline, quietly = TRUE)
+
+&gt; ParseEval &lt;- cfunction(
++   sig = c(x = &quot;character&quot;),
++   body = &quot;
++     const char * expr = CHAR(STRING_ELT(x, 0));
++     SEXP result = R_ParseEvalString(expr, R_GlobalEnv);
++     return result;
++   &quot;
++ )
+</code></pre>
+
+<p>同样的，我们也可以使用<span class="highlight-text purple">Rcpp</span>程序包中的<span class="highlight-text primary">cppFunction</span>函数，以更加便捷的方式在R语言中调用C++程序，<strong>Rcpp</strong>程序包可以自动对参数及返回值的数据类型进行转化，并且直接生成与C++程序同名的R语言函数，所以只需要我们专注于C++程序的编写。</p>
+
+<pre><code class="language-R">&gt; library(Rcpp, quietly = TRUE)
+
+&gt; cppFunction(
++     code = &quot;
++     SEXP ParseEval(const char * expr){
++       return R_ParseEvalString(expr, R_GlobalEnv);
++     }
++   &quot;
++ )
+</code></pre>
+
+<p><br></p>
+
+<h2 id="3-调用操作系统命令行命令">3、调用操作系统命令行命令</h2>
+
+<p>我们可以在R语言中使用<span class="highlight-text primary">system、system2</span>函数，调用操作系统命令行中的命令。这两个函数都可以重定向操作系统命令行的标准输入、标准输出、错误输出流，并决定是否在R语言后台调用这些命令，但它们的参数设置略有不同。以下是<strong>system2</strong>函数的部分参数释义：</p>
+
+<p><strong>command</strong>参数即需要被调用的操作系统命令行命令
+<strong>args</strong>参数即需要传递给命令的参数
+<strong>stdout、stderr</strong>参数即操作系统命令行标准输出与错误输出的输出位置，默认输出到R语言命令行，<strong>NULL</strong>或<strong>FALSE</strong>表示舍弃这些输出内容，<strong>TRUE</strong>表示将这些输出内容存放到R语言中的字符串数组对象中，当然也可以是一个路径，表示输出到到特定文件中
+<strong>stdin</strong>参数即操作系统命令行标准输入的接收位置，仅当<strong>input</strong>参数为空时有效，默认从R语言命令行接收输入，当然也可以是一个路径，表示从特定文件中接收输入
+<strong>input</strong>参数即需要作为操作系统命令行标准输入的字符串数组，其中每个字符串代表一行命令
+<strong>env</strong>参数即需要提前设置的操作系统环境变量，需要以<code>name=value</code>形式的字符串数组提供
+<strong>wait</strong>参数即R语言是否应该等待命令完成，当需要接收命令的输出内容时，必须等待命令完成
+<strong>timeout</strong>参数即命令完成的时限（秒），如果命令超出这个时限仍未完成，则会终止命令并抛出超时错误</p>
+
+<p>使用<strong>system、system2</strong>函数，我们不仅可以运行操作系统命令（如<strong>ls、cd</strong>等），还可以调用其它脚本语言（如<strong>python、R</strong>等），但这种调用方式并不能直接将命令返回值转化为相应的R语言对象，而且直接将输出结果转化为字符串，往往会破坏输出结果的数据结构。所以这种方式更适合调用操作系统命令行，完成一些不需要用到返回值的操作，比如编译C/C++脚本、后台运行某项任务等。当然我们也可以借助字符串类型的数据交换格式，在操作系统命令行与R语言命令行之间传递数据。比如我们可以将输出结果转化为json字符串，然后在R语言中解析json字符串，即可将输出结果转化为相应的R语言对象。</p>
+
+<pre><code class="language-R"># 调用操作系统命令行下的R语言
+&gt; system(&quot;R --slave -e '1:10 - 1'&quot;, intern = TRUE)
+[1] &quot; [1] 0 1 2 3 4 5 6 7 8 9&quot;
+&gt; system2(&quot;R&quot;, &quot;--slave -e '1:10 - 1'&quot;, stdout = TRUE)
+[1] &quot; [1] 0 1 2 3 4 5 6 7 8 9&quot;
+
+# 使用json字符串传递高级数据类型的数据
+&gt; result &lt;- system2(&quot;R&quot;, &quot;--slave&quot;, stdout = TRUE, 
++                   input = c(&quot;res &lt;- 1:10 - 1&quot;, &quot;cat(rjson::toJSON(res))&quot;))
+&gt; rjson::fromJSON(result)
+ [1] 0 1 2 3 4 5 6 7 8 9
+</code></pre>
+
+<p><br></p>
+
+<h2 id="4-调用其它计算机语言">4、调用其它计算机语言</h2>
+
+<p>上文我们已经介绍了如何在R语言中通过操作系统命令行调用其它计算机语言，但这种方法必须使用操作系统标注输出，才能将其它计算机语言的计算结果（返回值）传递给R语言。当然我们也可以使用第三方程序包，直接在R语言中调用特定的计算机语言,比如我们可以使用<span class="highlight-text purple">rJava</span>程序包，在R与java之间进行数据传递、方法调用。更多关于<strong>rava</strong>的使用帮助，请参考 <a href="http://www.rforge.net/rJava/">这里</a>。</p>
+
+<pre><code>&gt; library(rJava)
+
+# 启动JVM
+&gt; .jinit()                                              
+[1] 0
+
+# 在JVM中创建一个字符串对象s
+&gt; s &lt;- .jnew(&quot;java/lang/String&quot;, &quot;Hello World!&quot;)
+
+# 直接打印字符串对象s
+&gt; print(s)
+[1] &quot;Java-Object{Hello World!}&quot;
+# 获取JVM中字符串对象s对应的值
+&gt; .jstrVal(s)
+[1] &quot;Hello World!&quot;
+
+# 调用字符串对象s的length方法，
+# 注意returnSig参数为返回值对应R语言中的数据类型
+# 此外返回值还可以是以下类型：
+# I	integer 	D	double (numeric) 	J	long (*) 	        F	float (*)
+# V	void	    Z boolean 	        C	char (integer) 	  B byte (raw)
+# L&lt;class&gt;  &lt;class&gt;类型的Java对象 (比如，Ljava/lang/Object)
+# [&lt;type&gt;  &lt;type&gt;类型的数组对象 (比如，[D double类型的数组)
+&gt; .jcall(s, returnSig = &quot;I&quot;, method = &quot;length&quot;)
+[1] 12
+
+# 调用字符串对象s的indexOf方法
+&gt; s$indexOf(&quot;World&quot;)
+[1] 6
+</code></pre>
+
+<p>并非所有桥接计算机语言的程序包都能实现两种计算机语言之间数据无缝对接，比如<span class="highlight-text purple">rPython</span>程序包就是通过json字符串的形式，在R与pthon之间传递数据的。以下代码展示了<strong>rPython</strong>在R语言中调用python的基本原理（linux操作系统下调用python2.7），当然<strong>rPython</strong>中加入了错误处理、跨版本兼容等机制，所以真正实现起来会更加复杂。更多关于python的C/C++接口规范，请参考 <a href="https://docs.python.org/zh-cn/2.7/c-api/">这里</a>。</p>
+
+<pre><code class="language-R">&gt; WD &lt;- tempdir()
+&gt; rPython.c &lt;- file.path(WD, &quot;rPython.c&quot;)
+&gt; rPython.o &lt;- file.path(WD, &quot;rPython.o&quot;)
+&gt; rPython.so &lt;- file.path(WD, &quot;rPython.so&quot;)
+
+# 编写调用python的C语言程序
+&gt; writeLines(con = rPython.c, text = '
++ #include &lt;Python.h&gt;
++ 
++ void python_init(){
++     Py_Initialize();
++     PyRun_SimpleString(&quot;import json&quot;);
++ }
++ void python_stop(){
++     Py_Finalize();
++ }
++ void python_exec(char** code)
++ {
++   PyRun_SimpleString(*code);
++ }
++ void python_get( const char** name, char** value )
++ {
++     PyObject * module     = PyImport_AddModule(&quot;__main__&quot;);
++     PyObject * dictionary = PyModule_GetDict(module);
++     PyObject * result     = PyDict_GetItemString(dictionary, *name );
++     *value = PyString_AS_STRING(result);
++ }
++ ')
+
+# 生成rPython动态链接库
+&gt; system2(&quot;gcc&quot;, paste(&quot; -c&quot;, rPython.c, &quot; -o&quot;, rPython.o,
++       system2(&quot;python-config&quot;, &quot;--includes&quot;, stdout = TRUE)))
+&gt; system2(&quot;gcc&quot;, paste(&quot;-shared&quot;, rPython.o, &quot; -o&quot;, rPython.so,
++       system2(&quot;python-config&quot;, &quot;--ldflags&quot;, stdout = TRUE)))
+      
+# 载入rPython动态链接库
+&gt; dyn.load(rPython.so)
+
+# 在R语言中编写包裹函数
+&gt; python_init &lt;- function(){
++   .C(&quot;python_init&quot;)
++   invisible(NULL)
++ }
+&gt; python_stop &lt;- function(){
++   .C(&quot;python_stop&quot;)
++   invisible(NULL)
++ }
+&gt; python_exec &lt;- function(code){
++   .C(&quot;python_exec&quot;, code) 
++   invisible(NULL)
++ }
+&gt; python_get &lt;- function(name){
++   code &lt;- paste( &quot;value_json = json.dumps( [&quot;, name, &quot;] )&quot;)
++   .C(&quot;python_exec&quot;, code) 
++   value &lt;- .C(&quot;python_get&quot;, &quot;value_json&quot;, value = &quot;&quot;)$value 
++   rjson::fromJSON(value)
++ }
+
+# 在R语言中调用python
+&gt; python_init()
+&gt; python_exec(&quot; abc = 'Hello World!' &quot;)
+&gt; python_get(&quot;abc&quot;)
+[1] &quot;Hello World!&quot;
+&gt; python_stop()
+</code></pre>
+
+<p><br></p>
+
+
+
+  
+
+<div style="width: 100%; margin: 1.5em 0; border: 1px solid #e6e6ff; border-radius:5px; overflow: hidden;">
+  <div style="text-align: center; font-weight:bold; background-color: #e6e6ff; padding: 1rem;">
+    思考思考
+  </div>
+  <div style="padding: 1rem;">
+    <ul>
+<li><strong>sum</strong>函数没有参数列表，那么<strong>na.rm = FALSE</strong>参数是其默认参数吗？</li>
+<li>如何使用R语言系统函数实现<strong>inline</strong>程序包中的<strong>cfunction</strong>函数？</li>
+<li>如何在其它计算机语言中调用R语言？</li>
+</ul>
+
+  </div>
+</div>
+
+<p><br></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="../../../css/gitment.css">
+<script src="../../../js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'R语言编程篇——调用外部函数',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E8%25B0%2583%25E7%2594%25A8%25E5%25A4%2596%25E9%2583%25A8%25E5%2587%25BD%25E6%2595%25B0%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E8%25B0%2583%25E7%2594%25A8%25E5%25A4%2596%25E9%2583%25A8%25E5%2587%25BD%25E6%2595%25B0%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="../../../js/jquery.min.js"></script>
+<script src="../../../js/jquery.fancybox.min.js"></script>
+<script src="../../../highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="../../../js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>
