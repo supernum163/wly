@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言编程篇——开发程序包">
 <meta property="og:description" content="R语言中的程序包极大的扩展了R语言的功能性，这篇文章我们将根据 rLua 程序包的开发实例，介绍开发R语言程序包的一般流程。">
@@ -51,19 +51,23 @@
 
     <title>R语言编程篇——开发程序包</title>
 
-    <link rel="canonical" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+      <a class="category-link" href="/categories/%e7%bc%96%e7%a8%8b">编程</a>
     
   
 
@@ -258,24 +262,10 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>R语言中的程序包极大的扩展了R语言的功能性，这篇文章我们将根据 <a href="https://github.com/supernum163/rLua">rLua</a> 程序包的开发实例，介绍开发R语言程序包的一般流程。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-源程序包主要文件及目录简介">1、源程序包主要文件及目录简介</a></li>
-<li><a href="#2-编写源程序包帮助文档与配置文件">2、编写源程序包帮助文档与配置文件</a></li>
-<li><a href="#3-打包与发布程序包">3、打包与发布程序包</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<h2 id="1-源程序包主要文件及目录简介">1、源程序包主要文件及目录简介</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1源程序包主要文件及目录简介">1、源程序包主要文件及目录简介</h2>
 <p>在制作程序包之前，我们首先需要将编写好的R语言程序连同需要打包的R语言数据一同读入执行环境，并使用命令<code>package.skeleton(name = &quot;rLua&quot;, list = ls(), path = &quot;./&quot;)</code>，生成程序包模板。这里的<strong>list</strong>参数即需要打包的R语言对象，<strong>path</strong>参数即生成的程序包模板（文件夹）存放位置。</p>
-
 <p>R语言的源程序包程序包中可以存放以下文件/文件夹，注意并非所有文件/文件夹都是必须的，使用<strong>package.skeleton</strong>函数时，会根据需要打包的R语言对象自动生成相应的文件/文件夹，当然我们也可以手动增删其中的文件/文件夹，但除以下内容之外的文件/文件夹可能不会被打包放入最终的程序包。</p>
-
 <ul>
 <li><strong>data</strong>文件夹，存放已被序列化的R语言数据，每个数据对象对应一个文件</li>
 <li><strong>R</strong>文件夹，存放R语言函数源文件，每个函数对应一个文件</li>
@@ -287,7 +277,7 @@
 <li><strong>tests</strong>文件夹，存放R语言测试脚本，程序包检查时（运行<code>R CMD check rLua</code>）会逐一运行其中的脚本</li>
 <li><strong>demo</strong>文件夹，存放R语言示例脚本文件，可以在R语言中使用<span class="highlight-text primary">demo</span>函数运行示例</li>
 <li><strong>vignettes</strong>文件夹，存放以 <em>话题</em> 为基础的帮助文档，可以在R语言中使用<span class="highlight-text primary">vignettes</span>函数获取相应的话题</li>
-<li><strong>inst</strong>文件夹，存放在该文件夹中的内容在安装时会被移到程序包根目录，为了避免与程序包系统目录（如<strong>man、help、html、Meta</strong>等）冲突，可以在根目录中设置<strong>.Rinstignore</strong>文件。</li>
+<li><strong>inst</strong>文件夹，存放在该文件夹中的内容在安装时会被移到程序包根目录，为了避免与程序包系统目录（如<strong>man、help、html、Meta</strong>等）冲突，可以在根目录中设置**.Rinstignore**文件。</li>
 <li><strong>configure</strong>（windows下应为<strong>configure.win</strong>）文件，即程序包安装时需要首先运行的操作系统脚本文件，一般用于配置程序包安装环境</li>
 <li><strong>cleanup</strong>（windows下应为<strong>cleanup.win</strong>）文件，即程序包安装时需要最后运行的操作系统脚本文件，一般用于清除程序包安装缓存</li>
 <li><strong>NAMESPACE</strong>文件，规范程序包被载入时，需要向程序包执行环境中导入导出的函数</li>
@@ -296,27 +286,27 @@
 <li><strong>INSTALL、README、README.md</strong>文件，用于介绍程序包的安装方法</li>
 <li><strong>CITATION</strong>文件，即引用说明文件，可以在R语言中使用<span class="highlight-text primary">citation</span>函数获取引用说明</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="2-编写源程序包帮助文档与配置文件">2、编写源程序包帮助文档与配置文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="2编写源程序包帮助文档与配置文件">2、编写源程序包帮助文档与配置文件</h2>
 <p>接下来我们需要将C语言源文件放入<strong>src</strong>文件夹中，并根据实际情况修改程序包模板中的文件/文件夹：</p>
-
 <ul>
-<li><p>编写<strong>DESCRIPTION</strong>文件，该文件是对程序包功能、所有权的整体描述。我们可以在<strong>man</strong>文件夹下的帮助文档中，使用类似<span class="highlight-text red">\packageDescription{rLua}</span>的形式取出其中的相应内容。</p></li>
-
-<li><p>逐一编写<strong>man</strong>文件夹下的源帮助文档（<strong>.Rd</strong>文件），源帮助文档中的<strong>name</strong>参数即帮助文档页眉，<strong>alias</strong>参数即该帮助文档对应哪些函数，<strong>title</strong>参数即帮助文档的标题，其它参数均以<code>二级标题 + 内容</code>的形式显示。需要特别注意的是<strong>rLua-package.Rd</strong>文件，该文件是对程序包整体的帮助文档，我们可以在其中介绍程序包整体的设计思路及使用方法，这样使用者直接查找程序包（<code>?rLua</code>）的帮助文档就可以一目了然的了解到该程序包的功能。</p></li>
-
-<li><p>编写<strong>configure</strong>文件，用于在安装程序包时对程序包依赖的系统环境作出配置，注意windows下运行<strong>configure.win</strong>的命令行并不是<strong>CMD</strong>，而是<strong>Rtools</strong>工具包提供的<strong>ash</strong>，但我们依然可以在windows下运行系统命令（比如<strong>where</strong>）。如果我们编写的C/C++程序只用到了R语言系统API，安装程序包时R语言会自动帮我们编译源文件，不需要我们手动配置编译过程。但这里我们的源文件还需要用到lua的头文件、动态链接库，所以需要将这些文件的路径配置到个<strong>src/Makevars</strong>文件中。<strong>Makevars</strong>相当于<strong>Makefile</strong>文件，我们可以配置的参数有<strong>PKG_CFLAGS、PKG_CXXFLAGS、PKG_LIBS</strong>等。</p></li>
-
-<li><p>编写<strong>NAMESPACE</strong>文件，该文件决定了程序包中的哪些函数需要被导出到执行环境，我们可以使用<code>exportPattern(&quot;^[alpha]+&quot;)</code>的形式导出全部函数，当然也可以导出直接面向使用者的函数，此时底层函数仍然可以被同程序包的其它函数调用，但可以避免使用者直接调用底层函数。注意程序包被导入时，父执行环境只有<strong>base</strong>，所以使用到<strong>base</strong>程序包之外的函数时需要导入。</p></li>
-
-<li><p>编写程序包加载事件处理函数。rLua程序包中的函数需要依赖动态链接库，所以我们可以定义<span class="highlight-text primary">.onLoad、.onUnload</span>R语言函数，在程序包载入/脱载时自动载入/脱载动态链接库，注意这两个函数运行时父环境只有<strong>base</strong>。此外我们还可以定义<span class="highlight-text primary">.onAttach、.onDetach</span>R语言函数，在程序包载入之后或脱载之前完成某些操作（比如打印载入/脱载信息等）。注意R语言退出时不会触发脱载程序包事件。我们可以在<strong>R</strong>目录下的任何R语言脚本中定义这些函数，不过大多数程序包开发者都会将这些函数放入<strong>R/zzz.R</strong>文件中。</p></li>
+<li>
+<p>编写<strong>DESCRIPTION</strong>文件，该文件是对程序包功能、所有权的整体描述。我们可以在<strong>man</strong>文件夹下的帮助文档中，使用类似<span class="highlight-text red">\packageDescription{rLua}</span>的形式取出其中的相应内容。</p>
+</li>
+<li>
+<p>逐一编写<strong>man</strong>文件夹下的源帮助文档（<strong>.Rd</strong>文件），源帮助文档中的<strong>name</strong>参数即帮助文档页眉，<strong>alias</strong>参数即该帮助文档对应哪些函数，<strong>title</strong>参数即帮助文档的标题，其它参数均以<code>二级标题 + 内容</code>的形式显示。需要特别注意的是<strong>rLua-package.Rd</strong>文件，该文件是对程序包整体的帮助文档，我们可以在其中介绍程序包整体的设计思路及使用方法，这样使用者直接查找程序包（<code> ?rLua</code>）的帮助文档就可以一目了然的了解到该程序包的功能。</p>
+</li>
+<li>
+<p>编写<strong>configure</strong>文件，用于在安装程序包时对程序包依赖的系统环境作出配置，注意windows下运行<strong>configure.win</strong>的命令行并不是<strong>CMD</strong>，而是<strong>Rtools</strong>工具包提供的<strong>ash</strong>，但我们依然可以在windows下运行系统命令（比如<strong>where</strong>）。如果我们编写的C/C++程序只用到了R语言系统API，安装程序包时R语言会自动帮我们编译源文件，不需要我们手动配置编译过程。但这里我们的源文件还需要用到lua的头文件、动态链接库，所以需要将这些文件的路径配置到个<strong>src/Makevars</strong>文件中。<strong>Makevars</strong>相当于<strong>Makefile</strong>文件，我们可以配置的参数有<strong>PKG_CFLAGS、PKG_CXXFLAGS、PKG_LIBS</strong>等。</p>
+</li>
+<li>
+<p>编写<strong>NAMESPACE</strong>文件，该文件决定了程序包中的哪些函数需要被导出到执行环境，我们可以使用<code>exportPattern(&quot;^[alpha]+&quot;)</code>的形式导出全部函数，当然也可以导出直接面向使用者的函数，此时底层函数仍然可以被同程序包的其它函数调用，但可以避免使用者直接调用底层函数。注意程序包被导入时，父执行环境只有<strong>base</strong>，所以使用到<strong>base</strong>程序包之外的函数时需要导入。</p>
+</li>
+<li>
+<p>编写程序包加载事件处理函数。rLua程序包中的函数需要依赖动态链接库，所以我们可以定义<span class="highlight-text primary">.onLoad、.onUnload</span>R语言函数，在程序包载入/脱载时自动载入/脱载动态链接库，注意这两个函数运行时父环境只有<strong>base</strong>。此外我们还可以定义<span class="highlight-text primary">.onAttach、.onDetach</span>R语言函数，在程序包载入之后或脱载之前完成某些操作（比如打印载入/脱载信息等）。注意R语言退出时不会触发脱载程序包事件。我们可以在<strong>R</strong>目录下的任何R语言脚本中定义这些函数，不过大多数程序包开发者都会将这些函数放入<strong>R/zzz.R</strong>文件中。</p>
+</li>
 </ul>
-
 <p>以下是<strong>DESCRIPTION、man/lua_exec.Rd、configure、NAMESPACE、R/zzz.R</strong>文件的简单示例，实际内容请参考源项目。</p>
-
 
   
     
@@ -549,33 +539,21 @@
     
   </div>
 </figure>
-
-<p><br></p>
-
-<h2 id="3-打包与发布程序包">3、打包与发布程序包</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="3打包与发布程序包">3、打包与发布程序包</h2>
 <p>接下来我们可以在操作系统命令行中使用<code>R CMD build rLua</code>的形式，将编写好的源程序包打包成可直接安装的程序包。该命令会进行最基本的程序包检查（判断程序包能做在本机安装），并在源程序包中生成一个<strong>build</strong>文件夹用以存放安装时的必要步骤，最后打包生成压缩文件。</p>
-
 <p>此外我们还可以使用操作系统命令<code>R CMD check rLua</code>进行更严格的审查，该命令可以能会给出各种错误信息或警告信息，比如源程序包中包含隐藏文件、帮助文档中出现格式错误的章节、C/C++程序声明的返回值与实际返回值类型可能不同等，但这些错误或警报有时并不影响程序包的安装使用，尤其是<strong>LaTeX Error: &hellip;</strong>。不过如果我们要在<strong>CRAN</strong>上发布程序包，这一步检查是必不可少的。</p>
-
 <p>当然，如果我们使用Rstudio建立rLua程序包工程，则可以直接在<strong>Build</strong>窗口中完成这些操作。</p>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>如果我们想要将制作的程序包分享给其他人使用，则可以直接将源程序包中的文件/文件夹上传到github仓库中，此时其他人就可以直接在R语言中，通过<code>devtools::install_github(repo = &quot;https://github.com/supernum163/rLua&quot;)</code>的形式安装该程序包了。</p>
-
 <p>要将程序包发布到<strong>CRAN</strong>上，则需要程序包交由R语言组织进行审核。首先在操作系统命令行中通过<code>ftp -u ftp://cran.R-project.org/incoming/ rLua.tar.gz</code>的形式，将打包后的程序包上传；然后使用程序包维护人员（对应<strong>DESCRIPTION</strong>中的<strong>Maintainer</strong>）的邮箱发送一封确认邮件给到<span class="highlight-text red">cran@r-project.org</span>，邮件内容可以参考下文；接着R语言组织会尝试在不同机器、不同版本的R语言中安装该程序包，并反馈错误信息，修改这些 <em>bug</em> 之后再次上传，直到不再出现 <em>bug</em> 为止，程序包就可以被上传到<strong>CRAN</strong>了。</p>
-
-<pre><code class="language-text">subject: CRAN submission rLua 1.0
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">subject: CRAN submission rLua 1.0
 
 bHello, I just uploaded rLua to CRAN. Please let me know if
 anything goes wrong. Thank you. 
 
 supernum
-</code></pre>
-
-<p><br></p>
-
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -587,14 +565,12 @@ supernum
   <div style="padding: 1rem;">
     <ul>
 <li>源码包下的<strong>configure.ac</strong>文件有何作用？</li>
-<li>如何解决 <font color="#FF0000">LaTeX Error: File `inconsolata.sty&rsquo; not found</font> ？</li>
-<li>程序包加载的哪个阶段会触发<span class="highlight-text primary">.Last.lib</span>事件？</li>
+<li>如何解决 <!-- raw HTML omitted -->LaTeX Error: File `inconsolata.sty&rsquo; not found<!-- raw HTML omitted --> ？</li>
+<li>程序包加载的哪个阶段会触发<!-- raw HTML omitted -->.Last.lib<!-- raw HTML omitted -->事件？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -606,7 +582,7 @@ supernum
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
 
                   </div>
                 
@@ -614,8 +590,8 @@ supernum
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言编程篇——开发程序包',
@@ -636,7 +612,7 @@ supernum
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="R语言编程篇——调用外部函数">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="R语言编程篇——调用外部函数">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -644,7 +620,7 @@ supernum
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -662,13 +638,13 @@ supernum
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -699,7 +675,7 @@ supernum
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -713,7 +689,7 @@ supernum
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="R语言编程篇——调用外部函数">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="R语言编程篇——调用外部函数">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -721,7 +697,7 @@ supernum
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -739,13 +715,13 @@ supernum
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -779,13 +755,13 @@ supernum
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2580%25E5%258F%2591%25E7%25A8%258B%25E5%25BA%258F%25E5%258C%2585%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2580%25E5%258F%2591%25E7%25A8%258B%25E5%25BA%258F%25E5%258C%2585%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2580%25E5%258F%2591%25E7%25A8%258B%25E5%25BA%258F%25E5%258C%2585%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%25BC%2580%25E5%258F%2591%25E7%25A8%258B%25E5%25BA%258F%25E5%258C%2585%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -840,12 +816,12 @@ supernum
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -922,7 +898,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

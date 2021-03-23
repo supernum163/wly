@@ -32,7 +32,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言搭建交互式网页应用——shiny">
 <meta property="og:description" content="shiny是R语言中的一个可交互式的网页应用框架，可以非常便利的使我们从使用者那里接收输入、控制信息，并给使用者展示、反馈需要的信息，这篇文章我们将介绍如何使用shiny搭建网页应用。">
@@ -49,19 +49,23 @@
 
     <title>R语言搭建交互式网页应用——shiny</title>
 
-    <link rel="canonical" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -72,12 +76,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -92,7 +96,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -107,7 +111,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -117,7 +121,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -127,7 +131,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -137,7 +141,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -147,7 +151,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -181,7 +185,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -195,7 +199,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -242,7 +246,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>
     
   
 
@@ -254,68 +258,35 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>shiny</strong>是R语言中的一个可交互式的网页应用框架，可以非常便利的使我们从使用者那里接收输入、控制信息，并给使用者展示、反馈需要的信息，这篇文章我们将介绍如何使用<strong>shiny</strong>搭建网页应用。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-整体框架">1、整体框架</a></li>
-<li><a href="#2-网页布局">2、网页布局</a></li>
-<li><a href="#3-插入静态网页内容">3、插入静态网页内容</a></li>
-<li><a href="#4-输入输出">4、输入输出</a></li>
-<li><a href="#5-事件响应">5、事件响应</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<p><br></p>
-
-<h2 id="1-整体框架">1、整体框架</h2>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="1整体框架">1、整体框架</h2>
 <p>一个简单的<strong>shiny</strong>网页程序框架可以由两部分组成：其中<strong>ui</strong>主要负责网页前端展示，包括定义网页布局、定义静态HTML展示信息、定义接收用户输入的HTML控件、定义响应用户时输出信息的HTML控件；而<strong>server</strong>则主要负责处理用户输入并返回响应信息，包括即时响应和事件性响应。</p>
-
-<p>因此，<strong>ui</strong>可以是由R语言对象表示的任意tml内容（通常会被放置在<strong><body></strong>或<strong><head></strong>标签内部），<strong>shiny</strong>中有很多函数都可以生成这样的对象，这些函数往往都是可以嵌套使用的，类似html中的标签。而<strong>server</strong>必须是一个至少能接受两个参数（<strong>input、output</strong>）的函数，这两个参数分别对应以R语言列表表示的用户输入和网页输出信息，在函数中我们只需要处理<strong>input</strong>中传来的信息，并将处理结果返还给<strong>output</strong>。</p>
-
+<p>因此，<strong>ui</strong>可以是由R语言对象表示的任意tml内容（通常会被放置在<strong><!-- raw HTML omitted --></strong>或<strong><!-- raw HTML omitted --></strong>标签内部），<strong>shiny</strong>中有很多函数都可以生成这样的对象，这些函数往往都是可以嵌套使用的，类似html中的标签。而<strong>server</strong>必须是一个至少能接受两个参数（<strong>input、output</strong>）的函数，这两个参数分别对应以R语言列表表示的用户输入和网页输出信息，在函数中我们只需要处理<strong>input</strong>中传来的信息，并将处理结果返还给<strong>output</strong>。</p>
 <p>最后我们只需要将定义好的<strong>ui、server</strong>传递给<span class="highlight-text primary">shinyApp</span>函数，即可启动网页应用。</p>
-
 <p>当然我们也可以将以下代码保存到R语言文件（<strong>app.R</strong>）中，通过执行文件，或者使用命令<code>shinyAppFile(appFile)</code>，也可以启动网页应用。</p>
-
-<pre><code class="language-R">library(shiny)
-ui &lt;- fluidPage()
-server &lt;- function(input, output){}
-shinyApp(ui = ui, server = server)
-</code></pre>
-
-<p>此外我们也可以新建一个<strong>shiny</strong>网页应用工程目录，并在<strong>ui.R</strong>和<strong>server.R</strong>文件中，定义<strong>ui、server</strong>，最后再使用命令<code>shinyAppDir(appDir)</code>，也可以启动网页应用。此时工程目录中还可以包含以下内容：</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">library</span>(shiny)
+ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>()
+server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output){}
+<span style="color:#a6e22e">shinyApp</span>(ui <span style="color:#f92672">=</span> ui, server <span style="color:#f92672">=</span> server)
+</code></pre></div><p>此外我们也可以新建一个<strong>shiny</strong>网页应用工程目录，并在<strong>ui.R</strong>和<strong>server.R</strong>文件中，定义<strong>ui、server</strong>，最后再使用命令<code>shinyAppDir(appDir)</code>，也可以启动网页应用。此时工程目录中还可以包含以下内容：</p>
 <ul>
 <li><strong>global.R</strong>文件，用于定义<strong>ui.R</strong>和<strong>server.R</strong>文件中共同使用到的对象</li>
 <li><strong>DESCRIPTION</strong>文件，当网页应用以*<strong>showcase</strong>模式下运行时，展示在页面底部的APP标题、作者等信息。比如：</li>
 </ul>
-
-<pre style="margin-left: 4rem;"><code class="language-text">  Title: Hello Shiny!
-  Author: RStudio, Inc.
-  AuthorUrl: http://www.rstudio.com/
-  License: MIT
-  DisplayMode: Showcase
-</code></pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
 <li><strong>README.md</strong>文件，当网页应用以*<strong>showcase</strong>模式下运行时，展示在页面底部的说明信息</li>
 <li><strong>www</strong>文件夹，网站根目录，用于存放图片、网页、CSS、JS等文件</li>
 <li>其它文件/文件夹。如R语言脚本、数据文件等</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="2-网页布局">2、网页布局</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="2网页布局">2、网页布局</h2>
 <p><strong>shiny</strong>中提供了一系列函数，可以帮助我们快速实现网页布局。此外如果借助其它程序包（如<strong>shinydashboard</strong>），还可以用到更多不同的布局函数、布局理念。当然我们也可以使用<strong>shiny</strong>中生成html标签的函数（参考<strong>tags</strong>对象），结合HTML与CSS语言，自定义网页布局。</p>
-
 <ul>
 <li><span class="highlight-text primary">fluidPage、fluidRow、fixedPage、fixedRow、flowLayout</span>，生成宽度自适应，高度由内部元素决定的html容器（<strong>div</strong>元素）。这些函数除了html样式之外，作用是相同的，生成的容器宽度总是固定的（占满整个父容器整个宽度），宽度不足时会将右侧的元素放入下方。</li>
 </ul>
-
 
 
  
@@ -341,11 +312,9 @@ shinyApp(ui = ui, server = server)
   
 </div>
 
-
 <ul>
 <li><span class="highlight-text primary">column</span>，生成宽度固定，高度由内部元素决定的html容器。此外该函数还可以指定与同一个父容器中上一个元素之间的间隔。注意这里的宽度和间隔都是将父容器12等分之后相应的比例。</li>
 </ul>
-
 
 
  
@@ -371,15 +340,17 @@ shinyApp(ui = ui, server = server)
   
 </div>
 
-
 <ul>
-<li><p><span class="highlight-text primary">fillPage</span>，设置html页面（<strong>body</strong>标签对应区域）占满整个屏幕。注意在其它布局函数内使用该函数可能会造成歧义。</p></li>
-
-<li><p><span class="highlight-text primary">fillRow、fillCol</span>，生成占满整个（或一定比例）父容器高度、宽度的html容器，并分别按一定比例（默认均分）分配给子元素宽度、高度,将子元素按行、按列并排放置。注意如果父容器宽度、高度需要依赖子元素确定，这两个函数可能会生成高度、宽度为零的容器。</p></li>
-
-<li><p><span class="highlight-text primary">verticalLayout、splitLayout</span>，分别生成横向分割、纵向分割的html容器。这两个函数功能上分别与<strong>fillRow、fillCol</strong>类似，不同点在于生成的容器宽度总是占满整个父容器，而高度则是根据子元素决定的。</p></li>
+<li>
+<p><span class="highlight-text primary">fillPage</span>，设置html页面（<strong>body</strong>标签对应区域）占满整个屏幕。注意在其它布局函数内使用该函数可能会造成歧义。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">fillRow、fillCol</span>，生成占满整个（或一定比例）父容器高度、宽度的html容器，并分别按一定比例（默认均分）分配给子元素宽度、高度,将子元素按行、按列并排放置。注意如果父容器宽度、高度需要依赖子元素确定，这两个函数可能会生成高度、宽度为零的容器。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">verticalLayout、splitLayout</span>，分别生成横向分割、纵向分割的html容器。这两个函数功能上分别与<strong>fillRow、fillCol</strong>类似，不同点在于生成的容器宽度总是占满整个父容器，而高度则是根据子元素决定的。</p>
+</li>
 </ul>
-
 
 
  
@@ -405,19 +376,23 @@ shinyApp(ui = ui, server = server)
   
 </div>
 
-
 <ul>
-<li><p><span class="highlight-text primary">sidebarLayout</span>，生成一个由<strong>sidebarPanel、mainPanel</strong>构成的html容器。</p></li>
-
-<li><p><span class="highlight-text primary">titlePanel、headerPanel</span>，生成用于展示网页应用标题的html容器。注意<strong>title、windowTitle</strong>参数分别对应展示在网页内部、展示在标签页的标题。</p></li>
-
-<li><p><span class="highlight-text primary">sidebarPanel、mainPanel</span>，分别生成宽度固定，高度由内部元素决定的侧边栏、主栏。特别适合分别用作输入、输出面板。</p></li>
-
-<li><p><span class="highlight-text primary">inputPanel</span>，生成适用于展示网页输入内容的html容器。</p></li>
-
-<li><p><span class="highlight-text primary">wellPanel</span>，生成适用于混合展示网页输入、输出内容的html容器。</p></li>
+<li>
+<p><span class="highlight-text primary">sidebarLayout</span>，生成一个由<strong>sidebarPanel、mainPanel</strong>构成的html容器。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">titlePanel、headerPanel</span>，生成用于展示网页应用标题的html容器。注意<strong>title、windowTitle</strong>参数分别对应展示在网页内部、展示在标签页的标题。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">sidebarPanel、mainPanel</span>，分别生成宽度固定，高度由内部元素决定的侧边栏、主栏。特别适合分别用作输入、输出面板。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">inputPanel</span>，生成适用于展示网页输入内容的html容器。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">wellPanel</span>，生成适用于混合展示网页输入、输出内容的html容器。</p>
+</li>
 </ul>
-
 
 
  
@@ -443,26 +418,30 @@ shinyApp(ui = ui, server = server)
   
 </div>
 
-
 <ul>
-<li><p><span class="highlight-text primary">absolutePanel、fixedPanel</span>，生成宽度、高度固定的html容器。二者的区别在于，<strong>absolutePanel</strong>的位置默认会根据父容器自动调整，而<strong>fixedPanel</strong>的位置默认是相对于屏幕固定的。此外我们还可以通过<strong>draggable</strong>参数，设置二者可以被托放至网页任意位置。</p></li>
-
-<li><p><span class="highlight-text primary">conditionalPanel</span>，生成只在特定条件下（比如某个用户输入信息取特定值）出现的html容器。</p></li>
+<li>
+<p><span class="highlight-text primary">absolutePanel、fixedPanel</span>，生成宽度、高度固定的html容器。二者的区别在于，<strong>absolutePanel</strong>的位置默认会根据父容器自动调整，而<strong>fixedPanel</strong>的位置默认是相对于屏幕固定的。此外我们还可以通过<strong>draggable</strong>参数，设置二者可以被托放至网页任意位置。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">conditionalPanel</span>，生成只在特定条件下（比如某个用户输入信息取特定值）出现的html容器。</p>
+</li>
 </ul>
-
-<pre style="margin-left: 4rem;"><code class="language-R hljs">conditionalPanel( condition = <span class="hljs-string">"input.show == 'messages'"</span>, textOutput(<span class="hljs-string">"messages"</span>) )
-</code></pre>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
 <ul>
-<li><p><span class="highlight-text primary">navbarPage</span>，生成一个分页容器，其中既可以放置<strong>tabPanel</strong>元素，也可以放置<strong>navbarMenu</strong>等元素。</p></li>
-
-<li><p><span class="highlight-text primary">navbarMenu</span>，生成<strong>navbarPage</strong>中的下拉菜单栏，其中既可以放置<strong>tabPanel</strong>元素，也可以放置其它元素。</p></li>
-
-<li><p><span class="highlight-text primary">navlistPanel、tabsetPanel</span>，生成一个分页容器。二者的区别在于，<strong>navlistPanel</strong>以竖排的形式依次放置分页标签（类似<strong>sidebarPanel</strong>），除了<strong>tabPanel</strong>还可以放其它元素；<strong>tabsetPanel</strong>以横排的形式放置分页标签，只能放置<strong>tabPanel</strong>元素</p></li>
-
-<li><p><span class="highlight-text primary">tabPanel</span>，生成分页容器的一个分页页面。</p></li>
+<li>
+<p><span class="highlight-text primary">navbarPage</span>，生成一个分页容器，其中既可以放置<strong>tabPanel</strong>元素，也可以放置<strong>navbarMenu</strong>等元素。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">navbarMenu</span>，生成<strong>navbarPage</strong>中的下拉菜单栏，其中既可以放置<strong>tabPanel</strong>元素，也可以放置其它元素。</p>
+</li>
+<li>
+<p><span class="highlight-text primary">navlistPanel、tabsetPanel</span>，生成一个分页容器。二者的区别在于，<strong>navlistPanel</strong>以竖排的形式依次放置分页标签（类似<strong>sidebarPanel</strong>），除了<strong>tabPanel</strong>还可以放其它元素；<strong>tabsetPanel</strong>以横排的形式放置分页标签，只能放置<strong>tabPanel</strong>元素</p>
+</li>
+<li>
+<p><span class="highlight-text primary">tabPanel</span>，生成分页容器的一个分页页面。</p>
+</li>
 </ul>
-
 
 
  
@@ -488,38 +467,26 @@ shinyApp(ui = ui, server = server)
   
 </div>
 
-
-<p><br></p>
-
-<h2 id="3-插入静态网页内容">3、插入静态网页内容</h2>
-
-<p><strong>shiny</strong>中的<strong>tags</strong>对象保存了几乎所有HTML标签对应的函数，如果想了解这些标签的意义及作用，可以参考 <a href="../../../2020/01/html标签介绍">HTML 标签介绍</a> 。上文已经提到，我们可以在<strong>ui</strong>中直接使用HTML标签。插入相应的标签可以使用<strong>tags</strong>中相应的函数，比如插入超链接可以使用<code>tags$a(&quot;超链接&quot;, href = &quot;https://example.com&quot;, ...)</code>，自定义网页布局可以使用<code>tags$div(style = &quot;margin: 0px;&quot;, ...)</code>等。这些函数中有名参数会被用作标签属性，无名参数会被用作标签内容，而且绝大部分都可以嵌套使用。</p>
-
+<!-- raw HTML omitted -->
+<h2 id="3插入静态网页内容">3、插入静态网页内容</h2>
+<p><strong>shiny</strong>中的<strong>tags</strong>对象保存了几乎所有HTML标签对应的函数，如果想了解这些标签的意义及作用，可以参考 <a href="../../../2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D">HTML 标签介绍</a> 。上文已经提到，我们可以在<strong>ui</strong>中直接使用HTML标签。插入相应的标签可以使用<strong>tags</strong>中相应的函数，比如插入超链接可以使用<code>tags$a(&quot;超链接&quot;, href = &quot;https://example.com&quot;, ...)</code>，自定义网页布局可以使用<code>tags$div(style = &quot;margin: 0px;&quot;, ...)</code>等。这些函数中有名参数会被用作标签属性，无名参数会被用作标签内容，而且绝大部分都可以嵌套使用。</p>
 <p>在HTML中插入CSS、JS代码的方式大致有三种：首先我们可以在某些HTML标签中，通过<strong>style</strong>属性设置该标签的CSS样式，设置JS事件处理函数（如<strong>onclick</strong>事件）；其次我们可以在<strong>style、script</strong>标签的标签内容中分别插入CSS、JS代码片段；最后我们还可以使用<strong>link、script</strong>标签分别链接CSS、JS代码文件，注意此类直接生成HTML标签的函数，在HTML代码寻找文件时，会以当前<strong>shiny</strong>工程目录下的<strong>www</strong>文件夹作为根目录。当然我们还可以分别使用<span class="highlight-text primary">addResourcePath、removeResourcePath、resourcePaths</span>函数，添加、删除、查询网站资源目录，并在<strong>shiny</strong>网页中使用这些网站资源目录的<strong>preifx</strong>（参考<strong>addResourcePath</strong>函数），访问到其中的内容。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 在HTML标签中设置CSS样式、JS事件</span>
+<span style="color:#f92672">&gt;</span> tags<span style="color:#f92672">$</span><span style="color:#a6e22e">div</span>(style <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;margin: 0px;&#34;</span>)
+<span style="color:#f92672">&gt;</span> tags<span style="color:#f92672">$</span><span style="color:#a6e22e">button</span>(<span style="color:#e6db74">&#34;点击这里&#34;</span>, onclick <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;alert(&#39;Hello&#39;)&#34;</span>)
 
-<pre><code class="language-R"># 在HTML标签中设置CSS样式、JS事件
-&gt; tags$div(style = &quot;margin: 0px;&quot;)
-&gt; tags$button(&quot;点击这里&quot;, onclick = &quot;alert('Hello')&quot;)
+<span style="color:#75715e"># 使用style、script标签插入CSS、JS代码块</span>
+<span style="color:#f92672">&gt;</span> tags<span style="color:#f92672">$</span><span style="color:#a6e22e">style</span>(<span style="color:#e6db74">&#34;div { margin: 0px; }&#34;</span>)
+<span style="color:#f92672">&gt;</span> tags<span style="color:#f92672">$</span><span style="color:#a6e22e">script</span>(<span style="color:#e6db74">&#34;function f() { alert(&#39;hello&#39;) }&#34;</span>)
 
-# 使用style、script标签插入CSS、JS代码块
-&gt; tags$style(&quot;div { margin: 0px; }&quot;)
-&gt; tags$script(&quot;function f() { alert('hello') }&quot;)
-
-# 使用link、script标签链接CSS、JS脚本文件
-&gt; tags$link(href=&quot;example.css&quot;, type=&quot;text/css&quot;, rel=&quot;stylesheet&quot;)
-&gt; tags$script(src=&quot;example.js&quot;, type=&quot;text/javascript&quot;)
-</code></pre>
-
-<p>此外<strong>shiny</strong>中定义了<span class="highlight-text primary">includeCSS、includeScript、includeHTML、includeMarkdown、includeText</span>函数，可以方便我们将CSS文件、JS文件、HTML文件、排版后的MarkDown文件、文本文件中的内容插入到HTML中。文本文件与HTML中的纯文本，格式上可能会有所不同（比如即使输入多个空格，HTML中也只会显示一个空格），为了保持文本文件中原有的格式，我们可以使用<strong>pre</strong>标签包裹<strong>includeText</strong>函数。注意此类函数会先从特定文件中读取相应的内容，再使用合适的HTML标签将这些内容转化为HTML，所以使用当前<strong>shiny</strong>工程目录作为根目录。</p>
-
+<span style="color:#75715e"># 使用link、script标签链接CSS、JS脚本文件</span>
+<span style="color:#f92672">&gt;</span> tags<span style="color:#f92672">$</span><span style="color:#a6e22e">link</span>(href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.css&#34;</span>, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/css&#34;</span>, rel<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span>)
+<span style="color:#f92672">&gt;</span> tags<span style="color:#f92672">$</span><span style="color:#a6e22e">script</span>(src<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;example.js&#34;</span>, type<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;text/javascript&#34;</span>)
+</code></pre></div><p>此外<strong>shiny</strong>中定义了<span class="highlight-text primary">includeCSS、includeScript、includeHTML、includeMarkdown、includeText</span>函数，可以方便我们将CSS文件、JS文件、HTML文件、排版后的MarkDown文件、文本文件中的内容插入到HTML中。文本文件与HTML中的纯文本，格式上可能会有所不同（比如即使输入多个空格，HTML中也只会显示一个空格），为了保持文本文件中原有的格式，我们可以使用<strong>pre</strong>标签包裹<strong>includeText</strong>函数。注意此类函数会先从特定文件中读取相应的内容，再使用合适的HTML标签将这些内容转化为HTML，所以使用当前<strong>shiny</strong>工程目录作为根目录。</p>
 <p>最后我们还可以使用<span class="highlight-text primary">icon</span>函数，通过名称即可在网页中插入 <a href="https://fontawesome.com/icons?d=gallery&amp;m=free">Font Awesome</a> 或者 <a href="https://icons.getbootstrap.com/">Glyphicons</a> 图标。</p>
-
-<p><br></p>
-
-<h2 id="4-输入输出">4、输入输出</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="4输入输出">4、输入输出</h2>
 <p>我们可以在<strong>ui</strong>中插入以下控件来获取用户的输入信息。这些控件都必须设置<strong>inputId</strong>参数，而且必须具有唯一性。我们可以在<strong>server</strong>中使用<code>input$inputId</code>的形式，获取某个控件收集到的用户输入信息。</p>
-
 <table>
 <thead>
 <tr>
@@ -527,87 +494,70 @@ shinyApp(ui = ui, server = server)
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">checkboxInput</td>
 <td align="left">单选框输入控件（单个选项中选择是否选中）</td>
 </tr>
-
 <tr>
 <td align="left">checkboxGroupInput</td>
 <td align="left">复选框输入控件（多个选项中选择多个选项）</td>
 </tr>
-
 <tr>
 <td align="left">radioButtons</td>
 <td align="left">单选按钮输入控件（多个选项中选择单个选项）</td>
 </tr>
-
 <tr>
 <td align="left">selectInput</td>
 <td align="left">选择输入控件（可以单选也可以多选）</td>
 </tr>
-
 <tr>
 <td align="left">varSelectInput</td>
 <td align="left">选择输入控件（从数据框中选则变量）</td>
 </tr>
-
 <tr>
 <td align="left">numericInput</td>
 <td align="left">数值输入控件</td>
 </tr>
-
 <tr>
 <td align="left">sliderInput</td>
 <td align="left">滑动条输入控件（数值输入控件的另一种展示形式，必须指定输入范围）</td>
 </tr>
-
 <tr>
 <td align="left">dateInput</td>
 <td align="left">日期输入控件</td>
 </tr>
-
 <tr>
 <td align="left">dateRangeInput</td>
 <td align="left">起止日期输入控件（返回长度为2的日期型数组）</td>
 </tr>
-
 <tr>
 <td align="left">passwordInput</td>
 <td align="left">密码输入控件</td>
 </tr>
-
 <tr>
 <td align="left">textInput</td>
 <td align="left">单行文本输入控件</td>
 </tr>
-
 <tr>
 <td align="left">textAreaInput</td>
 <td align="left">多行文本输入控件</td>
 </tr>
-
 <tr>
 <td align="left">fileInput</td>
 <td align="left">文件输入控件</td>
 </tr>
-
 <tr>
 <td align="left">actionButton</td>
 <td align="left">动作按钮（默认值为0，每点击一次值加1）</td>
 </tr>
-
 <tr>
 <td align="left">actionLink</td>
 <td align="left">动作链接，与<strong>actionButton</strong>类似</td>
 </tr>
 </tbody>
 </table>
-
 <p>如果我们需要在网页中输出动态信息，则可以在<strong>ui</strong>端使用<strong>Output</strong>家族的函数，定义一个信息输出区域；并在<strong>server</strong>端使用<strong>render</strong>家族的函数，将信息传递到相应的区域。二者需要相互结合、一一对应。因此<strong>Output</strong>家族的函数都必须设置<strong>outputId</strong>参数，而且必须具有唯一性，<strong>render</strong>家族的函数需要将结果返回给相应的<strong>outputId</strong>，比如<code>output$outputId &lt;- renderText(...)</code>。</p>
-
 <table>
 <thead>
 <tr>
@@ -616,50 +566,42 @@ shinyApp(ui = ui, server = server)
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">textOutput</td>
 <td align="left">renderText</td>
 <td align="left">输出纯文本</td>
 </tr>
-
 <tr>
 <td align="left">verbatimTextOutput</td>
 <td align="left">renderPrint</td>
 <td align="left">输出格式化纯文本</td>
 </tr>
-
 <tr>
 <td align="left">tableOutput</td>
 <td align="left">renderTable</td>
 <td align="left">输出表格</td>
 </tr>
-
 <tr>
 <td align="left">dataTableOutput</td>
 <td align="left">renderDataTable</td>
 <td align="left">输出可交互的表格</td>
 </tr>
-
 <tr>
 <td align="left">imageOutput</td>
 <td align="left">renderImage</td>
 <td align="left">输出图片</td>
 </tr>
-
 <tr>
 <td align="left">plotOutput</td>
 <td align="left">renderPlot</td>
 <td align="left">输出R语言绘制的图像</td>
 </tr>
-
 <tr>
 <td align="left">htmlOutput</td>
 <td align="left">renderUI</td>
 <td align="left">输出HTML</td>
 </tr>
-
 <tr>
 <td align="left">uiOutput</td>
 <td align="left">renderUI</td>
@@ -667,140 +609,105 @@ shinyApp(ui = ui, server = server)
 </tr>
 </tbody>
 </table>
-
 <p>以上仅是<strong>shiny</strong>程序包中的输入输出函数，如果我们借助其它程序包，还可以用到更多类似的函数。比如我们可以使用<strong>plotly</strong>程序包中的<span class="highlight-text primary">plotlyOutput、renderPlotly</span>函数，输出可交互的图像。</p>
-
-<p><br></p>
-
-<h2 id="5-事件响应">5、事件响应</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="5事件响应">5、事件响应</h2>
 <p><strong>server</strong>中的信息输出函数，默认情况下都是即时响应的。比如<code>output$textOutPut &lt;- renderText(input$textInput)</code>， 每次用户的输入信息<strong>input$textInput</strong>发生变化，输出函数<strong>output$textOutPut</strong>就会被执行一次。当然我们也可以在<strong>server</strong>中使用事件性响应函数，只有在某个事件发生、或某个条件成立时，才返还给用户相应的信息。比如上文介绍到的<strong>conditionalPanel</strong>函数。</p>
-
 <p>首先每个用户输入信息都可以被看作是一个响应式变量，同时我们也可以使用<span class="highlight-text primary">reactiveVal、reactiveValues</span>函数，分别生成响应式变量、响应式变量组成的列表。我们只能在响应式函数中使用响应式变量，此时每当响应式变量的值发生改变，包含响应式变量的命令也会被重新计算。</p>
-
 <p>我们可以使用<span class="highlight-text primary">reactive、observe</span>函数生成响应式命令，注意<strong>reactive</strong>会返回一个无参函数作为响应式命令，我们可以在命令行使用<span class="highlight-text primary">isolate</span>函数包裹该函数，来查看响应式命令的执行结果；<strong>observe</strong>不会返回任何内容，我们可以在命令行使用<code>shiny:::flushReact()</code>的形式，执行其中的响应式命令。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 生成响应式变量</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">reactiveVal</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#75715e"># 生成包含响应式变量的命令</span>
+<span style="color:#f92672">&gt;</span> y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">reactive</span>( <span style="color:#a6e22e">x</span>() <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span> ); <span style="color:#a6e22e">isolate</span>(<span style="color:#a6e22e">y</span>())
+[1] <span style="color:#ae81ff">11</span>
+<span style="color:#75715e"># 响应式变量的值发生改变，响应式命令的值也会随之改变</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">x</span>(<span style="color:#ae81ff">2</span>); <span style="color:#a6e22e">isolate</span>(<span style="color:#a6e22e">y</span>())
+[1] <span style="color:#ae81ff">12</span>
 
-<pre><code class="language-R"># 生成响应式变量
-&gt; x &lt;- reactiveVal(1)
-# 生成包含响应式变量的命令
-&gt; y &lt;- reactive( x() + 10 ); isolate(y())
-[1] 11
-# 响应式变量的值发生改变，响应式命令的值也会随之改变
-&gt; x(2); isolate(y())
-[1] 12
-
-# 生成响应式列表
-&gt; x &lt;- reactiveValues(a = 1)
-# 生成包含响应式列表的命令
-&gt; observe({ print(x$a + 10) }); shiny:::flushReact()
-[1] 11
-# 响应式列表的值发生改变，响应式命令的值也会随之改变
-&gt; x$a &lt;- 2; shiny:::flushReact()
-[1] 12
-</code></pre>
-
-<p>响应式变量有时会非常实用，比如基于响应式变量设计的<span class="highlight-text primary">reactiveTimer、reactiveFileReader</span>函数，可以使我们动态输出时间、根据修改时间动态读取文件。</p>
-
-<pre><code class="language-R">ui &lt;- fluidPage( textOutput(&quot;datetime&quot;), tableOutput(&quot;table&quot;) )
-server &lt;- function(input, output, session) {
-    # 输出动态时间
-    datetime &lt;- reactiveTimer(intervalMs = 1000, session)
-    output$datetime &lt;- renderText( as.character(datetime()) )
-    # 动态读取文件
-    write.csv(mtcars, &quot;mtcars.csv&quot;)
-    fileData &lt;- reactiveFileReader(1000, session, 'mtcars.csv', read.csv)
-    output$table &lt;- renderTable( fileData() )
+<span style="color:#75715e"># 生成响应式列表</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">reactiveValues</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#75715e"># 生成包含响应式列表的命令</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">observe</span>({ <span style="color:#a6e22e">print</span>(x<span style="color:#f92672">$</span>a <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span>) }); shiny<span style="color:#f92672">:::</span><span style="color:#a6e22e">flushReact</span>()
+[1] <span style="color:#ae81ff">11</span>
+<span style="color:#75715e"># 响应式列表的值发生改变，响应式命令的值也会随之改变</span>
+<span style="color:#f92672">&gt;</span> x<span style="color:#f92672">$</span>a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>; shiny<span style="color:#f92672">:::</span><span style="color:#a6e22e">flushReact</span>()
+[1] <span style="color:#ae81ff">12</span>
+</code></pre></div><p>响应式变量有时会非常实用，比如基于响应式变量设计的<span class="highlight-text primary">reactiveTimer、reactiveFileReader</span>函数，可以使我们动态输出时间、根据修改时间动态读取文件。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>( <span style="color:#a6e22e">textOutput</span>(<span style="color:#e6db74">&#34;datetime&#34;</span>), <span style="color:#a6e22e">tableOutput</span>(<span style="color:#e6db74">&#34;table&#34;</span>) )
+server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output, session) {
+    <span style="color:#75715e"># 输出动态时间</span>
+    datetime <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">reactiveTimer</span>(intervalMs <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span>, session)
+    output<span style="color:#f92672">$</span>datetime <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">renderText</span>( <span style="color:#a6e22e">as.character</span>(<span style="color:#a6e22e">datetime</span>()) )
+    <span style="color:#75715e"># 动态读取文件</span>
+    <span style="color:#a6e22e">write.csv</span>(mtcars, <span style="color:#e6db74">&#34;mtcars.csv&#34;</span>)
+    fileData <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">reactiveFileReader</span>(<span style="color:#ae81ff">1000</span>, session, <span style="color:#e6db74">&#39;mtcars.csv&#39;</span>, read.csv)
+    output<span style="color:#f92672">$</span>table <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">renderTable</span>( <span style="color:#a6e22e">fileData</span>() )
 }
-</code></pre>
-
-<p>响应式变量配合动作按钮会变得更加实用。我们可以使用<span class="highlight-text primary">observeEvent、eventReactive</span>函数，生成根据某个事件的变化而动态执行的命令。比如每次点击按钮时，执行一段特定的代码，或者将代码执行结果保存到某个响应式变量，以便于在之后的输出函数中使用。</p>
-
-<pre><code class="language-R">ui &lt;- fluidPage( actionButton(&quot;show_time&quot;), textOutput(&quot;time1&quot;), textOutput(&quot;time2&quot;) )
-server &lt;- function(input, output, session) {
-  # 每次点击按钮时，输出系统时间
-  observeEvent(input$show_time, {
-    output$time1 &lt;- renderText(Sys.time())
+</code></pre></div><p>响应式变量配合动作按钮会变得更加实用。我们可以使用<span class="highlight-text primary">observeEvent、eventReactive</span>函数，生成根据某个事件的变化而动态执行的命令。比如每次点击按钮时，执行一段特定的代码，或者将代码执行结果保存到某个响应式变量，以便于在之后的输出函数中使用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>( <span style="color:#a6e22e">actionButton</span>(<span style="color:#e6db74">&#34;show_time&#34;</span>), <span style="color:#a6e22e">textOutput</span>(<span style="color:#e6db74">&#34;time1&#34;</span>), <span style="color:#a6e22e">textOutput</span>(<span style="color:#e6db74">&#34;time2&#34;</span>) )
+server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output, session) {
+  <span style="color:#75715e"># 每次点击按钮时，输出系统时间</span>
+  <span style="color:#a6e22e">observeEvent</span>(input<span style="color:#f92672">$</span>show_time, {
+    output<span style="color:#f92672">$</span>time1 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">renderText</span>(<span style="color:#a6e22e">Sys.time</span>())
   })
-  # 每次点击按钮时，将系统时间保存到响应式变量
-  time &lt;- eventReactive(input$show_time, Sys.time())
-  output$time2 &lt;- renderText(time())
+  <span style="color:#75715e"># 每次点击按钮时，将系统时间保存到响应式变量</span>
+  time <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">eventReactive</span>(input<span style="color:#f92672">$</span>show_time, <span style="color:#a6e22e">Sys.time</span>())
+  output<span style="color:#f92672">$</span>time2 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">renderText</span>(<span style="color:#a6e22e">time</span>())
 }
-</code></pre>
-
-<p><br></p>
-
+</code></pre></div><!-- raw HTML omitted -->
 <p>其次我们还可以设计一些特殊的响应事件，实现更多有趣的功能（如刷新页面、下载、弹窗等）。注意这些响应事件与一般情况下输入输出信息的理念不同，设计特定的事件需要使用的特定的函数。</p>
-
 <p>我们可以使用<span class="highlight-text primary">submitButton</span>函数，在<strong>ui</strong>端插入提交按钮。此时所有的用户输入信息，只有在提交按钮被点击之后才会生效。适合用于输出函数依赖完整的输入信息才能正常运行的情况。</p>
-
 <p>我们可以使用<span class="highlight-text primary">downloadLink、downloadButton</span>函数，在<strong>ui</strong>端插入下载链接、下载按钮。在<strong>server</strong>端处理下载事件需要用到<span class="highlight-text primary">downloadHandler</span>函数，该函数至少需要两个参数：文件名、文件写出函数，使用方式如下：</p>
-
-<pre><code class="language-R">ui &lt;- fluidPage( downloadButton(&quot;download&quot;, &quot;点击下载&quot;) )
-server &lt;- function(input, output, session) {
-  # 处理下载事件
-  output$downloadData &lt;- downloadHandler(
-    filename = function() paste0(&quot;mtcars_&quot;, Sys.Date(), &quot;.csv&quot;), 
-    content = function(filename) write.csv(mtcars, filename) 
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>( <span style="color:#a6e22e">downloadButton</span>(<span style="color:#e6db74">&#34;download&#34;</span>, <span style="color:#e6db74">&#34;点击下载&#34;</span>) )
+server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output, session) {
+  <span style="color:#75715e"># 处理下载事件</span>
+  output<span style="color:#f92672">$</span>downloadData <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">downloadHandler</span>(
+    filename <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">paste0</span>(<span style="color:#e6db74">&#34;mtcars_&#34;</span>, <span style="color:#a6e22e">Sys.Date</span>(), <span style="color:#e6db74">&#34;.csv&#34;</span>), 
+    content <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(filename) <span style="color:#a6e22e">write.csv</span>(mtcars, filename) 
   )
 )
-</code></pre>
-
-<p>我们可以使用<span class="highlight-text primary">showModal、modalDialog、modalButton</span>函数，在<strong>server</strong>端定义网页弹窗，并在特定事件发生时展示给用户。</p>
-
-<pre><code class="language-R">ui &lt;- fluidPage( actionButton(&quot;show&quot;, &quot;打开弹窗&quot;) )
-server &lt;- function(input, output, session) {
-  observeEvent(input$show, {
-    showModal(modalDialog(&quot;弹窗正文&quot;, title = &quot;弹窗标题&quot;, easyClose = TRUE,
-                          footer = modalButton(&quot;弹窗关闭按钮&quot;),
+</code></pre></div><p>我们可以使用<span class="highlight-text primary">showModal、modalDialog、modalButton</span>函数，在<strong>server</strong>端定义网页弹窗，并在特定事件发生时展示给用户。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>( <span style="color:#a6e22e">actionButton</span>(<span style="color:#e6db74">&#34;show&#34;</span>, <span style="color:#e6db74">&#34;打开弹窗&#34;</span>) )
+server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output, session) {
+  <span style="color:#a6e22e">observeEvent</span>(input<span style="color:#f92672">$</span>show, {
+    <span style="color:#a6e22e">showModal</span>(<span style="color:#a6e22e">modalDialog</span>(<span style="color:#e6db74">&#34;弹窗正文&#34;</span>, title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;弹窗标题&#34;</span>, easyClose <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+                          footer <span style="color:#f92672">=</span> <span style="color:#a6e22e">modalButton</span>(<span style="color:#e6db74">&#34;弹窗关闭按钮&#34;</span>),
     ))
   })
 }
-</code></pre>
-
-<p>我们可以使用<span class="highlight-text primary">bookmarkButton</span>函数，在<strong>ui</strong>端插入分享链接获取按钮。分享链接默认包含所有用户输入信息（使用<span class="highlight-text primary">enableBookmarking</span>函数来修改这一设定），可以用于在恢复之前的浏览状态。</p>
-
-<pre><code class="language-R">ui &lt;- fluidPage(  
-  bookmarkButton(label = &quot;点击分享&quot;, 
-                 icon = shiny::icon(&quot;link&quot;, lib = &quot;glyphicon&quot;),
-                 title = &quot;将包含当前浏览状态的网络链接分享给他人&quot;
+</code></pre></div><p>我们可以使用<span class="highlight-text primary">bookmarkButton</span>函数，在<strong>ui</strong>端插入分享链接获取按钮。分享链接默认包含所有用户输入信息（使用<span class="highlight-text primary">enableBookmarking</span>函数来修改这一设定），可以用于在恢复之前的浏览状态。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>(  
+  <span style="color:#a6e22e">bookmarkButton</span>(label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;点击分享&#34;</span>, 
+                 icon <span style="color:#f92672">=</span> shiny<span style="color:#f92672">::</span><span style="color:#a6e22e">icon</span>(<span style="color:#e6db74">&#34;link&#34;</span>, lib <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;glyphicon&#34;</span>),
+                 title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;将包含当前浏览状态的网络链接分享给他人&#34;</span>
   ) 
 )
-enableBookmarking(store = &quot;url&quot;)
-</code></pre>
+<span style="color:#a6e22e">enableBookmarking</span>(store <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;url&#34;</span>)
+</code></pre></div><p>我们可以使用<span class="highlight-text primary">Progress</span>函数，在网页底部展示一个表示正在加载的标签。但这种方式并不能适用于所有耗时较长的输出函数，而只能用于循化次数已知的循环体内。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">ui <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">fluidPage</span>( <span style="color:#a6e22e">textOutput</span>(<span style="color:#e6db74">&#34;messages&#34;</span>) )
+server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output, session) {
+  output<span style="color:#f92672">$</span>messages <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">renderText</span>({
+    progress <span style="color:#f92672">&lt;-</span> Progress<span style="color:#f92672">$</span><span style="color:#a6e22e">new</span>(session, min<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>, max<span style="color:#f92672">=</span><span style="color:#ae81ff">15</span>)
+    <span style="color:#a6e22e">on.exit</span>(progress<span style="color:#f92672">$</span><span style="color:#a6e22e">close</span>())
 
-<p>我们可以使用<span class="highlight-text primary">Progress</span>函数，在网页底部展示一个表示正在加载的标签。但这种方式并不能适用于所有耗时较长的输出函数，而只能用于循化次数已知的循环体内。</p>
+    progress<span style="color:#f92672">$</span><span style="color:#a6e22e">set</span>(message <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;正在处理信息&#39;</span>,
+                 detail <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;这可能会持续一段时间。。。&#39;</span>)
 
-<pre><code class="language-R">ui &lt;- fluidPage( textOutput(&quot;messages&quot;) )
-server &lt;- function(input, output, session) {
-  output$messages &lt;- renderText({
-    progress &lt;- Progress$new(session, min=1, max=15)
-    on.exit(progress$close())
-
-    progress$set(message = '正在处理信息',
-                 detail = '这可能会持续一段时间。。。')
-
-    for (i in 1:15) {
-      progress$set(value = i)
-      Sys.sleep(0.5)
+    <span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">15</span>) {
+      progress<span style="color:#f92672">$</span><span style="color:#a6e22e">set</span>(value <span style="color:#f92672">=</span> i)
+      <span style="color:#a6e22e">Sys.sleep</span>(<span style="color:#ae81ff">0.5</span>)
     }
-    textOutput(&quot;处理完毕！&quot;)
+    <span style="color:#a6e22e">textOutput</span>(<span style="color:#e6db74">&#34;处理完毕！&#34;</span>)
   })
 }
-</code></pre>
-
-<p><br></p>
-
+</code></pre></div><!-- raw HTML omitted -->
 <p>最后我们还可以分别使用<span class="highlight-text primary">onBookmark、onBookmarked、onRestore、onRestored、onFlush onFlushed、onSessionEnded、onEnded</span>函数，注册以下情况发生时需要运行的函数：分享链接弹出时，分享链接弹出后、使用分享链接恢复页面时、使用分享链接恢复页面后、刷新页面时、刷新页面后、网页被关闭后、网页应用被停止时。</p>
-
-<pre><code class="language-R">server &lt;- function(input, output, session) {
-    # 当网页打开时建立链接、网页被关闭后自动关闭链接
-    open(con, &quot;r&quot;)
-    onSessionEnded( function() close(con) )
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">server <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(input, output, session) {
+    <span style="color:#75715e"># 当网页打开时建立链接、网页被关闭后自动关闭链接</span>
+    <span style="color:#a6e22e">open</span>(con, <span style="color:#e6db74">&#34;r&#34;</span>)
+    <span style="color:#a6e22e">onSessionEnded</span>( <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">close</span>(con) )
 }
-</code></pre>
-
-<p><br></p>
-
+</code></pre></div><!-- raw HTML omitted -->
 <p>
 
  
@@ -868,11 +775,8 @@ server &lt;- function(input, output, session) {
 
   <div style="clear:both;"></div>
 </p>
-
 <p>上方的的速记手册，可以帮助我们快速了解<strong>shiny</strong>的整体框架与各项细节。获取更多速记手册，请前往 <a href="https://rstudio.com/resources/cheatsheets/">这里</a> 。</p>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 
 
   
@@ -885,15 +789,13 @@ server &lt;- function(input, output, session) {
     <ul>
 <li>在<strong>fluidPage</strong>函数中使用<strong>fillRow</strong>会产生怎样的效果？</li>
 <li>如何修改分享链接弹窗中的主标题与辅标题？</li>
-<li>运行<strong>shiny</strong>网页应用时，遇到以下错误该如何应对？
-<pre style="margin: 0;"><code class="language-R hljs"><span class="hljs-string">Operation not allowed without an active reactive context.</span>
-</code></pre></li>
+<li>运行<strong>shiny</strong>网页应用时，遇到以下错误该如何应对？</li>
 </ul>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -905,7 +807,7 @@ server &lt;- function(input, output, session) {
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/">R语言扩展包</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/">R语言扩展包</a>
 
                   </div>
                 
@@ -913,8 +815,8 @@ server &lt;- function(input, output, session) {
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言搭建交互式网页应用——shiny',
@@ -935,7 +837,7 @@ server &lt;- function(input, output, session) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -943,7 +845,7 @@ server &lt;- function(input, output, session) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/" data-tooltip="HTML标签介绍">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/" data-tooltip="HTML标签介绍">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -961,13 +863,13 @@ server &lt;- function(input, output, session) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -998,7 +900,7 @@ server &lt;- function(input, output, session) {
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -1012,7 +914,7 @@ server &lt;- function(input, output, session) {
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -1020,7 +922,7 @@ server &lt;- function(input, output, session) {
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/" data-tooltip="HTML标签介绍">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/01/html%E6%A0%87%E7%AD%BE%E4%BB%8B%E7%BB%8D/" data-tooltip="HTML标签介绍">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -1038,13 +940,13 @@ server &lt;- function(input, output, session) {
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E6%90%AD%E5%BB%BA%E4%BA%A4%E4%BA%92%E5%BC%8F%E7%BD%91%E9%A1%B5%E5%BA%94%E7%94%A8shiny/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -1078,13 +980,13 @@ server &lt;- function(input, output, session) {
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E6%2590%25AD%25E5%25BB%25BA%25E4%25BA%25A4%25E4%25BA%2592%25E5%25BC%258F%25E7%25BD%2591%25E9%25A1%25B5%25E5%25BA%2594%25E7%2594%25A8shiny%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E6%2590%25AD%25E5%25BB%25BA%25E4%25BA%25A4%25E4%25BA%2592%25E5%25BC%258F%25E7%25BD%2591%25E9%25A1%25B5%25E5%25BA%2594%25E7%2594%25A8shiny%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E6%2590%25AD%25E5%25BB%25BA%25E4%25BA%25A4%25E4%25BA%2592%25E5%25BC%258F%25E7%25BD%2591%25E9%25A1%25B5%25E5%25BA%2594%25E7%2594%25A8shiny%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E6%2590%25AD%25E5%25BB%25BA%25E4%25BA%25A4%25E4%25BA%2592%25E5%25BC%258F%25E7%25BD%2591%25E9%25A1%25B5%25E5%25BA%2594%25E7%2594%25A8shiny%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -1139,12 +1041,12 @@ server &lt;- function(input, output, session) {
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -1221,7 +1123,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

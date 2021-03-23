@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言编程篇——面向语言的编程">
 <meta property="og:description" content="在上一篇文章中，我们已经介绍了R语言元编程的基础——命令与执行环境，灵活运用这些基础对象，可以使我们的编程效率事半功倍。这篇文章我们将归纳总结R语言中元编程的基本模式与运用技巧。">
@@ -51,19 +51,23 @@
 
     <title>R语言编程篇——面向语言的编程</title>
 
-    <link rel="canonical" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+      <a class="category-link" href="/categories/%e7%bc%96%e7%a8%8b">编程</a>
     
   
 
@@ -263,199 +267,139 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>在上一篇文章中，我们已经介绍了R语言<strong>元编程</strong>的基础——命令与执行环境，灵活运用这些基础对象，可以使我们的编程效率事半功倍。这篇文章我们将归纳总结R语言中元编程的基本模式与运用技巧。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-生成命令与执行命令">1、生成命令与执行命令</a></li>
-<li><a href="#2-捕获代码">2、捕获代码</a></li>
-<li><a href="#3-执行代码">3、执行代码</a></li>
-<li><a href="#4-字符串与代码互相转化">4、字符串与代码互相转化</a></li>
-</ul></li>
-</ul>
-</nav>
-
+<!-- raw HTML omitted -->
 <p>作为一门实时交互的脚本语言，在R语言中输入的代码总是会被立即执行，所以我们往往只能得到代码运行结果。但有的时候我们不希望代码被立即执行，而是想要先捕获代码，然后在特定的条件下再执行代码。</p>
-
-<p>比如以下代码我们从<strong>mtcars</strong>数据集中筛选出了<strong>hp</strong>等于<strong>110</strong>的数据，注意这里我们在<span class="highlight-text primary">subset()</span>函数中传入了命令<code>hp == 110</code>。如果我们直接在命令行中执行这条命令一定会遇到类似这样的错误：<font color="#FF0000">找不到对象&rsquo;hp&rsquo;</font>。但这条命令却可以被<strong>subset</strong>函数直接运用，原因就在于<strong>subset</strong>函数捕获了这条命令，并在合适的执行环境中运用了这条命令。</p>
-
-<pre><code class="language-R">&gt; subset(mtcars, hp == 110)
+<p>比如以下代码我们从<strong>mtcars</strong>数据集中筛选出了<strong>hp</strong>等于<strong>110</strong>的数据，注意这里我们在<span class="highlight-text primary">subset()</span>函数中传入了命令<code>hp == 110</code>。如果我们直接在命令行中执行这条命令一定会遇到类似这样的错误：<!-- raw HTML omitted -->找不到对象&rsquo;hp'<!-- raw HTML omitted -->。但这条命令却可以被<strong>subset</strong>函数直接运用，原因就在于<strong>subset</strong>函数捕获了这条命令，并在合适的执行环境中运用了这条命令。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">subset</span>(mtcars, hp <span style="color:#f92672">==</span> <span style="color:#ae81ff">110</span>)
                 mpg cyl disp  hp drat    wt  qsec vs am gear carb
-Mazda RX4      21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
-Mazda RX4 Wag  21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
-Hornet 4 Drive 21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
-</code></pre>
-
-<p>R语言中大量的函数都使用了这种编程理念，也正是因为这种理念才使得整个语言体系更加灵活。</p>
-
-<p><br></p>
-
-<h2 id="1-生成命令与执行命令">1、生成命令与执行命令</h2>
-
+Mazda RX4      <span style="color:#ae81ff">21.0</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">160</span> <span style="color:#ae81ff">110</span> <span style="color:#ae81ff">3.90</span> <span style="color:#ae81ff">2.620</span> <span style="color:#ae81ff">16.46</span>  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">4</span>
+Mazda RX4 Wag  <span style="color:#ae81ff">21.0</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">160</span> <span style="color:#ae81ff">110</span> <span style="color:#ae81ff">3.90</span> <span style="color:#ae81ff">2.875</span> <span style="color:#ae81ff">17.02</span>  <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">4</span>
+Hornet <span style="color:#ae81ff">4</span> Drive <span style="color:#ae81ff">21.4</span>   <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">258</span> <span style="color:#ae81ff">110</span> <span style="color:#ae81ff">3.08</span> <span style="color:#ae81ff">3.215</span> <span style="color:#ae81ff">19.44</span>  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">1</span>
+</code></pre></div><p>R语言中大量的函数都使用了这种编程理念，也正是因为这种理念才使得整个语言体系更加灵活。</p>
+<!-- raw HTML omitted -->
+<h2 id="1生成命令与执行命令">1、生成命令与执行命令</h2>
 <p>我们可以使用<span class="highlight-text primary">call</span>函数构建一个命令（<strong>function call</strong>），其第一个参数必须是一个字符串，指明需要被构建的命令，其余参数都会被传递给新生成的命令。注意这里生成的命令与我们直接输入的命令不同，因为直接输入命令往往会得到运行结果，而这里生成的是命令本身，或者说是未被执行的命令。</p>
-
 <p>上一篇文章中我们介绍过，命令可以被解析为命令树。反之我们也可以自己构建一个命令树，并将其转化为命令。我们只需要生成一个列表，将函数或者函数名作为列表的第一个元素，将函数的各参数作为列表的其余元素，同理用子列表的形式生成子命令对应的命令树，最后调用<span class="highlight-text primary">as.call</span>函数即可将命令树转化为命令。反之的我们也可以向操作命令树（列表）一样操作命令。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 生成命令</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">call</span>(<span style="color:#e6db74">&#34;+&#34;</span>, <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>)
+<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
 
-<pre><code class="language-R"># 生成命令
-&gt; call(&quot;+&quot;, 1:9, 1)
-1:9 + 1
+<span style="color:#75715e"># 从命令树生成命令</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.call</span>(<span style="color:#a6e22e">list</span>(<span style="color:#a6e22e">as.name</span>(<span style="color:#e6db74">&#34;+&#34;</span>), <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>))
+<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><p>我们也可以使用<span class="highlight-text primary">do.call(what, args, quote = FALSE, envir = parent.frame())</span>的形式在特定的执行环境（<strong>envir</strong>）中构建并直接执行命令，其中：被构建的函数可以是一个字符串或者一个函数名，若为字符串则可以在<strong>envir</strong>中查找相应的函数；<strong>args</strong>参数是被构建函数的参数列表，注意这里没有使用*&hellip;*编成，所以我们向调用的函数传参时，必须构建一个列表型数据。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 直接调用函数</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">do.call</span>(`+`, <span style="color:#a6e22e">list</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>))
+[1]  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>
 
-# 从命令树生成命令
-&gt; as.call(list(as.name(&quot;+&quot;), 1:9, 1))
-1:9 + 1
-</code></pre>
-
-<p>我们也可以使用<span class="highlight-text primary">do.call(what, args, quote = FALSE, envir = parent.frame())</span>的形式在特定的执行环境（<strong>envir</strong>）中构建并直接执行命令，其中：被构建的函数可以是一个字符串或者一个函数名，若为字符串则可以在<strong>envir</strong>中查找相应的函数；<strong>args</strong>参数是被构建函数的参数列表，注意这里没有使用*&hellip;*编成，所以我们向调用的函数传参时，必须构建一个列表型数据。</p>
-
-<pre><code class="language-R"># 直接调用函数
-&gt; do.call(`+`, list(1:9, 1))
-[1]  2  3  4  5  6  7  8  9 10
-
-# 被调用函数是字符串，会在新执行环境中查找该函数
-&gt; e &lt;- new.env(); assign(&quot;f&quot;, function(a, b) a + b, pos = e)
-&gt; do.call(&quot;f&quot;, list(1:9, 1), envir = e)
-[1]  2  3  4  5  6  7  8  9 10
-</code></pre>
-
-<p>我们还可以在函数体中，使用<span class="highlight-text primary">Recall</span>函数调用函数本身， 这对于递归函数，尤其是无名函数递归十分重要。如下代码中，我们使用无名递归计算了10的阶乘。</p>
-
-<pre><code class="language-R"># 无名函数递归
-&gt; (function(n){
-+   if(n &lt;= 1) return(1)
-+   n * Recall(n - 1)
-+ })(10)
-[1] 3628800
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-捕获代码">2、捕获代码</h2>
-
+<span style="color:#75715e"># 被调用函数是字符串，会在新执行环境中查找该函数</span>
+<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">new.env</span>(); <span style="color:#a6e22e">assign</span>(<span style="color:#e6db74">&#34;f&#34;</span>, <span style="color:#a6e22e">function</span>(a, b) a <span style="color:#f92672">+</span> b, pos <span style="color:#f92672">=</span> e)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">do.call</span>(<span style="color:#e6db74">&#34;f&#34;</span>, <span style="color:#a6e22e">list</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">1</span>), envir <span style="color:#f92672">=</span> e)
+[1]  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>
+</code></pre></div><p>我们还可以在函数体中，使用<span class="highlight-text primary">Recall</span>函数调用函数本身， 这对于递归函数，尤其是无名函数递归十分重要。如下代码中，我们使用无名递归计算了10的阶乘。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 无名函数递归</span>
+<span style="color:#f92672">&gt;</span> (<span style="color:#a6e22e">function</span>(n){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">if</span>(n <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">1</span>) <span style="color:#a6e22e">return</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#f92672">+</span>   n <span style="color:#f92672">*</span> <span style="color:#a6e22e">Recall</span>(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#f92672">+</span> })(<span style="color:#ae81ff">10</span>)
+[1] <span style="color:#ae81ff">3628800</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="2捕获代码">2、捕获代码</h2>
 <p>我们可以使用<span class="highlight-text primary">quote</span>函数捕获未执行的代码，也可以使用<span class="highlight-text primary">enquote</span>函数捕获代码的运行结果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 捕获未执行的代码</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">quote</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>
 
-<pre><code class="language-R"># 捕获未执行的代码
-&gt; quote(1:9 + 2)
-1:9 + 2
+<span style="color:#75715e"># 捕获代码的运行结果</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">enquote</span>(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>)
+base<span style="color:#f92672">::</span><span style="color:#a6e22e">quote</span>(<span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">3</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">6</span>, <span style="color:#ae81ff">7</span>, <span style="color:#ae81ff">8</span>, <span style="color:#ae81ff">9</span>, <span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">11</span>))
+</code></pre></div><p>有时候我们希望捕获的代码中，某些变量名被替换成对应的值，因为如果在新的执行环境中执行捕获的代码，可能找不到这些变量的值。此时我们就可以使用<span class="highlight-text primary">substitute(expr, env)</span>的形式。注意<strong>substitute</strong>函数除了需要捕获的代码，还可以传递一个替换环境<strong>env</strong>（可以是列表或者执行环境）参数，此时代码中的变量名如果在<strong>env</strong>中有对应的值，则会被替换为相应的值，除非<strong>env</strong>是全局执行环境。</p>
+<p>如果我们只希望特定的变量名可以被替换，而非所有在执行环境中存在的变量都会被替换，则可以使用<span class="highlight-text primary">bquote</span>函数，该函数定义了一种特殊的语法格式——所有被包含在**.()**中的变量名才会被替换。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 捕获代码，在执行环境中给定需要替换的变量</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">substitute</span>(a <span style="color:#f92672">+</span> b, <span style="color:#a6e22e">list</span>(b <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>))
+a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">substitute</span>(a <span style="color:#f92672">+</span> b, <span style="color:#a6e22e">baseenv</span>())
+<span style="color:#a6e22e">.Primitive</span>(<span style="color:#e6db74">&#34;+&#34;</span>)(a, b)
 
-# 捕获代码的运行结果
-&gt; enquote(1:9 + 2)
-base::quote(c(3, 4, 5, 6, 7, 8, 9, 10, 11))
-</code></pre>
-
-<p>有时候我们希望捕获的代码中，某些变量名被替换成对应的值，因为如果在新的执行环境中执行捕获的代码，可能找不到这些变量的值。此时我们就可以使用<span class="highlight-text primary">substitute(expr, env)</span>的形式。注意<strong>substitute</strong>函数除了需要捕获的代码，还可以传递一个替换环境<strong>env</strong>（可以是列表或者执行环境）参数，此时代码中的变量名如果在<strong>env</strong>中有对应的值，则会被替换为相应的值，除非<strong>env</strong>是全局执行环境。</p>
-
-<p>如果我们只希望特定的变量名可以被替换，而非所有在执行环境中存在的变量都会被替换，则可以使用<span class="highlight-text primary">bquote</span>函数，该函数定义了一种特殊的语法格式——所有被包含在<strong>.()</strong>中的变量名才会被替换。</p>
-
-<pre><code class="language-R"># 捕获代码，在执行环境中给定需要替换的变量
-&gt; substitute(a + b, list(b = 1))
-a + 1
-&gt; substitute(a + b, baseenv())
-.Primitive(&quot;+&quot;)(a, b)
-
-# 捕获代码，通过代码标明需要替换的变量
-&gt; bquote(x &lt;- .(x) + 1, list(x = 1:9))
-x &lt;- 1:9 + 1
-</code></pre>
-
-<p><br></p>
-
-<h2 id="3-执行代码">3、执行代码</h2>
-
+<span style="color:#75715e"># 捕获代码，通过代码标明需要替换的变量</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">bquote</span>(x <span style="color:#f92672">&lt;-</span> .(x) <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">list</span>(x <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>))
+x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="3执行代码">3、执行代码</h2>
 <p>我们可以使用<span class="highlight-text primary">eval(expr, envir, enclos)</span>的形式执行捕获的代码，其中<strong>envir</strong>是代码中变量名的首要查找位置，<strong>envir</strong>中查找不到的变量名会在<strong>enclos</strong>中查找。</p>
-
 <p>捕获代码与执行代码的过程是一一对应的，每调用一次<strong>quote/substitute</strong>函数，就需要多调用一次<strong>eval</strong>函数，最终才能取出执行结果。但需要特别注意的是：字面值无论被执行还是被捕获，结果依然是字面值；由操作符<span class="highlight-text primary">~(expr, envir, enclos)</span>构成的命令，被捕获或执行后结果是一致的，唯一的区别在于<strong>～</strong>被捕获后产生的结果没有属性（<strong>attributes</strong>）部分，但无论何种情况我们可以像操作命令树一样取出<strong>~</strong>前后的内容，所以<strong>~</strong>经常被用作捕获代码的便捷操作符号；命令集（<strong>expression</strong>）本身就是未被执行的命令的集合，所以被捕获之后生成的是一个生成该命令集的命令，需要被执行两次才能取出执行结果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 字面值无论被执行还是被捕获，结果依然是字面值</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">quote</span>(<span style="color:#ae81ff">123</span>), <span style="color:#a6e22e">eval</span>(<span style="color:#ae81ff">123</span>))
+[1] <span style="color:#ae81ff">123</span> <span style="color:#ae81ff">123</span>
 
-<pre><code class="language-R"># 字面值无论被执行还是被捕获，结果依然是字面值
-&gt; c(quote(123), eval(123))
-[1] 123 123
-
-# 由“~”构成的命令，被捕获或执行后结果一致
-&gt; str(y ~ x)
-Class 'formula'  language y ~ x
-  ..- attr(*, &quot;.Environment&quot;)=&lt;environment: R_GlobalEnv&gt; 
-&gt; str(quote(y~x))
- language y ~ x
+<span style="color:#75715e"># 由“~”构成的命令，被捕获或执行后结果一致</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">str</span>(y <span style="color:#f92672">~</span> x)
+Class <span style="color:#e6db74">&#39;formula&#39;</span>  language y <span style="color:#f92672">~</span> x
+  ..<span style="color:#f92672">-</span> <span style="color:#a6e22e">attr</span>(<span style="color:#f92672">*</span>, <span style="color:#e6db74">&#34;.Environment&#34;</span>)<span style="color:#f92672">=&lt;</span>environment<span style="color:#f92672">:</span> R_GlobalEnv<span style="color:#f92672">&gt;</span> 
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">str</span>(<span style="color:#a6e22e">quote</span>(y<span style="color:#f92672">~</span>x))
+ language y <span style="color:#f92672">~</span> x
  
-# 命令集被捕获后需要被执行两次才能取出执行结果
-&gt; eval(eval(quote(expression(a &lt;- 1:9, a+1))))
-[1]  2  3  4  5  6  7  8  9 10
-</code></pre>
-
-<p>此外R语言中还存在许多快捷函数，它们巧妙的运用了执行环境与捕获、执行代码等函数，使得实际使用的过程中各有不同的意义，比如：</p>
-
+<span style="color:#75715e"># 命令集被捕获后需要被执行两次才能取出执行结果</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">eval</span>(<span style="color:#a6e22e">eval</span>(<span style="color:#a6e22e">quote</span>(<span style="color:#a6e22e">expression</span>(a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, a<span style="color:#ae81ff">+1</span>))))
+[1]  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>
+</code></pre></div><p>此外R语言中还存在许多快捷函数，它们巧妙的运用了执行环境与捕获、执行代码等函数，使得实际使用的过程中各有不同的意义，比如：</p>
 <ul>
 <li><span class="highlight-text primary">evalq</span>函数相当于<code>eval(quote(expr), ...)</code>，可以直接让代码在特定的执行环境下运行，主要用于为代码中尚不存在的变量提供一个取值环境，以及避免底层执行环境覆盖了父执行环境中的变量等情况。</li>
 <li><span class="highlight-text primary">eval.parent</span>函数即在 <em>父执行环境</em> 中执行捕获的命令，可以用于函数调用函数执行环境中的值，或内部函数调用父函数中的值。</li>
 <li><span class="highlight-text primary">local</span>函数默认情况下会在一个临时执行环境中执行代码，可以有效的舍弃运算过程中产生的中间变量。</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 将list(a = 1:9)作为执行环境，并执行a + 1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">evalq</span>(a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>, <span style="color:#a6e22e">list</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>)) 
+[1]  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>
 
-<pre><code class="language-R"># 将list(a = 1:9)作为执行环境，并执行a + 1
-&gt; evalq(a + 1, list(a = 1:9)) 
-[1]  2  3  4  5  6  7  8  9 10
+<span style="color:#75715e"># 在baseenv中寻找pi的值，避免被全局变量中的pi值覆盖</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#66d9ef">pi</span> <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">evalq</span>(<span style="color:#66d9ef">pi</span>, <span style="color:#a6e22e">baseenv</span>())        
+[1] <span style="color:#ae81ff">3.141593</span>
 
-# 在baseenv中寻找pi的值，避免被全局变量中的pi值覆盖
-&gt; pi &lt;- 1:9
-&gt; evalq(pi, baseenv())        
-[1] 3.141593
+<span style="color:#75715e"># 函数中调用父执行环境中的值</span>
+<span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>
+<span style="color:#f92672">&gt;</span> (<span style="color:#a6e22e">function</span>() {
+<span style="color:#f92672">+</span>     a <span style="color:#f92672">&lt;-</span> a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">+</span>     <span style="color:#a6e22e">eval.parent</span>(<span style="color:#a6e22e">as.name</span>(<span style="color:#e6db74">&#34;a&#34;</span>))
+<span style="color:#f92672">+</span> })()
+[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span>
 
-# 函数中调用父执行环境中的值
-&gt; a &lt;- 1:9
-&gt; (function() {
-+     a &lt;- a + 1
-+     eval.parent(as.name(&quot;a&quot;))
-+ })()
-[1] 1 2 3 4 5 6 7 8 9
-
-# 在临时执行环境中执行代码，中间变量a会被自动舍弃，但可以取得运算结果
-&gt; local({a &lt;- 1:9; a + 1})    
-[1]  2  3  4  5  6  7  8  9 10   
-</code></pre>
-
-<p><br></p>
-
-<h2 id="4-字符串与代码互相转化">4、字符串与代码互相转化</h2>
-
+<span style="color:#75715e"># 在临时执行环境中执行代码，中间变量a会被自动舍弃，但可以取得运算结果</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">local</span>({a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>; a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>})    
+[1]  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>   
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="4字符串与代码互相转化">4、字符串与代码互相转化</h2>
 <p>我们知道在R语言中可以使用<span class="highlight-text primary">source</span>函数在命令行中执行R语言脚本，同样的我们也可以使用<span class="highlight-text primary">parse</span>函数从字符串/字符串数组，文件或者命令行输入中解析代码。如此一来，我们便可以将字符串处理的技巧纳入到编程体系中来。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 从文件中解析代码，test.R中的内容如下：</span>
+<span style="color:#75715e"># if(!exists(&#34;a&#34;))</span>
+<span style="color:#75715e">#   a &lt;- 1:9</span>
+<span style="color:#75715e"># a + 1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">parse</span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;docs/test_inline.R&#34;</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)     <span style="color:#75715e"># n = 1 表示只解析一条命令</span>
+<span style="color:#a6e22e">expression</span>(<span style="color:#a6e22e">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">exists</span>(<span style="color:#e6db74">&#34;a&#34;</span>))
+  a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>)
 
-<pre><code class="language-R"># 从文件中解析代码，test.R中的内容如下：
-# if(!exists(&quot;a&quot;))
-#   a &lt;- 1:9
-# a + 1
-&gt; parse(file = &quot;docs/test_inline.R&quot;, n = 1)     # n = 1 表示只解析一条命令
-expression(if(!exists(&quot;a&quot;))
-  a &lt;- 1:9)
-
-# 从字符串数组中解析代码
-&gt; parse(text = c(&quot;a &lt;- 1:9&quot;, &quot;a + 1&quot;))
-expression(a &lt;- 1:9, a + 1)
+<span style="color:#75715e"># 从字符串数组中解析代码</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">parse</span>(text <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a &lt;- 1:9&#34;</span>, <span style="color:#e6db74">&#34;a + 1&#34;</span>))
+<span style="color:#a6e22e">expression</span>(a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
   
-# 从命令行输入中解析代码
-&gt; parse(prompt = &quot;&gt;&gt; &quot;)                         # 使用prompt重写命令提示符
-&gt;&gt; a &lt;- 1:9                                     # 在命令行中输入需要解析的字符串
-expression(a &lt;- 1:9)
-</code></pre>
+<span style="color:#75715e"># 从命令行输入中解析代码</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">parse</span>(prompt <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&gt;&gt; &#34;</span>)                         <span style="color:#75715e"># 使用prompt重写命令提示符</span>
+<span style="color:#f92672">&gt;&gt;</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>                                     <span style="color:#75715e"># 在命令行中输入需要解析的字符串</span>
+<span style="color:#a6e22e">expression</span>(a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>)
+</code></pre></div><p>为了方便从字符串中解析代码，新版本的R语言（<strong>R 3.6.0</strong>）中还添加了两个便捷函数<span class="highlight-text primary">str2lang、str2expression</span>。两者的不同之处在于：<strong>str2lang</strong>只能解析单个字符串，解析结果为命令；<strong>str2expression</strong>可以解析单个字符串或字符串数组，解析结果为命令集。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 将单个字符串解析为命令</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">str2lang</span>(<span style="color:#e6db74">&#34;a &lt;- 1:9&#34;</span>)
+a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>
 
-<p>为了方便从字符串中解析代码，新版本的R语言（<strong>R 3.6.0</strong>）中还添加了两个便捷函数<span class="highlight-text primary">str2lang、str2expression</span>。两者的不同之处在于：<strong>str2lang</strong>只能解析单个字符串，解析结果为命令；<strong>str2expression</strong>可以解析单个字符串或字符串数组，解析结果为命令集。</p>
-
-<pre><code class="language-R"># 将单个字符串解析为命令
-&gt; str2lang(&quot;a &lt;- 1:9&quot;)
-a &lt;- 1:9
-
-# 将字符串数组解析为命令集
-&gt; str2expression(c(&quot;a &lt;- 1:9&quot;, &quot;a + 1&quot;))
-expression(a &lt;- 1:9, a + 1)
-</code></pre>
-
-<p>如果我们需要将代码转化为字符串，则可以使用<span class="highlight-text primary">deparse</span>函数。我们在使用<strong>plot</strong>函数绘图时，以命令形式提供的横纵坐标之所以可以显示为坐标轴标签，实际上就是因为<strong>plot</strong>函数底层运用到了<strong>deparse</strong>函数。</p>
-
-<pre><code class="language-R"># 将代码转化为字符串
-&gt; deparse(y ~ a * x + b)
-[1] &quot;y ~ a * x + b&quot;
-</code></pre>
-
-<p><br></p>
-
+<span style="color:#75715e"># 将字符串数组解析为命令集</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">str2expression</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;a &lt;- 1:9&#34;</span>, <span style="color:#e6db74">&#34;a + 1&#34;</span>))
+<span style="color:#a6e22e">expression</span>(a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">9</span>, a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+</code></pre></div><p>如果我们需要将代码转化为字符串，则可以使用<span class="highlight-text primary">deparse</span>函数。我们在使用<strong>plot</strong>函数绘图时，以命令形式提供的横纵坐标之所以可以显示为坐标轴标签，实际上就是因为<strong>plot</strong>函数底层运用到了<strong>deparse</strong>函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 将代码转化为字符串</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">deparse</span>(y <span style="color:#f92672">~</span> a <span style="color:#f92672">*</span> x <span style="color:#f92672">+</span> b)
+[1] <span style="color:#e6db74">&#34;y ~ a * x + b&#34;</span>
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -470,11 +414,9 @@ expression(a &lt;- 1:9, a + 1)
 <li><strong>do.call</strong>函数中的<strong>quote</strong>参数是设计败笔吗？</li>
 <li>对于<strong>do.call</strong>函数，如何让<strong>args</strong>参数中的变量在<strong>envir</strong>参数对应的执行环境中查找，而非在<strong>do.call</strong>被调用的执行环境中查找？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -486,7 +428,7 @@ expression(a &lt;- 1:9, a + 1)
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
 
                   </div>
                 
@@ -494,8 +436,8 @@ expression(a &lt;- 1:9, a + 1)
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言编程篇——面向语言的编程',
@@ -516,7 +458,7 @@ expression(a &lt;- 1:9, a + 1)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -524,7 +466,7 @@ expression(a &lt;- 1:9, a + 1)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -542,13 +484,13 @@ expression(a &lt;- 1:9, a + 1)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -579,7 +521,7 @@ expression(a &lt;- 1:9, a + 1)
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -593,7 +535,7 @@ expression(a &lt;- 1:9, a + 1)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -601,7 +543,7 @@ expression(a &lt;- 1:9, a + 1)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -619,13 +561,13 @@ expression(a &lt;- 1:9, a + 1)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -659,13 +601,13 @@ expression(a &lt;- 1:9, a + 1)
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E8%25AF%25AD%25E8%25A8%2580%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E8%25AF%25AD%25E8%25A8%2580%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E8%25AF%25AD%25E8%25A8%2580%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E8%25AF%25AD%25E8%25A8%2580%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -720,12 +662,12 @@ expression(a &lt;- 1:9, a + 1)
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -802,7 +744,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

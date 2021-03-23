@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="大数据, Hive, DML, wly的博客, supernum">
+<meta name="description" content="Hive DML（数据操作语句）是Hive底层与数据交互的基础，本章将介绍使用HiveQL进行增删改查等操作。">
+
+
+  
+    <meta property="article:published_time" content="2021-03-18T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-03-18T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="进军大数据">
+    
+  
+  
+    
+      <meta property="article:tag" content="大数据">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive常用数据操作语句梳理">
+<meta property="og:description" content="Hive DML（数据操作语句）是Hive底层与数据交互的基础，本章将介绍使用HiveQL进行增删改查等操作。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/uQE3hF.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>Hive常用数据操作语句梳理</title>
+
+    <link rel="canonical" href="https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="/#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Hive常用数据操作语句梳理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2021-03-18T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-03-18
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/%e8%bf%9b%e5%86%9b%e5%a4%a7%e6%95%b0%e6%8d%ae">进军大数据</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Hive <strong>DML</strong>（数据操作语句）是Hive底层与数据交互的基础，本章将介绍使用HiveQL进行增删改查等操作。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="1插入数据">1、插入数据</h2>
+<ul>
+<li>我们可以通过<code>LOAD DATA ...</code>语句从文件中读取数据插入到Hive表中，其中：
+<ul>
+<li><code>LOCAL</code>表示从本地文件系统中寻找文件，缺省时会从HDFS文件系统中寻找</li>
+<li><code>OVERWRITE</code>表示用覆盖表中的数据，设定了分区时只会覆盖分区表中的数据</li>
+</ul>
+</li>
+</ul>
+<p>之前的文章中我们已经介绍了通过设置<code>row format delimited ...</code>的方式读取csv文件，本文我们将尝试使用<code>row format serde ...</code>（<strong>serde</strong>: serialize and deserialize）的方式读取csv文件。假设我们有一份使用utf8编码存储的&lt;student.csv&gt;数据表，表中的数据如下：</p>
+<table>
+<thead>
+<tr>
+<th align="left">id</th>
+<th align="left">name</th>
+<th align="left">birthday</th>
+<th align="left">class</th>
+<th align="left">score</th>
+<th align="left">addr</th>
+<th align="left">contact</th>
+<th align="left">grade</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">1</td>
+<td align="left">张三</td>
+<td align="left">1998-01-23</td>
+<td align="left">语文;数学;英语</td>
+<td align="left">语文:60;数学:70;英语:80</td>
+<td align="left">老街路;87</td>
+<td align="left">0;13137218094</td>
+<td align="left">2017</td>
+</tr>
+<tr>
+<td align="left">2</td>
+<td align="left">李四</td>
+<td align="left">1997-11-17</td>
+<td align="left">语文;数学;物理</td>
+<td align="left">语文:90;数学:100;物理:NULL</td>
+<td align="left">老街路;113</td>
+<td align="left">0;13153548707</td>
+<td align="left">2017</td>
+</tr>
+<tr>
+<td align="left">3</td>
+<td align="left">王五</td>
+<td align="left">1997-03-05</td>
+<td align="left">英语;物理</td>
+<td align="left">英语:100;物理:NULL</td>
+<td align="left">广林路;35</td>
+<td align="left">1;8808-3122</td>
+<td align="left">2017</td>
+</tr>
+</tbody>
+</table>
+<pre><code class="language-hive" data-lang="hive">LOAD DATA [LOCAL] INPATH &quot;filepath&quot; [OVERWRITE] INTO TABLE tablename 
+  [PARTITION (partcol1=val1, partcol2=val2 ...)] 
+  [INPUTFORMAT &quot;inputformat&quot; SERDE &quot;serde&quot;]
+  
+# 如果存在则删除student表;
+drop table if exists student;
+# 创建student表;
+create table student (
+    id int, name varchar(10), birthday date, 
+    class array&lt;string&gt;, score map&lt;string, int&gt;,
+    addr struct&lt;street:string, No:int&gt;,
+    contact uniontype&lt;bigint, string&gt;
+  ) 
+  comment &quot;学生信息记录表&quot; 
+  partitioned by (grade int)
+  row format serde &quot;org.apache.hadoop.hive.serde2.lazy.LazySimpleSerDe&quot;
+  with serdeproperties(
+    &quot;field.delim&quot;=&quot;,&quot;,
+    &quot;collection.delim&quot;=&quot;;&quot;,
+    &quot;mapkey.delim&quot;=&quot;:&quot;,
+    &quot;lines.delim&quot;=&quot;\n&quot;,
+    &quot;null.defined&quot;=&quot;NULL&quot;,
+    &quot;serialization.encoding&quot;=&quot;utf8&quot;
+  )
+  stored as textfile
+  tblproperties (&quot;skip.header.line.count&quot; = &quot;1&quot;)
+;
+# 读取csv文件中的数据插入student表;
+load data local inpath &quot;student.csv&quot; overwrite into table student 
+  partition (grade = 2017)
+;
+</code></pre><ul>
+<li>我们可以通过以下语句，将查询结果插入Hive表，其中：
+<ul>
+<li><code>INSERT OVERWRITE</code>表示覆盖原有数据，向分区表插入数据时可以指定<code>IF NOT EXISTS</code>，表示分区不存在时则覆盖（自动创建分区）</li>
+<li>使用动态决定分区的语句时，必须设置允许动态分区，或将动态分区设为非严格模式。</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 插入数据;
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, ...) [IF NOT EXISTS]] select_statement1 FROM from_statement;
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, ...)] select_statement1 FROM from_statement;
+# 批量插入数据;
+FROM from_statement
+INSERT OVERWRITE TABLE tablename1 [PARTITION (partcol1=val1, ...) [IF NOT EXISTS]] select_statement1
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2]
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2] ...;
+FROM from_statement
+INSERT INTO TABLE tablename1 [PARTITION (partcol1=val1, ...)] select_statement1
+[INSERT INTO TABLE tablename2 [PARTITION ...] select_statement2]
+[INSERT OVERWRITE TABLE tablename2 [PARTITION ... [IF NOT EXISTS]] select_statement2] ...;
+# 插入数据时动态决定分区;
+INSERT OVERWRITE TABLE tablename PARTITION (partcol1[=val1], ...) select_statement FROM from_statement;
+INSERT INTO TABLE tablename PARTITION (partcol1[=val1], ...) select_statement FROM from_statement;
+
+# 示例，创建临时表;
+create temporary table student1 (
+    id int, name varchar(10), birthday date, 
+    class array&lt;string&gt;, score map&lt;string, int&gt;,
+    addr struct&lt;street:string, No:int&gt;,
+    contact uniontype&lt;bigint, string&gt;
+  ) 
+  partitioned by (grade int)
+  stored as orc TBLPROPERTIES (&quot;transactional&quot;=&quot;true&quot;)
+;
+create temporary table student2 like student1;
+alter table student2 set tblproperties (&quot;transactional&quot;=&quot;true&quot;);
+# 示例，插入数据;
+insert overwrite table student1 partition(grade=2018) 
+  select id,name,birthday,class,score,addr,contact from student where id = 3;
+# 示例，批量插入;
+from student
+insert into table student1 partition(grade=2018) 
+  select id,name,birthday,class,score,addr,contact where id = 1
+insert into table student2 partition(grade=2018) 
+  select id,name,birthday,class,score,addr,contact where id = 2;
+# 示例，动态决定分区;
+set hive.exec.dynamic.partition=true;
+set hive.exec.dynamic.partition.mode=nonstrict;
+insert into table student2 partition(grade)
+  select * from student where id = 3;  
+</code></pre><ul>
+<li>我们可以使用以下语句将查询结果插入至文件系统:</li>
+</ul>
+<pre><code># 将查询结果插入至文件系统;
+INSERT OVERWRITE [LOCAL] DIRECTORY directory1
+  [ROW FORMAT row_format] [STORED AS file_format]
+  select_statement FROM from_statement;
+# 批量插入;
+FROM from_statement
+INSERT OVERWRITE [LOCAL] DIRECTORY directory1 select_statement1
+[INSERT OVERWRITE [LOCAL] DIRECTORY directory2 select_statement2] ...
+
+# 示例，将查询结果插入至文件系统;
+insert overwrite local directory &quot;student&quot;
+  row format delimited 
+    fields terminated by &quot;,&quot; escaped by &quot;\\&quot;
+    collection items terminated by &quot;;&quot;
+    map keys terminated by &quot;:&quot;
+    lines terminated by &quot;\n&quot;
+    null defined as &quot;NULL&quot;
+  stored as textfile 
+  select * from student
+;
+</code></pre><ul>
+<li>我们还可以通过以下语句，直接向Hive表中插入记录。向student表中插入数据时需要注意，因为我们在创表时设置了<code>skip.header.line.count</code>将文件首行最为标题行跳过，所以插入数据之前必须取消这一设置，否则插入事务可以正常执行，但查询时会忽略插入的第一条记录。</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">INSERT INTO TABLE tablename [PARTITION (partcol1[=val1], ...)]
+  VALUES values_row, values_row, ...;
+  
+# 示例，取消略过第一条记录的设置;
+alter table student set tblproperties (&quot;skip.header.line.count&quot; = &quot;0&quot;);
+# 示例，直接向Hive表中插入记录;
+insert into table student partition(grade=2018)
+  values (
+    4, &quot;赵六&quot;, &quot;1997-07-08&quot;,
+    array(&quot;英语&quot;,&quot;物理&quot;),
+    map(&quot;英语&quot;,90,&quot;物理&quot;,NULL),
+    named_struct(&quot;street&quot;, &quot;广林路&quot;,&quot;no&quot;, 37),
+    create_union(1, cast(NULL as bigint), &quot;8808-3124&quot;)
+  )
+;
+</code></pre><h2 id="2更新删除合并数据">2、更新、删除、合并数据</h2>
+<ul>
+<li>我们可以使用以下语句更新、删除、合并数据。注意要执行这些操作，必须首先开启事务性，并保证存储数据的表本身支持事务性操作。</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 更新数据;
+UPDATE tablename SET (column = value, ...) [WHERE expression];
+# 删除数据;
+DELETE FROM tablename [WHERE expression];
+# 合并数据;
+MERGE INTO &lt;target table&gt; AS T USING &lt;source expression/table&gt; AS S
+ON &lt;boolean expression1&gt;
+WHEN MATCHED [AND &lt;boolean expression2&gt;] THEN UPDATE SET &lt;set clause list&gt;
+WHEN MATCHED [AND &lt;boolean expression3&gt;] THEN DELETE
+WHEN NOT MATCHED [AND &lt;boolean expression4&gt;] THEN INSERT VALUES&lt;value list&gt;;
+
+# 示例，更新数据;
+update student1 set birthday = &quot;1997-01-01&quot; where id = 3;
+# 示例，删除数据;
+delete from student1 where id &gt; 3;
+# 示例，合并数据;
+merge into student1 as T using student2 as S
+on T.id = S.id
+when matched and T.birthday = S.birthday then delete
+when matched and T.birthday != S.birthday then update set birthday = S.birthday
+when not matched then insert values(S.id,S.name,S.birthday,S.class,S.score,S.addr,S.contact,S.grade)
+;
+</code></pre><h2 id="3查询数据">3、查询数据</h2>
+<ul>
+<li>我们可以使用以下语句查询数据，其中：
+<ul>
+<li><code>DISTRIBUTE BY</code> 多用于分桶，当然我们首先需要设置分桶数量</li>
+<li><code>ORDER BY</code> 与 <code>SORT BY</code> 都可以进行排序，但前者给出整体排序的结果，而后者多用于分桶排序</li>
+<li><code>CLUSTER BY</code> 相当于 <code>DISTRIBUTE BY ... SORT BY ...</code> 的快捷语句，后者还可以使用不同的字段进行分桶与分桶排序</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">[WITH (CommonTableExpression, ...)]
+SELECT [ALL | DISTINCT] (select_expr, ...)
+  FROM table_reference
+  [WHERE where_condition]
+  [GROUP BY col_list HAVING having_condition]
+  [ORDER BY col_list]
+  [CLUSTER BY col_list | [DISTRIBUTE BY col_list] [SORT BY col_list]]
+  [LIMIT [offset_rows,] limit_rows] | [LIMIT rows [offset rows]]
+
+# 示例，查询各种类型的数据;
+select name, class[0], score[&quot;语文&quot;], addr.street, extract_union(contact).tag_0 from student;
+# 示例，使用正则表达式选择字段;
+set hive.support.quoted.identifiers = none;
+select name, `(gr|bir).+` from student;
+# 示例，使用distinct去重;
+select distinct name, v.class from student t lateral view explode(class) v as class;
+# 示例，使用having子句;
+select addr.street, max(birthday) from student 
+  group by addr.street having max(birthday) &lt; '1998-01-01' 
+  order by addr.street;
+# 示例，使用分桶排序;
+set mapreduce.job.reduces=3;
+select name, birthday, grade from student 
+  distribute by grade sort by grade asc, birthday desc;
+# 示例，使用limit子句;
+select * from student limit 1 offset 2;
+</code></pre><h2 id="4join-语句">4、JOIN 语句</h2>
+<ul>
+<li>Hive中有六种连表方式，其中：
+<ul>
+<li><strong>inner join</strong>（内连接），根据连接条件选择两个表中都有的数据</li>
+<li><strong>full join</strong>（全连接），选择两个表的全部数据，并根据连接条件匹配在一起（匹配不到则为NULL）</li>
+<li><strong>left join</strong>（左连接），选择左表全部数据，并根据连接条件选择右表中的数据（匹配不到则为NULL）</li>
+<li><strong>right join</strong>（右连接），选择右表全部数据，并根据连接条件选择左表中的数据（匹配不到则为NULL）</li>
+<li><strong>left semi join</strong>（半连接），根据连接条件选择左表中的数据，可以改写为<code>where ... in ...</code>或<code>where ... exists ...</code>语句</li>
+<li><strong>cross join</strong>（交叉连接），一般不指定连接条件，为左表中的每一条数据匹配右表全部的数据（反之亦然）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">SELECT select_expression
+FROM ((table|query), ...)
+[WHERE join_condition]
+
+join_table:
+    table_reference [INNER] JOIN table_factor [join_condition]
+  | table_reference {LEFT|RIGHT|FULL} [OUTER] JOIN table_reference join_condition
+  | table_reference LEFT SEMI JOIN table_reference join_condition
+  | table_reference CROSS JOIN table_reference [join_condition]
+table_reference:
+    table_factor
+  | join_table
+table_factor:
+    tbl_name [alias]
+  | table_subquery alias
+  | ( table_references )
+join_condition:
+    ON expression  
+  
+# 示例，创建测试表;
+create temporary table A (id int, name char(2));
+create temporary table B like A;
+insert into table A values (1, &quot;a&quot;), (2, &quot;a&quot;), (3, &quot;c&quot;);
+insert into table B values (1, &quot;a&quot;), (4, &quot;d&quot;);
+# 示例，在where子句中指定连表方式;
+select A.id, A.name, B.name from A, B where A.id = B.id;
+# 示例，内连接不指定连接条件时相当于交叉连接;
+select * from A join B
+# 示例，交叉连接在指定连接方式的情况下相当于内连接;
+select * from A cross join B on A.id = B.id;
+# 示例，可以用 where 语句改写半连接;
+select * from A left semi join B on A.id = B.id;
+select * from A where id in (select id from B);
+select * from A where exists (select id from B where A.id = B.id);
+# 示例，全连接时合并左右表中用于连接的字段;
+select if(A.id is not NULL, A.id, B.id) as id, A.name, B.name from A full join B on A.id = B.id;
+# 示例，连接有先后顺序，A直接左连接C，与A先内连接B再左连接C，产生的结果不同;
+select * from A left join B on A.id = B.id;
+select * from A join B on A.id = B.id left join B on A.id = B.id;
+# 示例，左右全连接时，连接条件写在on子句与where子句中，产生的结果不同;
+select * from A left join B on A.id = B.id;
+select * from A left join B where A.id = B.id;
+</code></pre><h2 id="5union-语句">5、UNION 语句</h2>
+<ul>
+<li>我们可以使用<code>union</code>语句将两个查询结果合并起来，注意两个查询结果必须字段数量相同且字段类型相似。其中：
+<ul>
+<li><code>union all</code>直接将查询结果合并，而直接使用<code>union</code>在合并时会去除重复的记录</li>
+<li>合并语句之后可以使用<code>order by</code>子句，对合并结果排序</li>
+<li>Hive中合并语句时存在自动重命名字段和自动类型转换机制，自动类型转换只发生在数据类型相似的情况（如同属于数值型）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select_statement (UNION [ALL | DISTINCT] select_statement ...) [ORDER BY col_list]
+
+# 示例，合并时会去除重复值、并对合并结果排序;
+select * from A
+union
+select * from B
+order by id;
+# 示例，自动重命名字段、自动类型转换;
+select * from B
+union all
+select 5, string(&quot;e&quot;);
+</code></pre><h2 id="6lateral-view-语句">6、LATERAL VIEW 语句</h2>
+<ul>
+<li><code>LATERAL VIEW</code> 常与表生成函数（如<code>explode</code>）一起使用，将原表中每条记录，与根据该记录生成的表交叉关联，最终生成包含两方数据的虚拟表。</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">lateralView: LATERAL VIEW udtf(expression) tableAlias AS (columnAlias, ...)
+fromClause: FROM baseTable (lateralView ...)
+
+# 示例，解析array、map类型的字段;
+select name, B.col from student A 
+  lateral view explode(class) B;
+select name, B.* from student A 
+  lateral view explode(score) B as class, score;
+# 示例，可以嵌套使用 lateral view ;
+select B.key, C.* from (
+    select map(&quot;王五&quot;, map(&quot;英语&quot;,100,&quot;物理&quot;,NULL), &quot;赵六&quot;, map(&quot;英语&quot;,90,&quot;物理&quot;,NULL)) as col
+  ) A
+  lateral view explode(A.col) B 
+  lateral view explode(B.value) C as class, score;
+# 示例，lateral view outer 可以进行全关联;
+select name, B.class from student t 
+  lateral view explode(class) B as class 
+  lateral view outer explode(array()) C ;
+</code></pre><h2 id="7tablesample-语句">7、TABLESAMPLE 语句</h2>
+<ul>
+<li>我们可以在where子句之后使用<code>TABLESAMPLE</code>子句对表进行抽样，抽样是根据分桶进行的，先将表分成y份，再从中取出第x份数据。我们可以随机分区（如使用随机函数<code>rand</code>），也可以使用非分区字段作为分桶依据。注意分桶不一定将数据严格的分成y等份。</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">table_sample: TABLESAMPLE (BUCKET x OUT OF y [ON colname])
+
+# 示例，对表进行抽样;
+select * from student tablesample (bucket 1 out of 2 on rand());
+select * from student tablesample (bucket 1 out of 2 on name);
+</code></pre><h2 id="8开窗分析语句">8、开窗&amp;分析语句</h2>
+<ul>
+<li>开窗函数和分析函数，用于对窗口内的数据应用分析函数，并为每条记录匹配相应的结果。注意开窗函数中：
+<ul>
+<li><code>PARTITION BY</code>表示进行分组开窗</li>
+<li><code>ORDER BY</code>表示进行组内排序</li>
+<li><code>range</code>则表示开窗范围，如根据当前行计算的（同一分组的）前m行到后n行</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">analytic_fun() OVER( [PARTITION BY cols] [ORDER BY cols] range )
+range:
+  (ROWS | RANGE) BETWEEN (CURRENT ROW | (UNBOUNDED | num) PRECEDING) AND (CURRENT ROW | (UNBOUNDED | num) FOLLOWING)
+  | (ROWS | RANGE) BETWEEN (UNBOUNDED | num) PRECEDING AND num PRECEDING
+  | (ROWS | RANGE) BETWEEN num FOLLOWING AND (UNBOUNDED | num) FOLLOWING
+
+# 示例，使用 PARTITION BY ... ORDER BY ... 分组求行号;
+select row_number() over(partition by name order by id), * from A;
+# 示例，使用多个分析函数时，可以将开窗函数单独提取出来;
+select name, avg(id) over w, sum(id) over w from A
+  window w as (partition by name order by id range unbounded preceding);
+# 示例，使用 BETWEEN ... AND ... 决定开窗范围。注意开窗范围大于1条记录时，需要使用聚合函数作为分析函数;
+select count(distinct name) over(partition by name order by id ROWS BETWEEN 1 PRECEDING AND 1 FOLLOWING), * from A;
+# 示例，开窗函数中使用聚合函数;
+select row_number() over(order by count(distinct id)), name from A group by name;
+</code></pre><h2 id="9grouping-sets-语句">9、GROUPING SETS 语句</h2>
+<ul>
+<li>我们可以在<code>group by</code>子句之后指定<code>grouping sets</code>，指定多个分组选项，相当于将每个分组选项处理的结果合并在一起。类似的，HIve中还有两个快捷语句，其中：
+<ul>
+<li><code>WITH CUBE</code>表示根据分组字段的全排列组合形成分组选项</li>
+<li><code>WITH ROLLUP</code>表示根据分组字段的先后顺序，继承性的排列组合形成分组选项。即对于<code>group by</code>子句中的前后两个字段，包含后者的分组选项中，必须包含前者</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 示例，使用 union all 改写 grouping sets;
+select id, name, count(*), GROUPING__ID from A group by id, name 
+  grouping sets ( (id, name), id, name, ( ) );
+select id, name, count(*), 0 from A group by id, name 
+  union all select id, NULL, count(*), 1 from A group by id 
+  union all select NULL, name, count(*), 2 from A group by name 
+  union all select NULL, NULL, count(*), 3 from A;
+# 示例，使用 grouping sets 改写 WITH CUBE;
+select id, name, grade, count(*) from student group by id, name, grade WITH CUBE;
+select id, name, grade, count(*) from student group by id, name, grade
+  GROUPING SETS ( (id, name, grade), (id, name), (name, grade), (id, grade), (id), (name), (grade), ( ));
+# 示例，使用 grouping sets 改写 WITH ROLLUP;
+select id, name, grade, count(*) from student group by id, name, grade WITH ROLLUP;
+select id, name, grade, count(*) from student group by id, name, grade
+  GROUPING SETS ( (id, name, grade), (id, name), (id), ( ));
+</code></pre><h2 id="10虚拟字段">10、虚拟字段</h2>
+<ul>
+<li>我们可以在查询语句中使用以下虚拟字段，其具体含义如下：</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">虚拟字段</th>
+<th align="left">作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">INPUT__FILE__NAME</td>
+<td align="left">显示记录所在文件名</td>
+</tr>
+<tr>
+<td align="left">BLOCK__OFFSET__INSIDE__FILE</td>
+<td align="left">显示当前块在文件中的偏移量（字节）</td>
+</tr>
+<tr>
+<td align="left">ROW__OFFSET__INSIDE__BLOCK</td>
+<td align="left">显示当前记录在块中的偏移量（需要设置<code>set hive.exec.rowoffset=true</code>）</td>
+</tr>
+<tr>
+<td align="left">RAW__DATA__SIZE</td>
+<td align="left">显示原始数据集的大小</td>
+</tr>
+<tr>
+<td align="left">ROW__ID</td>
+<td align="left">显示行标识（写入位置，分桶ID等）</td>
+</tr>
+<tr>
+<td align="left">GROUPING__ID</td>
+<td align="left">显示<code>GROUPING SETS</code>等子句中指定的第几个分组选项</td>
+</tr>
+</tbody>
+</table>
+<hr>
+<p>参考：
+<a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DML">Hive DML</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Hive常用数据操作语句梳理',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据定义语句梳理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用系统函数梳理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据定义语句梳理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用系统函数梳理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive%25E5%25B8%25B8%25E7%2594%25A8%25E6%2595%25B0%25E6%258D%25AE%25E6%2593%258D%25E4%25BD%259C%25E8%25AF%25AD%25E5%258F%25A5%25E6%25A2%25B3%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive%25E5%25B8%25B8%25E7%2594%25A8%25E6%2595%25B0%25E6%258D%25AE%25E6%2593%258D%25E4%25BD%259C%25E8%25AF%25AD%25E5%258F%25A5%25E6%25A2%25B3%25E7%2590%2586%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

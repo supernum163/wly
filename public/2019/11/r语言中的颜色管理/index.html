@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言中的颜色管理">
 <meta property="og:description" content="颜色可以使我们更容易区分、对比不同信息，这对于绘制统计类图像来说无疑十分重要。这篇文章我们将介绍R语言中的颜色管理。">
@@ -51,19 +51,23 @@
 
     <title>R语言中的颜色管理</title>
 
-    <link rel="canonical" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bb%98%e5%9b%be">绘图</a>
+      <a class="category-link" href="/categories/%e7%bb%98%e5%9b%be">绘图</a>
     
   
 
@@ -258,27 +262,12 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>颜色可以使我们更容易区分、对比不同信息，这对于绘制统计类图像来说无疑十分重要。这篇文章我们将介绍R语言中的<strong>颜色管理</strong>。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-颜色系统">1、颜色系统</a></li>
-<li><a href="#2-调色板">2、调色板</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<p>R语言中并没有一套专门的对象来表示颜色，所有颜色最终都需要传递给底层函数在绘图的过程中显示，所以颜色要么是以关键字的形式表示，要么是以<strong>#</strong>作为前缀的6或8位16进制数组成的<strong>RGB（A）</strong>字符串表示。比如以下字符串数组均可以表示<strong>红橙黄绿青蓝紫</strong>七种颜色。</p>
-
-<pre><code class="language-R">c(&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;cyan&quot;, &quot;blue&quot;, &quot;purple&quot;)
-c(&quot;#FF0000&quot; &quot;#FFA500&quot; &quot;#FFFF00&quot; &quot;#00FF00&quot; &quot;#00FFFF&quot; &quot;#0000FF&quot; &quot;#A020F0&quot;)
-</code></pre>
-
-<h2 id="1-颜色系统">1、颜色系统</h2>
-
+<!-- raw HTML omitted -->
+<p>R语言中并没有一套专门的对象来表示颜色，所有颜色最终都需要传递给底层函数在绘图的过程中显示，所以颜色要么是以关键字的形式表示，要么是以**#**作为前缀的6或8位16进制数组成的**RGB（A）**字符串表示。比如以下字符串数组均可以表示**红橙黄绿青蓝紫**七种颜色。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;orange&#34;</span>, <span style="color:#e6db74">&#34;yellow&#34;</span>, <span style="color:#e6db74">&#34;green&#34;</span>, <span style="color:#e6db74">&#34;cyan&#34;</span>, <span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;purple&#34;</span>)
+<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;#FF0000&#34;</span> <span style="color:#e6db74">&#34;#FFA500&#34;</span> <span style="color:#e6db74">&#34;#FFFF00&#34;</span> <span style="color:#e6db74">&#34;#00FF00&#34;</span> <span style="color:#e6db74">&#34;#00FFFF&#34;</span> <span style="color:#e6db74">&#34;#0000FF&#34;</span> <span style="color:#e6db74">&#34;#A020F0&#34;</span>)
+</code></pre></div><h2 id="1颜色系统">1、颜色系统</h2>
 <p>首先在R语言中，我们可以直接通过关键字的形式表示颜色。使用<span class="highlight-text primary">colors</span>函数查看R语言支持的所有可以表示颜色的关键字，注意某些关键字对应的颜色可能是一样的，比如<strong>gray</strong>与<strong>grey</strong>、<strong>blue</strong>与<strong>blue1</strong>等。对于灰度色，除了使用颜色关键字（<strong>gray1</strong>等）来指明灰色程度之外，我们还可以通过<span class="highlight-text primary">gray</span>函数指明灰度值（<strong>0-1</strong>）。</p>
-
 
  
   
@@ -313,9 +302,7 @@ c(&quot;#FF0000&quot; &quot;#FFA500&quot; &quot;#FFFF00&quot; &quot;#00FF00&quot
 
   <div style="clear:both;"></div>
 
-
-<p>此外R语言中还支持通过三种颜色系统输入颜色。其中<strong>RGB</strong>颜色系统是通过<strong>红（Red）、绿（Green）、蓝（Blue）</strong>三原色作为纬度来定义颜色的，<strong>HSV</strong>颜色系统则是通过<strong>色调（Hue）、饱和度（Saturation）、明亮度（Value）</strong>作为纬度来定义颜色的，<strong>HCL</strong>颜色系统也是通过<strong>色调（Hue）、饱和度（Chroma）、明亮度（Luminance）</strong>作为纬度来定义颜色的。<strong>HSV</strong>与<strong>HCL</strong>本质上是同一套颜色度量体系，区别在于<strong>HSV</strong>中三个纬度上的取值均已被比例化。注意无论以那种方式输入，最终都将得到6或8位16进制数组成RGB（A）颜色。</p>
-
+<p>此外R语言中还支持通过三种颜色系统输入颜色。其中<strong>RGB</strong>颜色系统是通过<strong>红（Red）、绿（Green）、蓝（Blue）<strong>三原色作为纬度来定义颜色的，<strong>HSV</strong>颜色系统则是通过</strong>色调（Hue）、饱和度（Saturation）、明亮度（Value）<strong>作为纬度来定义颜色的，<strong>HCL</strong>颜色系统也是通过</strong>色调（Hue）、饱和度（Chroma）、明亮度（Luminance）<strong>作为纬度来定义颜色的。<strong>HSV</strong>与</strong>HCL</strong>本质上是同一套颜色度量体系，区别在于<strong>HSV</strong>中三个纬度上的取值均已被比例化。注意无论以那种方式输入，最终都将得到6或8位16进制数组成RGB（A）颜色。</p>
 <p>
 
  
@@ -383,46 +370,32 @@ c(&quot;#FF0000&quot; &quot;#FFA500&quot; &quot;#FFFF00&quot; &quot;#00FF00&quot
 
   <div style="clear:both;"></div>
 </p>
-
 <p>以下函数可以帮助我们使用<strong>RGB、HSV、HCL</strong>等颜色系统输入颜色。注意<span class="highlight-text primary">rgb</span>函数默认三个纬度上的取值均已被比例化，取值范围是<strong>0-1</strong>，当然我们也可以设置<code>maxColorValue = 255</code>来修改这一设定；<span class="highlight-text primary">hsv</span>假定每个纬度上的取值均已被比例化，所以色调、饱和度、明亮度的取值范围都是<strong>0-1</strong>；<span class="highlight-text primary">hcl</span>函数中色调的取值范围是<strong>0-360</strong>（角度），其中红色为<strong>0</strong>、绿色为<strong>120</strong>、蓝色为<strong>240</strong>，明亮度的取值范围均是<strong>0-100</strong>。而饱和度的取值下限为<strong>0</strong>，取值上限则依据色调和明亮度而有所不同，为了避免设置的饱和度超出上限时得到<strong>NA</strong>值，我们可以设置<code>fixup = TRUE</code>，将超出上限的值自动设置为取值上限。此外这三个函数都支持设置颜色透明程度<strong>alpha</strong>，取值范围是<strong>0-1</strong>。</p>
-
-<pre><code class="language-R">rgb(red, green, blue, alpha, maxColorValue = 1)
-hsv(h = 1, s = 1, v = 1, alpha)
-hcl(h = 0, c = 35, l = 85, alpha, fixup = TRUE)
-</code></pre>
-
-<p><br></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">rgb</span>(red, green, blue, alpha, maxColorValue <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#a6e22e">hsv</span>(h <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, s <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, v <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, alpha)
+<span style="color:#a6e22e">hcl</span>(h <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, c <span style="color:#f92672">=</span> <span style="color:#ae81ff">35</span>, l <span style="color:#f92672">=</span> <span style="color:#ae81ff">85</span>, alpha, fixup <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+</code></pre></div><!-- raw HTML omitted -->
 <p>以上形式表示的颜色都可以通过<span class="highlight-text primary">col2rgb</span>函数，转化为RGB颜色，转化后的RGB颜色又可以通过<span class="highlight-text primary">rgb2hsv</span>函数，转化为HSV颜色。但这些转化方式并不能产生可以直接用于绘图的颜色，而是会产生一个矩阵，其中每一列代表一个颜色，每一行代表该颜色在相应纬度上的取值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 颜色关键字转RGB颜色</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span>  <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;orange&#34;</span>, <span style="color:#e6db74">&#34;yellow&#34;</span>, <span style="color:#e6db74">&#34;green&#34;</span>, <span style="color:#e6db74">&#34;cyan&#34;</span>, <span style="color:#e6db74">&#34;blue&#34;</span>, <span style="color:#e6db74">&#34;purple&#34;</span>)
+<span style="color:#f92672">&gt;</span> RGBcolor <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">col2rgb</span>(x); RGBcolor
+      [,<span style="color:#ae81ff">1</span>] [,<span style="color:#ae81ff">2</span>] [,<span style="color:#ae81ff">3</span>] [,<span style="color:#ae81ff">4</span>] [,<span style="color:#ae81ff">5</span>] [,<span style="color:#ae81ff">6</span>] [,<span style="color:#ae81ff">7</span>]
+red    <span style="color:#ae81ff">255</span>  <span style="color:#ae81ff">255</span>  <span style="color:#ae81ff">255</span>    <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">160</span>
+green    <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">165</span>  <span style="color:#ae81ff">255</span>  <span style="color:#ae81ff">255</span>  <span style="color:#ae81ff">255</span>    <span style="color:#ae81ff">0</span>   <span style="color:#ae81ff">32</span>
+blue     <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>    <span style="color:#ae81ff">0</span>  <span style="color:#ae81ff">255</span>  <span style="color:#ae81ff">255</span>  <span style="color:#ae81ff">240</span>
 
-<pre><code class="language-R"># 颜色关键字转RGB颜色
-&gt; x &lt;-  c(&quot;red&quot;, &quot;orange&quot;, &quot;yellow&quot;, &quot;green&quot;, &quot;cyan&quot;, &quot;blue&quot;, &quot;purple&quot;)
-&gt; RGBcolor &lt;- col2rgb(x); RGBcolor
-      [,1] [,2] [,3] [,4] [,5] [,6] [,7]
-red    255  255  255    0    0    0  160
-green    0  165  255  255  255    0   32
-blue     0    0    0    0  255  255  240
-
-# RGB颜色转HSV
-&gt; HSVcolor &lt;- rgb2hsv(RGBcolor); HSVcolor
-  [,1]      [,2]      [,3]      [,4] [,5]      [,6]      [,7]
-h    0 0.1078431 0.1666667 0.3333333  0.5 0.6666667 0.7692308
-s    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.8666667
-v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
-</code></pre>
-
-<p>除了RGB、HSV等颜色系统，对于底层打印、成像设备而言，还有可能使用其它类型的颜色系统。比如彩色打印时用到的一般是<strong>CMY</strong>颜色系统，此外不同显示设备实现RGB颜色系统的方式也有可能不同。我们可以使用<span class="highlight-text primary">make.rgb</span>函数，自定义一个颜色系统，并使用<span class="highlight-text primary">colorConverter</span>函数，指定该颜色系统与其它颜色系统之间互相转化的方式。接下来我们就可以通过<span class="highlight-text primary">convertColor</span>函数，在<strong>XYZ、sRGB、Apple RGB、CIE RGB、Lab、Luv</strong>等颜色体系中互相转化（转化规则记录在变量<strong>colorspaces</strong>中）。</p>
-
-<p><br></p>
-
-<h2 id="2-调色板">2、调色板</h2>
-
+<span style="color:#75715e"># RGB颜色转HSV</span>
+<span style="color:#f92672">&gt;</span> HSVcolor <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rgb2hsv</span>(RGBcolor); HSVcolor
+  [,<span style="color:#ae81ff">1</span>]      [,<span style="color:#ae81ff">2</span>]      [,<span style="color:#ae81ff">3</span>]      [,<span style="color:#ae81ff">4</span>] [,<span style="color:#ae81ff">5</span>]      [,<span style="color:#ae81ff">6</span>]      [,<span style="color:#ae81ff">7</span>]
+h    <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0.1078431</span> <span style="color:#ae81ff">0.1666667</span> <span style="color:#ae81ff">0.3333333</span>  <span style="color:#ae81ff">0.5</span> <span style="color:#ae81ff">0.6666667</span> <span style="color:#ae81ff">0.7692308</span>
+s    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1.0000000</span> <span style="color:#ae81ff">1.0000000</span> <span style="color:#ae81ff">1.0000000</span>  <span style="color:#ae81ff">1.0</span> <span style="color:#ae81ff">1.0000000</span> <span style="color:#ae81ff">0.8666667</span>
+v    <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">1.0000000</span> <span style="color:#ae81ff">1.0000000</span> <span style="color:#ae81ff">1.0000000</span>  <span style="color:#ae81ff">1.0</span> <span style="color:#ae81ff">1.0000000</span> <span style="color:#ae81ff">0.9411765</span>
+</code></pre></div><p>除了RGB、HSV等颜色系统，对于底层打印、成像设备而言，还有可能使用其它类型的颜色系统。比如彩色打印时用到的一般是<strong>CMY</strong>颜色系统，此外不同显示设备实现RGB颜色系统的方式也有可能不同。我们可以使用<span class="highlight-text primary">make.rgb</span>函数，自定义一个颜色系统，并使用<span class="highlight-text primary">colorConverter</span>函数，指定该颜色系统与其它颜色系统之间互相转化的方式。接下来我们就可以通过<span class="highlight-text primary">convertColor</span>函数，在<strong>XYZ、sRGB、Apple RGB、CIE RGB、Lab、Luv</strong>等颜色体系中互相转化（转化规则记录在变量<strong>colorspaces</strong>中）。</p>
+<!-- raw HTML omitted -->
+<h2 id="2调色板">2、调色板</h2>
 <p>R语言中有一个默认的全局调色板，允许我们在绘图的过程中，以数字的形式（调色板中的第几个颜色）指明图像中形状颜色，比如<code>col = 1</code>默认表示黑色。我们可以使用<span class="highlight-text primary">palette</span>函数查看或修改全局调色板。</p>
-
 <p>除了全局调色板，R语言中还预设了许多其它类型的调色板。这些调色板大多是按照HCL颜色系统的色调、饱和度、明亮度方向取值的，由此可以区分出三种不同类型的调色板：按色调方向取值的调色板，颜色往往是相互独立的，适合用于分类变量；按饱和度或明亮度方向取值的调色板，颜色往往是由深变浅或有浅变深的，适合用于连续变量；还有一种调色板，是两种颜色沿着饱和度或明亮度方向实现渐变，适合用于沿着某个中间值向两个不同纬度延伸的连续变量。</p>
-
 <p>这些预设调色板中的颜色都是连续的，所以使用时需要我们指定要用到多少种颜色。我们可以使用<span class="highlight-text primary">rainbow、heat.colors、terrain.colors、topo.colors、cm.colors、gray.colors</span>等函数，取出特定调色板中的颜色。我们也可以使用<span class="highlight-text primary">hcl.pals</span>函数，列举某个类型的调色板都有哪些，再以<code>hcl.colors(n, palette, ...)</code>的形式，取得某个调色板中的颜色。</p>
-
 
  
   
@@ -457,38 +430,29 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
 
   <div style="clear:both;"></div>
 
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>如果我们需要将某个系列的颜色沿着RGB（A）纬度统一进行调整，则可以使用<span class="highlight-text primary">adjustcolor</span>函数。比如统一调整透明度为<strong>0.5</strong>，可以使填充类图形中的文字更容易分辨。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 调整之前的调色板</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">7</span>)
+[1] <span style="color:#e6db74">&#34;#FF0000FF&#34;</span> <span style="color:#e6db74">&#34;#FFDB00FF&#34;</span> <span style="color:#e6db74">&#34;#49FF00FF&#34;</span> <span style="color:#e6db74">&#34;#00FF92FF&#34;</span> <span style="color:#e6db74">&#34;#0092FFFF&#34;</span> <span style="color:#e6db74">&#34;#4900FFFF&#34;</span> <span style="color:#e6db74">&#34;#FF00DBFF&#34;</span>
 
-<pre><code class="language-R"># 调整之前的调色板
-&gt; rainbow(7)
-[1] &quot;#FF0000FF&quot; &quot;#FFDB00FF&quot; &quot;#49FF00FF&quot; &quot;#00FF92FF&quot; &quot;#0092FFFF&quot; &quot;#4900FFFF&quot; &quot;#FF00DBFF&quot;
+<span style="color:#75715e"># 调整之后的调色板</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">adjustcolor</span>(<span style="color:#a6e22e">rainbow</span>(<span style="color:#ae81ff">7</span>), <span style="color:#ae81ff">0.5</span>)
+[1] <span style="color:#e6db74">&#34;#FF000080&#34;</span> <span style="color:#e6db74">&#34;#FFDB0080&#34;</span> <span style="color:#e6db74">&#34;#49FF0080&#34;</span> <span style="color:#e6db74">&#34;#00FF9280&#34;</span> <span style="color:#e6db74">&#34;#0092FF80&#34;</span> <span style="color:#e6db74">&#34;#4900FF80&#34;</span> <span style="color:#e6db74">&#34;#FF00DB80&#34;</span>
+</code></pre></div><p>此外我们还可以使用<span class="highlight-text primary">colorRamp、colorRampPalette</span>函数，生成自定义的调色板（通常是沿着一组颜色所在的某个颜色纬度进行渐变）。其中前者生成的生成的调色板，调用时需要输入比例化（<strong>0-1</strong>）的数值，表示该颜色在调色板的颜色纬度中所在的位置，返回值是RGB值构成的矩阵；而后者调用时需要输入生成颜色的数量，返回值是可以直接使用的RGB字符串。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 使用colorRamp生成调色板</span>
+<span style="color:#f92672">&gt;</span> pal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorRamp</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;green&#34;</span>)); <span style="color:#a6e22e">pal</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">/</span> <span style="color:#ae81ff">4</span>)
+       [,<span style="color:#ae81ff">1</span>]   [,<span style="color:#ae81ff">2</span>] [,<span style="color:#ae81ff">3</span>]
+[1,] <span style="color:#ae81ff">255.00</span>   <span style="color:#ae81ff">0.00</span>    <span style="color:#ae81ff">0</span>
+[2,] <span style="color:#ae81ff">191.25</span>  <span style="color:#ae81ff">63.75</span>    <span style="color:#ae81ff">0</span>
+[3,] <span style="color:#ae81ff">127.50</span> <span style="color:#ae81ff">127.50</span>    <span style="color:#ae81ff">0</span>
+[4,]  <span style="color:#ae81ff">63.75</span> <span style="color:#ae81ff">191.25</span>    <span style="color:#ae81ff">0</span>
+[5,]   <span style="color:#ae81ff">0.00</span> <span style="color:#ae81ff">255.00</span>    <span style="color:#ae81ff">0</span>
 
-# 调整之后的调色板
-&gt; adjustcolor(rainbow(7), 0.5)
-[1] &quot;#FF000080&quot; &quot;#FFDB0080&quot; &quot;#49FF0080&quot; &quot;#00FF9280&quot; &quot;#0092FF80&quot; &quot;#4900FF80&quot; &quot;#FF00DB80&quot;
-</code></pre>
-
-<p>此外我们还可以使用<span class="highlight-text primary">colorRamp、colorRampPalette</span>函数，生成自定义的调色板（通常是沿着一组颜色所在的某个颜色纬度进行渐变）。其中前者生成的生成的调色板，调用时需要输入比例化（<strong>0-1</strong>）的数值，表示该颜色在调色板的颜色纬度中所在的位置，返回值是RGB值构成的矩阵；而后者调用时需要输入生成颜色的数量，返回值是可以直接使用的RGB字符串。</p>
-
-<pre><code class="language-R"># 使用colorRamp生成调色板
-&gt; pal &lt;- colorRamp(c(&quot;red&quot;, &quot;green&quot;)); pal(0:4 / 4)
-       [,1]   [,2] [,3]
-[1,] 255.00   0.00    0
-[2,] 191.25  63.75    0
-[3,] 127.50 127.50    0
-[4,]  63.75 191.25    0
-[5,]   0.00 255.00    0
-
-# 使用colorRampPalette生成调色板
-&gt; pal &lt;- colorRampPalette(c(&quot;red&quot;, &quot;green&quot;)); pal(4)
-[1] &quot;#FF0000&quot; &quot;#AA5500&quot; &quot;#55AA00&quot; &quot;#00FF00&quot;
-</code></pre>
-
-<p><br></p>
-
+<span style="color:#75715e"># 使用colorRampPalette生成调色板</span>
+<span style="color:#f92672">&gt;</span> pal <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">colorRampPalette</span>(<span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;red&#34;</span>, <span style="color:#e6db74">&#34;green&#34;</span>)); <span style="color:#a6e22e">pal</span>(<span style="color:#ae81ff">4</span>)
+[1] <span style="color:#e6db74">&#34;#FF0000&#34;</span> <span style="color:#e6db74">&#34;#AA5500&#34;</span> <span style="color:#e6db74">&#34;#55AA00&#34;</span> <span style="color:#e6db74">&#34;#00FF00&#34;</span>
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -503,11 +467,9 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
 <li>如何将<strong>RGB</strong>颜色转化为灰度色（<code>R * 0.2989 + G * 0.587 + B * 0.114</code>） ？</li>
 <li>系统预设的调色板中，适用于分类、连续变量的分别有哪些？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -519,7 +481,7 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
 
                   </div>
                 
@@ -527,8 +489,8 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言中的颜色管理',
@@ -549,7 +511,7 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -557,7 +519,7 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的绘图设备管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的绘图设备管理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -575,13 +537,13 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -612,7 +574,7 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -626,7 +588,7 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="R语言中的基础绘图方式介绍">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -634,7 +596,7 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的绘图设备管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%BB%98%E5%9B%BE%E8%AE%BE%E5%A4%87%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的绘图设备管理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -652,13 +614,13 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -692,13 +654,13 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E9%25A2%259C%25E8%2589%25B2%25E7%25AE%25A1%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E9%25A2%259C%25E8%2589%25B2%25E7%25AE%25A1%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E9%25A2%259C%25E8%2589%25B2%25E7%25AE%25A1%25E7%2590%2586%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E9%25A2%259C%25E8%2589%25B2%25E7%25AE%25A1%25E7%2590%2586%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -753,12 +715,12 @@ v    1 1.0000000 1.0000000 1.0000000  1.0 1.0000000 0.9411765
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -835,7 +797,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

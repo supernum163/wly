@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言中的数据类型">
 <meta property="og:description" content="在R语言中一切皆为对象，不同类型的对象，其表现形式却又千差万别。对于新手来讲，理清R语言中不同对象的区别与关联确实不易。所以这篇文章及后续系列，我们将深入剖析R语言中的对象。">
@@ -51,19 +51,23 @@
 
     <title>R语言中的数据类型</title>
 
-    <link rel="canonical" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
+      <a class="category-link" href="/categories/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
     
   
 
@@ -263,35 +267,10 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>在<strong>R语言</strong>中一切皆为<strong>对象</strong>，不同类型的对象，其表现形式却又千差万别。对于新手来讲，理清R语言中不同对象的区别与关联确实不易。所以这篇文章及后续系列，我们将深入剖析R语言中的对象。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-数据的存储类型">1、数据的存储类型</a></li>
-<li><a href="#2-数据的属性">2、数据的属性</a>
-<ul>
-<li><a href="#2-1-class属性">2.1、class属性</a></li>
-<li><a href="#2-2-dim属性">2.2、dim属性</a></li>
-<li><a href="#2-3-names属性">2.3、*names属性</a></li>
-<li><a href="#2-4-levels属性">2.4、levels属性</a></li>
-<li><a href="#2-5-tsp属性">2.5、tsp属性</a></li>
-<li><a href="#2-6-comment属性">2.6、comment属性</a></li>
-</ul></li>
-<li><a href="#3-数据的长度">3、数据的长度</a></li>
-<li><a href="#4-数据的内存占用">4、数据的内存占用</a></li>
-<li><a href="#5-数据类型转换与数据类型判断">5、数据类型转换与数据类型判断</a></li>
-<li><a href="#6-结语">6、结语</a></li>
-</ul></li>
-</ul>
-</nav>
-
+<!-- raw HTML omitted -->
 <p>R语言中的底层代码都是由<strong>C/C++</strong>直接实现的，在R语言中所有的对象，无论是数组、列表，还是函数、操作符，本质上都是一个指针（<strong>SEXP</strong>）指向特定的数据（<strong>SEXPREC</strong>类型的结构体，对于<strong>vector</strong>（数组）类型的数据而言则是<strong>VECTOR_SEXPREC</strong>类型的结构体）。</p>
-
 <p><strong>SEXP</strong>指针指向的结构体由两大部分组成，其中一部分是 <em>头信息</em> （<strong>SEXPREC_HEADER</strong>），包括一个<strong>sxpinfo</strong>结构体，和三个指向<strong>SEXPREC</strong>类型结构体的指针分别表示数据的属性、上一个、下一个 <em>数据节点</em> ，其作用在于标识数据类型，函数调试、内存管理等。R语言中所有底层数据对象的 <em>头信息</em> 结构都是相同的，因此可以说是 <em>头信息</em> 决定了R语言对象的共性。</p>
-
 <p><strong>SEXP</strong>的另一部分是 <em>数据</em> ，根据存储内容的不同， <em>数据</em> 部分的结构也是不同的，比如R语言中<strong>vector</strong>类型的对象基本上都是存储在<strong>vecsxp</strong>结构体中，而<strong>environment</strong>类型的对象则是存储在<strong>envsxp</strong>结构体中。 <em>数据</em> 层面的差异是C语言中数据结构的差异，并不能直接体现在R语言层面。</p>
-
 
   
     
@@ -461,15 +440,10 @@
     
   </div>
 </figure>
-
-<p><br></p>
-
-<h2 id="1-数据的存储类型">1、数据的存储类型</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1数据的存储类型">1、数据的存储类型</h2>
 <p>在R语言的底层代码中，虽然<strong>SEXP</strong>的 <em>数据</em> 部分，会使用不同的结构体来存储相应的数据对象。但这里的结构体类型并不能作为区分不同数据存储类型的标准，最终决定数据对象会被作为哪种存储类型解读的是<strong>sxpinfo</strong>结构体中的<strong>type</strong>成员变量。比如R语言中<strong>vector</strong>类型对象的 <em>数据</em> 部分是一个<strong>vecsxp</strong>结构体，而它实际上可以分别存储<strong>RAWSXP、CHARSXP、LGLSXP、INTSXP、REALSXP、CPLXSXP、STRSXP、VECSXP、EXPRSXP、WEAKREFSXP</strong>类型的数据。</p>
-
 <p>在。在R语言中，我们可以使用<span class="highlight-text primary">typeof</span>来查看底层数据的存储类型，<strong>typeof</strong>是对C语言中<span class="highlight-text primary">TYPEOF</span>函数的包裹，<strong>TYPEOF</strong>可以直接获取<strong>sxpinfo</strong>结构体中<strong>type</strong>所对应的数值，而<strong>typeof</strong>则会以文本的形式输出这个数值所对应的含义。以下是这两个函数输出结果的对照表：</p>
-
 <table>
 <thead>
 <tr>
@@ -479,7 +453,6 @@
 <th>解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">&ldquo;NULL&rdquo;</td>
@@ -487,182 +460,156 @@
 <td>0</td>
 <td>NULL值</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;char&rdquo;</td>
 <td>CHARSXP</td>
 <td>9</td>
 <td>字符串，仅用于C语言层面</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;character&rdquo;</td>
 <td>STRSXP</td>
 <td>16</td>
 <td>字符串数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;logical&rdquo;</td>
 <td>LGLSXP</td>
 <td>10</td>
 <td>逻辑值数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;integer&rdquo;</td>
 <td>INTSXP</td>
 <td>13</td>
 <td>整数数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;double&rdquo;</td>
 <td>REALSXP</td>
 <td>14</td>
 <td>浮点型数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;numeric&rdquo;</td>
 <td>REALSXP</td>
 <td></td>
 <td>浮点型数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;complex&rdquo;</td>
 <td>CPLXSXP</td>
 <td>15</td>
 <td>复数数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;raw&rdquo;</td>
 <td>RAWSXP</td>
 <td>24</td>
 <td>二进制数组</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;list&rdquo;</td>
 <td>VECSXP</td>
 <td>19</td>
 <td>列表</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;pairlist&rdquo;</td>
 <td>LISTSXP</td>
 <td>2</td>
 <td>单向链表型列表</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;environment&rdquo;</td>
 <td>ENVSXP</td>
 <td>4</td>
 <td>执行环境</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;symbol&rdquo;</td>
 <td>SYMSXP</td>
 <td>1</td>
 <td>变量名</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;name&rdquo;</td>
 <td>SYMSXP</td>
 <td></td>
 <td>变量名</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;language&rdquo;</td>
 <td>LANGSXP</td>
 <td>6</td>
 <td>命令</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;expression&rdquo;</td>
 <td>EXPRSXP</td>
 <td>20</td>
 <td>命令集</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;promise&rdquo;</td>
 <td>PROMSXP</td>
 <td>5</td>
 <td>延时命令</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;closure&rdquo;</td>
 <td>CLOSXP</td>
 <td>3</td>
 <td>函数</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;special&rdquo;</td>
 <td>SPECIALSXP</td>
 <td>7</td>
 <td>系统函数</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;builtin&rdquo;</td>
 <td>BUILTINSXP</td>
 <td>8</td>
 <td>系统函数</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;S4&rdquo;</td>
 <td>S4SXP</td>
 <td>25</td>
 <td>S4对象</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;any&rdquo;</td>
 <td>ANYSXP</td>
 <td>18</td>
 <td>任意类型的数组</td>
 </tr>
-
 <tr>
-<td align="center">&rdquo;&hellip;&rdquo;</td>
+<td align="center">&ldquo;&hellip;&rdquo;</td>
 <td>DOTSXP</td>
 <td>17</td>
 <td>不定长参数列表，仅用于函数</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;bytecode&rdquo;</td>
 <td>BCODESXP</td>
 <td>21</td>
 <td>字节码，用于寻找底层代码中定义的函数</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;externalptr&rdquo;</td>
 <td>EXTPTRSXP</td>
 <td>22</td>
 <td>外部引用指针</td>
 </tr>
-
 <tr>
 <td align="center">&ldquo;weakref&rdquo;</td>
 <td>WEAKREFSXP</td>
 <td>23</td>
 <td>弱引用</td>
 </tr>
-
 <tr>
 <td align="center">(char *)NULL</td>
 <td>-1</td>
@@ -671,54 +618,34 @@
 </tr>
 </tbody>
 </table>
-
-<p>在以上表格中，某些存储类型是仅用于C语言层面的，还有些存储类型基本上可以对等（比如<strong>symbol</strong>与<strong>name</strong>）。所以R语言中定义了<span class="highlight-text primary">storage.mode、mode</span>等函数来精简<strong>typeof</strong>的输出，使用这些函数对我们而言更有意义的信息，比如| &ldquo;closure&rdquo;、 &ldquo;special&rdquo;、&rdquo;builtin&rdquo;类型的数据，在我们看来都是函数，所以<strong>storage.mode、mode</strong>会将它们归类为&rdquo;function&rdquo;。</p>
-
-<p><br></p>
-
-<h2 id="2-数据的属性">2、数据的属性</h2>
-
+<p>在以上表格中，某些存储类型是仅用于C语言层面的，还有些存储类型基本上可以对等（比如<strong>symbol</strong>与<strong>name</strong>）。所以R语言中定义了<span class="highlight-text primary">storage.mode、mode</span>等函数来精简<strong>typeof</strong>的输出，使用这些函数对我们而言更有意义的信息，比如| &ldquo;closure&rdquo;、 &ldquo;special&rdquo;、&ldquo;builtin&quot;类型的数据，在我们看来都是函数，所以<strong>storage.mode、mode</strong>会将它们归类为&quot;function&rdquo;。</p>
+<!-- raw HTML omitted -->
+<h2 id="2数据的属性">2、数据的属性</h2>
 <p>我们已经知道，R语言中所有对象的 <em>头信息</em> 中都包含一个<strong>attrib</strong>指针用于表示数据的属性。数据的属性必须是一个<strong>key-value</strong>型的集合（<strong>pairlist</strong>）。我们可以使用<span class="highlight-text primary">attr(x, name)</span>的形式，获取对象<strong>x</strong>的某个属性，也可以通过<span class="highlight-text primary">attribute</span>获取<strong>x</strong>的全部属性。</p>
-
 <p>当然我们可以给对象设置任意属性，但某些属性（<span class="highlight-text primary">class、comment、dim、dimnames、names、row.names、tsp、levels</span>等）拥有特殊的意义，它们甚至可以直接决定对象在R语言层面会以怎样的数据结构解读。这些属性除了可以通过<strong>attr</strong>函数获取，也可以直接通过相应的命令获取（比如class属性可以通过<strong>class</strong>函数获取）。</p>
-
-<p><br></p>
-
-<h3 id="2-1-class属性">2.1、class属性</h3>
-
-<p>class属性相当于R语言中的数据类型，我们可以直接通过class属性来改变数据的类型、或者创建新的数据类型，所以R语言中的数据类型非常丰富。在某些情况下class属性甚至可以直接影响到数据的存储类型，比如下面的代码中，我们将一个整数数组<strong>x</strong>的class属性设置为&rdquo;character&rdquo;，可以看出<strong>x</strong>的存储类型也发生了相应的变化。</p>
-
-<pre><code class="language-R">&gt; x &lt;- 1:10
-&gt; c(typeof(x), typeof(class(x) &lt;- &quot;character&quot;))
-[1] &quot;integer&quot;   &quot;character&quot;
-</code></pre>
-
-<p>class属性最主要的功能，是被用于<strong>S3</strong>类型函数的函数分发。比如下面的代码中，首先我们定义了一个<strong>S3</strong>类型的函数<strong>f</strong>，并为它指定了两个分发函数可以分别作用于class属性为<strong>classA、classB</strong>的对象。接下来我们调用<span class="highlight-text primary">structure</span>函数构建了一个class属性为<strong>classA</strong>的空列表，并对直接其使用<strong>f</strong>函数，可以看出<strong>f.classA</strong>被成功执行。数据的class属性也可以包含多个值，此时的数据可以分别从不同的<strong>S3</strong>函数中获得方法，比如最后一行代脉中我们构建了一个class属性既是&rdquo;list&rdquo;，又是&rdquo;classB&rdquo;的对象，可以看出<strong>f</strong>函数依然适用。</p>
-
-<pre><code class="language-R">&gt; f &lt;- function(x)UseMethod(&quot;f&quot;, x)
-&gt; f.classA &lt;- function(x)print(&quot;f.classA executed !&quot;)
-&gt; f.classB &lt;- function(x)print(&quot;f.classB executed !&quot;)
-&gt; f(structure(list(), class = &quot;classA&quot;))
-[1] &quot;f.classA executed !&quot;
-&gt; f(structure(list(), class = c(&quot;list&quot;, &quot;classB&quot;)))
-[1] &quot;f.classB executed !&quot;
-</code></pre>
-
-<p><br></p>
-
-<h3 id="2-2-dim属性">2.2、dim属性</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="21class属性">2.1、class属性</h3>
+<p>class属性相当于R语言中的数据类型，我们可以直接通过class属性来改变数据的类型、或者创建新的数据类型，所以R语言中的数据类型非常丰富。在某些情况下class属性甚至可以直接影响到数据的存储类型，比如下面的代码中，我们将一个整数数组<strong>x</strong>的class属性设置为&quot;character&rdquo;，可以看出<strong>x</strong>的存储类型也发生了相应的变化。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">typeof</span>(x), <span style="color:#a6e22e">typeof</span>(<span style="color:#a6e22e">class</span>(x) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;character&#34;</span>))
+[1] <span style="color:#e6db74">&#34;integer&#34;</span>   <span style="color:#e6db74">&#34;character&#34;</span>
+</code></pre></div><p>class属性最主要的功能，是被用于<strong>S3</strong>类型函数的函数分发。比如下面的代码中，首先我们定义了一个<strong>S3</strong>类型的函数<strong>f</strong>，并为它指定了两个分发函数可以分别作用于class属性为<strong>classA、classB</strong>的对象。接下来我们调用<span class="highlight-text primary">structure</span>函数构建了一个class属性为<strong>classA</strong>的空列表，并对直接其使用<strong>f</strong>函数，可以看出<strong>f.classA</strong>被成功执行。数据的class属性也可以包含多个值，此时的数据可以分别从不同的<strong>S3</strong>函数中获得方法，比如最后一行代脉中我们构建了一个class属性既是&quot;list&rdquo;，又是&quot;classB&quot;的对象，可以看出<strong>f</strong>函数依然适用。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x)<span style="color:#a6e22e">UseMethod</span>(<span style="color:#e6db74">&#34;f&#34;</span>, x)
+<span style="color:#f92672">&gt;</span> f.classA <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x)<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;f.classA executed !&#34;</span>)
+<span style="color:#f92672">&gt;</span> f.classB <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x)<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;f.classB executed !&#34;</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">structure</span>(<span style="color:#a6e22e">list</span>(), class <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;classA&#34;</span>))
+[1] <span style="color:#e6db74">&#34;f.classA executed !&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(<span style="color:#a6e22e">structure</span>(<span style="color:#a6e22e">list</span>(), class <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;list&#34;</span>, <span style="color:#e6db74">&#34;classB&#34;</span>)))
+[1] <span style="color:#e6db74">&#34;f.classB executed !&#34;</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="22dim属性">2.2、dim属性</h3>
 <p>数据的dim属性决定了数据的维度。在R语言中，我们经常会使用到<strong>matrix、data.frame</strong>类型的数据，但是R语言的底层存储结构中并没有这些类型，因为它们的存储类型与<strong>vector、list</strong>类型的数据是一致的，这些数据类型之间很重要的一个区别就是dim属性。比如以下命令中我们生成了一个数组，将其dim属性修改为<code>c(2, 5)</code>之后，数组就被自动转化为了矩阵。</p>
-
-<pre><code class="language-R">&gt; x &lt;- 1:10
-&gt; dim(x) &lt;- c(2, 5); x
-     [,1] [,2] [,3] [,4] [,5]
-[1,]    1    3    5    7    9
-[2,]    2    4    6    8   10
-</code></pre>
-
-<p>下表我们按照维度与数据结构属于数组类（所有元素的数据类型必须相同），或列表类（可以存储不同类型的元素），对这些数据结构做了一个区分。注意单维数据是没有dim属性的。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">dim</span>(x) <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">5</span>); x
+     [,<span style="color:#ae81ff">1</span>] [,<span style="color:#ae81ff">2</span>] [,<span style="color:#ae81ff">3</span>] [,<span style="color:#ae81ff">4</span>] [,<span style="color:#ae81ff">5</span>]
+[1,]    <span style="color:#ae81ff">1</span>    <span style="color:#ae81ff">3</span>    <span style="color:#ae81ff">5</span>    <span style="color:#ae81ff">7</span>    <span style="color:#ae81ff">9</span>
+[2,]    <span style="color:#ae81ff">2</span>    <span style="color:#ae81ff">4</span>    <span style="color:#ae81ff">6</span>    <span style="color:#ae81ff">8</span>   <span style="color:#ae81ff">10</span>
+</code></pre></div><p>下表我们按照维度与数据结构属于数组类（所有元素的数据类型必须相同），或列表类（可以存储不同类型的元素），对这些数据结构做了一个区分。注意单维数据是没有dim属性的。</p>
 <table>
 <thead>
 <tr>
@@ -727,20 +654,17 @@
 <th>列表类数据</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="center">单维</td>
 <td>单纬数组（atomic vector）</td>
 <td>列表（list）</td>
 </tr>
-
 <tr>
 <td align="center">二维</td>
 <td>矩阵（matrix）</td>
 <td>数据框（data.frame）</td>
 </tr>
-
 <tr>
 <td align="center">高纬</td>
 <td>高纬数组（array）</td>
@@ -748,71 +672,41 @@
 </tr>
 </tbody>
 </table>
-
-<p>在R语言中，原子类数据（<strong>atomic</strong>）一般指的是：&rdquo;logical&rdquo;、&rdquo;integer&rdquo;、&rdquo;numeric&rdquo;、&rdquo;complex&rdquo;、&rdquo;character&rdquo;、 &ldquo;raw&rdquo;、 NULL等类型的数据。与原子类数据相对的是列表类数据（<strong>recursive</strong> or <strong>list-like</strong>），除了&rdquo;symbol&rdquo;、&rdquo;S4&rdquo;、&rdquo;bytecode&rdquo; 、&rdquo;externalptr&rdquo;、&rdquo;weakref&rdquo;和原子类数据，其余的数据几乎都是列表类数据。我们可以通过<span class="highlight-text primary">is.atomic、is.recursive</span>函数分别判断数据是否属于原子类数据、列表类数据。</p>
-
-<p><br></p>
-
-<h3 id="2-3-names属性">2.3、*names属性</h3>
-
+<p>在R语言中，原子类数据（<strong>atomic</strong>）一般指的是：&ldquo;logical&rdquo;、&ldquo;integer&rdquo;、&ldquo;numeric&rdquo;、&ldquo;complex&rdquo;、&ldquo;character&rdquo;、 &ldquo;raw&rdquo;、 NULL等类型的数据。与原子类数据相对的是列表类数据（<strong>recursive</strong> or <strong>list-like</strong>），除了&quot;symbol&rdquo;、&ldquo;S4&rdquo;、&ldquo;bytecode&rdquo; 、&ldquo;externalptr&rdquo;、&ldquo;weakref&quot;和原子类数据，其余的数据几乎都是列表类数据。我们可以通过<span class="highlight-text primary">is.atomic、is.recursive</span>函数分别判断数据是否属于原子类数据、列表类数据。</p>
+<!-- raw HTML omitted -->
+<h3 id="23names属性">2.3、*names属性</h3>
 <p>在R语言中，对于单维数据，我们可以通过<span class="highlight-text primary">names</span>函数获取数据中的每个元素的名称；对于二维数据，我们可以分别通过<span class="highlight-text primary">rownames、colnames</span>函数获取数据的行名与列名；对于高纬数据，我们可以通过<span class="highlight-text primary">dimnames</span>函数获取数据在每个维度上的名称。这些名称，根据数据结构的不同，会被分别存储在<strong>names、row.names、dimnames</strong>属性中。</p>
-
-<p><br></p>
-
-<h3 id="2-4-levels属性">2.4、levels属性</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="24levels属性">2.4、levels属性</h3>
 <p>levels属性只适用于因子（<strong>factor</strong>）类型的数据，因子实际上是以整数的形式来存储数据的，它的levels属性存储了因子中不同的 <em>数值</em> 所代表的 <em>标签</em> 。</p>
-
-<p><br></p>
-
-<h3 id="2-5-tsp属性">2.5、tsp属性</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="25tsp属性">2.5、tsp属性</h3>
 <p>tsp属性只适用于时间序列（<strong>ts</strong>）类型的数据，它存储了时间序列的<strong>起始时刻</strong>、<strong>终止时刻</strong>和<strong>周期</strong>，这些信息也可以分别通过<span class="highlight-text primary">start、end、frequency</span>函数获得。</p>
-
-<p><br></p>
-
-<h3 id="2-6-comment属性">2.6、comment属性</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="26comment属性">2.6、comment属性</h3>
 <p>comment属性相当于数据的说明或备注，它实际上是一个无关紧要的属性，但是当我们处理大批量数据集时，为了避免遗漏或遗忘，给每个数据集设一个备注也不失为一个良好的策略。</p>
-
-<p><br></p>
-
-<h2 id="3-数据的长度">3、数据的长度</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="3数据的长度">3、数据的长度</h2>
 <p>在R语言中，我们可以通过<span class="highlight-text primary">length</span>函数来查看对于单维数据的长度，对于列表类数据，我们还可以通过<span class="highlight-text primary">lengths</span>函数来查看每个元素包含多少个子元素。</p>
-
 <p>我们已经知道，R语言中所有<strong>vector</strong>类型的对象，实际上都包含一个<strong>vecsxp</strong>结构体，而<strong>vecsxp</strong>包含两个变量<strong>length、truelength</strong>，但目前只有<strong>length</strong>被用于指示数组的长度。所以R语言中的数组长度是有上限的，在<strong>R 3.0.0</strong>之前的版本中，最多可以支持长度为<code>2^31</code>（大约21亿）的数组。而在之后的版本中，数组的最大长度可以为<code>2^52</code>。</p>
-
-<p><br></p>
-
-<h2 id="4-数据的内存占用">4、数据的内存占用</h2>
-
-<p>在R语言中，我们可以通过<span class="highlight-text primary">object.size</span>函数来查看数据占用了多少内存。注意空数组或者空列表（<span class="highlight-text primary">vector()、list()</span>）占用的内存并不为0字节（不同版本的R语言及不同操作系统有所不同），这是因为它们都包含一个 *头信息*（1个<strong>sxpinfo</strong>结构体，3个指针）， 一个<strong>vecsxp</strong>结构体（2个整形或长整形变量），以及一个长度不固定的填充变量。</p>
-
-<p><br></p>
-
-<h2 id="5-数据类型转换与数据类型判断">5、数据类型转换与数据类型判断</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="4数据的内存占用">4、数据的内存占用</h2>
+<p>在R语言中，我们可以通过<span class="highlight-text primary">object.size</span>函数来查看数据占用了多少内存。注意空数组或者空列表（<span class="highlight-text primary">vector()、list()</span>）占用的内存并不为0字节（不同版本的R语言及不同操作系统有所不同），这是因为它们都包含一个 <em>头信息</em>（1个<strong>sxpinfo</strong>结构体，3个指针）， 一个<strong>vecsxp</strong>结构体（2个整形或长整形变量），以及一个长度不固定的填充变量。</p>
+<!-- raw HTML omitted -->
+<h2 id="5数据类型转换与数据类型判断">5、数据类型转换与数据类型判断</h2>
 <p>在R语言中，我们可以分别通过<span class="highlight-text primary">as、is</span>家族的函数，实现数据类型转换与数据类型判断。我们已经知道，R语言中数据类型的区别可能是存储类型的不同，也有可以是class、dim等属性的不同，但是R语言中并不严格区分这些不同，所以我们几乎可以使用<strong>as</strong>家族的函数在任意两个数据类型之间转换。</p>
-
-<pre><code class="language-R">&gt; as(123, &quot;character&quot;)
-[1] &quot;123&quot;
-&gt; as.numeric(&quot;123&quot;)
-[1] 123
-&gt; is(&quot;123&quot;, &quot;character&quot;)
-[1] TRUE
-&gt; is.numeric(&quot;123&quot;)
-[1] FALSE
-</code></pre>
-
-<p><br></p>
-
-<h2 id="6-结语">6、结语</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as</span>(<span style="color:#ae81ff">123</span>, <span style="color:#e6db74">&#34;character&#34;</span>)
+[1] <span style="color:#e6db74">&#34;123&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">as.numeric</span>(<span style="color:#e6db74">&#34;123&#34;</span>)
+[1] <span style="color:#ae81ff">123</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">is</span>(<span style="color:#e6db74">&#34;123&#34;</span>, <span style="color:#e6db74">&#34;character&#34;</span>)
+[1] <span style="color:#66d9ef">TRUE</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">is.numeric</span>(<span style="color:#e6db74">&#34;123&#34;</span>)
+[1] <span style="color:#66d9ef">FALSE</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="6结语">6、结语</h2>
 <p>这篇文章从R语言的底层代码切入，简单的概述了R语言中各种数据类型的本质与区别。当然其中还有很多有趣的地方这里没有介绍到，不过这并不影响我们理解R语言中的数据结构。在接下来的文章中，我们会细分到具体的数据类型分别进行归纳整理。</p>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 
 
   
@@ -827,11 +721,9 @@
 <li><strong>factor</strong>类型的数据是如何在数值与字符串之间转换的？</li>
 <li>R语言中的<strong>length</strong>函数是否直接引用了<strong>vecsxp</strong>结构体中<strong>length</strong>成员变量的值？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -843,7 +735,7 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
 
                   </div>
                 
@@ -851,8 +743,8 @@
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言中的数据类型',
@@ -873,7 +765,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对矩阵进行数学运算">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对矩阵进行数学运算">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -881,7 +773,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC/" data-tooltip="R语言中的数值">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC/" data-tooltip="R语言中的数值">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -899,13 +791,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -936,7 +828,7 @@
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -950,7 +842,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对矩阵进行数学运算">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对矩阵进行数学运算">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -958,7 +850,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC/" data-tooltip="R语言中的数值">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E5%80%BC/" data-tooltip="R语言中的数值">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -976,13 +868,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -1016,13 +908,13 @@
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F05%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E7%25B1%25BB%25E5%259E%258B%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F05%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E7%25B1%25BB%25E5%259E%258B%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F05%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E7%25B1%25BB%25E5%259E%258B%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F05%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2595%25B0%25E6%258D%25AE%25E7%25B1%25BB%25E5%259E%258B%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -1077,12 +969,12 @@
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -1159,7 +1051,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

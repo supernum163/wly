@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>大数据 on wly&#39;s notebook</title>
+    <link>https://wly.supernum.tech/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/</link>
+    <description>Recent content in 大数据 on wly&#39;s notebook</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>zh-cn</language>
+    <lastBuildDate>Sat, 20 Mar 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://wly.supernum.tech/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Hive常用系统函数梳理</title>
+      <link>https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/</link>
+      <pubDate>Sat, 20 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/</guid>
+      <description>&lt;p&gt;Hive 中的系统函数，可以帮助我们更高效的进行数据操作，本章将根据这些函数的作用进行分类梳理。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hive常用数据操作语句梳理</title>
+      <link>https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/</link>
+      <pubDate>Thu, 18 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/</guid>
+      <description>&lt;p&gt;Hive &lt;strong&gt;DML&lt;/strong&gt;（数据操作语句）是Hive底层与数据交互的基础，本章将介绍使用HiveQL进行增删改查等操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hive常用数据定义语句梳理</title>
+      <link>https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/</link>
+      <pubDate>Mon, 15 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/</guid>
+      <description>&lt;p&gt;Hive &lt;strong&gt;DDL&lt;/strong&gt;（数据定义语句）用于描述Hive底层数据存储的具体实现，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Hive 安装与部署</title>
+      <link>https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Thu, 11 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;Hive&lt;/strong&gt;是架设在&lt;strong&gt;Hadoop&lt;/strong&gt;之上的数据库仓库工具。可用于处理结构化数据。本章将介绍ubuntu虚拟机下安装配置Hive的整个过程。&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

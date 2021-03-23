@@ -1,49 +1,49 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Io管理 on wly&#39;s notebook</title>
-    <link>/categories/io%E7%AE%A1%E7%90%86/</link>
-    <description>Recent content in Io管理 on wly&#39;s notebook</description>
+    <title>IO管理 on wly&#39;s notebook</title>
+    <link>https://wly.supernum.tech/categories/io%E7%AE%A1%E7%90%86/</link>
+    <description>Recent content in IO管理 on wly&#39;s notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Wed, 25 Sep 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/io%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://wly.supernum.tech/categories/io%E7%AE%A1%E7%90%86/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>R语言与数据库资源链接管理</title>
-      <link>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/</link>
+      <link>https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/</link>
       <pubDate>Wed, 25 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/</guid>
       <description>&lt;p&gt;R语言作为一门统计分析类计算机语言，与数据库对接读写数据是必不可少的操作。这篇文章我们将介绍R语言与数据库资源链接管理。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>R语言中的文件输入输出</title>
-      <link>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</link>
+      <link>https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</link>
       <pubDate>Mon, 23 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</guid>
+      <guid>https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/</guid>
       <description>&lt;p&gt;文件输入输出是一门计算机语言从存储设备中获取数据、将内存中的数据持久化的过程。这篇文章我们将介绍R语言中的文件输入输出。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>R语言中的系统文件与线程设置</title>
-      <link>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/</link>
+      <link>https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/</link>
       <pubDate>Mon, 16 Sep 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/</guid>
+      <guid>https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/</guid>
       <description>&lt;p&gt;一门脚本语言往往需要依赖&lt;strong&gt;系统文件&lt;/strong&gt; &lt;em&gt;持续化&lt;/em&gt; 内存中的各类内容，或者向内存中 &lt;em&gt;初始化&lt;/em&gt; 某些内容（即对当前线程进行个性化设置）。这篇文章我们将介绍R语言中的系统文件与线程设置。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>R语言中的文件资源管理</title>
-      <link>/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</link>
+      <link>https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</link>
       <pubDate>Tue, 27 Aug 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</guid>
+      <guid>https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/</guid>
       <description>&lt;p&gt;文件资源管理是一门计算机语言，通过对文件或文件夹的&lt;strong&gt;查看&lt;/strong&gt;、&lt;strong&gt;新建&lt;/strong&gt;、&lt;strong&gt;修改&lt;/strong&gt;、&lt;strong&gt;删除&lt;/strong&gt;，对资源的&lt;strong&gt;连接&lt;/strong&gt;，&lt;strong&gt;读写&lt;/strong&gt;，&lt;strong&gt;关闭&lt;/strong&gt;等操作，管理自身输入输出的基础。这篇文章我们将介绍R语言中的&lt;strong&gt;文件资源管理&lt;/strong&gt;。&lt;/p&gt;</description>
     </item>
     

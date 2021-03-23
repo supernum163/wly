@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言编程篇——面向函数的编程">
 <meta property="og:description" content="函数是编程中非常重要的一环，将一段实现特定功能的代码封装成函数，可以帮助我们更加便捷的复用相应的功能。这篇文章我们将总结R语言中面向函数编程的基本规则。">
@@ -51,19 +51,23 @@
 
     <title>R语言编程篇——面向函数的编程</title>
 
-    <link rel="canonical" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+      <a class="category-link" href="/categories/%e7%bc%96%e7%a8%8b">编程</a>
     
   
 
@@ -263,72 +267,49 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>函数</strong>是编程中非常重要的一环，将一段实现特定功能的代码封装成函数，可以帮助我们更加便捷的复用相应的功能。这篇文章我们将总结R语言中<strong>面向函数编程</strong>的基本规则。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-函数的几种执行环境">1、函数的几种执行环境</a></li>
-<li><a href="#2-从函数内部获取函数信息">2、从函数内部获取函数信息</a></li>
-<li><a href="#3-函数的返回值">3、函数的返回值</a></li>
-<li><a href="#4-参数列表">4、参数列表</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<h2 id="1-函数的几种执行环境">1、函数的几种执行环境</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1函数的几种执行环境">1、函数的几种执行环境</h2>
 <p>我们在之前的文章中介绍过，函数有四种不同的执行环境：<span class="highlight-text red">存储环境</span> （存储函数的执行环境），<span class="highlight-text red">定义环境</span>（函数定义时的执行环境），<span class="highlight-text red">调用环境</span>（函数调用时的执行环境），<span class="highlight-text red">内部环境</span>（函数内部的执行环境）。</p>
-
 <p><blockquote class="pullquote left">
 	<p>
 存储环境与定义环境在绝大多数情况下是一致的，但两者并非必然相同。
 </p>
 </blockquote>
 从如下代码中可知，存储环境取决于函数存储在什么执行环境中，而定义环境取决于生成函数的命令（<code>function(){}</code>）在什么执行环境中执行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 函数存储在全局执行环境中，定义环境也是全局执行环境</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){}; <span style="color:#a6e22e">environment</span>(f)
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> R_GlobalEnv<span style="color:#f92672">&gt;</span>
 
-<pre><code class="language-R"># 函数存储在全局执行环境中，定义环境也是全局执行环境
-&gt; f &lt;- function(){}; environment(f)
-&lt;environment: R_GlobalEnv&gt;
+<span style="color:#75715e"># 定义一个新的执行环境</span>
+<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">new.env</span>(parent <span style="color:#f92672">=</span> <span style="color:#a6e22e">baseenv</span>()); e
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> <span style="color:#ae81ff">0x56374488d210</span><span style="color:#f92672">&gt;</span>
+<span style="color:#75715e"># 函数存储在新执行环境e中，定义环境也是e</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">assign</span>(<span style="color:#e6db74">&#34;f&#34;</span>, <span style="color:#a6e22e">evalq</span>(<span style="color:#a6e22e">function</span>(){}, e), pos <span style="color:#f92672">=</span> e); <span style="color:#a6e22e">environment</span>(e<span style="color:#f92672">$</span>f)
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> <span style="color:#ae81ff">0x56374488d210</span><span style="color:#f92672">&gt;</span>
+<span style="color:#75715e"># 函数存储在新执行环境e中，但定义环境是全局执行环境</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">assign</span>(<span style="color:#e6db74">&#34;f&#34;</span>, <span style="color:#a6e22e">function</span>(){}, pos <span style="color:#f92672">=</span> e); <span style="color:#a6e22e">environment</span>(e<span style="color:#f92672">$</span>f)
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> R_GlobalEnv<span style="color:#f92672">&gt;</span>
+</code></pre></div><p>我们知道函数的参数列表是以<strong>延时命令</strong>的形式存储的，只有当参数被使用到时才会计算对应的取值。正是如此才使得定义环境显得如此重要，</p>
+<p>比如以下代码中，函数<strong>f</strong>被定义后，参数列表中的参数<strong>e1</strong>并没有被立即替换为变量<strong>a</strong>的值，而是以<strong>延时命令</strong>的形式存储了变量名<strong>a</strong>及其所在执行环境。所以这里先定义<strong>a</strong>再定义<strong>f</strong>，与先定义<strong>f</strong>再定义<strong>a</strong>效果是一样的。函数<strong>f</strong>被调用时，会在定义环境中寻找<strong>a</strong>的值，并将其传递给参数<strong>e1</strong>，所以此时不需要指定任何参数。而如果函数<strong>f</strong>的定义环境为<strong>e</strong>，调用时则会遇到类似<!-- raw HTML omitted -->找不到对象&rsquo;a'<!-- raw HTML omitted -->的错误。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 在定义环境中生成变量a</span>
+<span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">123</span>
+<span style="color:#75715e"># 参数列表中的变量a并没有被直接替换为123</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">assign</span>(<span style="color:#e6db74">&#34;f&#34;</span>, <span style="color:#a6e22e">function</span>(e1 <span style="color:#f92672">=</span> a, e2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) e1 <span style="color:#f92672">+</span> e2, pos <span style="color:#f92672">=</span> e); e<span style="color:#f92672">$</span>f
+<span style="color:#a6e22e">function</span>(e1 <span style="color:#f92672">=</span> a, e2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) e1 <span style="color:#f92672">+</span> e2
+<span style="color:#75715e"># e中没有变量a，但函数依然可以被调用</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">evalq</span>(<span style="color:#a6e22e">f</span>(), e)
+[1] <span style="color:#ae81ff">123</span>
 
-# 定义一个新的执行环境
-&gt; e &lt;- new.env(parent = baseenv()); e
-&lt;environment: 0x56374488d210&gt;
-# 函数存储在新执行环境e中，定义环境也是e
-&gt; assign(&quot;f&quot;, evalq(function(){}, e), pos = e); environment(e$f)
-&lt;environment: 0x56374488d210&gt;
-# 函数存储在新执行环境e中，但定义环境是全局执行环境
-&gt; assign(&quot;f&quot;, function(){}, pos = e); environment(e$f)
-&lt;environment: R_GlobalEnv&gt;
-</code></pre>
-
-<p>我们知道函数的参数列表是以<strong>延时命令</strong>的形式存储的，只有当参数被使用到时才会计算对应的取值。正是如此才使得定义环境显得如此重要，</p>
-
-<p>比如以下代码中，函数<strong>f</strong>被定义后，参数列表中的参数<strong>e1</strong>并没有被立即替换为变量<strong>a</strong>的值，而是以<strong>延时命令</strong>的形式存储了变量名<strong>a</strong>及其所在执行环境。所以这里先定义<strong>a</strong>再定义<strong>f</strong>，与先定义<strong>f</strong>再定义<strong>a</strong>效果是一样的。函数<strong>f</strong>被调用时，会在定义环境中寻找<strong>a</strong>的值，并将其传递给参数<strong>e1</strong>，所以此时不需要指定任何参数。而如果函数<strong>f</strong>的定义环境为<strong>e</strong>，调用时则会遇到类似<font color="#FF0000">找不到对象&rsquo;a&rsquo;</font>的错误。</p>
-
-<pre><code class="language-R"># 在定义环境中生成变量a
-&gt; a &lt;- 123
-# 参数列表中的变量a并没有被直接替换为123
-&gt; assign(&quot;f&quot;, function(e1 = a, e2 = 0) e1 + e2, pos = e); e$f
-function(e1 = a, e2 = 0) e1 + e2
-# e中没有变量a，但函数依然可以被调用
-&gt; evalq(f(), e)
-[1] 123
-
-# 定义环境中没有变量a
-&gt; evalq(f &lt;- function(e1 = a, e2 = 0) e1 + e2, e); e$f()
-Error in e$f() : 找不到对象'a'
-</code></pre>
-
-<p><blockquote class="pullquote left">
+<span style="color:#75715e"># 定义环境中没有变量a</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">evalq</span>(f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(e1 <span style="color:#f92672">=</span> a, e2 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) e1 <span style="color:#f92672">+</span> e2, e); e<span style="color:#f92672">$</span><span style="color:#a6e22e">f</span>()
+Error in e<span style="color:#f92672">$</span><span style="color:#a6e22e">f</span>() <span style="color:#f92672">:</span> 找不到对象<span style="color:#e6db74">&#39;a&#39;</span>
+</code></pre></div><p><blockquote class="pullquote left">
 	<p>
 函数每次被调用都会生成一个特定的内部环境。
 </p>
 </blockquote>
 我们之前介绍过全局执行环境与程序包执行环境之间的关系，它们之间拥有继承关系，并且可以通过序号获取相应的执行环境（<strong>pos.to.env</strong>）。类似的，<strong>嵌套调用</strong>、<strong>内部调用</strong>、<strong>递归调用</strong>等情况下，产生的内部环境之间也存在某种可以用 <em>序号</em> 表示的关系，序号的大小是按照函数被调用的先后顺序决定的。我们也可以将这种关系理解为函数压栈，第一个压栈的函数序号为1，之后每个压栈的函数序号都会增加1，而全局执行环境的序号总是为0。</p>
-
 <p>我们可以在函数体中使用<span class="highlight-text primary">sys.nframe</span>函数，在函数被调用时查看当前函数对应的序号。</p>
-
 <pre><code># 函数每次被调用都会生成新的内部环境
 &gt; f &lt;- function()sys.frame(sys.nframe())
 &gt; f(); f()
@@ -346,131 +327,100 @@ Error in e$f() : 找不到对象'a'
 # eval与quote分别算作一个压栈函数
 &gt; eval(quote(sys.nframe()))
 [1] 2
-</code></pre>
-
-<p><blockquote class="pullquote left">
+</code></pre><p><blockquote class="pullquote left">
 	<p>
 内部环境的父执行环境往往是调用环境，但分发函数例外。
 </p>
 </blockquote>
 比如在全局执行环境中调用的函数，其内部环境的父执行环境是全局执行环境，而在函数内部调用的函数，其内部环境的父执行环境总是父函数的内部环境。对于<strong>分发函数</strong>而言，虽然分发函数调用了被分发函数，但是两者内部环境的父执行环境是一样的。</p>
-
 <p>我们可以在函数体中使用<span class="highlight-text primary">sys.parent(n = 1)</span>的形式，查看当前压栈的函数内部环境的父执行环境所对应的序号，若n为2，则是内部环境的父执行环境的父执行环境所对应的序号，以此类推。也可以使用<span class="highlight-text primary">sys.parents</span>函数，查看每个压栈的函数内部环境的父执行环境所对应的序号。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 在全局执行环境中调用的函数，调用环境是全局执行环境</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">sys.parents</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">print</span>(<span style="color:#a6e22e">f</span>())
+[1] <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">0</span>
 
-<pre><code class="language-R"># 在全局执行环境中调用的函数，调用环境是全局执行环境
-&gt; f &lt;- function() sys.parents()
-&gt; print(f())
-[1] 0 0
+<span style="color:#75715e"># 内部函数的调用环境是父函数的内部环境</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(n)<span style="color:#a6e22e">if</span>(n <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#a6e22e">f</span>(n <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>) else <span style="color:#a6e22e">sys.parent</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">0</span>), <span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">2</span>))
+[1] <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
 
-# 内部函数的调用环境是父函数的内部环境
-&gt; f &lt;- function(n)if(n &gt; 0) f(n - 1) else sys.parent()
-&gt; c(f(0), f(1), f(2))
-[1] 0 1 2
-
-# 被分发函数内部环境的父执行环境与调用环境不同
-&gt; f &lt;- function(x){
-+   cat(&quot;调用环境序号：            &quot;, sys.nframe(), &quot;\n&quot;)
-+   UseMethod(&quot;f&quot;, x)
-+ }
-&gt; f.foo &lt;- function(x){
-+   cat(&quot;内部环境的父执行环境序号：&quot;, sys.parent(), &quot;\n&quot;)
-+ }
-&gt; a &lt;- structure(pi, class = &quot;foo&quot;)
-&gt; f(a)
-调用环境序号：             1 
-内部环境的父执行环境序号： 0 
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-从函数内部获取函数信息">2、从函数内部获取函数信息</h2>
-
+<span style="color:#75715e"># 被分发函数内部环境的父执行环境与调用环境不同</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;调用环境序号：            &#34;</span>, <span style="color:#a6e22e">sys.nframe</span>(), <span style="color:#e6db74">&#34;\n&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">UseMethod</span>(<span style="color:#e6db74">&#34;f&#34;</span>, x)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> f.foo <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;内部环境的父执行环境序号：&#34;</span>, <span style="color:#a6e22e">sys.parent</span>(), <span style="color:#e6db74">&#34;\n&#34;</span>)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">structure</span>(<span style="color:#66d9ef">pi</span>, class <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;foo&#34;</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(a)
+调用环境序号：             <span style="color:#ae81ff">1</span> 
+内部环境的父执行环境序号： <span style="color:#ae81ff">0</span> 
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="2从函数内部获取函数信息">2、从函数内部获取函数信息</h2>
 <p>上文中我们已经介绍到了，如何在函数体中使用<strong>sys.nframe、sys.parent、sys.parents</strong>函数，获取函数的压栈序号、父执行环境的压栈序号。</p>
-
-<p>类似的，我们还可以分别使用<span class="highlight-text primary">sys.frame、sys.call、sys.function</span>函数，获取函数的内部环境、调用函数时的命令、函数定义时的命令。这三个函数都可以接收一个<strong>which</strong>参数，可以使我们获取任意压栈序号的函数信息。<strong>which</strong>为正数表示压栈序号，为负数表示从当前压栈序号向上寻找多少个压栈序号，为0时表示当前序号，但<strong>sys.frame(0)</strong>表示全局变量。</p>
-
+<p>类似的，我们还可以分别使用<span class="highlight-text primary">sys.frame、sys.call、sys.function</span>函数，获取函数的内部环境、调用函数时的命令、函数定义时的命令。这三个函数都可以接收一个<strong>which</strong>参数，可以使我们获取任意压栈序号的函数信息。<strong>which</strong>为正数表示压栈序号，为负数表示从当前压栈序号向上寻找多少个压栈序号，为0时表示当前序号，但**sys.frame(0)**表示全局变量。</p>
 <p>此外，我们还可以分别使用<span class="highlight-text primary">sys.frames、sys.calls</span>函数，获取从第一个压栈函数开始，到当前压栈函数为止，所有的内部环境、调用函数时的命令。但遗憾的是，R语言中没有定义<strong>sys.functions</strong>函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 获取函数定义时的命令</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">sys.function</span>(); <span style="color:#a6e22e">f</span>()
+<span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">sys.function</span>()
 
-<pre><code class="language-R"># 获取函数定义时的命令
-&gt; f &lt;- function() sys.function(); f()
-function() sys.function()
-
-# 获取到当前压栈函数为止，所有压栈函数调用时的命令
-&gt; f &lt;- function() sys.calls(); str(f())
-Dotted pair list of 2
- $ : language str(f())
- $ : language f()
-</code></pre>
-
-<p>类似<strong>sys.parent</strong>，我们也可以使用<span class="highlight-text primary">parent.frame</span>函数，直接获取内部环境的父执行环境。</p>
-
-<pre><code class="language-R"># 获取内部环境的父执行环境
-# 注意内部环境只记录被赋值的变量，而非运算结果
-&gt; f &lt;- function(x) {x + 1; g()}
-&gt; g &lt;- function() parent.frame()
-&gt; e &lt;- f(1); e$x
-[1] 1
-</code></pre>
-
-<p><br></p>
-
-<h2 id="3-函数的返回值">3、函数的返回值</h2>
-
+<span style="color:#75715e"># 获取到当前压栈函数为止，所有压栈函数调用时的命令</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">sys.calls</span>(); <span style="color:#a6e22e">str</span>(<span style="color:#a6e22e">f</span>())
+Dotted pair list of <span style="color:#ae81ff">2</span>
+ <span style="color:#f92672">$</span> <span style="color:#f92672">:</span> language <span style="color:#a6e22e">str</span>(<span style="color:#a6e22e">f</span>())
+ <span style="color:#f92672">$</span> <span style="color:#f92672">:</span> language <span style="color:#a6e22e">f</span>()
+</code></pre></div><p>类似<strong>sys.parent</strong>，我们也可以使用<span class="highlight-text primary">parent.frame</span>函数，直接获取内部环境的父执行环境。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 获取内部环境的父执行环境</span>
+<span style="color:#75715e"># 注意内部环境只记录被赋值的变量，而非运算结果</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) {x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>; <span style="color:#a6e22e">g</span>()}
+<span style="color:#f92672">&gt;</span> g <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() <span style="color:#a6e22e">parent.frame</span>()
+<span style="color:#f92672">&gt;</span> e <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">1</span>); e<span style="color:#f92672">$</span>x
+[1] <span style="color:#ae81ff">1</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="3函数的返回值">3、函数的返回值</h2>
 <p>R语言中的绝大部分函数都有返回值，许多看似没有返回值的函数，实际上会返回一个 <em>不可见</em> 的值，只有函数异常终止时，才不会有返回值。我们可以在函数体中使用<span class="highlight-text primary">return</span>函数，指明需要返回的值。即使我们没有明确的指定返回值，函数也会默认以最后一条命令的运行结果作为返回值。</p>
-
 <p>有时候我们希望定义的函数看起来是没有返回值的，此时则可以使用<span class="highlight-text primary">invisible</span>函数，制造一个 <em>不可见</em> 的值返回。同时我们还可以使用<span class="highlight-text primary">withVisible</span>函数，查看某个命令产生的值是否可见。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 函数默认返回最后一条命令的运行结果</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) x <span style="color:#f92672">&lt;-</span> x <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">withVisible</span>(<span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">1</span>))
+<span style="color:#f92672">$</span>value
+[1] <span style="color:#ae81ff">2</span>
+<span style="color:#f92672">$</span>visible
+[1] <span style="color:#66d9ef">FALSE</span>
 
-<pre><code class="language-R"># 函数默认返回最后一条命令的运行结果
-&gt; f &lt;- function(x) x &lt;- x + 1
-&gt; withVisible(f(1))
-$value
-[1] 2
-$visible
-[1] FALSE
-
-# 函数异常终止时不会有返回值
-&gt; f &lt;- function(x) stop(&quot;函数抛出异常&quot;)
-&gt; if(exists(&quot;a&quot;)) rm(&quot;a&quot;); a &lt;- f() 
-Error in f() : 函数抛出异常
-&gt; exists(&quot;a&quot;)
-[1] FALSE
-</code></pre>
-
-<p>有时候不管函数知否执行成功，我们都希望在函数结束的时候执行一段特定的命令，比如在函数返回的时候关闭文件资源链接等。此时我们就可以使用<span class="highlight-text primary">on.exit</span>函数。此外我们还可以在函数体内部使用<span class="highlight-text primary">sys.on.exit</span>函数，获取<strong>on.exit</strong>函数中的定义的命令。</p>
-
-<pre><code class="language-R"># 使用on.exit，在函数结束时执行命令
-&gt; f &lt;- function() {
-+   on.exit(print(&quot;on.exit命令执行&quot;))
-+   print(&quot;函数f执行完毕&quot;)
-+ }
-&gt; f()
-[1] &quot;函数f执行完毕&quot;
-[1] &quot;on.exit命令执行&quot;
-</code></pre>
-
-<p><br></p>
-
-<h2 id="4-参数列表">4、参数列表</h2>
-
+<span style="color:#75715e"># 函数异常终止时不会有返回值</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x) <span style="color:#a6e22e">stop</span>(<span style="color:#e6db74">&#34;函数抛出异常&#34;</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">if</span>(<span style="color:#a6e22e">exists</span>(<span style="color:#e6db74">&#34;a&#34;</span>)) <span style="color:#a6e22e">rm</span>(<span style="color:#e6db74">&#34;a&#34;</span>); a <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">f</span>() 
+Error in <span style="color:#a6e22e">f</span>() <span style="color:#f92672">:</span> 函数抛出异常
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">exists</span>(<span style="color:#e6db74">&#34;a&#34;</span>)
+[1] <span style="color:#66d9ef">FALSE</span>
+</code></pre></div><p>有时候不管函数知否执行成功，我们都希望在函数结束的时候执行一段特定的命令，比如在函数返回的时候关闭文件资源链接等。此时我们就可以使用<span class="highlight-text primary">on.exit</span>函数。此外我们还可以在函数体内部使用<span class="highlight-text primary">sys.on.exit</span>函数，获取<strong>on.exit</strong>函数中的定义的命令。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 使用on.exit，在函数结束时执行命令</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>() {
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">on.exit</span>(<span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;on.exit命令执行&#34;</span>))
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;函数f执行完毕&#34;</span>)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>()
+[1] <span style="color:#e6db74">&#34;函数f执行完毕&#34;</span>
+[1] <span style="color:#e6db74">&#34;on.exit命令执行&#34;</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="4参数列表">4、参数列表</h2>
 <p>R语言中存在一种<strong>不定长参数列表</strong>类型的数据——<span class="highlight-text primary">...</span>，这是一个特殊的单向链表型列表，但不能按照列表的方式操作其中的元素。不过我们可以使用两个英文句点加上数字1至9的形式，取出不定长参数列表中的第1至9个参数。此外我们还可以使用<span class="highlight-text primary">...elt(n)</span>的形式，取出第n个参数。为了避免截取不定长参数列表中的元素时下标超界，我们可以先使用<span class="highlight-text primary">...length</span>函数，计算不定长参数列表的长度。最后我们可以使用<strong>c、list</strong>等函数，将不定长列表转化为数组、普通列表。</p>
-
-<pre><code class="language-R"># 使用不定长参数列表
-&gt; f &lt;- function(n = 1, ...){
-+   cat(&quot;..1 = &quot;, ..1, &quot;\n&quot;, sep = &quot;&quot;)
-+   cat(&quot;..&quot;, n, &quot; = &quot;, ...elt(n), &quot;\n&quot;, sep = &quot;&quot;)
-+   cat(&quot;...length() = &quot;, ...length(), &quot;\n&quot;, sep = &quot;&quot;)
-+   c(...)
-+ }
-&gt; f(n = 2, a = &quot;a&quot;, b = &quot;b&quot;, &quot;c&quot;)
-..1 = a
-..2 = b
-...length() = 3
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 使用不定长参数列表</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, <span style="color:#66d9ef">...</span>){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;..1 = &#34;</span>, <span style="color:#66d9ef">..1</span>, <span style="color:#e6db74">&#34;\n&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;..&#34;</span>, n, <span style="color:#e6db74">&#34; = &#34;</span>, <span style="color:#a6e22e">...elt</span>(n), <span style="color:#e6db74">&#34;\n&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;...length() = &#34;</span>, <span style="color:#a6e22e">...length</span>(), <span style="color:#e6db74">&#34;\n&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">c</span>(<span style="color:#66d9ef">...</span>)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(n <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>, a <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;a&#34;</span>, b <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;b&#34;</span>, <span style="color:#e6db74">&#34;c&#34;</span>)
+<span style="color:#66d9ef">..1</span> <span style="color:#f92672">=</span> a
+<span style="color:#66d9ef">..2</span> <span style="color:#f92672">=</span> b
+<span style="color:#a6e22e">...length</span>() <span style="color:#f92672">=</span> <span style="color:#ae81ff">3</span>
   a   b     
-&quot;a&quot; &quot;b&quot; &quot;c&quot; 
-</code></pre>
-
-<p>上文已经介绍过，参数列表中的参数都是以延时命令的形式存储的，如果延时命令中的R语言代码部分不是常量（变量或命令等），当执行环境部分的相应内容发生变化时，也会影响到参数的取值。特别是在循环体内部或<strong>apply</strong>家族函数中，如果我们批量生成的函数中有些参数没有用到，它们的取值在不同时刻生成的函数中总是相同的。为了避免这种情况，我们可以使用<span class="highlight-text primary">force</span>函数，强制计算参数的取值。</p>
-
+<span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#e6db74">&#34;b&#34;</span> <span style="color:#e6db74">&#34;c&#34;</span> 
+</code></pre></div><p>上文已经介绍过，参数列表中的参数都是以延时命令的形式存储的，如果延时命令中的R语言代码部分不是常量（变量或命令等），当执行环境部分的相应内容发生变化时，也会影响到参数的取值。特别是在循环体内部或<strong>apply</strong>家族函数中，如果我们批量生成的函数中有些参数没有用到，它们的取值在不同时刻生成的函数中总是相同的。为了避免这种情况，我们可以使用<span class="highlight-text primary">force</span>函数，强制计算参数的取值。</p>
 <pre><code>&gt; lf &lt;- vector(&quot;list&quot;, 5)
 
 # 参数y的取值是一个延时命令“i”，延时命令的执行环境为全局执行环境
@@ -484,43 +434,33 @@ Error in f() : 函数抛出异常
 &gt; for (i in 1:5) lf[[i]] &lt;- f(i)
 &gt; lf[[1]]() 
 [1] 1
-</code></pre>
-
-<p>R语言中的函数并不会检查参数的数据类型，或者参数是否存在。如果我们的函数必须要使用到某些参数，或者不满足某些条件就会出错，此时我们就可以使用<span class="highlight-text primary">missing、stopifnot</span>等函数，判断某个参数是否缺失，当不满足某些条件时提前抛出异常。更多关于异常处理的内容，我们将在下一章总结。</p>
-
-<pre><code class="language-R"># 参数检查与异常抛出
-&gt; f &lt;- function(e1 = 0, e2){
-+   cat(&quot;missing(e2)? &quot;, missing(e1), &quot;\n&quot;, sep = &quot;&quot;)
-+   stopifnot(is.numeric(e1), is.numeric(e2))
-+   e1 + e2
-+ }
-&gt; f()
-missing(e2)? TRUE
-错误: 缺少参数&quot;e2&quot;,也没有缺省值
-</code></pre>
-
-<p>我们在总结字符串匹配的时候介绍过，函数参数列表中的元素，大部分都是可以缩写的。实际上实现这个过程的方法非常简单：我们可以分别使用<span class="highlight-text primary">match.arg、match.call</span>函数，匹配参数对应的值，或参数本身。调用函数时，只要保证缩写的唯一性，就可以匹配到。</p>
-
+</code></pre><p>R语言中的函数并不会检查参数的数据类型，或者参数是否存在。如果我们的函数必须要使用到某些参数，或者不满足某些条件就会出错，此时我们就可以使用<span class="highlight-text primary">missing、stopifnot</span>等函数，判断某个参数是否缺失，当不满足某些条件时提前抛出异常。更多关于异常处理的内容，我们将在下一章总结。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 参数检查与异常抛出</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(e1 <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, e2){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;missing(e2)? &#34;</span>, <span style="color:#a6e22e">missing</span>(e1), <span style="color:#e6db74">&#34;\n&#34;</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">stopifnot</span>(<span style="color:#a6e22e">is.numeric</span>(e1), <span style="color:#a6e22e">is.numeric</span>(e2))
+<span style="color:#f92672">+</span>   e1 <span style="color:#f92672">+</span> e2
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>()
+<span style="color:#a6e22e">missing</span>(e2)<span style="color:#f92672">?</span> <span style="color:#66d9ef">TRUE</span>
+错误<span style="color:#f92672">:</span> 缺少参数<span style="color:#e6db74">&#34;e2&#34;</span>,也没有缺省值
+</code></pre></div><p>我们在总结字符串匹配的时候介绍过，函数参数列表中的元素，大部分都是可以缩写的。实际上实现这个过程的方法非常简单：我们可以分别使用<span class="highlight-text primary">match.arg、match.call</span>函数，匹配参数对应的值，或参数本身。调用函数时，只要保证缩写的唯一性，就可以匹配到。</p>
 <p>此外我们还可以使用<span class="highlight-text primary">match.fun</span>函数，匹配与名称与字符串相同的函数。但<strong>match.fun</strong>不能做到缩写匹配。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 匹配参数对应的值</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;mean&#34;</span>, <span style="color:#e6db74">&#34;median&#34;</span>, <span style="color:#e6db74">&#34;trimmed&#34;</span>)) <span style="color:#a6e22e">match.arg</span>(x)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;med&#34;</span>)
+[1] <span style="color:#e6db74">&#34;median&#34;</span>
 
-<pre><code class="language-R"># 匹配参数对应的值
-&gt; f &lt;- function(x = c(&quot;mean&quot;, &quot;median&quot;, &quot;trimmed&quot;)) match.arg(x)
-&gt; f(x = &quot;med&quot;)
-[1] &quot;median&quot;
+<span style="color:#75715e"># 匹配参数</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(abc, def) <span style="color:#a6e22e">match.call</span>(f)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#a6e22e">f</span>(abc <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>)
 
-# 匹配参数
-&gt; f &lt;- function(abc, def) match.call(f)
-&gt; f(a = 1)
-f(abc = 1)
-
-# 匹配函数
-&gt; f &lt;- function(fun) match.fun(fun)
-&gt; f(&quot;sum&quot;)
-function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
-</code></pre>
-
-<p><br></p>
-
+<span style="color:#75715e"># 匹配函数</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(fun) <span style="color:#a6e22e">match.fun</span>(fun)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(<span style="color:#e6db74">&#34;sum&#34;</span>)
+<span style="color:#a6e22e">function </span>(<span style="color:#66d9ef">...</span>, na.rm <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)  <span style="color:#a6e22e">.Primitive</span>(<span style="color:#e6db74">&#34;sum&#34;</span>)
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -536,11 +476,9 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
 <li>为什么分发、被分发函数，内部环境的父执行环境必须是一样的？</li>
 <li><strong>invisible</strong>返回的值是 <em>不可见</em> 的，为什么赋值之后就可见了？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -552,7 +490,7 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
 
                   </div>
                 
@@ -560,8 +498,8 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言编程篇——面向函数的编程',
@@ -582,7 +520,7 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -590,7 +528,7 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-tooltip="R语言编程篇——异常处理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-tooltip="R语言编程篇——异常处理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -608,13 +546,13 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -645,7 +583,7 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -659,7 +597,7 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E6%B5%81%E7%A8%8B%E6%8E%A7%E5%88%B6/" data-tooltip="R语言编程篇——流程控制">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -667,7 +605,7 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-tooltip="R语言编程篇——异常处理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" data-tooltip="R语言编程篇——异常处理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -685,13 +623,13 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -725,13 +663,13 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F07%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E5%2587%25BD%25E6%2595%25B0%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F07%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E5%2587%25BD%25E6%2595%25B0%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F07%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E5%2587%25BD%25E6%2595%25B0%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F07%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E9%259D%25A2%25E5%2590%2591%25E5%2587%25BD%25E6%2595%25B0%25E7%259A%2584%25E7%25BC%2596%25E7%25A8%258B%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -786,12 +724,12 @@ function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -868,7 +806,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

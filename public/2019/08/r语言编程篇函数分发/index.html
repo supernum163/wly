@@ -36,7 +36,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言编程篇——函数分发">
 <meta property="og:description" content="不同类型的数据需要不同的处理方式，我们要实现某一类效果，往往需要根据特定类型的数据编写相应的函数，但我们可能希望像使用同一个函数一样使用这些函数（因为它们实现的效果是类似的），此时就需要用到函数分发机制。这篇文集我们将介绍R语言中函数分发的规则。">
@@ -53,19 +53,23 @@
 
     <title>R语言编程篇——函数分发</title>
 
-    <link rel="canonical" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -76,12 +80,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -96,7 +100,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -111,7 +115,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -121,7 +125,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -131,7 +135,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -141,7 +145,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -151,7 +155,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -185,7 +189,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -199,7 +203,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -246,9 +250,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+      <a class="category-link" href="/categories/%e7%bc%96%e7%a8%8b">编程</a>
     
   
 
@@ -260,119 +264,78 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>不同类型的数据需要不同的处理方式，我们要实现某一类效果，往往需要根据特定类型的数据编写相应的函数，但我们可能希望像使用同一个函数一样使用这些函数（因为它们实现的效果是类似的），此时就需要用到<strong>函数分发</strong>机制。这篇文集我们将介绍R语言中函数分发的规则。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-s3类型的函数分发">1、S3类型的函数分发</a></li>
-<li><a href="#2-s4类型的函数分发">2、S4类型的函数分发</a>
-<ul>
-<li><a href="#2-1-s4函数分发">2.1、S4函数分发</a></li>
-<li><a href="#2-2-分组分发函数">2.2、分组分发函数</a></li>
-<li><a href="#2-3-内部分发函数">2.3、内部分发函数</a></li>
-</ul></li>
-<li><a href="#3-rc类型的函数分发">3、RC类型的函数分发</a></li>
-</ul></li>
-</ul>
-</nav>
-
+<!-- raw HTML omitted -->
 <p>在R语言的函数分发体系中，负责根据数据类型将参数分配给特定函数的是<strong>分发函数</strong>(<strong>generic-function</strong>)，而负责实现某一项具体功能的是<strong>方法</strong>（<strong>method</strong>）。不同类型的函数分发体系，实现函数分发的方式各有不同，这里我们将介绍R语言系统程序包中的三种函数分发体系。</p>
-
-<p><br></p>
-
-<h2 id="1-s3类型的函数分发">1、S3类型的函数分发</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1s3类型的函数分发">1、S3类型的函数分发</h2>
 <p><strong>S3</strong>类型的函数分发在R语言中是最常见的，我们在之前的文章中也经常提到。构建一个S3类型的分发函数非常简单，我们只需在函数体内部使用<span class="highlight-text primary">UseMethod(generic, object)</span>的形式，指明分发函数的名称，以及需要按照那个参数（只能有一个）的数据类型进行分发。构建方法时，需要注意方法的参数列表必须与分发函数一致；而且方法的函数名必须是<strong>分发函数.数据类型</strong>或者<strong>分发函数.default</strong>的形式，后者表示当找不到与<strong>object</strong>的数据类型相对应的方法时，需要调用的方法。</p>
-
 <p>假设<strong>x</strong>的<strong>class</strong>属性为<strong>classA</strong>，当我们调用S3分发函数<strong>f</strong>时，其中的<strong>UseMethod</strong>函数会查找<strong>f.classA</strong>是否存在，如果存在就调用<strong>f.classA</strong>方法，并设定其接收的参数以及所处的系统环境（<strong>sys.frame</strong>等）与分发函数<strong>f</strong>一致，如果不存在就调用<strong>f.default</strong>方法，若<strong>f.default</strong>方法也不存在则会抛出异常。</p>
-
 <p>假设<strong>x</strong>的<strong>class</strong>属性中有多个值（<strong>classA, classB, &hellip;</strong>），则<strong>UseMethod</strong>函数会按照这些属性值的先后顺序依次查找相应的方法，相当于S3方法继承（<strong>classA</strong>继承了<strong>classB</strong>的方法，&hellip;）。此时我们可以在S3方法中使用<span class="highlight-text primary">NextMethod</span>函数调用继承的方法（ <em>父方法</em> ），这种方式特别适合在 <em>子方法</em> 中处理数据差异，在 <em>父方法</em> 中实现共同的功能。</p>
-
 <p>注意R语言中某些基础类型（数值、字符串等）的数据对象，在底层定义中就拥有<strong>class</strong>（决定S3方法继承），它们的数据属性（<strong>attributes</strong>）中可能没有这一属性（<strong>class属性</strong>），但依然可以使用<strong>class函数</strong>获取。然而<strong>class函数</strong>函数返回的可能并不是数据对象全部的<strong>class</strong>，大部分数组（假设为<strong>x</strong>）的<strong>class</strong>都是<code>mode(x)</code>，而整形和浮点型数组的<strong>class</strong>分别是<code>c(&quot;integer&quot;, &quot;numeric&quot;)</code>、<code>c(&quot;double&quot;, &quot;numeric&quot;)</code>，矩阵、高纬数组、的<strong>class</strong>分别是<code>&quot;matrix&quot;</code>、<code>&quot;array&quot;</code>，以及构成它们的数组的<strong>class</strong>。其它数据类型的<strong>class</strong>则可以直接由它们的<strong>class属性</strong>决定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># *S3类型的函数分发</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, y) <span style="color:#a6e22e">UseMethod</span>(<span style="color:#e6db74">&#34;f&#34;</span>, x)
+<span style="color:#f92672">&gt;</span> f.character <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, y) <span style="color:#a6e22e">paste</span>(x, y)
+<span style="color:#f92672">&gt;</span> f.default <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, y) <span style="color:#a6e22e">c</span>(x, y)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(<span style="color:#e6db74">&#34;abc&#34;</span>, <span style="color:#e6db74">&#34;def&#34;</span>)
+[1] <span style="color:#e6db74">&#34;abc def&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(<span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">456</span>)
+[1] <span style="color:#ae81ff">123</span> <span style="color:#ae81ff">456</span>
 
-<pre><code class="language-R"># *S3类型的函数分发
-&gt; f &lt;- function(x, y) UseMethod(&quot;f&quot;, x)
-&gt; f.character &lt;- function(x, y) paste(x, y)
-&gt; f.default &lt;- function(x, y) c(x, y)
-&gt; f(&quot;abc&quot;, &quot;def&quot;)
-[1] &quot;abc def&quot;
-&gt; f(123, 456)
-[1] 123 456
+<span style="color:#75715e"># S3方法继承，f.classA不存在，f.character会被调用</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">structure</span>(<span style="color:#e6db74">&#34;abc&#34;</span>, class <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;classA&#34;</span>, <span style="color:#e6db74">&#34;character&#34;</span>))
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">class</span>(x)
+[1] <span style="color:#e6db74">&#34;classA&#34;</span>    <span style="color:#e6db74">&#34;character&#34;</span>
+<span style="color:#75715e"># 注意S3分发函数只能按照一个参数（x）的数据类型进行分发</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(x, <span style="color:#ae81ff">123</span>)
+[1] <span style="color:#e6db74">&#34;abc 123&#34;</span>
 
-# S3方法继承，f.classA不存在，f.character会被调用
-&gt; x &lt;- structure(&quot;abc&quot;, class = c(&quot;classA&quot;, &quot;character&quot;))
-&gt; class(x)
-[1] &quot;classA&quot;    &quot;character&quot;
-# 注意S3分发函数只能按照一个参数（x）的数据类型进行分发
-&gt; f(x, 123)
-[1] &quot;abc 123&quot;
+<span style="color:#75715e"># 调用S3方法继承的函数</span>
+<span style="color:#f92672">&gt;</span> f.classA <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x, y) {
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">print</span>(<span style="color:#e6db74">&#34;f.classA方法执行&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">NextMethod</span>(<span style="color:#e6db74">&#34;f&#34;</span>, x)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f</span>(x, <span style="color:#ae81ff">123</span>)
+[1] <span style="color:#e6db74">&#34;f.classA方法执行&#34;</span>
+[1] <span style="color:#e6db74">&#34;abc 123&#34;</span>
+</code></pre></div><p>S3方法与普通的函数没有任何差异，所以有时为了提高代码的执行效率，我们也可以直接调用S3方法。但此时我们必须保证传给S3方法的参数是合适的，否则就可能造成歧义或触发异常。所以我们可以看到许多系统S3方法中，都会先使用<span class="highlight-text primary">inherits</span>等函数，检查参数的数据类型是否符合该方法的设定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 直接调用方法可能会引起歧义</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">f.character</span>(<span style="color:#ae81ff">123</span>, <span style="color:#ae81ff">456</span>)
+[1] <span style="color:#e6db74">&#34;123 456&#34;</span>
+</code></pre></div><p><strong>.<strong>在S#类型的函数分发系统中被用于分割分发函数与数据类型，同时</strong>.<strong>也可以用在函数名中（如</strong>as.numeric</strong>），或class属性中（如<strong>data.frame</strong>），此时就有可能造成混淆（特别是<strong>as</strong>家族的函数）。为了避免这些混淆，我们可以使用<span class="highlight-text primary">isGeneric、isS3method</span>等函数判断某个函数是否为分发函数，或者S3方法。我们还可以使用<span class="highlight-text primary">methods(generic, class)</span>的形式，查找特定分发函数的方法，或者查找适用于某种数据类型的方法。如果我们已经知道了分发函数及方法的名称，还可以使用<span class="highlight-text primary">getS3method(generic, class)</span>的形式，直接查找方法对应的函数，这种方式往往使用在S3分发函数中。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">判断<span style="color:#e6db74">&#34;as.numeric&#34;</span>是否为分发函数
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">isGeneric</span>(<span style="color:#e6db74">&#34;as.numeric&#34;</span>)
+[1] <span style="color:#66d9ef">FALSE</span>
 
-# 调用S3方法继承的函数
-&gt; f.classA &lt;- function(x, y) {
-+   print(&quot;f.classA方法执行&quot;)
-+   NextMethod(&quot;f&quot;, x)
-+ }
-&gt; f(x, 123)
-[1] &quot;f.classA方法执行&quot;
-[1] &quot;abc 123&quot;
-</code></pre>
-
-<p>S3方法与普通的函数没有任何差异，所以有时为了提高代码的执行效率，我们也可以直接调用S3方法。但此时我们必须保证传给S3方法的参数是合适的，否则就可能造成歧义或触发异常。所以我们可以看到许多系统S3方法中，都会先使用<span class="highlight-text primary">inherits</span>等函数，检查参数的数据类型是否符合该方法的设定。</p>
-
-<pre><code class="language-R"># 直接调用方法可能会引起歧义
-&gt; f.character(123, 456)
-[1] &quot;123 456&quot;
-</code></pre>
-
-<p><strong>.</strong>在S#类型的函数分发系统中被用于分割分发函数与数据类型，同时<strong>.</strong>也可以用在函数名中（如<strong>as.numeric</strong>），或class属性中（如<strong>data.frame</strong>），此时就有可能造成混淆（特别是<strong>as</strong>家族的函数）。为了避免这些混淆，我们可以使用<span class="highlight-text primary">isGeneric、isS3method</span>等函数判断某个函数是否为分发函数，或者S3方法。我们还可以使用<span class="highlight-text primary">methods(generic, class)</span>的形式，查找特定分发函数的方法，或者查找适用于某种数据类型的方法。如果我们已经知道了分发函数及方法的名称，还可以使用<span class="highlight-text primary">getS3method(generic, class)</span>的形式，直接查找方法对应的函数，这种方式往往使用在S3分发函数中。</p>
-
-<pre><code class="language-R">判断&quot;as.numeric&quot;是否为分发函数
-&gt; isGeneric(&quot;as.numeric&quot;)
-[1] FALSE
-
-# 查找分发函数&quot;f&quot;的方法
-&gt; methods(&quot;f&quot;)
+<span style="color:#75715e"># 查找分发函数&#34;f&#34;的方法</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">methods</span>(<span style="color:#e6db74">&#34;f&#34;</span>)
 [1] f.character f.default  
 
-# 查找&quot;f.character&quot;对应的函数
-&gt; getS3method(&quot;f&quot;, &quot;character&quot;)
-function(x, y) paste(x, y)
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-s4类型的函数分发">2、S4类型的函数分发</h2>
-
+<span style="color:#75715e"># 查找&#34;f.character&#34;对应的函数</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">getS3method</span>(<span style="color:#e6db74">&#34;f&#34;</span>, <span style="color:#e6db74">&#34;character&#34;</span>)
+<span style="color:#a6e22e">function</span>(x, y) <span style="color:#a6e22e">paste</span>(x, y)
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="2s4类型的函数分发">2、S4类型的函数分发</h2>
 <p>S3类型的函数分发每次只能验证一个参数的数据类型，为了弥补这种不足，R语言的<strong>methods</strong>程序包中定义了S4类型的函数分发系统。本质上S4对象可以被看作是一类特殊的S3对象，只不过S4对象对于成员变量的数据类型要求更加严格。以S3对象的角度来看，S4对象中的内容全部存储在数据属性（<strong>attributes</strong>）当中，但是如果我们直接以操作数据属性的方式操作S4对象，会很容易打破S4对象的规则。</p>
-
 <p>要生成一个S4类型的对象，我们可以首先需要使用<span class="highlight-text primary">setClass(class, slots, contains, ....)</span>的形式定义一个S4类型的<strong>类</strong>，其中<strong>class</strong>即类名，<strong>slots</strong>即成员变量及其数据类型，<strong>contains</strong>即需要继承的S4类型的类。</p>
-
 <p>接下来我们可以使用<span class="highlight-text primary">new(class, ....)</span>的形式，生成该类S4对象。为了方便这一过程，我们也可以使用<strong>setClass</strong>生成一个函数，专门用于生成相应类别的S4对象。</p>
+<p>注意获取S4对象成员变量的方式与S3对象不同，我们不能使用中括号或<strong>$</strong>，必须使用**@**符号。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 定义一个S4类型的类，并生成该类S4对象</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setClass</span>(<span style="color:#e6db74">&#34;label_2D&#34;</span>, slots <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;character&#34;</span>, x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;numeric&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;numeric&#34;</span>))
+<span style="color:#f92672">&gt;</span> myLabel2D <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">new</span>(<span style="color:#e6db74">&#34;label_2D&#34;</span>, label <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;坐标标签&#34;</span>, x <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, y <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>); <span style="color:#a6e22e">str</span>(myLabel2D)
+Formal class <span style="color:#e6db74">&#39;label_2D&#39;</span> [package <span style="color:#e6db74">&#34;.GlobalEnv&#34;</span>] with <span style="color:#ae81ff">3</span> slots
+  ..<span style="color:#f92672">@</span> label<span style="color:#f92672">:</span> chr <span style="color:#e6db74">&#34;坐标标签&#34;</span>
+  ..<span style="color:#f92672">@</span> x    <span style="color:#f92672">:</span> num <span style="color:#ae81ff">0</span>
+  ..<span style="color:#f92672">@</span> y    <span style="color:#f92672">:</span> num <span style="color:#ae81ff">0</span>
 
-<p>注意获取S4对象成员变量的方式与S3对象不同，我们不能使用中括号或<strong>$</strong>，必须使用<strong>@</strong>符号。</p>
+<span style="color:#75715e"># S4对象的继承</span>
+<span style="color:#f92672">&gt;</span> lable_3D <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">setClass</span>(<span style="color:#e6db74">&#34;label_3D&#34;</span>, slots <span style="color:#f92672">=</span> <span style="color:#a6e22e">list</span>(z <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;numeric&#34;</span>), contains <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;label_2D&#34;</span>)
+<span style="color:#f92672">&gt;</span> myLabel3D <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">lable_3D</span>(myLabel2D, z <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>)
 
-<pre><code class="language-R"># 定义一个S4类型的类，并生成该类S4对象
-&gt; setClass(&quot;label_2D&quot;, slots = c(label = &quot;character&quot;, x = &quot;numeric&quot;, y = &quot;numeric&quot;))
-&gt; myLabel2D &lt;- new(&quot;label_2D&quot;, label = &quot;坐标标签&quot;, x = 0, y = 0); str(myLabel2D)
-Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
-  ..@ label: chr &quot;坐标标签&quot;
-  ..@ x    : num 0
-  ..@ y    : num 0
-
-# S4对象的继承
-&gt; lable_3D &lt;- setClass(&quot;label_3D&quot;, slots = list(z = &quot;numeric&quot;), contains = &quot;label_2D&quot;)
-&gt; myLabel3D &lt;- lable_3D(myLabel2D, z = 0)
-
-# 取S4对象中成员变量的值
-&gt; myLabel3D@label
-[1] &quot;坐标标签&quot;
-</code></pre>
-
-<h3 id="2-1-s4函数分发">2.1、S4函数分发</h3>
-
+<span style="color:#75715e"># 取S4对象中成员变量的值</span>
+<span style="color:#f92672">&gt;</span> myLabel3D<span style="color:#f92672">@</span>label
+[1] <span style="color:#e6db74">&#34;坐标标签&#34;</span>
+</code></pre></div><h3 id="21s4函数分发">2.1、S4函数分发</h3>
 <p>定义S4分发函数及相应的S4方法的过程与S3非常类似。首先我们需要使用<span class="highlight-text primary">setGeneric(name, signature, valueClass, def, group, ...)</span>的形式定义一个S4分发函数，其中：</p>
-
 <ul>
 <li><strong>name</strong>即分发函数的名称，必须与<strong>setMethod</strong>函数中的<strong>f</strong>参数一一对应。</li>
 <li><strong>signature</strong>即哪些参数的数据类型需要验证，默认会验证全部参数的数据类型，不定长参数列表（<strong>&hellip;</strong>）也可以用于参数验证，但此时被验证的参数只能是不定长参数列表，且不定长参数列表中的参数必须拥有（或继承自）相同的数据类型。</li>
@@ -380,157 +343,131 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
 <li><strong>def</strong>一般为分发函数的默认方法，当然我们也可以在<strong>def</strong>定义的函数中使用<span class="highlight-text primary">standardGeneric</span>函数手动进行函数分发，此时<strong>standardGeneric</strong>之前的代码相当于在函数分发之前需要预处理的操作，而在<strong>standardGeneric</strong>之后的代码则相当于方法调用结束后需要执行的操作。</li>
 <li><strong>group</strong>即该分发函数属于哪一个<strong>分组分发函数</strong>。</li>
 </ul>
-
 <p>接下来我们需要使用<span class="highlight-text primary">setMethod(f, signature, definition, sealed, ...)</span>的形式定义S4方法，其中的参数与<strong>setGeneric</strong>函数中的是互相对应的：</p>
-
 <ul>
 <li><strong>f</strong>即我们之前定义的S4分发函数。</li>
 <li><strong>signature</strong>即需要验证的参数的数据类型。</li>
 <li><strong>definition</strong>即方法的实现函数，注意方法的参数列表必须与分发函数中<strong>def</strong>定义的一致。</li>
 <li><strong>sealed</strong>为真时可以防止方法被重新定义。</li>
 </ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 定义一个S4分发函数</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setGeneric</span>(<span style="color:#e6db74">&#34;printLable&#34;</span>, signature <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;lab&#34;</span>), 
+<span style="color:#f92672">+</span>            def <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(lab) <span style="color:#a6e22e">standardGeneric</span>(<span style="color:#e6db74">&#34;printLable&#34;</span>))
+[1] <span style="color:#e6db74">&#34;printLable&#34;</span>
 
-<pre><code class="language-R"># 定义一个S4分发函数
-&gt; setGeneric(&quot;printLable&quot;, signature = c(&quot;lab&quot;), 
-+            def = function(lab) standardGeneric(&quot;printLable&quot;))
-[1] &quot;printLable&quot;
+<span style="color:#75715e"># 定义一个S4方法</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setMethod</span>(<span style="color:#e6db74">&#34;printLable&#34;</span>, signature <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;lab&#34;</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;label_2D&#34;</span>),  
+<span style="color:#f92672">+</span>           definition <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(lab){
+<span style="color:#f92672">+</span>             <span style="color:#a6e22e">sprintf</span>(<span style="color:#e6db74">&#34;(%d, %d) @ %s&#34;</span>, lab<span style="color:#f92672">@</span>x, lab<span style="color:#f92672">@</span>y, lab<span style="color:#f92672">@</span>label)
+<span style="color:#f92672">+</span>           })
 
-# 定义一个S4方法
-&gt; setMethod(&quot;printLable&quot;, signature = c(&quot;lab&quot;=&quot;label_2D&quot;),  
-+           definition = function(lab){
-+             sprintf(&quot;(%d, %d) @ %s&quot;, lab@x, lab@y, lab@label)
-+           })
+<span style="color:#75715e"># 调用S4分发函数</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">printLable</span>(myLabel2D)
+[1] <span style="color:#e6db74">&#34;(0, 0) @ 坐标标签&#34;</span>
 
-# 调用S4分发函数
-&gt; printLable(myLabel2D)
-[1] &quot;(0, 0) @ 坐标标签&quot;
-
-# S4分发函数找不到合适的方法时，会寻找适合父类数据对象的方法
-&gt; printLable(myLabel3D)
-[1] &quot;(0, 0) @ 坐标标签&quot;
-&gt; inherits(myLabel3D, &quot;label_2D&quot;)
-[1] TRUE
-</code></pre>
-
-<p>类似查找S3方法，我们可以使用<span class="highlight-text primary">selectMethod、findMethod、getMethod、existsMethod、hasMethod</span>等函数，快速找到定义的S4方法，但这些函数大多会在S4分发函数中被调用，一般情况下不需要我们手动调用。</p>
-
-<p><br></p>
-
-<h3 id="2-2-分组分发函数">2.2、分组分发函数</h3>
-
+<span style="color:#75715e"># S4分发函数找不到合适的方法时，会寻找适合父类数据对象的方法</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">printLable</span>(myLabel3D)
+[1] <span style="color:#e6db74">&#34;(0, 0) @ 坐标标签&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">inherits</span>(myLabel3D, <span style="color:#e6db74">&#34;label_2D&#34;</span>)
+[1] <span style="color:#66d9ef">TRUE</span>
+</code></pre></div><p>类似查找S3方法，我们可以使用<span class="highlight-text primary">selectMethod、findMethod、getMethod、existsMethod、hasMethod</span>等函数，快速找到定义的S4方法，但这些函数大多会在S4分发函数中被调用，一般情况下不需要我们手动调用。</p>
+<!-- raw HTML omitted -->
+<h3 id="22分组分发函数">2.2、分组分发函数</h3>
 <p>R语言中的<strong>分组分发函数</strong>（<strong>Group Generic</strong>）与普通的S4分发函数十分类似，但是有两点不同，其一分组分发函数不能被直接调用，其二分组分发函数包含了一个<strong>knownMembers</strong>参数，用于确定其包含的分发函数（当我们为分组分发函数定义成员分发函数时，其<strong>knownMembers</strong>成员变量会自动更新）。</p>
-
 <p>定义一个分组分发函数，我们需要使用<span class="highlight-text primary">setGroupGeneric</span>函数。判断一个对象是否为分组分发函数，我们可以使用<span class="highlight-text primary">isGroup</span>函数。以下列表是R语言中系统的分组分发函数及对应的成员分发函数：</p>
-
 <ul>
 <li>Arith
-
 <ul>
-<li>&rdquo;+&ldquo;, &ldquo;-&rdquo;, &ldquo;*&ldquo;, &ldquo;^&rdquo;, &ldquo;%%&rdquo;, &ldquo;%/%&rdquo;, &ldquo;/&rdquo;</li>
-</ul></li>
+<li>&ldquo;+&rdquo;, &ldquo;-&quot;, &ldquo;*&quot;, &ldquo;^&rdquo;, &ldquo;%%&quot;, &ldquo;%/%&quot;, &ldquo;/&rdquo;</li>
+</ul>
+</li>
 <li>Compare
-
 <ul>
-<li>&rdquo;==&ldquo;, &ldquo;&gt;&rdquo;, &ldquo;&lt;&ldquo;, &ldquo;!=&rdquo;, &ldquo;&lt;=&ldquo;, &ldquo;&gt;=&rdquo;</li>
-</ul></li>
+<li>&ldquo;==&rdquo;, &ldquo;&gt;&rdquo;, &ldquo;&lt;&rdquo;, &ldquo;!=&rdquo;, &ldquo;&lt;=&rdquo;, &ldquo;&gt;=&rdquo;</li>
+</ul>
+</li>
 <li>Logic
-
 <ul>
-<li>&ldquo;&amp;&ldquo;, &ldquo;|&rdquo;.</li>
-</ul></li>
+<li>&ldquo;&amp;&quot;, &ldquo;|&rdquo;.</li>
+</ul>
+</li>
 <li>Ops
-
 <ul>
 <li>&ldquo;Arith&rdquo;, &ldquo;Compare&rdquo;, &ldquo;Logic&rdquo;</li>
-</ul></li>
+</ul>
+</li>
 <li>Math
-
 <ul>
 <li>&ldquo;abs&rdquo;, &ldquo;sign&rdquo;, &ldquo;sqrt&rdquo;, &ldquo;ceiling&rdquo;, &ldquo;floor&rdquo;, &ldquo;trunc&rdquo;, &ldquo;cummax&rdquo;, &ldquo;cummin&rdquo;, &ldquo;cumprod&rdquo;, &ldquo;cumsum&rdquo;, &ldquo;log&rdquo;, &ldquo;log10&rdquo;, &ldquo;log2&rdquo;, &ldquo;log1p&rdquo;, &ldquo;acos&rdquo;, &ldquo;acosh&rdquo;, &ldquo;asin&rdquo;, &ldquo;asinh&rdquo;, &ldquo;atan&rdquo;, &ldquo;atanh&rdquo;, &ldquo;exp&rdquo;, &ldquo;expm1&rdquo;, &ldquo;cos&rdquo;, &ldquo;cosh&rdquo;, &ldquo;cospi&rdquo;, &ldquo;sin&rdquo;, &ldquo;sinh&rdquo;, &ldquo;sinpi&rdquo;, &ldquo;tan&rdquo;, &ldquo;tanh&rdquo;, &ldquo;tanpi&rdquo;, &ldquo;gamma&rdquo;, &ldquo;lgamma&rdquo;, &ldquo;digamma&rdquo;, &ldquo;trigamma&rdquo;</li>
-</ul></li>
+</ul>
+</li>
 <li>Math2
-
 <ul>
 <li>&ldquo;round&rdquo;, &ldquo;signif&rdquo;</li>
-</ul></li>
+</ul>
+</li>
 <li>Summary
-
 <ul>
 <li>&ldquo;max&rdquo;, &ldquo;min&rdquo;, &ldquo;range&rdquo;, &ldquo;prod&rdquo;, &ldquo;sum&rdquo;, &ldquo;any&rdquo;, &ldquo;all&rdquo;</li>
-</ul></li>
+</ul>
+</li>
 <li>Complex
-
 <ul>
 <li>&ldquo;Arg&rdquo;, &ldquo;Conj&rdquo;, &ldquo;Im&rdquo;, &ldquo;Mod&rdquo;, &ldquo;Re&rdquo;</li>
-</ul></li>
 </ul>
-
-<p><br></p>
-
-<h3 id="2-3-内部分发函数">2.3、内部分发函数</h3>
-
+</li>
+</ul>
+<!-- raw HTML omitted -->
+<h3 id="23内部分发函数">2.3、内部分发函数</h3>
 <p>R语言中的某些基础函数是<strong>内部分发函数</strong>（<strong>Internal Generic</strong>），它们直接调用了底层语言（C语言），并在底层语言中完成函数分发。我们可以使用<span class="highlight-text primary">implicitGeneric</span>函数，将内部分发函数转化为S4分发函数，同时为内部分发函数添加S4方法也是可以做到的，但方法的参数列表中必须有一个参数是S4类型的对象，否则S4分发函数会直接调用底层函数，而不会进行函数分发。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 生成一个&#34;str&#34;类型的S4对象</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setClass</span>(<span style="color:#e6db74">&#34;str&#34;</span>, <span style="color:#a6e22e">list</span>(str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;character&#34;</span>))
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">new</span>(<span style="color:#e6db74">&#34;str&#34;</span>, str <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;abc&#34;</span>)
 
-<pre><code class="language-R"># 生成一个&quot;str&quot;类型的S4对象
-&gt; setClass(&quot;str&quot;, list(str = &quot;character&quot;))
-&gt; x &lt;- new(&quot;str&quot;, str = &quot;abc&quot;)
+<span style="color:#75715e"># 为内部分发函数&#34;+&#34;添加一个方法</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setMethod</span>(<span style="color:#e6db74">&#34;+&#34;</span>, signature <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;str&#34;</span>, <span style="color:#e6db74">&#34;character&#34;</span>), 
+<span style="color:#f92672">+</span>           definition <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(e1, e2) <span style="color:#a6e22e">paste</span>(e1<span style="color:#f92672">@</span>str, e2))
 
-# 为内部分发函数&quot;+&quot;添加一个方法
-&gt; setMethod(&quot;+&quot;, signature = c(&quot;str&quot;, &quot;character&quot;), 
-+           definition = function(e1, e2) paste(e1@str, e2))
-
-# 调用内部分发函数&quot;+&quot;
-&gt; x + 'def'
-[1] &quot;abc def&quot;
-</code></pre>
-
-<p><br></p>
-
-<h2 id="3-rc类型的函数分发">3、RC类型的函数分发</h2>
-
-<p>S3与S4系统有一个共同的特点——函数与数据是相是对分离的。为了将数据与函数结合（类似java中的类），<strong>methods</strong>程序包中还定义了一种RC类型的数据对象（<strong>ReferenceClasses</strong>）。RC对象实际上是由S4对象实现的（其数据大多以执行环境的形式，存储在<strong>.xData</strong>数据属性中），但RC对象的设计理念却与S4对象十分不同。</p>
-
+<span style="color:#75715e"># 调用内部分发函数&#34;+&#34;</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;def&#39;</span>
+[1] <span style="color:#e6db74">&#34;abc def&#34;</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="3rc类型的函数分发">3、RC类型的函数分发</h2>
+<p>S3与S4系统有一个共同的特点——函数与数据是相是对分离的。为了将数据与函数结合（类似java中的类），<strong>methods</strong>程序包中还定义了一种RC类型的数据对象（<strong>ReferenceClasses</strong>）。RC对象实际上是由S4对象实现的（其数据大多以执行环境的形式，存储在**.xData**数据属性中），但RC对象的设计理念却与S4对象十分不同。</p>
 <p>生成RC对象的方法与生成S4对象十分类似，首先我们需要使用<span class="highlight-text primary">setRefClass(Class, fields, methods, contains, ...)</span>的形式定义一个RC类型的类，其中：<strong>Class</strong>即需要生成的RC对象的类名；<strong>fields</strong>即成员变量的数据类型；<strong>methods</strong>即成员方法；<strong>contains</strong>即需要继承的RC对象。接下来生成该类RC对象的方法则与生成S4对象的方法完全一致。</p>
-
 <p>相比S4类型的对象，RC类型的对象也有其独特的一面：</p>
-
 <ul>
-<li>获取RC对象成员变量（或成员函数）的方式与S4对象不同，我们不能使用中括号或<strong>@</strong>，只能使用<strong>$</strong>。</li>
-<li>在RC对象的成员函数中，引用成员变量可以直接使用变量名，修改成员变量则需要用到全局赋值（<strong>&lt;&lt;-</strong>等）的形式。</li>
-<li>如果我们使用赋值符号（<strong>&lt;-</strong>等），直接将RC实例赋值给一个新的对象，两个对象会指向同一份数据，所以 <em>拷贝</em> RC实例时，我们需要调用RC实例的<strong>new</strong>函数。</li>
-<li>RC类型的对象没有<strong>this、super</strong>指针，但我们可以用<strong>.self</strong>表示对象本身，并在<strong>.refClassDef</strong>中找到父类对象的方法等 <em>定义信息</em> 。</li>
+<li>获取RC对象成员变量（或成员函数）的方式与S4对象不同，我们不能使用中括号或**@**，只能使用**$**。</li>
+<li>在RC对象的成员函数中，引用成员变量可以直接使用变量名，修改成员变量则需要用到全局赋值（**&laquo;-**等）的形式。</li>
+<li>如果我们使用赋值符号（<strong>&lt;-<strong>等），直接将RC实例赋值给一个新的对象，两个对象会指向同一份数据，所以 <em>拷贝</em> RC实例时，我们需要调用RC实例的</strong>new</strong>函数。</li>
+<li>RC类型的对象没有<strong>this、super</strong>指针，但我们可以用**.self**表示对象本身，并在**.refClassDef**中找到父类对象的方法等 *定义信息* 。</li>
 </ul>
-
 <p>由于RC类型的类在定义的时候就已经限制了成员变量的数据类型，而且RC类型的对象中成员函数多是围绕成员变量设计的，所以我们每次调用成员函数实际上都是在调用适用于该类 对象的函数（函数分发），此外RC类型的数据还保留了S4的继承系统，子类可以继承父类的成员变量及成员方法。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 定义一个RC类型的类</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">setRefClass</span>(Class <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;countDown&#34;</span>, 
+<span style="color:#f92672">+</span>             fields <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+<span style="color:#f92672">+</span>               <span style="color:#e6db74">&#34;num&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;integer&#34;</span>, 
+<span style="color:#f92672">+</span>               <span style="color:#e6db74">&#34;interval&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;numeric&#34;</span>
+<span style="color:#f92672">+</span>             ), 
+<span style="color:#f92672">+</span>             methods <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(
+<span style="color:#f92672">+</span>               start <span style="color:#f92672">=</span> <span style="color:#a6e22e">function</span>(){
+<span style="color:#f92672">+</span>                 <span style="color:#a6e22e">while</span>(num <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>){
+<span style="color:#f92672">+</span>                   <span style="color:#a6e22e">Sys.sleep</span>(interval)
+<span style="color:#f92672">+</span>                   <span style="color:#a6e22e">cat</span>(num, <span style="color:#e6db74">&#34;\t&#34;</span>)
+<span style="color:#f92672">+</span>                   num <span style="color:#f92672">&lt;&lt;-</span> num <span style="color:#f92672">-</span> <span style="color:#ae81ff">1L</span>
+<span style="color:#f92672">+</span>                 }
+<span style="color:#f92672">+</span>                 <span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;\n&#34;</span>)
+<span style="color:#f92672">+</span>               }
+<span style="color:#f92672">+</span>             )
+<span style="color:#f92672">+</span> )
 
-<pre><code class="language-R"># 定义一个RC类型的类
-&gt; setRefClass(Class = &quot;countDown&quot;, 
-+             fields = c(
-+               &quot;num&quot; = &quot;integer&quot;, 
-+               &quot;interval&quot; = &quot;numeric&quot;
-+             ), 
-+             methods = c(
-+               start = function(){
-+                 while(num &gt; 0){
-+                   Sys.sleep(interval)
-+                   cat(num, &quot;\t&quot;)
-+                   num &lt;&lt;- num - 1L
-+                 }
-+                 cat(&quot;\n&quot;)
-+               }
-+             )
-+ )
+<span style="color:#75715e"># 生成RC类型的对象</span>
+<span style="color:#f92672">&gt;</span> 活动倒计时 <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">new</span>(<span style="color:#e6db74">&#34;countDown&#34;</span>, num <span style="color:#f92672">=</span> <span style="color:#ae81ff">10L</span>, interval <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.3</span>)
 
-# 生成RC类型的对象
-&gt; 活动倒计时 &lt;- new(&quot;countDown&quot;, num = 10L, interval = 0.3)
-
-# 调用RC对象的成员函数
-&gt; 活动倒计时$start()
-10 	9 	8 	7 	6 	5 	4 	3 	2 	1 	
-</code></pre>
-
-<p><br></p>
-
+<span style="color:#75715e"># 调用RC对象的成员函数</span>
+<span style="color:#f92672">&gt;</span> 活动倒计时<span style="color:#f92672">$</span><span style="color:#a6e22e">start</span>()
+<span style="color:#ae81ff">10</span> 	<span style="color:#ae81ff">9</span> 	<span style="color:#ae81ff">8</span> 	<span style="color:#ae81ff">7</span> 	<span style="color:#ae81ff">6</span> 	<span style="color:#ae81ff">5</span> 	<span style="color:#ae81ff">4</span> 	<span style="color:#ae81ff">3</span> 	<span style="color:#ae81ff">2</span> 	<span style="color:#ae81ff">1</span> 	
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -545,11 +482,9 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
 <li>S4方法可以直接调用吗？（如果你在全局执行环境中定义了一个名为<code>f</code>的S4分发函数，试试查找隐藏变量<code>.__T__f:.GlobalEnv</code>）</li>
 <li>对于RC类型的对象，如果子类重写了父类中的方法，如何通过子类对象调用被重写的方法（<strong>方法名#父类名</strong>）？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -561,9 +496,9 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
 
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
 
                   </div>
                 
@@ -571,8 +506,8 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言编程篇——函数分发',
@@ -593,7 +528,7 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-tooltip="SQL Server 使用SQL检查用户身份证号码格式">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-tooltip="SQL Server 使用SQL检查用户身份证号码格式">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -601,7 +536,7 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="R语言编程篇——并发运算">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="R语言编程篇——并发运算">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -619,13 +554,13 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -656,7 +591,7 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -670,7 +605,7 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-tooltip="SQL Server 使用SQL检查用户身份证号码格式">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/07/sql-server-%E4%BD%BF%E7%94%A8sql%E6%A3%80%E6%9F%A5%E7%94%A8%E6%88%B7%E8%BA%AB%E4%BB%BD%E8%AF%81%E5%8F%B7%E7%A0%81%E6%A0%BC%E5%BC%8F/" data-tooltip="SQL Server 使用SQL检查用户身份证号码格式">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -678,7 +613,7 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="R语言编程篇——并发运算">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%B9%B6%E5%8F%91%E8%BF%90%E7%AE%97/" data-tooltip="R语言编程篇——并发运算">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -696,13 +631,13 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/08/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%87%BD%E6%95%B0%E5%88%86%E5%8F%91/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -736,13 +671,13 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%2587%25BD%25E6%2595%25B0%25E5%2588%2586%25E5%258F%2591%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%2587%25BD%25E6%2595%25B0%25E5%2588%2586%25E5%258F%2591%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%2587%25BD%25E6%2595%25B0%25E5%2588%2586%25E5%258F%2591%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F08%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E5%2587%25BD%25E6%2595%25B0%25E5%2588%2586%25E5%258F%2591%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -797,12 +732,12 @@ Formal class 'label_2D' [package &quot;.GlobalEnv&quot;] with 3 slots
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -879,7 +814,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

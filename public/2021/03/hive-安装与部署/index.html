@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="大数据, Hadoop, Hive, wly的博客, supernum">
+<meta name="description" content="Hive是架设在Hadoop之上的数据库仓库工具。可用于处理结构化数据。本章将介绍ubuntu虚拟机下安装配置Hive的整个过程。">
+
+
+  
+    <meta property="article:published_time" content="2021-03-11T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-03-11T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="进军大数据">
+    
+  
+  
+    
+      <meta property="article:tag" content="大数据">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive 安装与部署">
+<meta property="og:description" content="Hive是架设在Hadoop之上的数据库仓库工具。可用于处理结构化数据。本章将介绍ubuntu虚拟机下安装配置Hive的整个过程。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/uQE3hF.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>Hive 安装与部署</title>
+
+    <link rel="canonical" href="https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="/#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Hive 安装与部署
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2021-03-11T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-03-11
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/%e8%bf%9b%e5%86%9b%e5%a4%a7%e6%95%b0%e6%8d%ae">进军大数据</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p><strong>Hive</strong>是架设在<strong>Hadoop</strong>之上的数据库仓库工具。可用于处理结构化数据。本章将介绍ubuntu虚拟机下安装配置Hive的整个过程。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="1版本对照">1、版本对照</h2>
+<table>
+<thead>
+<tr>
+<th align="left">名称</th>
+<th>版本号</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="left">Ubuntu</td>
+<td>20.10</td>
+</tr>
+<tr>
+<td align="left">JDK</td>
+<td>1.8.0_282</td>
+</tr>
+<tr>
+<td align="left">Hadoop</td>
+<td>3.3.0</td>
+</tr>
+<tr>
+<td align="left">Hive</td>
+<td>3.1.2</td>
+</tr>
+<tr>
+<td align="left">Derby</td>
+<td>10.14.2.0</td>
+</tr>
+<tr>
+<td align="left">MySQL</td>
+<td>8.0.23</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2安装java">2、安装Java</h2>
+<p>Hadoop、Hive都依赖Java才能运行，但Java版本过高可能会使Hadoop启动报错，所以这里选择安装<strong>JDK8</strong>。Ubuntu中Java默认的安装在<code>/usr/lib/jvm/</code>路径下。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 安装JDK</span>
+sudo apt install -y openjdk-8-jdk
+<span style="color:#75715e"># 设置JDK环境变量</span>
+echo export JAVA_HOME<span style="color:#f92672">=</span>/usr/lib/jvm/java-1.8.0-openjdk-amd64 &gt;&gt; .bashrc
+echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:<span style="color:#ae81ff">\$</span>JAVA_HOME/bin &gt;&gt; .bashrc
+<span style="color:#75715e"># 使环境变量立即生效（后不赘述）</span>
+source .bashrc
+</code></pre></div><h2 id="3安装配置hadoop">3、安装配置Hadoop</h2>
+<ul>
+<li>3.1、首先<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，解压后放入**/usr/local**目录下，并配置相关环境变量。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 安装Hadoop</span>
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/hadoop/common/hadoop-3.3.0/hadoop-3.3.0.tar.gz 
+tar -zxvf hadoop-3.3.0.tar.gz 
+sudo mv hadoop-3.3.0 /usr/local/hadoop
+<span style="color:#75715e"># 设置Hadoop环境变量</span>
+echo export export HADOOP_HOME<span style="color:#f92672">=</span>/usr/local/hadoop &gt;&gt; .bashrc
+echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:<span style="color:#ae81ff">\$</span>HADOOP_HOME/bin:<span style="color:#ae81ff">\$</span>HADOOP_HOME/sbin &gt;&gt; .bashrc
+</code></pre></div><ul>
+<li>3.2、Hadoop有独立操作、伪分布操作、完全分布操作三种运行模式。默认配置下，Hadoop运行在非分布模式，有助于调试。我们需要修改以下两个配置文件，使Hadoop在本地机器上实现伪分布模式。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 配置主节点</span>
+sudo echo <span style="color:#e6db74">&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span><span style="color:#e6db74">&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;
+</span><span style="color:#e6db74">&lt;configuration&gt;
+</span><span style="color:#e6db74">   &lt;property&gt; 
+</span><span style="color:#e6db74">      &lt;name&gt;fs.default.name&lt;/name&gt; 
+</span><span style="color:#e6db74">      &lt;value&gt;hdfs://localhost:9000&lt;/value&gt; 
+</span><span style="color:#e6db74">   &lt;/property&gt;
+</span><span style="color:#e6db74">&lt;/configuration&gt;
+</span><span style="color:#e6db74">&#39;</span> &gt; $HADOOP_HOME/etc/hadoop/core-site.xml
+<span style="color:#75715e"># 配置分发节点</span>
+sudo echo <span style="color:#e6db74">&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34;?&gt;
+</span><span style="color:#e6db74">&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;
+</span><span style="color:#e6db74">&lt;configuration&gt;
+</span><span style="color:#e6db74">    &lt;property&gt;
+</span><span style="color:#e6db74">        &lt;name&gt;dfs.replication&lt;/name&gt;
+</span><span style="color:#e6db74">        &lt;value&gt;1&lt;/value&gt;
+</span><span style="color:#e6db74">    &lt;/property&gt;
+</span><span style="color:#e6db74">&lt;/configuration&gt;
+</span><span style="color:#e6db74">&#39;</span> &gt; $HADOOP_HOME/etc/hadoop/hdfs-site.xml
+</code></pre></div><ul>
+<li>3.3、分布模式下的Hadoop必须依赖ssh通信，我们可以通过以下代码安装并配置ssh。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 安装ssh、pdsh</span>
+sudo apt install -y ssh
+sudo apt install -y pdsh
+<span style="color:#75715e"># 启动ssh服务</span>
+sudo /etc/init.d/ssh start
+<span style="color:#75715e"># 测试是否不用密码就可以连接上本地机器</span>
+ssh localhost
+<span style="color:#75715e"># 如果不能免密连接本地机器，则需要执行以下代码生成ssh密匙</span>
+ssh-keygen -t rsa -P <span style="color:#e6db74">&#39;&#39;</span> -f ~/.ssh/id_rsa
+cat ~/.ssh/id_rsa.pub &gt;&gt; ~/.ssh/authorized_keys
+chmod <span style="color:#ae81ff">0600</span> ~/.ssh/authorized_keys
+</code></pre></div><ul>
+<li>3.4、接下来我们需要测试Hadoop能否正常启动，并启动HDFS。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 获取Hadoop版本信息</span>
+hadoop version
+<span style="color:#75715e"># 格式化HDFS（Hadoop分布式文件系统）</span>
+hdfs namenode -format
+<span style="color:#75715e"># 启动HDFS守护程序</span>
+sudo start-dfs.sh
+<span style="color:#75715e"># 关闭HDFS守护程序</span>
+<span style="color:#75715e"># stop-dfs.sh</span>
+</code></pre></div><ul>
+<li>3.5、至此Hadoop安装配置已经完成了，我们可以在Hadoop后台管理页面（http://localhost:9870）中查看相关信息。以下代码列举了HDFS常用命令示例。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 在HDFS中创建目录</span>
+hdfs dfs -mkdir -p input
+<span style="color:#75715e"># 将文件放入HDFS</span>
+hdfs dfs -put $HADOOP_HOME/etc/hadoop/*.xml input
+<span style="color:#75715e"># 在HDFS中运行测试程序</span>
+hadoop jar $HADOOP_HOME/share/hadoop/mapreduce/hadoop-mapreduce-examples-3.3.0.jar grep input output <span style="color:#e6db74">&#39;dfs[a-z.]+&#39;</span>
+<span style="color:#75715e"># 从HDFS中提取文件</span>
+hdfs dfs -get output ./output
+<span style="color:#75715e"># 列举HDFS中的文件</span>
+hdfs dfs -ls output
+<span style="color:#75715e"># 查看HDFS中的文件</span>
+hdfs dfs -cat output/*
+</code></pre></div><h2 id="4安装配置hive">4、安装配置Hive</h2>
+<ul>
+<li>4.1、首先<sup id="fnref:2"><a href="#fn:2" class="footnote-ref" role="doc-noteref">2</a></sup>，解压后放入**/usr/local**目录下，并配置相关环境变量。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 安装Hive</span>
+wget https://mirrors.tuna.tsinghua.edu.cn/apache/hive/hive-3.1.2/apache-hive-3.1.2-bin.tar.gz
+tar -zxvf apache-hive-3.1.2-bin.tar.gz
+sudo mv apache-hive-3.1.2-bin /usr/local/hive
+<span style="color:#75715e"># 设置Hive环境变量</span>
+echo export HIVE_HOME<span style="color:#f92672">=</span>/usr/local/hive &gt;&gt; .bashrc
+echo export PATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>PATH:<span style="color:#ae81ff">\$</span>HIVE_HOME/bin &gt;&gt; .bashrc
+</code></pre></div><ul>
+<li>4.2、此时我们已经可以进入Hive，但并不能执行HiveQL（Hive结构化查询语句），因为还未初始化metastore。接下来我们需要选择一种数据库作为Hive的metastore。</li>
+</ul>
+<h3 id="43使用derby做为matastore">4.3、使用Derby做为matastore</h3>
+<ul>
+<li>4.3.1、首先<sup id="fnref:3"><a href="#fn:3" class="footnote-ref" role="doc-noteref">3</a></sup>，解压后放入**/usr/local**目录下，并配置相关环境变量。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">wget https://mirrors.tuna.tsinghua.edu.cn/apache//db/derby/db-derby-10.14.2.0/db-derby-10.14.2.0-bin.tar.gz
+tar -zxvf db-derby-10.14.2.0-bin.tar.gz
+sudo mv db-derby-10.14.2.0-bin /usr/local/derby
+</code></pre></div><ul>
+<li>4.3.2、设置Derby环境变量。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">echo export DERBY_HOME<span style="color:#f92672">=</span>/usr/local/derby &gt;&gt; .bashrc
+echo export CLASSPATH<span style="color:#f92672">=</span><span style="color:#ae81ff">\$</span>CLASSPATH:<span style="color:#ae81ff">\$</span>DERBY_HOME/lib/*.jar &gt;&gt; .bashrc
+</code></pre></div><ul>
+<li>4.3.3、修改Hive配置文件。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo echo <span style="color:#e6db74">&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34;?&gt;
+</span><span style="color:#e6db74">&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;
+</span><span style="color:#e6db74">&lt;configuration&gt;  
+</span><span style="color:#e6db74">  &lt;property&gt;  
+</span><span style="color:#e6db74">    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;  
+</span><span style="color:#e6db74">    &lt;value&gt;jdbc:derby:;databaseName=metastore_db;create=true&lt;/value&gt;  
+</span><span style="color:#e6db74">  &lt;/property&gt; 
+</span><span style="color:#e6db74">  &lt;property&gt;  
+</span><span style="color:#e6db74">    &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;  
+</span><span style="color:#e6db74">    &lt;value&gt;org.apache.derby.jdbc.EmbeddedDriver&lt;/value&gt;  
+</span><span style="color:#e6db74">  &lt;/property&gt; 
+</span><span style="color:#e6db74">  &lt;property&gt;  
+</span><span style="color:#e6db74">    &lt;name&gt;hive.metastore.local&lt;/name&gt;  
+</span><span style="color:#e6db74">    &lt;value&gt;true&lt;/value&gt;  
+</span><span style="color:#e6db74">  &lt;/property&gt;  
+</span><span style="color:#e6db74">  &lt;property&gt;
+</span><span style="color:#e6db74">    &lt;name&gt;hive.metastore.warehouse.dir&lt;/name&gt;  
+</span><span style="color:#e6db74">    &lt;value&gt;/user/hive/warehouse&lt;/value&gt;  
+</span><span style="color:#e6db74">  &lt;/property&gt;
+</span><span style="color:#e6db74">  &lt;property&gt;
+</span><span style="color:#e6db74">    &lt;name&gt;datanucleus.schema.autoCreateAll&lt;/name&gt;
+</span><span style="color:#e6db74">    &lt;value&gt;true&lt;/value&gt;
+</span><span style="color:#e6db74">  &lt;/property&gt;
+</span><span style="color:#e6db74">&lt;/configuration&gt; 
+</span><span style="color:#e6db74">&#39;</span> &gt; $HIVE_HOME/conf/hive-site.xml
+</code></pre></div><ul>
+<li>4.3.4、初始化metastore。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 初始化 Derby metastore</span>
+schematool -dbType derby -initSchema
+<span style="color:#75715e"># 启动metastore服务</span>
+<span style="color:#75715e"># hive --service metastore</span>
+</code></pre></div><h3 id="44使用mysql做为matastore">4.4、使用MySQL做为matastore</h3>
+<ul>
+<li>4.4.1、安装并以root用户进入MySQL。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 安装MySQL</span>
+sudo apt install -y mysql-server mysql-client
+<span style="color:#75715e"># 以root用户进入MySQL（MySQL的默认root密码为空）</span>
+sudo mysql -u root -p
+</code></pre></div><ul>
+<li>4.4.2、在MySQL中创建用户<strong>hive</strong>，并赋予其足够的权限。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-mysql" data-lang="mysql"><span style="color:#66d9ef">create</span> <span style="color:#66d9ef">user</span> <span style="color:#e6db74">&#39;hive&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span> <span style="color:#66d9ef">identified</span> <span style="color:#66d9ef">by</span> <span style="color:#e6db74">&#39;password&#39;</span> ;
+<span style="color:#66d9ef">grant</span> <span style="color:#66d9ef">all</span> <span style="color:#66d9ef">privileges</span> <span style="color:#66d9ef">on</span> <span style="color:#f92672">*</span>.<span style="color:#f92672">*</span> <span style="color:#66d9ef">to</span> <span style="color:#e6db74">&#39;hive&#39;</span><span style="color:#f92672">@</span><span style="color:#e6db74">&#39;localhost&#39;</span> ;
+<span style="color:#66d9ef">flush</span> <span style="color:#66d9ef">privileges</span> ;
+</code></pre></div><ul>
+<li>4.4.3、修改Hive配置文件。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo echo <span style="color:#e6db74">&#39;&lt;?xml version=&#34;1.0&#34; encoding=&#34;UTF-8&#34; standalone=&#34;no&#34;?&gt;
+</span><span style="color:#e6db74">&lt;?xml-stylesheet type=&#34;text/xsl&#34; href=&#34;configuration.xsl&#34;?&gt;
+</span><span style="color:#e6db74">&lt;configuration&gt;
+</span><span style="color:#e6db74">  &lt;property&gt;
+</span><span style="color:#e6db74">    &lt;name&gt;javax.jdo.option.ConnectionURL&lt;/name&gt;
+</span><span style="color:#e6db74">    &lt;value&gt;jdbc:mysql://localhost/hive?createDatabaseIfNotExist=true&lt;/value&gt;
+</span><span style="color:#e6db74">  &lt;/property&gt;
+</span><span style="color:#e6db74">  &lt;property&gt;
+</span><span style="color:#e6db74">    &lt;name&gt;javax.jdo.option.ConnectionDriverName&lt;/name&gt;
+</span><span style="color:#e6db74">    &lt;value&gt;com.mysql.jdbc.Driver&lt;/value&gt;
+</span><span style="color:#e6db74">  &lt;/property&gt;
+</span><span style="color:#e6db74">  &lt;property&gt;
+</span><span style="color:#e6db74">    &lt;name&gt;javax.jdo.option.ConnectionUserName&lt;/name&gt;
+</span><span style="color:#e6db74">    &lt;value&gt;hive&lt;/value&gt;
+</span><span style="color:#e6db74">  &lt;/property&gt;
+</span><span style="color:#e6db74">  &lt;property&gt;
+</span><span style="color:#e6db74">    &lt;name&gt;javax.jdo.option.ConnectionPassword&lt;/name&gt;
+</span><span style="color:#e6db74">    &lt;value&gt;password&lt;/value&gt;
+</span><span style="color:#e6db74">  &lt;/property&gt;
+</span><span style="color:#e6db74">&lt;/configuration&gt;
+</span><span style="color:#e6db74">&#39;</span> &gt; $HIVE_HOME/conf/hive-site.xml
+</code></pre></div><ul>
+<li>4.4.4、初始化metastore。</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh"><span style="color:#75715e"># 初始化 MySQL metastore</span>
+schematool -dbType mysql -initSchema
+<span style="color:#75715e"># 启动metastore服务</span>
+<span style="color:#75715e"># hive --service metastore</span>
+</code></pre></div><ul>
+<li>4.5、至此Hive已经配置完毕，我们可以通过<code>hive</code>命令进入Hive，并执行以下命令查看Hive是否正常运行。</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select current_date();
+show databases;
+exit;
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="5报错解决">5、报错解决</h2>
+<ul>
+<li>
+<p><input disabled="" type="checkbox"> Hadoop运行命令<code>start-dfs.sh</code>时报错：<code>pdsh@ubuntu-home: localhost: rcmd: socket: Permission denied</code></p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> 需要创建&lt;/etc/pdsh/rcmd_default&gt;，并在其中写入<code>ssh</code>
+sudo echo ssh &gt;</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Hive启动时报错：<code>Exception in thread &quot;main&quot; java.lang.NoSuchMethodError: com.google.common.base.Preconditions.checkArgument</code></p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> 因为guava.jar包在hadoop和hive里的版本不一致，需要用高版本覆盖低版本</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-sh" data-lang="sh">sudo mv $HIVE_HOME/lib/guava-19.0.jar $HIVE_HOME/lib/guava_bk-19.0.jar 
+sudo cp $HADOOP_HOME/share/hadoop/common/lib/guava-27.0-jre.jar $HIVE_HOME/lib/
+</code></pre></div><ul>
+<li>
+<p><input disabled="" type="checkbox"> Hive初始化metastore时报错：<code>Error: FUNCTION 'NUCLEUS_ASCII' already exists. (state=X0Y68,code=30000)</code></p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> 因为metastore_db文件夹已经存在了，删除主目录下的<strong>metastore_db</strong>文件夹</p>
+</li>
+<li>
+<p><input disabled="" type="checkbox"> Hive修改、删除数据时报错：<code>hive Attempt to do update or delete using transaction manager that does not support these operations</code></p>
+</li>
+<li>
+<p><input checked="" disabled="" type="checkbox"> 因为使用的事务管理器不支持这些操作，需要将<code>hive.txn.manager</code>设置为<code>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager</code>。可以在<code>$HIVE_HOME/conf/hive-site.xml</code>文件中加入以下设置，然后重新进入Hive</p>
+</li>
+</ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;property&gt;</span>
+    <span style="color:#75715e">&lt;!-- 配置Hive事务 --&gt;</span>
+    <span style="color:#f92672">&lt;name&gt;</span>hive.txn.manager<span style="color:#f92672">&lt;/name&gt;</span>
+    <span style="color:#f92672">&lt;value&gt;</span>org.apache.hadoop.hive.ql.lockmgr.DbTxnManager<span style="color:#f92672">&lt;/value&gt;</span>
+<span style="color:#f92672">&lt;/property&gt;</span>
+</code></pre></div><section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p><a href="http://hadoop.apache.org">http://hadoop.apache.org</a> <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:2" role="doc-endnote">
+<p><a href="http://hive.apache.org">http://hive.apache.org</a> <a href="#fnref:2" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+<li id="fn:3" role="doc-endnote">
+<p><a href="http://db.apache.org/derby/">http://db.apache.org/derby/</a> <a href="#fnref:3" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Hive 安装与部署',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/01/css-%E9%80%89%E6%8B%A9%E5%99%A8/" data-tooltip="CSS 选择器">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据定义语句梳理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2020/01/css-%E9%80%89%E6%8B%A9%E5%99%A8/" data-tooltip="CSS 选择器">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据定义语句梳理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive-%25E5%25AE%2589%25E8%25A3%2585%25E4%25B8%258E%25E9%2583%25A8%25E7%25BD%25B2%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive-%25E5%25AE%2589%25E8%25A3%2585%25E4%25B8%258E%25E9%2583%25A8%25E7%25BD%25B2%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

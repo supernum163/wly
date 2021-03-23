@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言编程篇——调用外部函数">
 <meta property="og:description" content="在R语言中调用C/C&#43;&#43;、java、python等计算机语言、运行操作系统命令行命令，可以极大的扩展R语言的功能。这篇文章我们将介绍R语言中如何调用外部函数。">
@@ -51,19 +51,23 @@
 
     <title>R语言编程篇——调用外部函数</title>
 
-    <link rel="canonical" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bc%96%e7%a8%8b">编程</a>
+      <a class="category-link" href="/categories/%e7%bc%96%e7%a8%8b">编程</a>
     
   
 
@@ -258,136 +262,77 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>在R语言中调用<strong>C/C++、java、python</strong>等计算机语言、运行操作系统命令行命令，可以极大的扩展R语言的功能。这篇文章我们将介绍R语言中如何<strong>调用外部函数</strong>。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-r语言系统内部函数">1、R语言系统内部函数</a></li>
-<li><a href="#2-调用用户编写的c-c-程序">2、调用用户编写的C/C++程序</a>
-<ul>
-<li><a href="#2-1-编写c-c-程序">2.1、编写C/C++程序</a></li>
-<li><a href="#2-2-管理动态链接库">2.2、管理动态链接库</a></li>
-<li><a href="#2-3-在r语言中调用c-c-程序">2.3、在R语言中调用C/C++程序</a></li>
-<li><a href="#2-4-使用第三方程序包调用c-c-程序">2.4、使用第三方程序包调用C/C++程序</a></li>
-</ul></li>
-<li><a href="#3-调用操作系统命令行命令">3、调用操作系统命令行命令</a></li>
-<li><a href="#4-调用其它计算机语言">4、调用其它计算机语言</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<h2 id="1-r语言系统内部函数">1、R语言系统内部函数</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1r语言系统内部函数">1、R语言系统内部函数</h2>
 <p>R语言的底层函数绝大部分都是由C语言实现的，用户调用这些底层函数时，这些函数会使用<span class="highlight-text primary">.Primitive、.Internal</span>函数，调用系统内部函数来实现特定的功能。</p>
-
-<p>使用<strong>.Primitive</strong>调用的内部函数，可以直接与C语言对接，使用形式类似<code>.Primitive(name)(args)</code>。这种形式可以直接通过<strong>name</strong>调用C语言中的某个函数，所以运行速度更快。R语言中的操作符、基础数学运算函数、流程控制类函数等，为了提高运行效率，都是以<strong>.Primitive</strong>直接调用内部函数的方式存在的，比如函数<strong>abs</strong>相当于<code>.Primitive(&quot;abs&quot;)</code>。但是这类函数没有函数体、参数列表、定义环境，所以不遵守R语言中的参数查找、函数分发等机制（参考 <a href="../../2019/07/r语言编程篇面向函数的编程">这里</a>），只适合简单明确的传参形式。这类函数的数据类型大多为<strong>builtin</strong>，但其中一些函数会将未执行的命令作为参数传递给内部函数，所以数据类型为<strong>special</strong>，比如操作符<strong>&amp;&amp;</strong>在内部函数中才会决定是否计算第二个参数。</p>
-
-<p>使用<strong>.Internal</strong>调用的内部函数，参数可以被R语言处理后，再与C语言对接，使用形式类似<code>.Internal(call)</code>。以这种方式作为函数体（或函数体中的一条语句）的函数，本质上与普通函数无异。但需要注意的是，<strong>.Internal</strong>也是用<strong>.Primitive</strong>函数实现的，相当于<code>.Primitive(&quot;.Internal&quot;)</code>。</p>
-
-<pre><code class="language-R">&gt; .Primitive(&quot;+&quot;)(1:10, -1)
- [1] 0 1 2 3 4 5 6 7 8 9
-&gt; .Internal(strtoi(&quot;13141F&quot;, base = 16L))
-[1] 1250335
-</code></pre>
-
-<p>实际上无论以何种方式调用的内部函数，都以<strong>do_</strong>作为函数名的前缀，且都只能接受4个<strong>SEXP</strong>类型的参数，其中<strong>op</strong>的作用在于，当该内部函数对应R语言中的多个函数时（比如R语言中的操作符<strong>&lt;-、&lt;&lt;-、=</strong>，都是由C语言中的<strong>do_set</strong>函数实现的），区分是哪个R语言函数调用了该内部函数；<strong>call、args、env</strong>分别为R语言中调用该内部函数时的命令、参数列表、执行环境。此外这些内部函数除非抛出异常信息，否则必须且只能返回一个<strong>SEXP</strong>类型的数据。</p>
-
-<p>R语言的底层代码中，维护了一张R语言函数与C语言函数的对照表—— <a href="https://svn.r-project.org/R/trunk/src/main/names.c">(R_FunTab</a>，其中规定了哪些函数可以使用<strong>.Primitive</strong>直接调用，哪些函数需要使用<strong>.Internal</strong>调用；特定内部函数的<strong>op</strong>值（即<strong>offset</strong>）；R语言中调用特定内部函数时的参数列表，是需要在R语言中提前执行，还是需要在内部函数中执行……</p>
-
-<p><br></p>
-
-<h2 id="2-调用用户编写的c-c-程序">2、调用用户编写的C/C++程序</h2>
-
+<p>使用**.Primitive**调用的内部函数，可以直接与C语言对接，使用形式类似<code>.Primitive(name)(args)</code>。这种形式可以直接通过**name**调用C语言中的某个函数，所以运行速度更快。R语言中的操作符、基础数学运算函数、流程控制类函数等，为了提高运行效率，都是以**.Primitive**直接调用内部函数的方式存在的，比如函数**abs**相当于<code>.Primitive(&quot;abs&quot;)</code>。但是这类函数没有函数体、参数列表、定义环境，所以不遵守R语言中的参数查找、函数分发等机制（参考 <a href="../../2019/07/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E5%87%BD%E6%95%B0%E7%9A%84%E7%BC%96%E7%A8%8B">这里</a>），只适合简单明确的传参形式。这类函数的数据类型大多为**builtin**，但其中一些函数会将未执行的命令作为参数传递给内部函数，所以数据类型为**special**，比如操作符**&amp;&amp;**在内部函数中才会决定是否计算第二个参数。</p>
+<p>使用**.Internal**调用的内部函数，参数可以被R语言处理后，再与C语言对接，使用形式类似<code>.Internal(call)</code>。以这种方式作为函数体（或函数体中的一条语句）的函数，本质上与普通函数无异。但需要注意的是，**.Internal**也是用**.Primitive**函数实现的，相当于<code>.Primitive(&quot;.Internal&quot;)</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">.Primitive</span>(<span style="color:#e6db74">&#34;+&#34;</span>)(<span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>, <span style="color:#ae81ff">-1</span>)
+ [1] <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">.Internal</span>(<span style="color:#a6e22e">strtoi</span>(<span style="color:#e6db74">&#34;13141F&#34;</span>, base <span style="color:#f92672">=</span> <span style="color:#ae81ff">16L</span>))
+[1] <span style="color:#ae81ff">1250335</span>
+</code></pre></div><p>实际上无论以何种方式调用的内部函数，都以**do_**作为函数名的前缀，且都只能接受4个**SEXP**类型的参数，其中**op**的作用在于，当该内部函数对应R语言中的多个函数时（比如R语言中的操作符**&lt;-、&laquo;-、=**，都是由C语言中的**do_set**函数实现的），区分是哪个R语言函数调用了该内部函数；**call、args、env**分别为R语言中调用该内部函数时的命令、参数列表、执行环境。此外这些内部函数除非抛出异常信息，否则必须且只能返回一个**SEXP**类型的数据。</p>
+<p>R语言的底层代码中，维护了一张R语言函数与C语言函数的对照表—— <a href="https://svn.r-project.org/R/trunk/src/main/names.c">(R_FunTab</a>，其中规定了哪些函数可以使用**.Primitive**直接调用，哪些函数需要使用**.Internal**调用；特定内部函数的**op**值（即**offset**）；R语言中调用特定内部函数时的参数列表，是需要在R语言中提前执行，还是需要在内部函数中执行……</p>
+<!-- raw HTML omitted -->
+<h2 id="2调用用户编写的cc程序">2、调用用户编写的C/C++程序</h2>
 <p>除了系统内部函数，R语言也可以调用用户编写的C/C++程序。但用户编写的C/C++程序必须满足一定的规范才可以被R语言调用，否则直接调用可能会导致R语言崩溃。R语言的标准C/C++接口，在安装目录中的<strong>include</strong>文件夹下，我们可以在R语言中使用命令<code>R.home(&quot;include&quot;)</code>找到该文件夹所在路径。</p>
-
-<p><br></p>
-
-<h3 id="2-1-编写c-c-程序">2.1、编写C/C++程序</h3>
-
-<p>我们在编写C/C++程序时，一般需要包含<strong>Rinternals.h</strong>头文件，该文件规定了R语言中的各种数据类型、数据的创建与筛选方式等。同时我们编写的函数参数与返回值必须是<strong>SEXP</strong>类型的数据（除非我们使用R语言中的<strong>.C</strong>函数作为C/C++程序的调用接口）。要在<strong>SEXP</strong>类型的数据与C语言标准类型的数据之间进行转化，我们可以使用<strong>Rinternals.h</strong>头文件中提供的标准函数。比如以下代码中，我们使用了<span class="highlight-text blue">STRING_ELT</span>函数，截取了字符串数组<strong>x</strong>中的首个元素；我们还使用了<span class="highlight-text blue">CHAR</span>函数，将<strong>CHARSXP</strong>类型的数据转化为了C语言中的字符串；此外我们还可以使用<span class="highlight-text blue">allocVector</span>函数创建一个R语言数组；使用<span class="highlight-text blue">SET_VECTOR_ELT</span>函数修改R语言数组中某个元素的值……</p>
-
-<pre><code class="language-C">#include &lt;Rinternals.h&gt;
-
-SEXP ParseEval(SEXP x){
-  const char * expr = CHAR(STRING_ELT(x, 0));
-  SEXP result = R_ParseEvalString(expr, R_GlobalEnv);
-  return result;
+<!-- raw HTML omitted -->
+<h3 id="21编写cc程序">2.1、编写C/C++程序</h3>
+<p>我们在编写C/C++程序时，一般需要包含<strong>Rinternals.h</strong>头文件，该文件规定了R语言中的各种数据类型、数据的创建与筛选方式等。同时我们编写的函数参数与返回值必须是<strong>SEXP</strong>类型的数据（除非我们使用R语言中的**.C**函数作为C/C++程序的调用接口）。要在**SEXP**类型的数据与C语言标准类型的数据之间进行转化，我们可以使用**Rinternals.h**头文件中提供的标准函数。比如以下代码中，我们使用了<span class="highlight-text blue">STRING_ELT</span>函数，截取了字符串数组**x**中的首个元素；我们还使用了<span class="highlight-text blue">CHAR</span>函数，将**CHARSXP**类型的数据转化为了C语言中的字符串；此外我们还可以使用<span class="highlight-text blue">allocVector</span>函数创建一个R语言数组；使用<span class="highlight-text blue">SET_VECTOR_ELT</span>函数修改R语言数组中某个元素的值……</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-C" data-lang="C"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;Rinternals.h&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e"></span>
+SEXP <span style="color:#a6e22e">ParseEval</span>(SEXP x){
+  <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span> expr <span style="color:#f92672">=</span> CHAR(STRING_ELT(x, <span style="color:#ae81ff">0</span>));
+  SEXP result <span style="color:#f92672">=</span> R_ParseEvalString(expr, R_GlobalEnv);
+  <span style="color:#66d9ef">return</span> result;
 };
-</code></pre>
-
-<p><br></p>
-
-<h3 id="2-2-管理动态链接库">2.2、管理动态链接库</h3>
-
-<p>接下来我们需要将编写好的C/C++程序保存在一个文件中（比如<strong>ParseEval.c</strong>），并在操作系统的命令行下，使用以下命令编译生成动态链接库。注意这里我的标准接口头文件存放在<strong>/usr/share/R/include/</strong>中。当然我们也可以使用R语言系统编译动态链接库的方法——<strong>SHLIB</strong>，但这种方法会将汇编过程与链接过程分开执行。</p>
-
-<pre><code class="language-bash"># 使用gcc编译生成动态链接库
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="22管理动态链接库">2.2、管理动态链接库</h3>
+<p>接下来我们需要将编写好的C/C++程序保存在一个文件中（比如<strong>ParseEval.c</strong>），并在操作系统的命令行下，使用以下命令编译生成动态链接库。注意这里我的标准接口头文件存放在**/usr/share/R/include/**中。当然我们也可以使用R语言系统编译动态链接库的方法——**SHLIB**，但这种方法会将汇编过程与链接过程分开执行。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-bash" data-lang="bash"><span style="color:#75715e"># 使用gcc编译生成动态链接库</span>
 gcc -o ParseEval.so ParseEval.c -I . -I /usr/share/R/include/ -shared -fpic
-# 使用SHLIB编译生成动态链接库
+<span style="color:#75715e"># 使用SHLIB编译生成动态链接库</span>
 R CMD SHLIB -o ParseEval.so ParseEval.c
-</code></pre>
-
-<p>接下来我们需要在R语言中载入、管理编译好的动态链接库文件。我们可以分别使用<span class="highlight-text primary">dyn.load、dyn.unload</span>函数，载入、脱载动态链接库；使用<span class="highlight-text primary">getLoadedDLLs</span>函数查看所有已被载入的动态链接库；使用<span class="highlight-text primary">is.loaded</span>函数查看动态链接库中的某个函数是否已被载入。</p>
-
-<p><br></p>
-
-<h3 id="2-3-在r语言中调用c-c-程序">2.3、在R语言中调用C/C++程序</h3>
-
-<p>理论上，R语言中载入动态链接库后，就可以直接使用<span class="highlight-text primary">.C、.Call、.External</span>等函数，调用动态链接库中的C/C++程序。以上三个函数的区别在于：<strong>.C</strong>函数会将<strong>SEXP</strong>类型的R语言参数，转化为C语言中相应类型的数据（详情请参照帮助文档中的转化对照表），且<strong>.C</strong>函数被调用后返回值即传递的参数，不能从C/C++程序中接收返回值；<strong>.Call</strong>函数会直接将接收到的参数传递给C/C++程序，并从C/C++程序接收返回值传递给R语言；<strong>.External</strong>函数会将接收到的所有参数作为一个<strong>pairlist</strong>类型的参数列表传递给C/C++程序，其它方面与<strong>.Call</strong>函数一致，所以<strong>.External</strong>函数可以适用于参数个数不确定的程序（如<strong>sum</strong>函数）。</p>
-
-<pre><code class="language-R">&gt; .Call(&quot;ParseEval&quot;, &quot;1:10 - 1&quot;)
- [1] 0 1 2 3 4 5 6 7 8 9
-</code></pre>
-
-<p>如果我们在R语言中直接调用C/C++程序，可能会存在一些问题，比如C/C++程序可能无法处理R语言中的NULL、NA、零长度数组等值，或者我们需要使用R语言的参数处理、函数分发等机制。所以我们可能需要在R语言中编写一个包裹函数，专门用于处理这类不确定因素，并把处理好的参数传递给C/C++程序。</p>
-
-<pre><code class="language-R">&gt; ParseEval &lt;- function(x){
-+   if(!is.character(x) || length(x) == 0)
-+     stop(&quot;'x'必须是字符串&quot;)
-+ 
-+   x &lt;- paste(x, collapse = &quot;;&quot;)
-+     .Call(&quot;ParseEval&quot;, x)
-+ }
-</code></pre>
-
-<p><br></p>
-
-<h3 id="2-4-使用第三方程序包调用c-c-程序">2.4、使用第三方程序包调用C/C++程序</h3>
-
+</code></pre></div><p>接下来我们需要在R语言中载入、管理编译好的动态链接库文件。我们可以分别使用<span class="highlight-text primary">dyn.load、dyn.unload</span>函数，载入、脱载动态链接库；使用<span class="highlight-text primary">getLoadedDLLs</span>函数查看所有已被载入的动态链接库；使用<span class="highlight-text primary">is.loaded</span>函数查看动态链接库中的某个函数是否已被载入。</p>
+<!-- raw HTML omitted -->
+<h3 id="23在r语言中调用cc程序">2.3、在R语言中调用C/C++程序</h3>
+<p>理论上，R语言中载入动态链接库后，就可以直接使用<span class="highlight-text primary">.C、.Call、.External</span>等函数，调用动态链接库中的C/C++程序。以上三个函数的区别在于：<strong>.C</strong>函数会将<strong>SEXP</strong>类型的R语言参数，转化为C语言中相应类型的数据（详情请参照帮助文档中的转化对照表），且**.C**函数被调用后返回值即传递的参数，不能从C/C++程序中接收返回值；**.Call**函数会直接将接收到的参数传递给C/C++程序，并从C/C++程序接收返回值传递给R语言；**.External**函数会将接收到的所有参数作为一个**pairlist**类型的参数列表传递给C/C++程序，其它方面与**.Call**函数一致，所以**.External**函数可以适用于参数个数不确定的程序（如**sum**函数）。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">.Call</span>(<span style="color:#e6db74">&#34;ParseEval&#34;</span>, <span style="color:#e6db74">&#34;1:10 - 1&#34;</span>)
+ [1] <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span>
+</code></pre></div><p>如果我们在R语言中直接调用C/C++程序，可能会存在一些问题，比如C/C++程序可能无法处理R语言中的NULL、NA、零长度数组等值，或者我们需要使用R语言的参数处理、函数分发等机制。所以我们可能需要在R语言中编写一个包裹函数，专门用于处理这类不确定因素，并把处理好的参数传递给C/C++程序。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> ParseEval <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(x){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">if</span>(<span style="color:#f92672">!</span><span style="color:#a6e22e">is.character</span>(x) <span style="color:#f92672">||</span> <span style="color:#a6e22e">length</span>(x) <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>)
+<span style="color:#f92672">+</span>     <span style="color:#a6e22e">stop</span>(<span style="color:#e6db74">&#34;&#39;x&#39;必须是字符串&#34;</span>)
+<span style="color:#f92672">+</span> 
+<span style="color:#f92672">+</span>   x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">paste</span>(x, collapse <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;;&#34;</span>)
+<span style="color:#f92672">+</span>     <span style="color:#a6e22e">.Call</span>(<span style="color:#e6db74">&#34;ParseEval&#34;</span>, x)
+<span style="color:#f92672">+</span> }
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="24使用第三方程序包调用cc程序">2.4、使用第三方程序包调用C/C++程序</h3>
 <p>通过上述步骤，我们已经可以在R语言中调用C/C++程序了，但以上步骤还可以更加精简。我们可以使用<span class="highlight-text purple">inline</span>程序包中的<span class="highlight-text primary">cfunction、cxxfunction</span>函数，只需写明C/C++程序的参数类型及函数体，即可直接由C/C++程序实现的R语言函数，编译、载入动态链接库、编写包裹函数等过程都可以交由<strong>inline</strong>程序包完成。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(inline, quietly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
 
-<pre><code class="language-R">&gt; library(inline, quietly = TRUE)
+<span style="color:#f92672">&gt;</span> ParseEval <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">cfunction</span>(
+<span style="color:#f92672">+</span>   sig <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;character&#34;</span>),
+<span style="color:#f92672">+</span>   body <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">+     const char * expr = CHAR(STRING_ELT(x, 0));
+</span><span style="color:#e6db74">+     SEXP result = R_ParseEvalString(expr, R_GlobalEnv);
+</span><span style="color:#e6db74">+     return result;
+</span><span style="color:#e6db74">+   &#34;</span>
+<span style="color:#f92672">+</span> )
+</code></pre></div><p>同样的，我们也可以使用<span class="highlight-text purple">Rcpp</span>程序包中的<span class="highlight-text primary">cppFunction</span>函数，以更加便捷的方式在R语言中调用C++程序，<strong>Rcpp</strong>程序包可以自动对参数及返回值的数据类型进行转化，并且直接生成与C++程序同名的R语言函数，所以只需要我们专注于C++程序的编写。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">library</span>(Rcpp, quietly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
 
-&gt; ParseEval &lt;- cfunction(
-+   sig = c(x = &quot;character&quot;),
-+   body = &quot;
-+     const char * expr = CHAR(STRING_ELT(x, 0));
-+     SEXP result = R_ParseEvalString(expr, R_GlobalEnv);
-+     return result;
-+   &quot;
-+ )
-</code></pre>
-
-<p>同样的，我们也可以使用<span class="highlight-text purple">Rcpp</span>程序包中的<span class="highlight-text primary">cppFunction</span>函数，以更加便捷的方式在R语言中调用C++程序，<strong>Rcpp</strong>程序包可以自动对参数及返回值的数据类型进行转化，并且直接生成与C++程序同名的R语言函数，所以只需要我们专注于C++程序的编写。</p>
-
-<pre><code class="language-R">&gt; library(Rcpp, quietly = TRUE)
-
-&gt; cppFunction(
-+     code = &quot;
-+     SEXP ParseEval(const char * expr){
-+       return R_ParseEvalString(expr, R_GlobalEnv);
-+     }
-+   &quot;
-+ )
-</code></pre>
-
-<p><br></p>
-
-<h2 id="3-调用操作系统命令行命令">3、调用操作系统命令行命令</h2>
-
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cppFunction</span>(
+<span style="color:#f92672">+</span>     code <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;
+</span><span style="color:#e6db74">+     SEXP ParseEval(const char * expr){
+</span><span style="color:#e6db74">+       return R_ParseEvalString(expr, R_GlobalEnv);
+</span><span style="color:#e6db74">+     }
+</span><span style="color:#e6db74">+   &#34;</span>
+<span style="color:#f92672">+</span> )
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="3调用操作系统命令行命令">3、调用操作系统命令行命令</h2>
 <p>我们可以在R语言中使用<span class="highlight-text primary">system、system2</span>函数，调用操作系统命令行中的命令。这两个函数都可以重定向操作系统命令行的标准输入、标准输出、错误输出流，并决定是否在R语言后台调用这些命令，但它们的参数设置略有不同。以下是<strong>system2</strong>函数的部分参数释义：</p>
-
 <p><strong>command</strong>参数即需要被调用的操作系统命令行命令
 <strong>args</strong>参数即需要传递给命令的参数
 <strong>stdout、stderr</strong>参数即操作系统命令行标准输出与错误输出的输出位置，默认输出到R语言命令行，<strong>NULL</strong>或<strong>FALSE</strong>表示舍弃这些输出内容，<strong>TRUE</strong>表示将这些输出内容存放到R语言中的字符串数组对象中，当然也可以是一个路径，表示输出到到特定文件中
@@ -396,28 +341,21 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
 <strong>env</strong>参数即需要提前设置的操作系统环境变量，需要以<code>name=value</code>形式的字符串数组提供
 <strong>wait</strong>参数即R语言是否应该等待命令完成，当需要接收命令的输出内容时，必须等待命令完成
 <strong>timeout</strong>参数即命令完成的时限（秒），如果命令超出这个时限仍未完成，则会终止命令并抛出超时错误</p>
-
 <p>使用<strong>system、system2</strong>函数，我们不仅可以运行操作系统命令（如<strong>ls、cd</strong>等），还可以调用其它脚本语言（如<strong>python、R</strong>等），但这种调用方式并不能直接将命令返回值转化为相应的R语言对象，而且直接将输出结果转化为字符串，往往会破坏输出结果的数据结构。所以这种方式更适合调用操作系统命令行，完成一些不需要用到返回值的操作，比如编译C/C++脚本、后台运行某项任务等。当然我们也可以借助字符串类型的数据交换格式，在操作系统命令行与R语言命令行之间传递数据。比如我们可以将输出结果转化为json字符串，然后在R语言中解析json字符串，即可将输出结果转化为相应的R语言对象。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 调用操作系统命令行下的R语言</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">system</span>(<span style="color:#e6db74">&#34;R --slave -e &#39;1:10 - 1&#39;&#34;</span>, intern <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+[1] <span style="color:#e6db74">&#34; [1] 0 1 2 3 4 5 6 7 8 9&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">system2</span>(<span style="color:#e6db74">&#34;R&#34;</span>, <span style="color:#e6db74">&#34;--slave -e &#39;1:10 - 1&#39;&#34;</span>, stdout <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+[1] <span style="color:#e6db74">&#34; [1] 0 1 2 3 4 5 6 7 8 9&#34;</span>
 
-<pre><code class="language-R"># 调用操作系统命令行下的R语言
-&gt; system(&quot;R --slave -e '1:10 - 1'&quot;, intern = TRUE)
-[1] &quot; [1] 0 1 2 3 4 5 6 7 8 9&quot;
-&gt; system2(&quot;R&quot;, &quot;--slave -e '1:10 - 1'&quot;, stdout = TRUE)
-[1] &quot; [1] 0 1 2 3 4 5 6 7 8 9&quot;
-
-# 使用json字符串传递高级数据类型的数据
-&gt; result &lt;- system2(&quot;R&quot;, &quot;--slave&quot;, stdout = TRUE, 
-+                   input = c(&quot;res &lt;- 1:10 - 1&quot;, &quot;cat(rjson::toJSON(res))&quot;))
-&gt; rjson::fromJSON(result)
- [1] 0 1 2 3 4 5 6 7 8 9
-</code></pre>
-
-<p><br></p>
-
-<h2 id="4-调用其它计算机语言">4、调用其它计算机语言</h2>
-
+<span style="color:#75715e"># 使用json字符串传递高级数据类型的数据</span>
+<span style="color:#f92672">&gt;</span> result <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">system2</span>(<span style="color:#e6db74">&#34;R&#34;</span>, <span style="color:#e6db74">&#34;--slave&#34;</span>, stdout <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, 
+<span style="color:#f92672">+</span>                   input <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;res &lt;- 1:10 - 1&#34;</span>, <span style="color:#e6db74">&#34;cat(rjson::toJSON(res))&#34;</span>))
+<span style="color:#f92672">&gt;</span> rjson<span style="color:#f92672">::</span><span style="color:#a6e22e">fromJSON</span>(result)
+ [1] <span style="color:#ae81ff">0</span> <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span> <span style="color:#ae81ff">3</span> <span style="color:#ae81ff">4</span> <span style="color:#ae81ff">5</span> <span style="color:#ae81ff">6</span> <span style="color:#ae81ff">7</span> <span style="color:#ae81ff">8</span> <span style="color:#ae81ff">9</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="4调用其它计算机语言">4、调用其它计算机语言</h2>
 <p>上文我们已经介绍了如何在R语言中通过操作系统命令行调用其它计算机语言，但这种方法必须使用操作系统标注输出，才能将其它计算机语言的计算结果（返回值）传递给R语言。当然我们也可以使用第三方程序包，直接在R语言中调用特定的计算机语言,比如我们可以使用<span class="highlight-text purple">rJava</span>程序包，在R与java之间进行数据传递、方法调用。更多关于<strong>rava</strong>的使用帮助，请参考 <a href="http://www.rforge.net/rJava/">这里</a>。</p>
-
 <pre><code>&gt; library(rJava)
 
 # 启动JVM
@@ -447,78 +385,72 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
 # 调用字符串对象s的indexOf方法
 &gt; s$indexOf(&quot;World&quot;)
 [1] 6
-</code></pre>
+</code></pre><p>并非所有桥接计算机语言的程序包都能实现两种计算机语言之间数据无缝对接，比如<span class="highlight-text purple">rPython</span>程序包就是通过json字符串的形式，在R与pthon之间传递数据的。以下代码展示了<strong>rPython</strong>在R语言中调用python的基本原理（linux操作系统下调用python2.7），当然<strong>rPython</strong>中加入了错误处理、跨版本兼容等机制，所以真正实现起来会更加复杂。更多关于python的C/C++接口规范，请参考 <a href="https://docs.python.org/zh-cn/2.7/c-api/">这里</a>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> WD <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">tempdir</span>()
+<span style="color:#f92672">&gt;</span> rPython.c <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">file.path</span>(WD, <span style="color:#e6db74">&#34;rPython.c&#34;</span>)
+<span style="color:#f92672">&gt;</span> rPython.o <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">file.path</span>(WD, <span style="color:#e6db74">&#34;rPython.o&#34;</span>)
+<span style="color:#f92672">&gt;</span> rPython.so <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">file.path</span>(WD, <span style="color:#e6db74">&#34;rPython.so&#34;</span>)
 
-<p>并非所有桥接计算机语言的程序包都能实现两种计算机语言之间数据无缝对接，比如<span class="highlight-text purple">rPython</span>程序包就是通过json字符串的形式，在R与pthon之间传递数据的。以下代码展示了<strong>rPython</strong>在R语言中调用python的基本原理（linux操作系统下调用python2.7），当然<strong>rPython</strong>中加入了错误处理、跨版本兼容等机制，所以真正实现起来会更加复杂。更多关于python的C/C++接口规范，请参考 <a href="https://docs.python.org/zh-cn/2.7/c-api/">这里</a>。</p>
+<span style="color:#75715e"># 编写调用python的C语言程序</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">writeLines</span>(con <span style="color:#f92672">=</span> rPython.c, text <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;
+</span><span style="color:#e6db74">+ #include &lt;Python.h&gt;
+</span><span style="color:#e6db74">+ 
+</span><span style="color:#e6db74">+ void python_init(){
+</span><span style="color:#e6db74">+     Py_Initialize();
+</span><span style="color:#e6db74">+     PyRun_SimpleString(&#34;import json&#34;);
+</span><span style="color:#e6db74">+ }
+</span><span style="color:#e6db74">+ void python_stop(){
+</span><span style="color:#e6db74">+     Py_Finalize();
+</span><span style="color:#e6db74">+ }
+</span><span style="color:#e6db74">+ void python_exec(char** code)
+</span><span style="color:#e6db74">+ {
+</span><span style="color:#e6db74">+   PyRun_SimpleString(*code);
+</span><span style="color:#e6db74">+ }
+</span><span style="color:#e6db74">+ void python_get( const char** name, char** value )
+</span><span style="color:#e6db74">+ {
+</span><span style="color:#e6db74">+     PyObject * module     = PyImport_AddModule(&#34;__main__&#34;);
+</span><span style="color:#e6db74">+     PyObject * dictionary = PyModule_GetDict(module);
+</span><span style="color:#e6db74">+     PyObject * result     = PyDict_GetItemString(dictionary, *name );
+</span><span style="color:#e6db74">+     *value = PyString_AS_STRING(result);
+</span><span style="color:#e6db74">+ }
+</span><span style="color:#e6db74">+ &#39;</span>)
 
-<pre><code class="language-R">&gt; WD &lt;- tempdir()
-&gt; rPython.c &lt;- file.path(WD, &quot;rPython.c&quot;)
-&gt; rPython.o &lt;- file.path(WD, &quot;rPython.o&quot;)
-&gt; rPython.so &lt;- file.path(WD, &quot;rPython.so&quot;)
-
-# 编写调用python的C语言程序
-&gt; writeLines(con = rPython.c, text = '
-+ #include &lt;Python.h&gt;
-+ 
-+ void python_init(){
-+     Py_Initialize();
-+     PyRun_SimpleString(&quot;import json&quot;);
-+ }
-+ void python_stop(){
-+     Py_Finalize();
-+ }
-+ void python_exec(char** code)
-+ {
-+   PyRun_SimpleString(*code);
-+ }
-+ void python_get( const char** name, char** value )
-+ {
-+     PyObject * module     = PyImport_AddModule(&quot;__main__&quot;);
-+     PyObject * dictionary = PyModule_GetDict(module);
-+     PyObject * result     = PyDict_GetItemString(dictionary, *name );
-+     *value = PyString_AS_STRING(result);
-+ }
-+ ')
-
-# 生成rPython动态链接库
-&gt; system2(&quot;gcc&quot;, paste(&quot; -c&quot;, rPython.c, &quot; -o&quot;, rPython.o,
-+       system2(&quot;python-config&quot;, &quot;--includes&quot;, stdout = TRUE)))
-&gt; system2(&quot;gcc&quot;, paste(&quot;-shared&quot;, rPython.o, &quot; -o&quot;, rPython.so,
-+       system2(&quot;python-config&quot;, &quot;--ldflags&quot;, stdout = TRUE)))
+<span style="color:#75715e"># 生成rPython动态链接库</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">system2</span>(<span style="color:#e6db74">&#34;gcc&#34;</span>, <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34; -c&#34;</span>, rPython.c, <span style="color:#e6db74">&#34; -o&#34;</span>, rPython.o,
+<span style="color:#f92672">+</span>       <span style="color:#a6e22e">system2</span>(<span style="color:#e6db74">&#34;python-config&#34;</span>, <span style="color:#e6db74">&#34;--includes&#34;</span>, stdout <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)))
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">system2</span>(<span style="color:#e6db74">&#34;gcc&#34;</span>, <span style="color:#a6e22e">paste</span>(<span style="color:#e6db74">&#34;-shared&#34;</span>, rPython.o, <span style="color:#e6db74">&#34; -o&#34;</span>, rPython.so,
+<span style="color:#f92672">+</span>       <span style="color:#a6e22e">system2</span>(<span style="color:#e6db74">&#34;python-config&#34;</span>, <span style="color:#e6db74">&#34;--ldflags&#34;</span>, stdout <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)))
       
-# 载入rPython动态链接库
-&gt; dyn.load(rPython.so)
+<span style="color:#75715e"># 载入rPython动态链接库</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">dyn.load</span>(rPython.so)
 
-# 在R语言中编写包裹函数
-&gt; python_init &lt;- function(){
-+   .C(&quot;python_init&quot;)
-+   invisible(NULL)
-+ }
-&gt; python_stop &lt;- function(){
-+   .C(&quot;python_stop&quot;)
-+   invisible(NULL)
-+ }
-&gt; python_exec &lt;- function(code){
-+   .C(&quot;python_exec&quot;, code) 
-+   invisible(NULL)
-+ }
-&gt; python_get &lt;- function(name){
-+   code &lt;- paste( &quot;value_json = json.dumps( [&quot;, name, &quot;] )&quot;)
-+   .C(&quot;python_exec&quot;, code) 
-+   value &lt;- .C(&quot;python_get&quot;, &quot;value_json&quot;, value = &quot;&quot;)$value 
-+   rjson::fromJSON(value)
-+ }
+<span style="color:#75715e"># 在R语言中编写包裹函数</span>
+<span style="color:#f92672">&gt;</span> python_init <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">.C</span>(<span style="color:#e6db74">&#34;python_init&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">invisible</span>(<span style="color:#66d9ef">NULL</span>)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> python_stop <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">.C</span>(<span style="color:#e6db74">&#34;python_stop&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">invisible</span>(<span style="color:#66d9ef">NULL</span>)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> python_exec <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(code){
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">.C</span>(<span style="color:#e6db74">&#34;python_exec&#34;</span>, code) 
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">invisible</span>(<span style="color:#66d9ef">NULL</span>)
+<span style="color:#f92672">+</span> }
+<span style="color:#f92672">&gt;</span> python_get <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(name){
+<span style="color:#f92672">+</span>   code <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">paste</span>( <span style="color:#e6db74">&#34;value_json = json.dumps( [&#34;</span>, name, <span style="color:#e6db74">&#34;] )&#34;</span>)
+<span style="color:#f92672">+</span>   <span style="color:#a6e22e">.C</span>(<span style="color:#e6db74">&#34;python_exec&#34;</span>, code) 
+<span style="color:#f92672">+</span>   value <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">.C</span>(<span style="color:#e6db74">&#34;python_get&#34;</span>, <span style="color:#e6db74">&#34;value_json&#34;</span>, value <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)<span style="color:#f92672">$</span>value 
+<span style="color:#f92672">+</span>   rjson<span style="color:#f92672">::</span><span style="color:#a6e22e">fromJSON</span>(value)
+<span style="color:#f92672">+</span> }
 
-# 在R语言中调用python
-&gt; python_init()
-&gt; python_exec(&quot; abc = 'Hello World!' &quot;)
-&gt; python_get(&quot;abc&quot;)
-[1] &quot;Hello World!&quot;
-&gt; python_stop()
-</code></pre>
-
-<p><br></p>
-
+<span style="color:#75715e"># 在R语言中调用python</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">python_init</span>()
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">python_exec</span>(<span style="color:#e6db74">&#34; abc = &#39;Hello World!&#39; &#34;</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">python_get</span>(<span style="color:#e6db74">&#34;abc&#34;</span>)
+[1] <span style="color:#e6db74">&#34;Hello World!&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">python_stop</span>()
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -533,11 +465,9 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
 <li>如何使用R语言系统函数实现<strong>inline</strong>程序包中的<strong>cfunction</strong>函数？</li>
 <li>如何在其它计算机语言中调用R语言？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -549,7 +479,7 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
 
                   </div>
                 
@@ -557,8 +487,8 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言编程篇——调用外部函数',
@@ -579,7 +509,7 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -587,7 +517,7 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -605,13 +535,13 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -642,7 +572,7 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -656,7 +586,7 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/app%E8%BF%90%E8%90%A5%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" data-tooltip="APP运营数据分析">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -664,7 +594,7 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -682,13 +612,13 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E8%B0%83%E7%94%A8%E5%A4%96%E9%83%A8%E5%87%BD%E6%95%B0/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -722,13 +652,13 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E8%25B0%2583%25E7%2594%25A8%25E5%25A4%2596%25E9%2583%25A8%25E5%2587%25BD%25E6%2595%25B0%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E8%25B0%2583%25E7%2594%25A8%25E5%25A4%2596%25E9%2583%25A8%25E5%2587%25BD%25E6%2595%25B0%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E8%25B0%2583%25E7%2594%25A8%25E5%25A4%2596%25E9%2583%25A8%25E5%2587%25BD%25E6%2595%25B0%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F10%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E7%25BC%2596%25E7%25A8%258B%25E7%25AF%2587%25E8%25B0%2583%25E7%2594%25A8%25E5%25A4%2596%25E9%2583%25A8%25E5%2587%25BD%25E6%2595%25B0%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -783,12 +713,12 @@ R CMD SHLIB -o ParseEval.so ParseEval.c
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -865,7 +795,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

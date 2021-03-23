@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言中的基础绘图方式介绍">
 <meta property="og:description" content="一图胜千言，作为一门专注于数据统计的计算机语言，必须拥有强大的数据可视化能力。这篇文章我们将介绍R语言本身最基础的绘图函数及绘图方式。">
@@ -51,19 +51,23 @@
 
     <title>R语言中的基础绘图方式介绍</title>
 
-    <link rel="canonical" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bb%98%e5%9b%be">绘图</a>
+      <a class="category-link" href="/categories/%e7%bb%98%e5%9b%be">绘图</a>
     
   
 
@@ -258,50 +262,36 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>一图胜千言，作为一门专注于数据统计的计算机语言，必须拥有强大的数据可视化能力。这篇文章我们将介绍R语言本身最基础的绘图函数及绘图方式。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-默认绘图参数">1、默认绘图参数</a></li>
-<li><a href="#2-高等绘图函数">2、高等绘图函数</a></li>
-<li><a href="#3-底层绘图函数">3、底层绘图函数</a></li>
-</ul></li>
-</ul>
-</nav>
-
+<!-- raw HTML omitted -->
 <p>R语言中的<span class="highlight-text primary">plot</span>函数拥有强大的绘图能力，一般只需要一行代码即可展示出可视化结果。但对于图像中细节（颜色分配、图例设置等）的控制，往往需要耗费我们大量的精力。R语言中有大量函数、参数可以帮助我们设置图像细节，然而，要做到对图像细节的精准控制，首先需要我们了解一幅统计类图像中包含哪些可调节的细节：</p>
-
-<pre><code class="language-R">op &lt;- par(no.readonly = TRUE)
-# 绘制主图框架
-par(oma = rep(1, 4), mar = c(5, 4, 4, 0) + 0.1, fig = c(0, 0.8, 0, 1))
-plot(x = iris$Petal.Length, y = iris$Petal.Width, type = &quot;n&quot;,
-     main = &quot;鸢尾花观测数据&quot;, sub = &quot;不同亚种鸢尾花花瓣长度与宽度统计&quot;, 
-     xlab = &quot;花瓣长度&quot;, ylab = &quot;花瓣宽度&quot;)
-# 计算组别
-groups &lt;- unique(iris$Species)
-cols &lt;- rainbow(length(groups))
-# 绘制散点
-for (i in 1:length(groups)) {
-  with(subset(iris, Species == groups[i]),
-    points(Petal.Length, Petal.Width, col = cols[i])
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">op <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">par</span>(no.readonly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#75715e"># 绘制主图框架</span>
+<span style="color:#a6e22e">par</span>(oma <span style="color:#f92672">=</span> <span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">4</span>), mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">4</span>, <span style="color:#ae81ff">0</span>) <span style="color:#f92672">+</span> <span style="color:#ae81ff">0.1</span>, fig <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>))
+<span style="color:#a6e22e">plot</span>(x <span style="color:#f92672">=</span> iris<span style="color:#f92672">$</span>Petal.Length, y <span style="color:#f92672">=</span> iris<span style="color:#f92672">$</span>Petal.Width, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;n&#34;</span>,
+     main <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;鸢尾花观测数据&#34;</span>, sub <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;不同亚种鸢尾花花瓣长度与宽度统计&#34;</span>, 
+     xlab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;花瓣长度&#34;</span>, ylab <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;花瓣宽度&#34;</span>)
+<span style="color:#75715e"># 计算组别</span>
+groups <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">unique</span>(iris<span style="color:#f92672">$</span>Species)
+cols <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">rainbow</span>(<span style="color:#a6e22e">length</span>(groups))
+<span style="color:#75715e"># 绘制散点</span>
+<span style="color:#a6e22e">for </span>(i in <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#a6e22e">length</span>(groups)) {
+  <span style="color:#a6e22e">with</span>(<span style="color:#a6e22e">subset</span>(iris, Species <span style="color:#f92672">==</span> groups[i]),
+    <span style="color:#a6e22e">points</span>(Petal.Length, Petal.Width, col <span style="color:#f92672">=</span> cols[i])
   )
 }
-# 绘制设备区域、图像区域边框
-box(which = &quot;outer&quot;, col = 'red', lwd = 2)
-box(which = &quot;figure&quot;, col = 'blue')
-# 绘制图例
-par(fig = c(0.8, 1, 0, 1), mar = rep(0, 4))
-plot.window(0:1, 0:1)
-legend(0.5, 0.5, groups, pch = 1, col = cols,  title = &quot;鸢尾花亚种&quot;,
-       xpd = TRUE, yjust = 0.5, xjust = 0.5)
-# 绘制当前图像区域边框
-box(which = &quot;figure&quot;, col = 'blue')
-# 恢复默认绘图设置
-par(op)
-</code></pre>
-
-
+<span style="color:#75715e"># 绘制设备区域、图像区域边框</span>
+<span style="color:#a6e22e">box</span>(which <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;outer&#34;</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;red&#39;</span>, lwd <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#a6e22e">box</span>(which <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;figure&#34;</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;blue&#39;</span>)
+<span style="color:#75715e"># 绘制图例</span>
+<span style="color:#a6e22e">par</span>(fig <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#ae81ff">0.8</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">1</span>), mar <span style="color:#f92672">=</span> <span style="color:#a6e22e">rep</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">4</span>))
+<span style="color:#a6e22e">plot.window</span>(<span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">1</span>)
+<span style="color:#a6e22e">legend</span>(<span style="color:#ae81ff">0.5</span>, <span style="color:#ae81ff">0.5</span>, groups, pch <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, col <span style="color:#f92672">=</span> cols,  title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;鸢尾花亚种&#34;</span>,
+       xpd <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, yjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>, xjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>)
+<span style="color:#75715e"># 绘制当前图像区域边框</span>
+<span style="color:#a6e22e">box</span>(which <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;figure&#34;</span>, col <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;blue&#39;</span>)
+<span style="color:#75715e"># 恢复默认绘图设置</span>
+<span style="color:#a6e22e">par</span>(op)
+</code></pre></div>
  
   
   
@@ -343,26 +333,22 @@ par(op)
 
   <div style="clear:both;"></div>
 
-
-<p><br></p>
-
-<h2 id="1-默认绘图参数">1、默认绘图参数</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1默认绘图参数">1、默认绘图参数</h2>
 <p>在R语言中，绝大多数的控制绘图细节的参数都可以由<span class="highlight-text primary">par</span>函数获取、设置。以下是<strong>par</strong>函数的全部参数：</p>
-
 <ul>
-<li><p>边距属性</p>
-
+<li>
+<p>边距属性</p>
 <ul>
 <li><strong>oma</strong>参数，以<code>c(bottom, left, top, right)</code>的形式设置图形的下、左、上、右外边距各占多少行，默认为<code>c(0, 0, 0, 0)</code>。此外<strong>omi</strong>参数还可以使用英寸为单位设置外边距。</li>
 <li><strong>mar</strong>参数，以<code>c(bottom, left, top, right)</code>的形式设置图形的下、左、上、右边距各占多少行，默认为<code>c(5, 4, 4, 2) + 0.1</code>。此外<strong>mai</strong>参数还可以使用英寸为单位设置边距。</li>
 <li><strong>mex</strong>参数，设置边距的缩放比例，默认为1。与<strong>mar</strong>参数功能类似，但<strong>mex</strong>参数不会改变字体大小。</li>
 <li><strong>mgp</strong>参数，设置坐标轴标题、标签、刻度到主图区域的距离各有多少行（<strong>mex</strong>参数的倍数），默认为<code>c(3, 1, 0)</code>。</li>
 <li><strong>ylbias</strong>参数，设置边距区域文字距离主图区域的位置。仅用于<span class="highlight-text primary">axis、mtext</span>函数。</li>
-</ul></li>
-
-<li><p>绘图区域</p>
-
+</ul>
+</li>
+<li>
+<p>绘图区域</p>
 <ul>
 <li><strong>din</strong>参数，设备区域的大小，即宽度、高度各占多少英寸。只能被读取。</li>
 <li><strong>fig</strong>参数，设置图像区域在设备区域中的位置及相对比例，默认为<code>fig = c(0, 1, 0, 1)</code>，即占满整个设备区域。设置该参数时默认会新建一幅图像，如果需要在原图像上添加新图像，则需要设置<code>new = TRUE</code>。此外<strong>omd</strong>参数还可以通过调整外边距实现这一功能。</li>
@@ -371,31 +357,30 @@ par(op)
 <li><strong>plt</strong>参数，设置主图区域在图像区域中的位置及相对比例。</li>
 <li><strong>pin</strong>参数，设置主图区域的大小，即宽度、高度各占多少英寸。</li>
 <li><strong>pty</strong>参数，设置主图区域的类型，取值为<strong>s、m</strong>分别表示方形主图区域、最大主图区域。</li>
-</ul></li>
-
-<li><p>图像布局</p>
-
+</ul>
+</li>
+<li>
+<p>图像布局</p>
 <ul>
 <li><strong>mfcol、mfrow</strong>参数，以<code>c(nr, nc)</code>的形式设置图像布局，即一幅图像中包含多少行、列的子图像。二者作用相同，设置时应任选其一。更多高级属性需要借助<span class="highlight-text primary">layout</span>函数实现。当然我们可以借助<span class="highlight-text primary">split.screen、screen、erase.screen、close.screen</span>设置图像布局。</li>
-<li><strong>mfg</strong>参数，以<code>c(i, j)</code>的形式设置当前子图像应该绘制在图像区域的哪个窗格。使用<strong>mfcol、mfrow</strong>参数设置图像布局时，子图像默认按照从左到右、从上到下的顺序绘制，<strong>mfg</strong>参数可以改变当前图像的默认绘制位置。
-<br /></li>
-</ul></li>
-
-<li><p>坐标轴属性</p>
-
+<li><strong>mfg</strong>参数，以<code>c(i, j)</code>的形式设置当前子图像应该绘制在图像区域的哪个窗格。使用<strong>mfcol、mfrow</strong>参数设置图像布局时，子图像默认按照从左到右、从上到下的顺序绘制，<strong>mfg</strong>参数可以改变当前图像的默认绘制位置。</li>
+</ul>
+</li>
+<li>
+<p>坐标轴属性</p>
 <ul>
-<li><strong>tck</strong>参数，设置坐标轴刻度相对于图像区域的缩放比例。取值范围应该在-1至1之间，正数表示向主图区域延伸，负数表示向边距延伸，取值为1相当于绘制网格线。此外<strong>tcl</strong>参数还可以设置坐标轴刻度相对于文字行高的缩放比例，默认为<strong>-0.5</strong>。</li>
-<li><strong>usr</strong>参数，以<code>c(x1, x2, y1, y2)</code>的形式设置X、Y轴的坐标取值上下限。</li>
+<li><strong>tck</strong>参数，设置坐标轴刻度相对于图像区域的缩放比例。取值范围应该在-1至1之间，正数表示向主图区域延伸，负数表示向边距延伸，取值为1相当于绘制网格线。此外<strong>tcl</strong>参数还可以设置坐标轴刻度相对于文字行高的缩放比例，默认为**-0.5**。</li>
+<li><strong>usr</strong>参数，以<code>c(x1, x2, y1, y2) </code>的形式设置X、Y轴的坐标取值上下限。</li>
 <li><strong>las</strong>参数，设置坐标轴标签的方向，0-3分别表示与坐标轴平行、与图像水平方向平行、与坐标轴垂直，与图像水平方向垂直。</li>
 <li><strong>lab</strong>参数，以<code>c(x, y, len)</code>的形式设置X、Y坐标轴刻度数量，及坐标轴标签长度（目前尚未实现），默认为<code>c(5, 5, 7)</code>。</li>
 <li><strong>xaxp、yaxp</strong>参数，以<code>c(x1, x2, n)</code>的形式设置X、Y轴坐标轴刻度的起始位置、终止位置、以及二者之间的刻度数量。当X、Y轴以对数的形式绘制时，<strong>n</strong>的取值只能为1-3之间的整数，分别表示刻度应为<code>{1}、{1, 5}\ {1, 2, 5}</code>乘于10的指数次方。</li>
 <li><strong>xaxs、yaxs</strong>参数，根据X、Y轴的数值范围，或者<strong>xlim、ylim</strong>设定的值，决定坐标轴刻度默认计算方式。取值为<strong>r</strong>表示将数值范围扩大百分之四，再从中寻找和使得刻度；取值为<strong>i</strong>表示在数值范围内寻找合适的刻度。</li>
 <li><strong>xaxt、yaxt</strong>参数，设置X、Y轴的绘制方式。<strong>n</strong>表示不绘制，<strong>s</strong>表示绘制标准的X、Y轴。</li>
 <li><strong>xlog、ylog</strong>参数，设置是否以对数的形式绘制X、Y轴。直接设置这些值可能无效，需要以类似<code>plot(*, log = &quot;x&quot;)</code>的形式使用。</li>
-</ul></li>
-
-<li><p>文字属性</p>
-
+</ul>
+</li>
+<li>
+<p>文字属性</p>
 <ul>
 <li><strong>cin</strong>参数，图像中文字的大小，即宽度、高度各占多少英寸。此外<strong>cra</strong>参数还可以使用像素为单位获取文字大小，<strong>csi</strong>参数相当于<code>par(&quot;cin&quot;)[2]</code>。只能被读取。</li>
 <li><strong>cxy</strong>参数，图像中文字相对于主图区域的大小，即宽度、高度占的比例。只能被读取。</li>
@@ -406,29 +391,27 @@ par(op)
 <li><strong>srt</strong>参数，设置图像中文字的旋转角度，取值范围在0-360之间。仅对于<span class="highlight-text primary">text</span>函数有效。</li>
 <li><strong>adj</strong>参数，调整<span class="highlight-text primary">text、mtext、title</span>函数生成的文字在图形中的位置，取值为0表示左对齐；0.5表示居中；1表示右对齐。对于<strong>text</strong>函数，也可以使用<code>adj = c(x, y)</code>的形式，调整文字水平和垂直方向。</li>
 <li><strong>ann</strong>参数，上层函数调用<span class="highlight-text primary">plot.default</span>时，是否将其设定的标题传递给<span class="highlight-text primary">title</span>函数（决定了是否绘制这些标题）。</li>
-<li><strong>lheight</strong>参数，设置图像中每行字体的缩放比例（行高）。
-<br /></li>
-</ul></li>
-
-<li><p>散点属性</p>
-
+<li><strong>lheight</strong>参数，设置图像中每行字体的缩放比例（行高）。</li>
+</ul>
+</li>
+<li>
+<p>散点属性</p>
 <ul>
 <li><strong>pch</strong>参数，设置图像中点的形状。<strong>pch</strong>参数可以是0-126之间的整数，也可以是相应的字符。更多高级属性需要借助<span class="highlight-text primary">points</span>函数实现。</li>
-</ul></li>
-
-<li><p>线条属性</p>
-
+</ul>
+</li>
+<li>
+<p>线条属性</p>
 <ul>
 <li><strong>lwd</strong>参数，设置图像中线条的宽度，默认为1。</li>
 <li><strong>lty</strong>参数，设置图像中线条的类型，1-6分别表示<strong>blank、solid、dashed、dotted、dotdash、longdash、twodash</strong>，其中只有1为实线，其余均为虚线。此外我们也可以使用由2-8位（必须是偶数位）16进制数字组成的字符串，设置虚线的断续位置。</li>
 <li><strong>lend</strong>参数，设置图像中线条的结尾方式，0-2分别表示圆形、无类型、方形（<strong>round、butt、square</strong>）的结尾方式。</li>
 <li><strong>ljoin</strong>参数，设置图像中不同线条的连接方式，0-2分别表示圆形、冠状、斜角（<strong>round、mitre、bevel</strong>）的连接方式。</li>
-<li><strong>lmitre</strong>参数，设置图像中线条的斜接极限，两个线条十分接近时冠状的连接方式将变为斜角连接方式。取值必须大于1，默认为10。
-<br /></li>
-</ul></li>
-
-<li><p>其它参数</p>
-
+<li><strong>lmitre</strong>参数，设置图像中线条的斜接极限，两个线条十分接近时冠状的连接方式将变为斜角连接方式。取值必须大于1，默认为10。</li>
+</ul>
+</li>
+<li>
+<p>其它参数</p>
 <ul>
 <li><strong>bg</strong>参数，设备区域背景色，默认为白色。</li>
 <li><strong>fg</strong>参数，设备区域前景色，用于坐标轴及主图区域边框等，默认为黑色。</li>
@@ -441,22 +424,16 @@ par(op)
 <li><strong>smo</strong>参数，设置图像中弧线的弯曲程度。目前尚未实现。</li>
 <li><strong>err</strong>参数，当图形中的点超出主图区域时发出警告。目前尚未实现。</li>
 <li><strong>mkh</strong>参数，当<strong>pch</strong>参数取值为整数时，设置图形中点的高度应该占多少英寸。在R语言中没有任何作用。</li>
-</ul></li>
 </ul>
-
+</li>
+</ul>
 <p>在修改这些参数时我们需要格外小心，因为之后所有的图形都将根据修改后的参数绘制，除非新建一个绘图设备（参考<strong>dev.new</strong>函数）。为了避免修改了某些绘图设置之后无法还原，我们可以先将默认绘图参数保存起来，绘图结束后再恢复这些设置。</p>
-
-<pre><code class="language-R">op &lt;- par(no.readonly = TRUE)
-...
-par(op)
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-高等绘图函数">2、高等绘图函数</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R">op <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">par</span>(no.readonly <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>)
+<span style="color:#66d9ef">...</span>
+<span style="color:#a6e22e">par</span>(op)
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="2高等绘图函数">2、高等绘图函数</h2>
 <p>R语言中的高等绘图函数，指的是可以单独完成绘图任务的函数。这些函数在执行时往往需要经历以下几个步骤：</p>
-
 <ul>
 <li>首先判断有没有可用的图形化设备，如果没有则开启一个新的图形设备（参考<span class="highlight-text primary">dev.new</span>函数）。</li>
 <li>修改默认图形参数，将接收到的修改绘图细节的函数传递给<strong>par</strong>函数。</li>
@@ -464,9 +441,7 @@ par(op)
 <li>设置图形坐标系，决定坐标轴上下限（主图区域）（参考<span class="highlight-text primary">plot.window</span>函数）。</li>
 <li>将接收到的绘图参数传递给底层绘图函数，并由底层函数将图形绘制到当前图形化设备中。</li>
 </ul>
-
 <p>R语言中最常见的高等绘图函数应该是<strong>plot</strong>函数。<strong>plot</strong>函数是一个分发函数，往往只需要我们提供数据，即可找到适合该类型数据的绘图方法，并实现可视化（比如<code>plot(co2)</code>）。此外我们还可以设置<strong>plot</strong>函数的<strong>type</strong>参数来调用特定的绘图类型，注意不同绘图类型对数据的展示方式也是不同的，比如直方图只能展示一维数据，而其它绘图类型均展示二维数据，所以一些绘图方法可能没有完全实现这些绘图类型，以下是所有可用的绘图类型：</p>
-
 <table>
 <thead>
 <tr>
@@ -474,61 +449,48 @@ par(op)
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left"><strong>p</strong></td>
 <td align="left">表示散点图</td>
 </tr>
-
 <tr>
 <td align="left"><strong>l</strong></td>
 <td align="left">表示线形图</td>
 </tr>
-
 <tr>
 <td align="left"><strong>b</strong></td>
 <td align="left">表示点线图，线不穿过点</td>
 </tr>
-
 <tr>
 <td align="left"><strong>c</strong></td>
 <td align="left">表示虚线图，相当于<strong>b</strong>中的线条</td>
 </tr>
-
 <tr>
 <td align="left"><strong>o</strong></td>
 <td align="left">表示点线图，线穿过点</td>
 </tr>
-
 <tr>
 <td align="left"><strong>h</strong></td>
 <td align="left">表示直方图</td>
 </tr>
-
 <tr>
 <td align="left"><strong>s</strong></td>
 <td align="left">表示阶梯图，按先水平再垂直的方向绘制</td>
 </tr>
-
 <tr>
 <td align="left"><strong>S</strong></td>
 <td align="left">表示阶梯图，按先垂直再水平的方向绘制</td>
 </tr>
-
 <tr>
 <td align="left"><strong>n</strong></td>
 <td align="left">表示在主图区域不绘制任何内容</td>
 </tr>
 </tbody>
 </table>
-
-<p><br></p>
-
-<h2 id="3-底层绘图函数">3、底层绘图函数</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="3底层绘图函数">3、底层绘图函数</h2>
 <p>R语言中的底层绘图函数，指的是必须依赖高等绘图函数建立的图形坐标系，才能绘图（决定图形在图像中的位置）的函数。底层绘图函数只能在当前绘图设备中添加图形，因此可以允许我们在一幅统计图中展示更丰富的信息。以下是R语言中的部分绘图函数及其功能：</p>
-
 <table>
 <thead>
 <tr>
@@ -536,106 +498,84 @@ par(op)
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">title</td>
 <td align="left">添加标题、副标题、坐标轴标题</td>
 </tr>
-
 <tr>
 <td align="left">mtext</td>
 <td align="left">在边距处添加文字</td>
 </tr>
-
 <tr>
 <td align="left">text</td>
 <td align="left">在图形中添加文字（图形中点的标签）</td>
 </tr>
-
 <tr>
 <td align="left">legend</td>
 <td align="left">添加图例</td>
 </tr>
-
 <tr>
 <td align="left">axis</td>
 <td align="left">添加坐标轴</td>
 </tr>
-
 <tr>
 <td align="left">rug</td>
 <td align="left">添加X轴刻度须线（图像中的每个点对应一个刻度须线）</td>
 </tr>
-
 <tr>
 <td align="left">grid</td>
 <td align="left">添加网格线</td>
 </tr>
-
 <tr>
 <td align="left">box</td>
 <td align="left">添加边框</td>
 </tr>
-
 <tr>
 <td align="left">points</td>
 <td align="left">添加散点</td>
 </tr>
-
 <tr>
 <td align="left">segments</td>
 <td align="left">添加两点之间的连接线</td>
 </tr>
-
 <tr>
 <td align="left">abline</td>
 <td align="left">添加直线（需要指定直线函数的系数）</td>
 </tr>
-
 <tr>
 <td align="left">lines</td>
 <td align="left">添加折线</td>
 </tr>
-
 <tr>
 <td align="left">curve</td>
 <td align="left">添加曲线（需要指定曲线函数）</td>
 </tr>
-
 <tr>
 <td align="left">arrows</td>
 <td align="left">添加箭头</td>
 </tr>
-
 <tr>
 <td align="left">rect</td>
 <td align="left">添加矩形</td>
 </tr>
-
 <tr>
 <td align="left">polygon</td>
 <td align="left">添加多边形</td>
 </tr>
-
 <tr>
 <td align="left">polypath</td>
 <td align="left">添加多边形路径</td>
 </tr>
-
 <tr>
 <td align="left">xspline</td>
 <td align="left">添加样条曲线或由样条曲线围成的平面图形</td>
 </tr>
 </tbody>
 </table>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>不同底层绘图函数使用起来千差万异，这里我们以<span class="highlight-text primary">legend</span>函数为例，介绍图例的绘制方式。</p>
-
-<p>R语言中的图例本身也是个普通的图形，不能根据主图形中的颜色、组别等属性自动生成，而需要我们手动绘制。图例中可以将形状与标签配对，指明主图形中特定的形状对应的意义。图例中的形状可以有散点、线条、矩形，要生成<strong>n</strong>个 *形状-标签*，则需要我们指定<strong>n</strong>个相应形状的属性，及<strong>n</strong>个标签。此外图例中的绘图细节也可以通过参数调整，而且许多参数默认调用了<strong>par</strong>函数中相应的参数，以下为<strong>legend</strong>函数中的全部参数：</p>
-
+<p>R语言中的图例本身也是个普通的图形，不能根据主图形中的颜色、组别等属性自动生成，而需要我们手动绘制。图例中可以将形状与标签配对，指明主图形中特定的形状对应的意义。图例中的形状可以有散点、线条、矩形，要生成<strong>n</strong>个 <em>形状-标签</em>，则需要我们指定<strong>n</strong>个相应形状的属性，及<strong>n</strong>个标签。此外图例中的绘图细节也可以通过参数调整，而且许多参数默认调用了<strong>par</strong>函数中相应的参数，以下为<strong>legend</strong>函数中的全部参数：</p>
 <ul>
 <li><strong>x、y</strong>参数，设置图例需要被放置的位置（默认为图例左上顶点在图像中的位置）。</li>
 <li><strong>xjust、yjust</strong>参数，设置图例相对点<code>c(x, y)</code>，在水平（垂直）方向上的对齐方式，取值为0表示左（上）对齐；0.5表示居中；1表示右（下）对齐。</li>
@@ -661,9 +601,7 @@ par(op)
 <li><strong>trace</strong>参数，设置是否在命令行中打印生成图例时的计算过程。</li>
 <li><strong>plot</strong>参数，设置是否绘制图例，若取值为<strong>FALSE</strong>将返回图例的位置及大小。</li>
 </ul>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 
 
   
@@ -679,11 +617,9 @@ par(op)
 <li>如何使用底层绘图函数绘制圆形？</li>
 <li>如何设置图例中的标签靠右对齐？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -695,7 +631,7 @@ par(op)
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
 
                   </div>
                 
@@ -703,8 +639,8 @@ par(op)
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言中的基础绘图方式介绍',
@@ -725,7 +661,7 @@ par(op)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -733,7 +669,7 @@ par(op)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的颜色管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的颜色管理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -751,13 +687,13 @@ par(op)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -788,7 +724,7 @@ par(op)
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -802,7 +738,7 @@ par(op)
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/10/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E5%BC%80%E5%8F%91%E7%A8%8B%E5%BA%8F%E5%8C%85/" data-tooltip="R语言编程篇——开发程序包">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -810,7 +746,7 @@ par(op)
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的颜色管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E9%A2%9C%E8%89%B2%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的颜色管理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -828,13 +764,13 @@ par(op)
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/11/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%9F%BA%E7%A1%80%E7%BB%98%E5%9B%BE%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -868,13 +804,13 @@ par(op)
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%259F%25BA%25E7%25A1%2580%25E7%25BB%2598%25E5%259B%25BE%25E6%2596%25B9%25E5%25BC%258F%25E4%25BB%258B%25E7%25BB%258D%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%259F%25BA%25E7%25A1%2580%25E7%25BB%2598%25E5%259B%25BE%25E6%2596%25B9%25E5%25BC%258F%25E4%25BB%258B%25E7%25BB%258D%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%259F%25BA%25E7%25A1%2580%25E7%25BB%2598%25E5%259B%25BE%25E6%2596%25B9%25E5%25BC%258F%25E4%25BB%258B%25E7%25BB%258D%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F11%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%259F%25BA%25E7%25A1%2580%25E7%25BB%2598%25E5%259B%25BE%25E6%2596%25B9%25E5%25BC%258F%25E4%25BB%258B%25E7%25BB%258D%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -929,12 +865,12 @@ par(op)
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -1011,7 +947,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

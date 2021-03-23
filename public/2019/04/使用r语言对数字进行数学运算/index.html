@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="使用R语言对数字进行数学运算">
 <meta property="og:description" content="R语言作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对数字进行数学运算的。">
@@ -51,19 +51,23 @@
 
     <title>使用R语言对数字进行数学运算</title>
 
-    <link rel="canonical" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e6%95%b0%e5%ad%a6%e8%bf%90%e7%ae%97">数学运算</a>
+      <a class="category-link" href="/categories/%e6%95%b0%e5%ad%a6%e8%bf%90%e7%ae%97">数学运算</a>
     
   
 
@@ -263,133 +267,63 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>R语言</strong>作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对<strong>数字</strong>进行数学运算的。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li><a href="#1-什么是数字类型的对象">1、什么是数字类型的对象</a></li>
-<li><a href="#2-对数字进行数学运算">2、对数字进行数学运算</a>
-<ul>
-<li><a href="#2-1-加减乘除">2.1、加减乘除</a></li>
-<li><a href="#2-2-指数与对数运算">2.2、指数与对数运算</a></li>
-<li><a href="#2-3-三角函数与双曲函数">2.3、三角函数与双曲函数</a></li>
-<li><a href="#2-4-求余-取整-取正负号-取绝对值">2.4、求余、取整、取正负号、取绝对值</a></li>
-<li><a href="#2-5-复数运算">2.5、复数运算</a></li>
-<li><a href="#2-6-求阶乘-排列组合-二项式求根">2.6、求阶乘、排列组合、二项式求根</a></li>
-<li><a href="#2-7-gamma函数-beta函数">2.7、gamma函数、beta函数</a></li>
-</ul></li>
-<li><a href="#3-结语">3、结语</a></li>
-</ul>
-</nav>
-
-<p><br></p>
-
-<h1 id="1-什么是数字类型的对象">1、什么是数字类型的对象</h1>
-
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h1 id="1什么是数字类型的对象">1、什么是数字类型的对象</h1>
 <p>我们这里说的数字类型的对象，指的是以单个数值的形式存储的对象，而非以更高级的数据形式（数组、矩阵等）存储的数值，它可以是一个整数、小数、分数、虚数、……。严格意义上来讲，R语言中并不存在这样的数据对象，因为R语言会以数组的形式存储这类对象，但这并不影响我们对数字进行数学运算。</p>
-
 <blockquote>
 <p>Note that R has no 0-dimensional, or scalar types. Individual numbers or strings, which you might think would be scalars, are actually vectors of length one.
-  &ndash; Hadley Wickham</p>
+&ndash; Hadley Wickham</p>
 </blockquote>
-
-<p><br></p>
-
-<h1 id="2-对数字进行数学运算">2、对数字进行数学运算</h1>
-
-<h2 id="2-1-加减乘除">2.1、加减乘除</h2>
-
+<!-- raw HTML omitted -->
+<h1 id="2对数字进行数学运算">2、对数字进行数学运算</h1>
+<h2 id="21加减乘除">2.1、加减乘除</h2>
 <p>首先是最基本的加减乘除，R语言中分别定义了对应的运算符<span class="highlight-text primary">+、-、*、/</span>，我们可以像写算式一样操作这些运算符。这些运算符除了可以计算数字，还可以对一些其它类型的对象进行运算，这一点我会在之后的文章中详细分析。</p>
-
-<p><br></p>
-
-<h2 id="2-2-指数与对数运算">2.2、指数与对数运算</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="22指数与对数运算">2.2、指数与对数运算</h2>
 <p>R语言中定义了符号<span class="highlight-text primary">^</span>用于指数运算，我们可以使用<strong>^</strong>求一个数值的任意次方，或开任意次方。同时当我们需要求平方根时，还可以使用便捷函数<span class="highlight-text primary">sqrt</span>。</p>
-
 <p>$$ a \text{^} b = a ^ b, \quad a \text{^} (b / c) = \sqrt [c] {a ^ b} , \quad sqrt(x) = \sqrt x$$</p>
-
 <p>在指数与对数运算的过程中，有时候我们会用到自然对数底<strong>e</strong>，R语言中并没有使用<strong>初始变量</strong>的形式来存储<strong>e</strong>的值，但是R语言中定义了一个<span class="highlight-text primary">exp</span>函数用以对<strong>e</strong>进行指数运算，我们可以使用<code>exp(1)</code>来代替<strong>e</strong>。</p>
-
 <p>$$ exp(1) = e, \quad exp(x) = e ^ x $$</p>
-
 <p>我们可以使用<span class="highlight-text primary">log(x, base)</span>的形式进行对数运算，当指定一个数值给<strong>base</strong>时，将会计算出以<strong>base</strong>为底数，<strong>x</strong>的对数。当我们不指定<strong>base</strong>时，则可以直接计算出以<strong>e</strong>为底数，<strong>x</strong>的对数。同时R语言中还定义了两个快捷函数<span class="highlight-text primary">log2、log10</span>，可以分别计算出以2、10为底数，<strong>x</strong>的对数。</p>
-
 <p>$$ log(x, base) = \log _{base} x, \quad log(x) = \ln x, \quad log2(x) = \log _2 x, \quad log10(x) = \log _{10} x $$</p>
-
 <p>对于自然对数底<strong>e</strong>，R语言中还定义了两个特殊的函数<span class="highlight-text primary">log1p、expm1</span>，可以简便某些情况下的数学运算。</p>
-
 <p>$$ log1p(x) = \ln (1 + x), \quad expm1(x) = e ^ x - 1 $$</p>
-
-<p><br></p>
-
-<h2 id="2-3-三角函数与双曲函数">2.3、三角函数与双曲函数</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="23三角函数与双曲函数">2.3、三角函数与双曲函数</h2>
 <p>在R语言中，分别定义了<span class="highlight-text primary">sin、cos、tan</span>用以计算某个<strong>弧度</strong>的正弦值、余弦值、正切值, 定义了<span class="highlight-text primary">asin、acos、atan</span>计算正弦值、余弦值、正切值对应的弧度, 同时我们还可以使用<span class="highlight-text primary">atan2(y, x)</span>来求解<strong>四象限的反正切值</strong>（即在二维坐标系内，由原点到指定<code>(x, y)</code>点组成的向量，与<strong>x轴的正方向</strong>之间的夹角弧度）。</p>
-
 <p>有些时候我们需要计算<strong>角度</strong>而非弧度，R语言中无法直接输入角度，但是R语言中定义了一个<span class="highlight-text red">初始变量pi</span>， 因为}$ pi \approx \pi = 180 ^ 。 $, 所以我们可以使用<code>n /180 * pi</code>的形式来代表角度（其中<strong>n</strong>即角度对应的数值）。为了方便运算，R语言中还定义了<span class="highlight-text primary">sinpi, cospi, tanpi</span>三个函数，可以直接输入<strong>n /180</strong>来计算角度的正弦值、余弦值、正切值。</p>
-
 <p>$$ sinpi(x) = sin(\pi * x), \quad cospi(x) = cos(\pi * x), \quad tanpi(x) = tan(\pi * x) $$</p>
-
 <p>对于双曲函数，我们可以分别使用<span class="highlight-text primary">sinh、cosh、tanh</span>，计算双曲正弦值、双曲余弦值、双曲正切值，分别使用<span class="highlight-text primary">asinh、acosh、atanh</span>，计算反双曲正弦值、反双曲余弦值、反双曲正切值。</p>
-
 <p>$$ sinh(x) = \frac {e^x - e^{-x}} 2, \quad cosh(x) = \frac {e^x + e^{-x}} 2, \quad tanh(x) = \frac {e^x - e^{-x}} {e^x + e^{-x}} $$</p>
-
-<p><br></p>
-
-<h2 id="2-4-求余-取整-取正负号-取绝对值">2.4、求余、取整、取正负号、取绝对值</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="24求余取整取正负号取绝对值">2.4、求余、取整、取正负号、取绝对值</h2>
 <p>在R语言中，我们可以分别使用<span class="highlight-text primary">%%、%/%、sign、abs</span>，来求余、取整、取正负号、取绝对值。</p>
-
-<p>$$ 7 \%\% 2 = 1, \quad 7 \%/\% 2 = 3, \quad sign(-7) = -1, \quad abs(-7) = 7  $$</p>
-
+<p>$$ 7 %% 2 = 1, \quad 7 %/% 2 = 3, \quad sign(-7) = -1, \quad abs(-7) = 7  $$</p>
 <p>对于小数而言，我们可以分别使用<span class="highlight-text primary">ceiling(x)</span>、<span class="highlight-text primary">floor(x)</span>、<span class="highlight-text primary">round(x, n)</span>的形式，实现向上取整、向下取整、四舍五入取<strong>n</strong>位小数。</p>
-
 <p>$$ floor(1.2345) = 1, \quad ceiling(1.2345) = 2, \quad round(1.2345, 2) = 1.23, \quad round(1.2345, 3) = 1.235  $$</p>
-
 <p>此外我们还可以分别使用<span class="highlight-text primary">trunc(x)</span>、<span class="highlight-text primary">signif(x, n)</span>的形式，实现按绝对值向下取整、四舍五入保留<strong>n</strong>位有效数字。</p>
-
 <p>$$ trunc(1.5) = 1, \quad trunc(-1.5) = -1, \quad signif(1.2345, 3) = 1.23  $$</p>
-
-<p><br></p>
-
-<h2 id="2-5-复数运算">2.5、复数运算</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="25复数运算">2.5、复数运算</h2>
 <p>在R语言中，可以使用数字加字母<strong>i</strong>的形式来表示复数，比如<strong>1 + 1i</strong>。我们可以分别使用<span class="highlight-text primary">Re、Im、Mod, Arg, Conj</span>，来取复数的实部、虚部、模、弧度、共轭复数。</p>
-
 <p>$$ re(2 + 1i) = 2, \quad Im(2 + 1i) = 1, \quad Mod(2 + 1i) = \sqrt 5, \quad Arg(1 + 1i) = \frac {\pi} 2 \quad Conj(2 + 1i) = 2 - 1i $$</p>
-
 <p>复数也可以进行加减乘除、求指数、求对数、求三角函数等运算，不同的运算方式拥有不同的实际意义。</p>
-
-<p><br></p>
-
-<h2 id="2-6-求阶乘-排列组合-二项式求根">2.6、求阶乘、排列组合、二项式求根</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="26求阶乘排列组合二项式求根">2.6、求阶乘、排列组合、二项式求根</h2>
 <p>我们可以通过<span class="highlight-text primary">factorial(x)</span>的形式，求<strong>x</strong>的阶乘。通过<span class="highlight-text primary">choose(n, k)</span>的形式，求从<strong>n</strong>个样本中随机抽取<strong>k</strong>个有多少种不同的组合。</p>
-
 <p>$$ factorial(x) = x! \quad choose(n, k) = \frac {n!} {k!(n-k)!} $$</p>
-
 <p>我们可以通过<span class="highlight-text primary">polyroot(x)</span>的形式，求解方程$(1 + x) ^ n = 0$的复数根。注意<strong>polyroot</strong>函数需要使用<strong>二项式系数</strong>作为参数，这一点我们可以使用<strong>choose</strong>函数完成。</p>
-
-<pre><code class="language-R">&gt; polyroot(choose(2, 0:2))
-[1] -1-0i -1+0i
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-7-gamma函数-beta函数">2.7、gamma函数、beta函数</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">polyroot</span>(<span style="color:#a6e22e">choose</span>(<span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span><span style="color:#ae81ff">2</span>))
+[1] <span style="color:#ae81ff">-1-0i</span> <span style="color:#ae81ff">-1+0i</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="27gamma函数beta函数">2.7、gamma函数、beta函数</h2>
 <p>我们可以分别通过<span class="highlight-text primary">gamma、digamma、trigamma</span>，来计算相应的gamma函数、gamma函数的一阶导数、gamma函数的二阶导数， 通过<span class="highlight-text primary">psigamma(x, deriv = 0)</span>来计算更高阶的gamma函数的导数，通过<span class="highlight-text primary">beta(a, b)</span>来计算beta函数。</p>
-
 <p>$$  gamma(x) = (x - 1)! \quad beta (a, b) = \gamma (a) * \gamma (b) / \gamma (a + b) $$</p>
-
 <p>此外，R语言中还定义了一系列的快捷函数<span class="highlight-text primary">lchoose、lfactorial、lgamma、lbeta</span>，可以分别求解<strong>choose、factorial、gamma、beta</strong>的对数。</p>
-
-<p><br></p>
-
-<h1 id="3-结语">3、结语</h1>
-
+<!-- raw HTML omitted -->
+<h1 id="3结语">3、结语</h1>
 <p>关于R语言中对数字进行数学运算的介绍到此就算结束了，其中一定有未概括或总结不当的地方，以后再作修改吧。下一篇我将介绍如何在R语言中对<strong>数组</strong>类型的对象进行数学运算。</p>
-
 
 
   
@@ -404,11 +338,9 @@
 <li>如何按绝对值向上取整？</li>
 <li>如何求从<code>n</code>个样本中随机抽取<code>k</code>个有多少种不同的排列？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -420,7 +352,7 @@
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">R语言数学运算</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/">R语言数学运算</a>
 
                   </div>
                 
@@ -428,8 +360,8 @@
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: '使用R语言对数字进行数学运算',
@@ -450,7 +382,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/" data-tooltip="在评论区使用markdown语法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/" data-tooltip="在评论区使用markdown语法">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -458,7 +390,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数组进行数学运算">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数组进行数学运算">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -476,13 +408,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -513,7 +445,7 @@
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -527,7 +459,7 @@
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/" data-tooltip="在评论区使用markdown语法">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/03/%E5%9C%A8%E8%AF%84%E8%AE%BA%E5%8C%BA%E4%BD%BF%E7%94%A8markdown%E8%AF%AD%E6%B3%95/" data-tooltip="在评论区使用markdown语法">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -535,7 +467,7 @@
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数组进行数学运算">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="使用R语言对数组进行数学运算">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -553,13 +485,13 @@
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -593,13 +525,13 @@
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F04%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AF%25B9%25E6%2595%25B0%25E5%25AD%2597%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%25B0%25E5%25AD%25A6%25E8%25BF%2590%25E7%25AE%2597%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F04%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AF%25B9%25E6%2595%25B0%25E5%25AD%2597%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%25B0%25E5%25AD%25A6%25E8%25BF%2590%25E7%25AE%2597%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F04%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AF%25B9%25E6%2595%25B0%25E5%25AD%2597%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%25B0%25E5%25AD%25A6%25E8%25BF%2590%25E7%25AE%2597%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F04%2F%25E4%25BD%25BF%25E7%2594%25A8r%25E8%25AF%25AD%25E8%25A8%2580%25E5%25AF%25B9%25E6%2595%25B0%25E5%25AD%2597%25E8%25BF%259B%25E8%25A1%258C%25E6%2595%25B0%25E5%25AD%25A6%25E8%25BF%2590%25E7%25AE%2597%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -654,12 +586,12 @@
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -745,7 +677,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

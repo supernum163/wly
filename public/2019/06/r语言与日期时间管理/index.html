@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言与日期时间管理">
 <meta property="og:description" content="日期时间作为日常生活中必不可少的一类信息，在数据分析中也有着非常重要的意义（尤其对于时序分析而言）。这篇文章将介绍R语言中的日期时间管理。">
@@ -51,19 +51,23 @@
 
     <title>R语言与日期时间管理</title>
 
-    <link rel="canonical" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
+      <a class="category-link" href="/categories/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
     
   
 
@@ -258,45 +262,24 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>日期时间</strong>作为日常生活中必不可少的一类信息，在数据分析中也有着非常重要的意义（尤其对于<strong>时序分析</strong>而言）。这篇文章将介绍<strong>R语言</strong>中的<strong>日期时间</strong>管理。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-日期时间类对象">1、日期时间类对象</a></li>
-<li><a href="#2-日期时间与字符串互相转换">2、日期时间与字符串互相转换</a></li>
-<li><a href="#3-日期时间的数学运算">3、日期时间的数学运算</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<h2 id="1-日期时间类对象">1、日期时间类对象</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1日期时间类对象">1、日期时间类对象</h2>
 <p>首先我们可以分别通过<span class="highlight-text primary">Sys.Date、Sys.time</span>函数，获取系统当前<strong>日期</strong>与当前<strong>时间</strong>。其中时间类的显示结果总是以某些特定的英文缩写作为后缀，代表的是时区（比如<strong>GST</strong>代表的是本地时间，<strong>GMT</strong>代表的是<strong>格林威治时间</strong>）。</p>
-
 <p>在R语言中，日期类对象本质上是以数值的形式存储的（数值的含义是当前日期距离<strong>1970-01-01</strong>差多少天），拥有的类属性（class属性）为<strong>Date</strong>。</p>
-
 <p>时间类对象则可以分为两类：其中拥有类属性<strong>POSIXct</strong>的对象,本质上是以数值的形式存储时间对象，数值代表当前时间距离<strong>1970-01-01 00:00:00 GMT</strong>差多少秒；而拥有类属性<strong>POSIXlt</strong>的对象，本质上是以列表的形式存储时间对象，列表中的元素<strong>sec、min、hour、mday、mon、year、wday、yday、isdst、zone、gmtoff</strong>分别代表秒、分、时、日、月、年（距离<strong>1900</strong>年差多少年）、星期、一年中的第几天、是否为夏令时、时区、当前时间距离格林威治时间差多少秒。两类对象都拥有类属性<strong>POSIXt</strong>，所以两者在R语言中是可以通用的。</p>
-
-<p>注意因为R语言中重写了<strong>POSIXlt</strong>类对象的<strong>print、str、as.list</strong>等函数，所以我们必须通过特别的函数才能取出<strong>POSIXlt</strong>类对象的各个元素，比如筛选数据框元素的<strong>[]</strong>符号，或者<span class="highlight-text primary">[、unclass、unlist</span>等函数。</p>
-
-<pre><code class="language-R">&gt; Sys.Date()
-[1] &quot;2019-06-01&quot;
-&gt; Sys.time()
-[1] &quot;2019-06-01 09:26:27 CST&quot;
-&gt; cat(Sys.Date(), Sys.time())
-18048 1559352387
-&gt; x &lt;- as.POSIXlt(Sys.time()); as.data.frame(unclass(x), row.names = &quot;&quot;)
+<p>注意因为R语言中重写了<strong>POSIXlt</strong>类对象的<strong>print、str、as.list</strong>等函数，所以我们必须通过特别的函数才能取出<strong>POSIXlt</strong>类对象的各个元素，比如筛选数据框元素的**[]**符号，或者<span class="highlight-text primary">[、unclass、unlist</span>等函数。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Sys.Date</span>()
+[1] <span style="color:#e6db74">&#34;2019-06-01&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Sys.time</span>()
+[1] <span style="color:#e6db74">&#34;2019-06-01 09:26:27 CST&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">cat</span>(<span style="color:#a6e22e">Sys.Date</span>(), <span style="color:#a6e22e">Sys.time</span>())
+<span style="color:#ae81ff">18048</span> <span style="color:#ae81ff">1559352387</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.POSIXlt</span>(<span style="color:#a6e22e">Sys.time</span>()); <span style="color:#a6e22e">as.data.frame</span>(<span style="color:#a6e22e">unclass</span>(x), row.names <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
      sec min hour mday mon year wday yday isdst zone gmtoff
- 27.0458  56   13   31   4  119    5  150     0  CST  28800
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-日期时间与字符串互相转换">2、日期时间与字符串互相转换</h2>
-
+ <span style="color:#ae81ff">27.0458</span>  <span style="color:#ae81ff">56</span>   <span style="color:#ae81ff">13</span>   <span style="color:#ae81ff">31</span>   <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">119</span>    <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">150</span>     <span style="color:#ae81ff">0</span>  CST  <span style="color:#ae81ff">28800</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="2日期时间与字符串互相转换">2、日期时间与字符串互相转换</h2>
 <p>有时候我们需要截取日期时间对象中的一部分数据（年份、月份、星期等）；或者当我们将字符串转换为日期时，需要指明日期中每一部分的数据在字符串的什么位置。此时我们就需要用到一些特定的符号，来表达日期时间中相应的部分，即<strong>日期时间格式化表达符号</strong>。以下表格我们以日期时间<strong>2019-06-02 13:24:56</strong>为例，总结了特定的日期时间格式化表达符号对应的内容，更详细的说明请参考<strong>strptime</strong>的帮助文档。</p>
-
 <table>
 <thead>
 <tr>
@@ -305,188 +288,157 @@
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">%C</td>
 <td align="left">20</td>
 <td align="left">世纪</td>
 </tr>
-
 <tr>
 <td align="left">%y、%g</td>
 <td align="left">19</td>
 <td align="left">年份（简写）</td>
 </tr>
-
 <tr>
 <td align="left">%Y、%G</td>
 <td align="left">2019</td>
 <td align="left">年份（全写）</td>
 </tr>
-
 <tr>
 <td align="left">%m</td>
 <td align="left">06</td>
 <td align="left">月份</td>
 </tr>
-
 <tr>
 <td align="left">%u</td>
 <td align="left">7</td>
 <td align="left">星期</td>
 </tr>
-
 <tr>
 <td align="left">%w</td>
 <td align="left">0</td>
 <td align="left">星期（星期日为0）</td>
 </tr>
-
 <tr>
 <td align="left">%U</td>
 <td align="left">22</td>
 <td align="left">一年中的第几个星期（从每年第一个周末开始算）</td>
 </tr>
-
 <tr>
 <td align="left">%V</td>
 <td align="left">22</td>
 <td align="left">一年中的第几个星期（从每年第一个大于三天的星期开始算）</td>
 </tr>
-
 <tr>
 <td align="left">%W</td>
 <td align="left">21</td>
 <td align="left">一年中的第几个星期（从每年第一个周一开始算）</td>
 </tr>
-
 <tr>
 <td align="left">%d</td>
 <td align="left">02</td>
 <td align="left">一月中的第几天（几号）</td>
 </tr>
-
 <tr>
 <td align="left">%e</td>
 <td align="left">2</td>
 <td align="left">一月中的第几天（以空格替换前面的0）</td>
 </tr>
-
 <tr>
 <td align="left">%j</td>
 <td align="left">153</td>
 <td align="left">一年中的第几天</td>
 </tr>
-
 <tr>
 <td align="left">%H</td>
 <td align="left">13</td>
 <td align="left">小时（24小时制）</td>
 </tr>
-
 <tr>
 <td align="left">%I</td>
 <td align="left">01</td>
 <td align="left">小时（12小时制）</td>
 </tr>
-
 <tr>
 <td align="left">%M</td>
 <td align="left">24</td>
 <td align="left">分钟</td>
 </tr>
-
 <tr>
 <td align="left">%S</td>
 <td align="left">56</td>
 <td align="left">秒</td>
 </tr>
-
 <tr>
 <td align="left">%F</td>
 <td align="left">2019-06-02</td>
 <td align="left">年月日（相当于%Y-%m-%d）</td>
 </tr>
-
 <tr>
 <td align="left">%D</td>
 <td align="left">06/02/19</td>
 <td align="left">月日年（相当于%m/%d/%Y）</td>
 </tr>
-
 <tr>
 <td align="left">%R</td>
 <td align="left">13:24</td>
 <td align="left">时分（相当于%H:%M）</td>
 </tr>
-
 <tr>
 <td align="left">%T</td>
 <td align="left">13:24:56</td>
 <td align="left">时分秒（相当于%H:%M:%S）</td>
 </tr>
-
 <tr>
 <td align="left">%A</td>
 <td align="left">星期日</td>
 <td align="left">以本地格式显示星期</td>
 </tr>
-
 <tr>
 <td align="left">%a</td>
 <td align="left">日</td>
 <td align="left">以本地格式显示星期（简写）</td>
 </tr>
-
 <tr>
 <td align="left">%B</td>
 <td align="left">六月</td>
 <td align="left">以本地格式显示月份</td>
 </tr>
-
 <tr>
 <td align="left">%b、%h</td>
 <td align="left">6月</td>
 <td align="left">以本地格式显示月份 （简写）</td>
 </tr>
-
 <tr>
 <td align="left">%p</td>
 <td align="left">下午</td>
 <td align="left">以本地格式显示上午或是下午</td>
 </tr>
-
 <tr>
 <td align="left">%x</td>
 <td align="left">2019年06月02日</td>
 <td align="left">以本地格式显示日期</td>
 </tr>
-
 <tr>
 <td align="left">%X</td>
 <td align="left">13时24分56秒</td>
 <td align="left">以本地格式显示时间</td>
 </tr>
-
 <tr>
 <td align="left">%r</td>
 <td align="left">下午 01时24分56秒</td>
 <td align="left">以本地格式显示时间（12小时制）</td>
 </tr>
-
 <tr>
 <td align="left">%c</td>
 <td align="left">2019年06月02日 星期日 13时24分56秒</td>
 <td align="left">以本地格式显示年月日、星期、时分秒</td>
 </tr>
-
 <tr>
 <td align="left">%z</td>
 <td align="left">+0800</td>
-<td align="left">时间距离当前时区的差值</td>
+<td align="left">时间距离UTC时区的差值</td>
 </tr>
-
 <tr>
 <td align="left">%Z</td>
 <td align="left">CST</td>
@@ -494,57 +446,38 @@
 </tr>
 </tbody>
 </table>
-
 <p>掌握了R语言中的日期时间格式化表达符号，我们就可以分别通过<span class="highlight-text primary">strptime、strftime</span>函数，在日期时间类对象与字符串对象之间互相转换。</p>
-
 <p>此外R语言中还定义了一些便捷函数，比如我们可以分别通过<span class="highlight-text primary">weekdays、months、quarters</span>函数，取出日期中的<strong>星期</strong>、<strong>月份</strong>、<strong>季度</strong>。</p>
-
-<pre><code class="language-R">&gt; x &lt;- strptime(&quot;2019-06-02 13:24:56&quot;, format = &quot;%Y-%m-%d %H:%M:%S&quot;); x
-[1] &quot;2019-06-02 13:24:56 CST&quot;
-&gt; strftime(x, format = &quot;%Y/%m/%d %H:%M:%S&quot;)
-[1] &quot;2019/06/02 13:24:56&quot;
-&gt; c(weekdays(x), months(x), months(x, abbreviate = TRUE), quarters(x))
-[1] &quot;星期日&quot; &quot;六月&quot;   &quot;6月&quot;    &quot;Q2&quot;  
-</code></pre>
-
-<p><br></p>
-
-<h2 id="3-日期时间的数学运算">3、日期时间的数学运算</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">strptime</span>(<span style="color:#e6db74">&#34;2019-06-02 13:24:56&#34;</span>, format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%Y-%m-%d %H:%M:%S&#34;</span>); x
+[1] <span style="color:#e6db74">&#34;2019-06-02 13:24:56 CST&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">strftime</span>(x, format <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;%Y/%m/%d %H:%M:%S&#34;</span>)
+[1] <span style="color:#e6db74">&#34;2019/06/02 13:24:56&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">weekdays</span>(x), <span style="color:#a6e22e">months</span>(x), <span style="color:#a6e22e">months</span>(x, abbreviate <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>), <span style="color:#a6e22e">quarters</span>(x))
+[1] <span style="color:#e6db74">&#34;星期日&#34;</span> <span style="color:#e6db74">&#34;六月&#34;</span>   <span style="color:#e6db74">&#34;6月&#34;</span>    <span style="color:#e6db74">&#34;Q2&#34;</span>  
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="3日期时间的数学运算">3、日期时间的数学运算</h2>
 <p>我们可以通过<span class="highlight-text primary">difftime(time1, time2, tz, units)</span>的形式，计算两个日期时间类对象之间的<strong>时间差</strong>。这个时间差（<strong>units</strong>）可以是<strong>secs、mins、hours、days、weeks</strong>中的一个（默认会自动选择合适的时间差单位）。</p>
-
 <p>计算时间差后会生成一个类属性为<strong>difftime</strong>的对象，我们还可以通过<span class="highlight-text primary">units</span>函数，调整时间差的单位。</p>
-
-<pre><code class="language-R">&gt; x &lt;- as.Date(&quot;2019-06-01&quot;); y &lt;- as.Date(&quot;2019-05-28&quot;)
-&gt; z &lt;- difftime(x, y); z
-Time difference of 4 days
-&gt; units(z) &lt;- &quot;weeks&quot;; z
-Time difference of 0.5714286 weeks
-</code></pre>
-
-<p>上文已经介绍到，R语言中的日期时间类对象都是可以用数值表示的。所以日期时间类对象也可以直接与数值进行加减运算，其中日期类对象加减数值代表特定日期向后、向前推算多少天；而时间类对象加减数值代表特定日期向后、向前推算多少秒。当然我们也可以先将数值转化为时间差对象，再与日期时间进行加减。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.Date</span>(<span style="color:#e6db74">&#34;2019-06-01&#34;</span>); y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.Date</span>(<span style="color:#e6db74">&#34;2019-05-28&#34;</span>)
+<span style="color:#f92672">&gt;</span> z <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">difftime</span>(x, y); z
+Time difference of <span style="color:#ae81ff">4</span> days
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">units</span>(z) <span style="color:#f92672">&lt;-</span> <span style="color:#e6db74">&#34;weeks&#34;</span>; z
+Time difference of <span style="color:#ae81ff">0.5714286</span> weeks
+</code></pre></div><p>上文已经介绍到，R语言中的日期时间类对象都是可以用数值表示的。所以日期时间类对象也可以直接与数值进行加减运算，其中日期类对象加减数值代表特定日期向后、向前推算多少天；而时间类对象加减数值代表特定日期向后、向前推算多少秒。当然我们也可以先将数值转化为时间差对象，再与日期时间进行加减。</p>
 <p>当我们将数值转换为日期时间类对象时，总是需要事先指定一个日期时间类参数<strong>origin</strong>。其实就相当于从<strong>origin</strong>开始向后推算多少天/秒。</p>
-
-<pre><code class="language-R">&gt; x &lt;- as.Date(&quot;2019-06-01&quot;)
-&gt; x - 7
-[1] &quot;2019-05-25&quot;
-&gt; x - as.difftime(1, units = &quot;weeks&quot;)
-[1] &quot;2019-05-25&quot;
-</code></pre>
-
-<p>最后，R语言中还可以对日期时间类对象进行精度取舍，求均值等操作。注意精度取舍之后生成的数据与原日期时间对象的数据结构时一致的，比如对日期<strong>2019-06-01</strong>按月份取舍之后，依然是<strong>2019-06-01</strong>，而不是<strong>2019-06</strong>。</p>
-
-<pre><code class="language-R">&gt; x &lt;- seq(as.POSIXct(&quot;2019-06-01 09:30:00&quot;), as.POSIXct(&quot;2019-06-01 12:00:00&quot;), &quot;hour&quot;); x
-[1] &quot;2019-06-01 09:30:00 CST&quot; &quot;2019-06-01 10:30:00 CST&quot; &quot;2019-06-01 11:30:00 CST&quot;
-&gt; round(x, &quot;hours&quot;)
-[1] &quot;2019-06-01 10:00:00 CST&quot; &quot;2019-06-01 11:00:00 CST&quot; &quot;2019-06-01 12:00:00 CST&quot;
-&gt; mean(x)
-[1] &quot;2019-06-01 10:30:00 CST&quot;
-</code></pre>
-
-<p><br></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.Date</span>(<span style="color:#e6db74">&#34;2019-06-01&#34;</span>)
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">-</span> <span style="color:#ae81ff">7</span>
+[1] <span style="color:#e6db74">&#34;2019-05-25&#34;</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">-</span> <span style="color:#a6e22e">as.difftime</span>(<span style="color:#ae81ff">1</span>, units <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;weeks&#34;</span>)
+[1] <span style="color:#e6db74">&#34;2019-05-25&#34;</span>
+</code></pre></div><p>最后，R语言中还可以对日期时间类对象进行精度取舍，求均值等操作。注意精度取舍之后生成的数据与原日期时间对象的数据结构时一致的，比如对日期<strong>2019-06-01</strong>按月份取舍之后，依然是<strong>2019-06-01</strong>，而不是<strong>2019-06</strong>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">seq</span>(<span style="color:#a6e22e">as.POSIXct</span>(<span style="color:#e6db74">&#34;2019-06-01 09:30:00&#34;</span>), <span style="color:#a6e22e">as.POSIXct</span>(<span style="color:#e6db74">&#34;2019-06-01 12:00:00&#34;</span>), <span style="color:#e6db74">&#34;hour&#34;</span>); x
+[1] <span style="color:#e6db74">&#34;2019-06-01 09:30:00 CST&#34;</span> <span style="color:#e6db74">&#34;2019-06-01 10:30:00 CST&#34;</span> <span style="color:#e6db74">&#34;2019-06-01 11:30:00 CST&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">round</span>(x, <span style="color:#e6db74">&#34;hours&#34;</span>)
+[1] <span style="color:#e6db74">&#34;2019-06-01 10:00:00 CST&#34;</span> <span style="color:#e6db74">&#34;2019-06-01 11:00:00 CST&#34;</span> <span style="color:#e6db74">&#34;2019-06-01 12:00:00 CST&#34;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">mean</span>(x)
+[1] <span style="color:#e6db74">&#34;2019-06-01 10:30:00 CST&#34;</span>
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -559,11 +492,9 @@ Time difference of 0.5714286 weeks
 <li>如何取出时间类对象（<strong>POSIXlt</strong>）的毫秒？</li>
 <li>如何计算任意两个日期之间相差多少个月份？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -575,7 +506,7 @@ Time difference of 0.5714286 weeks
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
 
                   </div>
                 
@@ -583,8 +514,8 @@ Time difference of 0.5714286 weeks
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言与日期时间管理',
@@ -605,7 +536,7 @@ Time difference of 0.5714286 weeks
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" data-tooltip="R语言与字符串处理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" data-tooltip="R语言与字符串处理">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -613,7 +544,7 @@ Time difference of 0.5714286 weeks
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -631,13 +562,13 @@ Time difference of 0.5714286 weeks
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -668,7 +599,7 @@ Time difference of 0.5714286 weeks
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -682,7 +613,7 @@ Time difference of 0.5714286 weeks
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" data-tooltip="R语言与字符串处理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/05/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%A4%84%E7%90%86/" data-tooltip="R语言与字符串处理">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -690,7 +621,7 @@ Time difference of 0.5714286 weeks
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="R语言中的命令与执行环境">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -708,13 +639,13 @@ Time difference of 0.5714286 weeks
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -748,13 +679,13 @@ Time difference of 0.5714286 weeks
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%258E%25E6%2597%25A5%25E6%259C%259F%25E6%2597%25B6%25E9%2597%25B4%25E7%25AE%25A1%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%258E%25E6%2597%25A5%25E6%259C%259F%25E6%2597%25B6%25E9%2597%25B4%25E7%25AE%25A1%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%258E%25E6%2597%25A5%25E6%259C%259F%25E6%2597%25B6%25E9%2597%25B4%25E7%25AE%25A1%25E7%2590%2586%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%258E%25E6%2597%25A5%25E6%259C%259F%25E6%2597%25B6%25E9%2597%25B4%25E7%25AE%25A1%25E7%2590%2586%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -809,12 +740,12 @@ Time difference of 0.5714286 weeks
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -891,7 +822,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

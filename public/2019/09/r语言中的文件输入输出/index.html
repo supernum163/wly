@@ -34,7 +34,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言中的文件输入输出">
 <meta property="og:description" content="文件输入输出是一门计算机语言从存储设备中获取数据、将内存中的数据持久化的过程。这篇文章我们将介绍R语言中的文件输入输出。">
@@ -51,19 +51,23 @@
 
     <title>R语言中的文件输入输出</title>
 
-    <link rel="canonical" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -74,12 +78,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -94,7 +98,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -109,7 +113,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -119,7 +123,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -129,7 +133,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -139,7 +143,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -149,7 +153,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -183,7 +187,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -197,7 +201,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -244,9 +248,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/io%e7%ae%a1%e7%90%86">IO管理</a>
+      <a class="category-link" href="/categories/io%e7%ae%a1%e7%90%86">IO管理</a>
     
   
 
@@ -258,43 +262,12 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p>文件输入输出是一门计算机语言从存储设备中获取数据、将内存中的数据持久化的过程。这篇文章我们将介绍R语言中的文件输入输出。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-二进制文件">1、二进制文件</a></li>
-<li><a href="#2-纯文本文件">2、纯文本文件</a></li>
-<li><a href="#3-纯文本表格类文件">3、纯文本表格类文件</a>
-<ul>
-<li><a href="#3-1-csv文件">3.1、CSV文件</a></li>
-<li><a href="#3-2-tsv文件">3.2、TSV文件</a></li>
-<li><a href="#3-3-fwf文件">3.3、FWF文件</a></li>
-<li><a href="#3-4-fortran类文件">3.4、Fortran类文件</a></li>
-<li><a href="#3-5-ftable文件">3.5、ftable文件</a></li>
-<li><a href="#3-6-dif文件">3.6、DIF文件</a></li>
-</ul></li>
-<li><a href="#4-其它统计软件的数据文件">4、其它统计软件的数据文件</a></li>
-<li><a href="#5-excel类文件">5、Excel类文件</a></li>
-<li><a href="#6-json文件">6、JSON文件</a></li>
-<li><a href="#7-yaml文件">7、YAML文件</a></li>
-<li><a href="#8-dcf文件">8、DCF文件</a></li>
-<li><a href="#9-xml类文件">9、XML类文件</a></li>
-<li><a href="#10-图像类文件">10、图像类文件</a></li>
-<li><a href="#11-阅读文档类文件">11、阅读文档类文件</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<h2 id="1-二进制文件">1、二进制文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1二进制文件">1、二进制文件</h2>
 <p>我们可以分别使用<span class="highlight-text primary">readBin、writeBin</span>函数读写二进制文件。本质上所有文件都是以二进制的形式存储的，所以我们可以使用二进制的模式读写任意文件，但实际上大部分文件都需要按照特定的规则存储数据，如果不遵守相应的规则，读取到的内容对我们而言可能是没有意义的，写出的文件可能是无效的。</p>
-
-<pre><code class="language-R">readBin(con, what, n = 1L, size = NA_integer_, signed = TRUE, endian = .Platform$endian)
-writeBin(object, con, size = NA_integer_, endian = .Platform$endian, useBytes = FALSE)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">readBin</span>(con, what, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">1L</span>, size <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA_integer_</span>, signed <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, endian <span style="color:#f92672">=</span> .Platform<span style="color:#f92672">$</span>endian)
+<span style="color:#a6e22e">writeBin</span>(object, con, size <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA_integer_</span>, endian <span style="color:#f92672">=</span> .Platform<span style="color:#f92672">$</span>endian, useBytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><ul>
 <li><strong>con</strong>即需要被读写的文件资源链接或文件名</li>
 <li><strong>object</strong>即需要被写入文件的二进制对象</li>
 <li><strong>what</strong>即读取的内容需要被转化为哪种类型的R语言对象，可以是<strong>numeric、double、integer、int、logical、complex、character、raw</strong></li>
@@ -304,26 +277,17 @@ writeBin(object, con, size = NA_integer_, endian = .Platform$endian, useBytes = 
 <li><strong>endian</strong>即字节存储次序，默认与系统设定相同。小端格式的子节序(<strong>Little-endian</strong>)会将低序字节存储在起始地址（<strong>低位编址</strong>）。与之相反的，大端格式的子节序(<strong>Big-endian</strong>)会将高序字节存储在起始地址（<strong>高位编址</strong>）。</li>
 <li><strong>useBytes</strong>即是否以字节的形式读写字符串，如果<code>useBytes = FALSE</code>且R语言的系统编码与文件链接的编码不同，则读写字符串时会进行转码操作</li>
 </ul>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>我们可以分别<span class="highlight-text primary">readChar、writeChar</span>函数，从二进制文件（当然我们也可以将纯文本文件以二进制的模式打开）中读写字符串。</p>
-
-<pre><code class="language-R">readChar(con, nchars, useBytes = FALSE)
-writeChar(object, con, nchars = nchar(object, type = &quot;chars&quot;), eos = &quot;&quot;, useBytes = FALSE)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">readChar</span>(con, nchars, useBytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#a6e22e">writeChar</span>(object, con, nchars <span style="color:#f92672">=</span> <span style="color:#a6e22e">nchar</span>(object, type <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;chars&#34;</span>), eos <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, useBytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><ul>
 <li><strong>nchar</strong>即需要读写多少个字符，注意一个字符可能对应多个字节</li>
 <li><strong>eos</strong>即在每个字符串写入结束时，需要向文件中写入的字符串结束标志符），默认为空字符，取值为<strong>NULL</strong>时表示不写入字符串结束标志符</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="2-纯文本文件">2、纯文本文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="2纯文本文件">2、纯文本文件</h2>
 <p>纯文本文件是以单个字符为单位存储的文件，但某些字符在文本文件中拥有特定的含义（参考下表）。注意<strong>空字符</strong>（<strong>\x00</strong>）与<strong>空白字符</strong>（<strong>\x20</strong>）不同。</p>
-
 <table>
 <thead>
 <tr>
@@ -333,7 +297,6 @@ writeChar(object, con, nchars = nchar(object, type = &quot;chars&quot;), eos = &
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">EOS</td>
@@ -341,14 +304,12 @@ writeChar(object, con, nchars = nchar(object, type = &quot;chars&quot;), eos = &
 <td align="left"><strong>\x00</strong></td>
 <td align="left">字符串结束标志符</td>
 </tr>
-
 <tr>
 <td align="left">EOL</td>
 <td align="left">End Of Line</td>
 <td align="left"><strong>\r、\n、\r\n</strong></td>
 <td align="left">行结束标志符</td>
 </tr>
-
 <tr>
 <td align="left">EOF</td>
 <td align="left">End Of File</td>
@@ -357,40 +318,30 @@ writeChar(object, con, nchars = nchar(object, type = &quot;chars&quot;), eos = &
 </tr>
 </tbody>
 </table>
-
 <p>我们可以分别<span class="highlight-text primary">readLines、writeLines</span>函数从纯文本文件中按行读写数据。这两个函数也可以读写标准输入，此时<strong>readLines</strong>与R语言中的<span class="highlight-text primary">readline</span>函数的功能十分类似。仅有的区别在于：<strong>readline</strong>可以临时修改命令提示符，从标准输入中读取一行内容；<strong>readLines</strong>不能临时修改命令提示符，需要自行提供读取多少行。
 注意如果使用<strong>readLines</strong>读取标准输入时，指定了读取全部内容（<code>n = -1</code>），需要使用快捷键<strong>Ctrl+D</strong>输入文件结束标志符。</p>
-
-<pre><code class="language-R">readLines(con = stdin(), n = -1L, ok = TRUE, warn = TRUE, encoding = &quot;unknown&quot;, skipNul = FALSE)
-writeLines(text, con = stdout(), sep = &quot;\n&quot;, useBytes = FALSE)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">readLines</span>(con <span style="color:#f92672">=</span> <span style="color:#a6e22e">stdin</span>(), n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1L</span>, ok <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, warn <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#a6e22e">writeLines</span>(text, con <span style="color:#f92672">=</span> <span style="color:#a6e22e">stdout</span>(), sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\n&#34;</span>, useBytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><ul>
 <li><strong>text</strong>即需要被写入文件的字符串</li>
 <li><strong>n</strong>即需要从文件中读取多少行内容，取值为负数时表示读取全部内容</li>
 <li><strong>ok</strong>即是否允许实际行数小于需要读取的行数（<strong>n</strong>），取值为<strong>FALSE</strong>时会触发异常，并且不读取任何内容</li>
 <li><strong>warn</strong>即是否显示警告信息（文件不存在、找不到行结束标志符、文件中含有空字符）</li>
 <li><strong>encoding</strong>即标记文件中的字符编码，但不进行字符转码，参考<strong>Encoding</strong>函数</li>
-<li><strong>sep</strong>即需要在一行结束时向文件中写入的行结束标志符（比如<strong>\n、\r\n</strong>）</li>
+<li><strong>sep</strong>即需要在一行结束时向文件中写入的行结束标志符（比如**\n、\r\n**）</li>
 <li><strong>skipNul</strong>即是否忽略字符串中的空字符</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="3-纯文本表格类文件">3、纯文本表格类文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="3纯文本表格类文件">3、纯文本表格类文件</h2>
 <p>R语言中的<span class="highlight-text primary">scan</span>函数可以按行读取文件，并且可以按照特定的分割符将每行中的内容切分成不同的元素，这对于读取表格类数据文件十分有帮助，下文介绍的<strong>read.table</strong>就调用了这一函数。</p>
-
-<pre><code class="language-R">scan(file = &quot;&quot;, what = double(), nmax = -1, n = -1, sep = &quot;&quot;,
-     quote = if(identical(sep, &quot;\n&quot;)) &quot;&quot; else &quot;'\&quot;&quot;, dec = &quot;.&quot;,
-     skip = 0, nlines = 0, na.strings = &quot;NA&quot;,
-     flush = FALSE, fill = FALSE, strip.white = FALSE,
-     quiet = FALSE, blank.lines.skip = TRUE, multi.line = TRUE,
-     comment.char = &quot;&quot;, allowEscapes = FALSE,
-     fileEncoding = &quot;&quot;, encoding = &quot;unknown&quot;, text, skipNul = FALSE)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">scan</span>(file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, what <span style="color:#f92672">=</span> <span style="color:#a6e22e">double</span>(), nmax <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>,
+     quote <span style="color:#f92672">=</span> <span style="color:#a6e22e">if</span>(<span style="color:#a6e22e">identical</span>(sep, <span style="color:#e6db74">&#34;\n&#34;</span>)) <span style="color:#e6db74">&#34;&#34;</span> else <span style="color:#e6db74">&#34;&#39;\&#34;&#34;</span>, dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>,
+     skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, nlines <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, na.strings <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NA&#34;</span>,
+     flush <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, strip.white <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+     quiet <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, blank.lines.skip <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, multi.line <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+     comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, allowEscapes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+     fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, text, skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><ul>
 <li><strong>file</strong>即需要被读写的文件资源链接或文件名，空字符或字符串<strong>stdin</strong>可以表示系统输入</li>
 <li><strong>what</strong>即需要读取的内容需要被转化为哪种类型的R语言对象，与读写二进制文件时的<strong>what</strong>参数类似，但这里的<strong>what</strong>参数还可以取值为<code>list(...)</code>，文件每一行被分割符（参考<strong>sep</strong>）分开的内容，会从左至右逐一转化为列表中相应类型的元素</li>
 <li><strong>nmax</strong>或<strong>n</strong>即需要从文件中读取多少个特定R语言对象的元素，空值或非法值表示读取文件中的所有内容</li>
@@ -406,29 +357,24 @@ writeLines(text, con = stdout(), sep = &quot;\n&quot;, useBytes = FALSE)
 <li><strong>quiet</strong>即是否不打印读取统计信息，若取值为<strong>FALSE</strong>，<strong>scan</strong>函数会在返回读取结果之前，打印读取到了多少条内容（R语言特定对象的元素）。</li>
 <li><strong>blank.lines.skip</strong>即读取时是否略过空行，但并不影响行数的计算，不影响<strong>skip、nlines</strong>参数</li>
 <li><strong>multi.line</strong>即如果一行内读取不到指定数量的元素（一条<strong>记录</strong>），是否从接着下一行读取。只在<strong>what</strong>的取值类型为<strong>list</strong>，且<strong>fill</strong>取值为<strong>FALSE</strong>时有效。默认一条记录只能在同一行，但一行中可以有多条记录</li>
-<li><strong>comment.char</strong>即行注释标识字符（只能由单个字符构成），比如R语言中的<strong>#</strong>，同一行中该字符及之后的内容会被忽略，除非该字符处于字符串引号内，也可以使用空字符关闭这项功能</li>
-<li><strong>allowEscapes</strong>即是否对转义字符进行转义，若取值为<strong>FALSE</strong>则<strong>**会被当作普通字符而非转义符使用。注意这里可以转义</strong>控制字符<strong>（比如</strong>\a、\b、\f、\n、\r、\t、\v<strong>）、</strong>八进制<strong>或</strong>十六进制<strong>字符（比如</strong>\040、\0x2A<strong>），</strong>unicode<strong>字符（比如</strong>\u6211<strong>）不会被转义，其它字符被转义后还是字符本身。</strong>\t、\n**如果不在字符串引号内，可能会被用作分割、换行</li>
+<li><strong>comment.char</strong>即行注释标识字符（只能由单个字符构成），比如R语言中的**#**，同一行中该字符及之后的内容会被忽略，除非该字符处于字符串引号内，也可以使用空字符关闭这项功能</li>
+<li><strong>allowEscapes</strong>即是否对转义字符进行转义，若取值为<strong>FALSE</strong>则****会被当作普通字符而非转义符使用。注意这里可以转义**控制字符**（比如**\a、\b、\f、\n、\r、\t、\v**）、**八进制**或**十六进制**字符（比如**\040、\0x2A**），**unicode**字符（比如**\u6211**）不会被转义，其它字符被转义后还是字符本身。**\t、\n**如果不在字符串引号内，可能会被用作分割、换行</li>
 <li><strong>fileEncoding</strong>即文件的编码方式，决定了<strong>scan</strong>函数以何种方式对文件中的内容进行转码</li>
 <li><strong>text</strong>即需要从中读取内容的字符串或字符串资源链接，仅当<strong>file</strong>未被指定时有效</li>
 </ul>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>我们可以使用<span class="highlight-text primary">read.table、write.table</span>函数，将从文件中读写表格类数据。这两个函数可以读写形式（行分割符、字段分割符）各异的表格文件，因此以下介绍到的读写特定格式（<strong>CSV、TSV、FWF</strong>等）表格文件的函数，本质上都是按照特定格式调用这两个函数读写数据的。</p>
-
-<pre><code class="language-R">read.table(file, header = FALSE, sep = &quot;&quot;, quote = &quot;\&quot;'&quot;,
-           dec = &quot;.&quot;, numerals = c(&quot;allow.loss&quot;, &quot;warn.loss&quot;, &quot;no.loss&quot;),
-           row.names, col.names, as.is = !stringsAsFactors,
-           na.strings = &quot;NA&quot;, colClasses = NA, nrows = -1,
-           skip = 0, check.names = TRUE, fill = !blank.lines.skip,
-           strip.white = FALSE, blank.lines.skip = TRUE,
-           comment.char = &quot;#&quot;,
-           allowEscapes = FALSE, flush = FALSE,
-           stringsAsFactors = default.stringsAsFactors(),
-           fileEncoding = &quot;&quot;, encoding = &quot;unknown&quot;, text, skipNul = FALSE)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.table</span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#39;&#34;</span>,
+           dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, numerals <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;allow.loss&#34;</span>, <span style="color:#e6db74">&#34;warn.loss&#34;</span>, <span style="color:#e6db74">&#34;no.loss&#34;</span>),
+           row.names, col.names, as.is <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>stringsAsFactors,
+           na.strings <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NA&#34;</span>, colClasses <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>, nrows <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>,
+           skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, check.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, fill <span style="color:#f92672">=</span> <span style="color:#f92672">!</span>blank.lines.skip,
+           strip.white <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, blank.lines.skip <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+           comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;#&#34;</span>,
+           allowEscapes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, flush <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+           stringsAsFactors <span style="color:#f92672">=</span> <span style="color:#a6e22e">default.stringsAsFactors</span>(),
+           fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, encoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;unknown&#34;</span>, text, skipNul <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><ul>
 <li><strong>header</strong>即是否将文件第一行最为标题行（列名），默认如果首行元素个数比其它行少一个，则将其设为标题行</li>
 <li><strong>numerals</strong>即将文件中的数值转化为R语言对象（双精度浮点型）时是否允许精度损失，以及损失精度时是否触发异常</li>
 <li><strong>row.names</strong>即表格的行名，可以是与行数相同的字符串数组，也可以是一个数值或字符串，指明将表格中的哪一列作为行名。如果首行元素个数比其它行少一个，则其它行中每行的首个元素作为行名。默认或设置<code>row.names = NULL</code>，表示使用 <em>行位序数</em> （从1开始自动编号的数字）作为行名</li>
@@ -438,133 +384,88 @@ writeLines(text, con = stdout(), sep = &quot;\n&quot;, useBytes = FALSE)
 <li><strong>check.names</strong>即是否检查表格列名的合法性，若取值为<strong>TRUE</strong>，则列名重复时以数字后缀区分</li>
 <li><strong>stringsAsFactors</strong>即是否将字符串转化为因子，可以被<strong>as.is、colClasses</strong>的设定覆盖</li>
 </ul>
-
-<pre><code class="language-R">write.table(x, file = &quot;&quot;, append = FALSE, quote = TRUE, sep = &quot; &quot;,
-            eol = &quot;\n&quot;, na = &quot;NA&quot;, dec = &quot;.&quot;, row.names = TRUE,
-            col.names = TRUE, qmethod = c(&quot;escape&quot;, &quot;double&quot;),
-            fileEncoding = &quot;&quot;)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">write.table</span>(x, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, append <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, quote <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>,
+            eol <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\n&#34;</span>, na <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;NA&#34;</span>, dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, row.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>,
+            col.names <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, qmethod <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;escape&#34;</span>, <span style="color:#e6db74">&#34;double&#34;</span>),
+            fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>)
+</code></pre></div><ul>
 <li><strong>append</strong>即是否将输出结果附加到文件中，只有当<strong>file</strong>为文件名时有效</li>
 <li><strong>qmethod</strong>即以何种方式处理字符串中的英文引号，<strong>escape</strong>表示进行字符转义，<strong>double</strong>表示用两个引号代替单个引号</li>
 <li><strong>eol</strong>即需要在一行结束时向文件中写入的行结束标志符</li>
 <li><strong>na</strong>即写出时以什么样的字符串表示R语言中的缺失值</li>
 <li><strong>row.names、col.names</strong>即是否将行名、列名写入文件</li>
 </ul>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 <p>与<strong>write.table</strong>相似的是<span class="highlight-text primary">write</span>函数，<strong>write</strong>函数本质上相当于调用了<span class="highlight-text primary">cat</span>函数，可以将R语言对象（通常是矩阵）写入文件，但只能写出数据部分，不能写出行列名称。此外<strong>write</strong>函数是按行写出的，但R语言矩阵中的元素是按列排列的，所以矩阵写出时相当于进行了行列互换。</p>
-
-<pre><code class="language-R">write(x, file = &quot;data&quot;, append = FALSE, sep = &quot; &quot;,
-      ncolumns = if(is.character(x)) 1 else 5)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">write</span>(x, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;data&#34;</span>, append <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34; &#34;</span>,
+      ncolumns <span style="color:#f92672">=</span> <span style="color:#a6e22e">if</span>(<span style="color:#a6e22e">is.character</span>(x)) <span style="color:#ae81ff">1</span> else <span style="color:#ae81ff">5</span>)
+</code></pre></div><ul>
 <li><strong>ncolumns</strong>即需要写出多少列内容，如果<strong>x</strong>的纬度属性与这里设置的不相符，则先修改纬度属性再写出。</li>
 </ul>
-
-<p><br></p>
-
-<h3 id="3-1-csv文件">3.1、CSV文件</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="31csv文件">3.1、CSV文件</h3>
 <p><strong>CSV</strong>文件是默认以英文逗号（<strong>,</strong>）作为字段分割符的表格类数据文件，但有时候文件中表示小数点的符号也有可以能是英文逗号，此时就需要使用英文分号（<strong>;</strong>）作为分割符。我们可以使用以下函数读写<strong>CSV</strong>文件，注意函数<span class="highlight-text primary">read.csv、write.csv</span>中的字段分割符是英文逗号，而函数<span class="highlight-text primary">read.csv2、write.csv2</span>中的字段分割符是英文分号。比如<strong>read.csv</strong>中<code>dec = &quot;.&quot;, sep = &quot;,&quot;</code>,  **read.csv2*中<code>dec = &quot;,&quot;, sep = &quot;;&quot;</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.csv</span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>,
+         dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
 
-<pre><code class="language-R">read.csv(file, header = TRUE, sep = &quot;,&quot;, quote = &quot;\&quot;&quot;,
-         dec = &quot;.&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)
+<span style="color:#a6e22e">read.csv2</span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>,
+          dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
 
-read.csv2(file, header = TRUE, sep = &quot;;&quot;, quote = &quot;\&quot;&quot;,
-          dec = &quot;,&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)
-
-write.csv(...)
-write.csv2(...)
-</code></pre>
-
-<h3 id="3-2-tsv文件">3.2、TSV文件</h3>
-
+<span style="color:#a6e22e">write.csv</span>(<span style="color:#66d9ef">...</span>)
+<span style="color:#a6e22e">write.csv2</span>(<span style="color:#66d9ef">...</span>)
+</code></pre></div><h3 id="32tsv文件">3.2、TSV文件</h3>
 <p><strong>TSV</strong>文件是默认以制表符（<strong>\t</strong>）作为字段分割符的表格类数据文件，我们可以使用<span class="highlight-text primary">read.delim、read.delim2</span>函数，读取<strong>TSV</strong>文件。注意两者最大的不同依然是表示小数点的符号存在差异， <strong>read.delim</strong>中<code>dec = &quot;.&quot;</code>,  **read.delim2*中<code>dec = &quot;,&quot;</code>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.delim</span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>,
+           dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;.&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
 
-<pre><code class="language-R">read.delim(file, header = TRUE, sep = &quot;\t&quot;, quote = &quot;\&quot;&quot;,
-           dec = &quot;.&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)
-
-read.delim2(file, header = TRUE, sep = &quot;\t&quot;, quote = &quot;\&quot;&quot;,
-            dec = &quot;,&quot;, fill = TRUE, comment.char = &quot;&quot;, ...)
-</code></pre>
-
-<p><br></p>
-
-<h3 id="3-3-fwf文件">3.3、FWF文件</h3>
-
+<span style="color:#a6e22e">read.delim2</span>(file, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>,
+            dec <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;,&#34;</span>, fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, comment.char <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="33fwf文件">3.3、FWF文件</h3>
 <p>我们可以使用<span class="highlight-text primary">read.fwf</span>函数，读取每个字段宽度相同的表格类数据文件。注意<strong>FWF</strong>文件与<strong>TSV</strong>文件的不同之处在于：<strong>TSV</strong>中每个字段需要以特定的分割符（<strong>\t</strong>等）隔开，所以每个字段的字段宽度可以是不同的；<strong>FWF</strong>中字段之间没有分割符，所以字段宽度必须是固定的。</p>
-
-<pre><code class="language-R">read.fwf(file, widths, header = FALSE, sep = &quot;\t&quot;,
-         skip = 0, row.names, col.names, n = -1,
-         buffersize = 2000, fileEncoding = &quot;&quot;, ...)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.fwf</span>(file, widths, header <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\t&#34;</span>,
+         skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, row.names, col.names, n <span style="color:#f92672">=</span> <span style="color:#ae81ff">-1</span>,
+         buffersize <span style="color:#f92672">=</span> <span style="color:#ae81ff">2000</span>, fileEncoding <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, <span style="color:#66d9ef">...</span>)
+</code></pre></div><ul>
 <li><strong>sep</strong>即标题行的内容分割符，只能由一个字符构成，且不能出现在记录部分</li>
 <li><strong>widths</strong>即每个字段对应的长度（参考<strong>nchar</strong>），可以是一个数值型数组，其中<strong>0</strong>表示添加一个空字段，该字段取值为<strong>NA</strong>，负数表示略过相应长度的内容</li>
 <li><strong>buffersize</strong>即每次读取的最大行数，相当于缓存，不影响最终读取的行数</li>
 </ul>
-
-<p><br></p>
-
-<h3 id="3-4-fortran类文件">3.4、Fortran类文件</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="34fortran类文件">3.4、Fortran类文件</h3>
 <p>我们可以使用<span class="highlight-text primary">read.fortran</span>函数，以<strong>Fortran</strong>语法格式，读取字段宽度已知的表格类数据文件。注意<strong>Fortran</strong>文件与<strong>FWF</strong>文件的不同之处在于：<strong>Fortran</strong>文件中每个字段的宽度可以是不同的，所以读取时需要指明特定的格式（每个字段的宽度），以下是该函数的使用方法及需要注意的参数：</p>
-
-<pre><code class="language-R">read.fortran(file, format, ..., as.is = TRUE, colClasses = NA)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.fortran</span>(file, format, <span style="color:#66d9ef">...</span>, as.is <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, colClasses <span style="color:#f92672">=</span> <span style="color:#66d9ef">NA</span>)
+</code></pre></div><ul>
 <li><strong>format</strong>即以什么样的格式读取每个字段，可以使用的格式有：<strong>rFl.d、rDl.d、rXl、rAl、rIl</strong>，其中<strong>F、D、I、A、X</strong>分别表示将读取的内容转化为浮点型数值、双精度浮点型数值、整形数值、字符串、或者略过不读，<strong>r</strong>表示相应的操作需要重复的次数，<strong>l</strong>表示需要读取的字符串宽度，<strong>d</strong>表示小数部分的位数。<strong>r、d</strong>均可被省略，<strong>l</strong>只在<strong>rX</strong>格式下可以省略</li>
 </ul>
-
-<h3 id="3-5-ftable文件">3.5、ftable文件</h3>
-
+<h3 id="35ftable文件">3.5、ftable文件</h3>
 <p>R语言中的<strong>ftable</strong>类型的数据对象本质上是一个矩阵，但与矩阵不同的是，<strong>ftable</strong>对象可以有多个行列标签分别代表数据的不同纬度，其行列标签分别存储在<strong>ftable</strong>对象的数据属性<strong>row.vars、col.vars</strong>中，比如以下<strong>ftable</strong>对象的<strong>col.vars</strong>属性相当于<code>list(&quot;Class&quot; = c(&quot;Lower&quot;, &quot;Upper&quot;), &quot;Dead&quot; = c(&quot;Yes&quot;, &quot;No&quot;))</code></p>
-
-<pre><code class="language-text">                 &quot;Class&quot;  &quot;Lower&quot;    &quot;Upper&quot;    
-                 &quot;Dead&quot;   &quot;Yes&quot; &quot;No&quot;
-&quot;Race&quot;  &quot;Gender&quot;                           
-&quot;White&quot; &quot;Male&quot;              43 134    3 177
-        &quot;Female&quot;            26 149    6 175
-&quot;Black&quot; &quot;Male&quot;              29  23    9  52
-        &quot;Female&quot;            22  36    2  58
-</code></pre>
-
-<p>在R语言中，我们可以分别使用<span class="highlight-text primary">read.ftable、write.ftable</span>函数，从文件中读写<strong>ftable</strong>对象。需要注意的是，<strong>ftable</strong>文件本质上是一种拥有多个行名/列名的表格类文件，只用于保存R语言中的<strong>ftable</strong>对象，并没有严格的个是限制，所以写入和读取过程并不是完全可逆的，以下是这些函数的使用方法及需要注意的参数：</p>
-
-<pre><code class="language-R">read.ftable(file, sep = &quot;&quot;, quote = &quot;\&quot;&quot;, skip = 0,
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-text" data-lang="text">                 &#34;Class&#34;  &#34;Lower&#34;    &#34;Upper&#34;    
+                 &#34;Dead&#34;   &#34;Yes&#34; &#34;No&#34;
+&#34;Race&#34;  &#34;Gender&#34;                           
+&#34;White&#34; &#34;Male&#34;              43 134    3 177
+        &#34;Female&#34;            26 149    6 175
+&#34;Black&#34; &#34;Male&#34;              29  23    9  52
+        &#34;Female&#34;            22  36    2  58
+</code></pre></div><p>在R语言中，我们可以分别使用<span class="highlight-text primary">read.ftable、write.ftable</span>函数，从文件中读写<strong>ftable</strong>对象。需要注意的是，<strong>ftable</strong>文件本质上是一种拥有多个行名/列名的表格类文件，只用于保存R语言中的<strong>ftable</strong>对象，并没有严格的个是限制，所以写入和读取过程并不是完全可逆的，以下是这些函数的使用方法及需要注意的参数：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.ftable</span>(file, sep <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;\&#34;&#34;</span>, skip <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>,
             row.var.names, col.vars)
 
-write.ftable(x, file = &quot;&quot;, quote = TRUE, append = FALSE,
-             digits = getOption(&quot;digits&quot;), ...)
-</code></pre>
-
-<ul>
+<span style="color:#a6e22e">write.ftable</span>(x, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, quote <span style="color:#f92672">=</span> <span style="color:#66d9ef">TRUE</span>, append <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+             digits <span style="color:#f92672">=</span> <span style="color:#a6e22e">getOption</span>(<span style="color:#e6db74">&#34;digits&#34;</span>), <span style="color:#66d9ef">...</span>)
+</code></pre></div><ul>
 <li><strong>row.var.names</strong>即行标签的标签名</li>
 <li><strong>col.vars</strong>即列标签</li>
 <li><strong>quote</strong>即文件中标识字符串类内容的左右引号（英文双引号，或单个字符）</li>
 <li><strong>digits</strong>即R语言中的数值写入文件时需要保留的精度</li>
 </ul>
-
-<p><br></p>
-
-<h3 id="3-6-dif文件">3.6、DIF文件</h3>
-
+<!-- raw HTML omitted -->
+<h3 id="36dif文件">3.6、DIF文件</h3>
 <p><strong>DIF</strong>是微软开发的一种数据交换格式，用于保存电子表格，以便于在不同应用程序之间导入导出，可以被<strong>Excel、Access</strong>等软件打开。</p>
-
 <p>在R语言中我们可以使用<span class="highlight-text primary">read.DIF</span>函数，读取<strong>DIF</strong>文件。需要注意的是，<strong>DIF</strong>文件可以是按列存储的，也可以是按行存储的，所以我们可能需要使用<strong>transpose</strong>参数，指明是否将读取到的内容进行行列互换。当然，我们也可以直接使用R语言中的<span class="highlight-text primary">t</span>函数，进行行列互换。</p>
-
-<p><br></p>
-
-<h2 id="4-其它统计软件的数据文件">4、其它统计软件的数据文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="4其它统计软件的数据文件">4、其它统计软件的数据文件</h2>
 <p>使用R语言进行统计分析时，可能需要与<strong>EpiInfo、Minitab、S-PLUS、SAS、SPSS、Stata、Systat</strong>等统计软件进行数据交换，R语言中并没有完成这项任务的系统函数，但我们可以使用<span class="highlight-text purple">foreign</span>程序包，读写这些统计软件的数据文件。以下为<strong>foreign</strong>程序包中的函数及相应功能：</p>
-
 <table>
 <thead>
 <tr>
@@ -574,7 +475,6 @@ write.ftable(x, file = &quot;&quot;, quote = TRUE, append = FALSE,
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">read.arff</td>
@@ -582,112 +482,96 @@ write.ftable(x, file = &quot;&quot;, quote = TRUE, append = FALSE,
 <td align="left">.arff</td>
 <td align="left">读取 <a href="https://www.cs.waikato.ac.nz/~ml/weka/arff.html">arff</a> 文件</td>
 </tr>
-
 <tr>
 <td align="left">read.dbf</td>
 <td align="left"></td>
 <td align="left">.dbf</td>
 <td align="left">读取 <a href="hhttps://www.clicketyclick.dk/databases/xbase/format/">dbf</a> 文件</td>
 </tr>
-
 <tr>
 <td align="left">read.dta</td>
 <td align="left">stata</td>
 <td align="left">.dta</td>
 <td align="left">读取 <strong>stata</strong> 的数据文件（ <a href="https://www.stata.com/help.cgi?dta_113">dta_113</a>、 <a href="https://www.stata.com/help.cgi?dta_114">dta_114</a> ）</td>
 </tr>
-
 <tr>
 <td align="left">read.spss</td>
 <td align="left">SPSS</td>
 <td align="left">.sav</td>
 <td align="left">读取  <strong>SPSS</strong> 的数据文件</td>
 </tr>
-
 <tr>
 <td align="left">read.ssd</td>
 <td align="left">SAS</td>
 <td align="left"></td>
 <td align="left">读取  <strong>SAS</strong> 数据库中的某个文件</td>
 </tr>
-
 <tr>
 <td align="left">read.xport</td>
 <td align="left">SAS</td>
 <td align="left">.xpt</td>
 <td align="left">读取  <strong>SAS</strong> 的数据文件</td>
 </tr>
-
 <tr>
 <td align="left">lookup.xport</td>
 <td align="left">SAS</td>
 <td align="left">.xpt</td>
 <td align="left">读取  <strong>SAS</strong> 的数据文件的 <a href="https://support.sas.com/techsup/technote/ts140.pdf">文件信息</a></td>
 </tr>
-
 <tr>
 <td align="left">read.epiinfo</td>
 <td align="left">EpiInfo</td>
 <td align="left">.rec</td>
 <td align="left">读取 <a href="https://www.cdc.gov/epiinfo/">Epi Info</a> 及 <a href="http://www.epidata.dk/cn/index.htm">EpiData</a> 文件</td>
 </tr>
-
 <tr>
 <td align="left">read.mtp</td>
 <td align="left">Minitab</td>
 <td align="left">.mtp</td>
 <td align="left">读取 <a href="http://www.minitab.com/">mtp</a> 文件</td>
 </tr>
-
 <tr>
 <td align="left">read.octave</td>
 <td align="left">Octave</td>
 <td align="left">.octave</td>
 <td align="left">读取 <a href="https://www.gnu.org/software/octave/">Octave</a> 文件</td>
 </tr>
-
 <tr>
 <td align="left">read.systat</td>
 <td align="left">Systat</td>
 <td align="left">.syd</td>
 <td align="left">读取  <strong>Systat</strong> 的数据文件</td>
 </tr>
-
 <tr>
 <td align="left">read.S</td>
 <td align="left">S-PLUS</td>
 <td align="left"></td>
 <td align="left">读取 <strong>S-PLUS</strong> 的数据文件（二进制文件）</td>
 </tr>
-
 <tr>
 <td align="left">data.restore</td>
 <td align="left">S-PLUS</td>
 <td align="left"></td>
 <td align="left">读取 <strong>S-PLUS</strong> 的数据文件（文本文件）</td>
 </tr>
-
 <tr>
 <td align="left">write.arff</td>
 <td align="left"></td>
 <td align="left">.arff</td>
 <td align="left">写入 <strong>arff</strong> 文件</td>
 </tr>
-
 <tr>
 <td align="left">write.dbf</td>
 <td align="left"></td>
 <td align="left">.dbf</td>
 <td align="left">写入 <strong>dbf</strong> 文件</td>
 </tr>
-
 <tr>
 <td align="left">write.dta</td>
 <td align="left">stata</td>
 <td align="left">.dta</td>
 <td align="left">写入 <strong>stata</strong>文件</td>
 </tr>
-
 <tr>
 <td align="left">write.foreign</td>
 <td align="left">Stata、SPSS、SAS</td>
@@ -696,25 +580,16 @@ write.ftable(x, file = &quot;&quot;, quote = TRUE, append = FALSE,
 </tr>
 </tbody>
 </table>
-
 <p>这里需要特别介绍的是<span class="highlight-text primary">write.foreign</span>函数，它不仅可以输出<strong>SPSS、Stata、SAS</strong>统计软件的数据文件，还可以输出代码文件，用于在相应的统计软件和总读入数据文集爱你，以下是其使用方式及需要注意的参数：</p>
-
-<pre><code class="language-R">write.foreign(df, datafile, codefile, package = c(&quot;SPSS&quot;, &quot;Stata&quot;, &quot;SAS&quot;), ...)
-</code></pre>
-
-<ul>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">write.foreign</span>(df, datafile, codefile, package <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;SPSS&#34;</span>, <span style="color:#e6db74">&#34;Stata&#34;</span>, <span style="color:#e6db74">&#34;SAS&#34;</span>), <span style="color:#66d9ef">...</span>)
+</code></pre></div><ul>
 <li><strong>datafile</strong>即保存数据的文件</li>
 <li><strong>codefile</strong>即保存代码的文件，用于在相应的统计软件中读入数据文件</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="5-excel类文件">5、Excel类文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="5excel类文件">5、Excel类文件</h2>
 <p><strong>Excel</strong>可能是日常办公最常用的表格类文件了，R语言中也有可以直接与<strong>xls、xlsx</strong>等类型的<strong>Excel</strong>文件进行交互的方法。如果我们只是需要获取<strong>Excel</strong>文件中的数据，则可以使用<span class="highlight-text purple">readxl</span>程序包的<span class="highlight-text primary">read_excel</span>函数。<strong>readxl</strong>程序包中的底层函数调用了C语言，读取速度更快。如果我们需要读写<strong>Excel</strong>文件，或者操作<strong>Excel</strong>文件中的格式，则可以使用<span class="highlight-text purple">xlsx</span>程序包。<strong>xlsx</strong>程序包中的底层函数调用了<strong>JAVA</strong>，所以我们需要实现安装配置<strong>rJava</strong>程序包。</p>
-
 <p>我们可以使用<strong>xlsx</strong>程序包中的<span class="highlight-text primary">read.xlsx、write.xlsx</span>函数，读写<strong>Excel</strong>文件。此外我们还可以直接修改<strong>Excel</strong>文件中的格式，比如使用<span class="highlight-text primary">addAutoFilter、addMergedRegion、autoSizeColumn</span>函数，插入筛选器、插入合并的单元格、自动调整列宽，使用<span class="highlight-text primary">setCellStyle</span>函数，修改单元格属性。以下为修改单元格格式时，常用的函数及其参数：</p>
-
 <table>
 <thead>
 <tr>
@@ -722,40 +597,33 @@ write.ftable(x, file = &quot;&quot;, quote = TRUE, append = FALSE,
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">DataFormat</td>
 <td align="left">数据格式，如<code>DataFormat(&quot;YYYY-MM-DD&quot;)</code>表示年月日、<code>DataFormat(&quot;0&quot;)</code>表示无格式文本</td>
 </tr>
-
 <tr>
 <td align="left">Alignment</td>
 <td align="left">对齐，如<code>Alignment(horizontal=&quot;ALIGN_CENTER)&quot;</code>，表示水平方向居中对齐</td>
 </tr>
-
 <tr>
 <td align="left">Border</td>
 <td align="left">边框，如<code>Border(color=&quot;black&quot;, position=&quot;BOTTOM&quot;, pen=&quot;BORDER_THIN&quot;)</code></td>
 </tr>
-
 <tr>
 <td align="left">Fill</td>
 <td align="left">填充，如<code>Fill(backgroundColor=&quot;lightblue&quot;)</code></td>
 </tr>
-
 <tr>
 <td align="left">Font</td>
 <td align="left">填充，如<code>Font(wb, color=&quot;blue&quot;, isItalic=TRUE)</code>，表示设置工作簿<strong>wb</strong>的字体为蓝色斜体字</td>
 </tr>
-
 <tr>
 <td align="left">CellProtection</td>
 <td align="left">保护，如<code>CellProtection(locked=TRUE)</code>表示锁定单元格</td>
 </tr>
 </tbody>
 </table>
-
 <ul>
 <li><strong>rowIndex</strong>即需要选择哪些行</li>
 <li><strong>colIndex</strong>即需要选择哪些列</li>
@@ -764,110 +632,80 @@ write.ftable(x, file = &quot;&quot;, quote = TRUE, append = FALSE,
 <li><strong>startColumn</strong>即从哪一列的单元格开始</li>
 <li><strong>endColumn</strong>即到哪一列的单元格结束</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="6-json文件">6、JSON文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="6json文件">6、JSON文件</h2>
 <p><a href="http://www.json.org/">JSON</a>是一款轻量级的数据序列化标准，它在易于阅读和编辑的同时，也易于被计算机解析、生成。以下是一段标准的<strong>JSON</strong>语句：</p>
-
-<pre><code class="language-JSON">{
-  &quot;menu&quot;: {
-    &quot;doctype&quot;: &quot;File&quot;,
-    &quot;menuitem&quot;: [
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-JSON" data-lang="JSON">{
+  <span style="color:#f92672">&#34;menu&#34;</span>: {
+    <span style="color:#f92672">&#34;doctype&#34;</span>: <span style="color:#e6db74">&#34;File&#34;</span>,
+    <span style="color:#f92672">&#34;menuitem&#34;</span>: [
       {
-        &quot;value&quot;: &quot;Open&quot;,
-        &quot;onclick&quot;: &quot;OpenDoc()&quot;
+        <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;Open&#34;</span>,
+        <span style="color:#f92672">&#34;onclick&#34;</span>: <span style="color:#e6db74">&#34;OpenDoc()&#34;</span>
       },
       {
-        &quot;value&quot;: &quot;Close&quot;,
-        &quot;onclick&quot;: &quot;CloseDoc()&quot;
+        <span style="color:#f92672">&#34;value&#34;</span>: <span style="color:#e6db74">&#34;Close&#34;</span>,
+        <span style="color:#f92672">&#34;onclick&#34;</span>: <span style="color:#e6db74">&#34;CloseDoc()&#34;</span>
       }
     ]
   }
 }
-</code></pre>
-
-<p>我们可以使用<span class="highlight-text purple">rjson</span>程序包中的<span class="highlight-text primary">fromJSON、toJSON</span>函数读写<strong>JSON</strong>，以下为读写<strong>JSON</strong>时需要注意的参数：</p>
-
+</code></pre></div><p>我们可以使用<span class="highlight-text purple">rjson</span>程序包中的<span class="highlight-text primary">fromJSON、toJSON</span>函数读写<strong>JSON</strong>，以下为读写<strong>JSON</strong>时需要注意的参数：</p>
 <ul>
 <li><strong>simplify</strong>即是否将只含有同一数据类型的<strong>标量值</strong>的json文本转化为数组而非列表</li>
 <li><strong>indent</strong>即格式化json文本时，每一个 <em>子行</em> 需要缩进的空格数量</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="7-yaml文件">7、YAML文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="7yaml文件">7、YAML文件</h2>
 <p><a href="https://yaml.org/">YAML</a>是一种面向所有计算机语言的、容易阅读的数据序列化标准，可以直接存储各种标量、数组、列表等类型的数据。<strong>YAML</strong>不是一种<strong>标记语言</strong>，但它可以通过换行与缩进等形式，以容易阅读的形式展示数据，所以被广泛用于各种配置文件、文件大纲等。以下是一段由<strong>YAML</strong>表示的<strong>markdown</strong>文章标题：</p>
-
-<pre><code class="language-YAML">title: &quot;R语言文件输入输出&quot;
-date: !expr Sys.Date()
-keywords:
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-YAML" data-lang="YAML"><span style="color:#66d9ef">title</span>: <span style="color:#e6db74">&#34;R语言文件输入输出&#34;</span>
+<span style="color:#66d9ef">date</span>: !expr Sys.Date()
+<span style="color:#66d9ef">keywords</span>:
   - R语言
   - IO管理
-</code></pre>
-
-<p>我们可以使用<span class="highlight-text purple">YAML</span>程序包中的<span class="highlight-text primary">read_yaml、write_yaml</span>函数读写<strong>YAML</strong> ，注意<strong>read_yaml</strong>函数会根据读取内容的类型（字符串或文件）分别调用<span class="highlight-text primary">yaml.load、yaml.load_file</span>函数，而<strong>write_yaml</strong>会调用<span class="highlight-text primary">as.yaml</span>函数。</p>
-
+</code></pre></div><p>我们可以使用<span class="highlight-text purple">YAML</span>程序包中的<span class="highlight-text primary">read_yaml、write_yaml</span>函数读写<strong>YAML</strong> ，注意<strong>read_yaml</strong>函数会根据读取内容的类型（字符串或文件）分别调用<span class="highlight-text primary">yaml.load、yaml.load_file</span>函数，而<strong>write_yaml</strong>会调用<span class="highlight-text primary">as.yaml</span>函数。</p>
 <ul>
 <li><strong>eval.expr</strong>即读取时是否执行<strong>YAML</strong>中的命令（命令格式必须为<code>!expr 命令</code>）</li>
 <li><strong>column.major</strong>即数据框转化为<strong>YAML</strong>时，是否按列转化</li>
-<li><strong>omap</strong>即列表转化为<strong>YAML</strong>时，是否在列表前写入<strong>!omap</strong></li>
+<li><strong>omap</strong>即列表转化为<strong>YAML</strong>时，是否在列表前写入**!omap**</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="8-dcf文件">8、DCF文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="8dcf文件">8、DCF文件</h2>
 <p><strong>DCF</strong>(<strong>Debian Control File</strong>)文件是一种用于<strong>Debian</strong>操作系统的控制文件，其格式类似<strong>YAML</strong>，但只能以键值对的形式存储信息。R语言程序包中的<strong>DESCRIPTION</strong>等文件，就使用了这种格式存储信息。以下为一个示例<strong>DESCRIPTION</strong>文件：</p>
-
 <pre><code>Package: myFirstPackage
 Version: 1.0.0
 Title: My First Package
 Description: Not decided yet,
   problem shooting &lt;somebody@email.com&gt;
 Built: R 3.6.1; x86_64-pc-linux-gnu; 2019-07-26 13:35:28 UTC; unix
-</code></pre>
+</code></pre><p>我们可以使用R语言中的系统函数<span class="highlight-text primary">read.dcf、write.dcf</span>，读写<strong>DCF</strong>文件。当然我们也可以用读写<strong>YAML</strong>文件的方法，读写<strong>DCF</strong>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#a6e22e">read.dcf</span>(file, fields <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, all <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, keep.white <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>)
 
-<p>我们可以使用R语言中的系统函数<span class="highlight-text primary">read.dcf、write.dcf</span>，读写<strong>DCF</strong>文件。当然我们也可以用读写<strong>YAML</strong>文件的方法，读写<strong>DCF</strong>。</p>
-
-<pre><code class="language-R">read.dcf(file, fields = NULL, all = FALSE, keep.white = NULL)
-
-write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
-          indent = 0.1 * getOption(&quot;width&quot;), width = 0.9 * getOption(&quot;width&quot;),
-          keep.white = NULL)
-</code></pre>
-
-<ul>
+<span style="color:#a6e22e">write.dcf</span>(x, file <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;&#34;</span>, append <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>, useBytes <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>,
+          indent <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.1</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">getOption</span>(<span style="color:#e6db74">&#34;width&#34;</span>), width <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.9</span> <span style="color:#f92672">*</span> <span style="color:#a6e22e">getOption</span>(<span style="color:#e6db74">&#34;width&#34;</span>),
+          keep.white <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>)
+</code></pre></div><ul>
 <li><strong>fields</strong>即需要从文件中读取的字段，默认为全部字段</li>
 <li><strong>all</strong>即当文件中包含两个同名字段时，是否将其内容合并为同一个字段（使用英文逗号分割）。若取值为<strong>FALSE</strong>，则只读取最后一个字段的值</li>
 <li><strong>keep.white</strong>即哪些字段的前后空格需要被保留，可以是一个字符串数组，也可以是<strong>NULL</strong>表示所有字段的前后空格都不保留</li>
 <li><strong>indent</strong>即字段换行时，需要在行首插入的空格数量</li>
 <li><strong>width</strong>即写出文件时每一行的最大宽度</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="9-xml类文件">9、XML类文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="9xml类文件">9、XML类文件</h2>
 <p><strong>XML</strong>是一种用于标记电子文件使其具有结构性的标记语言，类似的语言还有<strong>HTML</strong>、<strong>SGML</strong>等。注意<strong>HTML</strong>与<strong>XML</strong>均被广泛的应用于互联网领域，两者最大的不同在于：<strong>HTML</strong>不允许用户自定义标签（节点）或属性，但<strong>XML</strong>中可以。以下是一段标准的<strong>XML</strong>语句：</p>
-
-<pre><code class="language-xml">&lt;?xml version=&quot;1.0&quot; encoding=&quot;ISO-8859-1&quot;?&gt;
-&lt;bookstore&gt;
-    &lt;book category=&quot;CHILDREN&quot;&gt;
-        &lt;title lang=&quot;en&quot;&gt;Harry Potter&lt;/title&gt;
-        &lt;price&gt;29.99&lt;/price&gt;
-    &lt;/book&gt;
-    &lt;book category=&quot;WEB&quot;&gt;
-        &lt;title lang=&quot;en&quot;&gt;Learning XML&lt;/title&gt;
-        &lt;price&gt;39.95&lt;/price&gt;
-    &lt;/book&gt;
-&lt;/bookstore&gt;
-</code></pre>
-
-<p>我们可以使用<span class="highlight-text purple">XML</span>程序包读写<strong>XML</strong>类文件。首先我们可以使用<span class="highlight-text primary">xmlParse、htmlParse</span>函数，将<strong>XML</strong>或<strong>HTML</strong>文本转化为以R语言对象表示的<strong>XML结构树</strong>。接下来我们可以使用以下函数，在R语言中查看、修改、删除XML结构树中的内容。</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;?xml version=&#34;1.0&#34; encoding=&#34;ISO-8859-1&#34;?&gt;</span>
+<span style="color:#f92672">&lt;bookstore&gt;</span>
+    <span style="color:#f92672">&lt;book</span> <span style="color:#a6e22e">category=</span><span style="color:#e6db74">&#34;CHILDREN&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>Harry Potter<span style="color:#f92672">&lt;/title&gt;</span>
+        <span style="color:#f92672">&lt;price&gt;</span>29.99<span style="color:#f92672">&lt;/price&gt;</span>
+    <span style="color:#f92672">&lt;/book&gt;</span>
+    <span style="color:#f92672">&lt;book</span> <span style="color:#a6e22e">category=</span><span style="color:#e6db74">&#34;WEB&#34;</span><span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&lt;title</span> <span style="color:#a6e22e">lang=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>Learning XML<span style="color:#f92672">&lt;/title&gt;</span>
+        <span style="color:#f92672">&lt;price&gt;</span>39.95<span style="color:#f92672">&lt;/price&gt;</span>
+    <span style="color:#f92672">&lt;/book&gt;</span>
+<span style="color:#f92672">&lt;/bookstore&gt;</span>
+</code></pre></div><p>我们可以使用<span class="highlight-text purple">XML</span>程序包读写<strong>XML</strong>类文件。首先我们可以使用<span class="highlight-text primary">xmlParse、htmlParse</span>函数，将<strong>XML</strong>或<strong>HTML</strong>文本转化为以R语言对象表示的<strong>XML结构树</strong>。接下来我们可以使用以下函数，在R语言中查看、修改、删除XML结构树中的内容。</p>
 <table>
 <thead>
 <tr>
@@ -875,84 +713,67 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">xmlRoot</td>
 <td align="left">获取XML结构树的根结点</td>
 </tr>
-
 <tr>
 <td align="left">xmlChildren</td>
 <td align="left">获取或修改某个节点的子节点</td>
 </tr>
-
 <tr>
 <td align="left">xmlParent</td>
 <td align="left">获取或修改某个节点的父节点</td>
 </tr>
-
 <tr>
 <td align="left">xmlName</td>
 <td align="left">获取或修改某个节点的节点名称</td>
 </tr>
-
 <tr>
 <td align="left">xmlAttrs</td>
 <td align="left">获取或修改某个节点的所有节点属性</td>
 </tr>
-
 <tr>
 <td align="left">xmlGetAttr</td>
 <td align="left">获取或修改某个节点的某个节点属性</td>
 </tr>
-
 <tr>
 <td align="left">xmlValue</td>
 <td align="left">获取或修改某个节点的节点内容</td>
 </tr>
-
 <tr>
 <td align="left">addNode</td>
 <td align="left">添加节点</td>
 </tr>
-
 <tr>
 <td align="left">addAttributes</td>
 <td align="left">添加节点属性</td>
 </tr>
-
 <tr>
 <td align="left">addChildren</td>
 <td align="left">添加子节点</td>
 </tr>
-
 <tr>
 <td align="left">replaceNodes</td>
 <td align="left">替换节点</td>
 </tr>
-
 <tr>
 <td align="left">removeNode</td>
 <td align="left">删除节点</td>
 </tr>
-
 <tr>
 <td align="left">removeAttributes</td>
 <td align="left">删除节点元素</td>
 </tr>
-
 <tr>
 <td align="left">removeChildren</td>
 <td align="left">删除子节点</td>
 </tr>
 </tbody>
 </table>
-
 <p>当然我们也可以分别使用<span class="highlight-text primary">xmlToList、xmlToS4</span>函数，直接将XML结构树转化为R语言中的列表、S4对象。如果我们只需要获取XML结构树中的列表、表格，还可以分别使用<span class="highlight-text primary">readHTMLList、readHTMLTable</span>函数。</p>
-
 <p>此外我们还可以使用<strong>xpath</strong>，快速定位<strong>XML</strong>结构树中的内容，以下表格即<strong>xpath</strong>的语法格式。我们需要使用<span class="highlight-text primary">getNodeSet</span>函数，提取<strong>xpath</strong>对应的元素（可能是由节点对象构成的列表、数值、逻辑值、字符串）。为了更方便的处理<strong>getNodeSet</strong>函数返回的节点列表，我们还可以使用<span class="highlight-text primary">xmlApply</span>函数，以并发运算的方式处理节点对象组成的数组或列表。</p>
-
 <table>
 <thead>
 <tr>
@@ -960,108 +781,82 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">/</td>
 <td align="left">从根节点开始查找，节点路径分割符，比如<span class="highlight-text blue">/bookstore/book</span></td>
 </tr>
-
 <tr>
 <td align="left">//</td>
 <td align="left">从当前节点下的任意位置开始查找，比如<span class="highlight-text blue">//book</span></td>
 </tr>
-
 <tr>
 <td align="left">.</td>
 <td align="left">获取当前节点</td>
 </tr>
-
 <tr>
 <td align="left">..</td>
 <td align="left">获取当前节点的父节点，比如<span class="highlight-text blue">//title/..</span></td>
 </tr>
-
 <tr>
 <td align="left">node</td>
 <td align="left">获取d当前节点下的所有<strong>node</strong>节点</td>
 </tr>
-
 <tr>
 <td align="left">[n]</td>
 <td align="left">筛选第<strong>n</strong>个节点，比如<span class="highlight-text blue">/bookstore/book[2]</span></td>
 </tr>
-
 <tr>
 <td align="left">[last()-n]</td>
 <td align="left">筛选倒数第<strong>n</strong>个节点，比如<span class="highlight-text blue">//book[last()]</span>，注意如果<code>//</code>之前的路径对应多个包含<strong>book</strong>的节点，则表示在每个节点中分别进行位置筛选</td>
 </tr>
-
 <tr>
 <td align="left">[position() &lt; n]</td>
 <td align="left">筛选前<strong>n-1</strong>个节点，比如<span class="highlight-text blue">//book[position() < 3]</span></td>
 </tr>
-
 <tr>
 <td align="left">@attr</td>
 <td align="left">筛选必须拥有<strong>attr</strong>属性，比如<span class="highlight-text blue">//book[@category</span>、<span class="highlight-text blue">//@category</span></td>
 </tr>
-
 <tr>
 <td align="left">@attr = &lsquo;value&rsquo;</td>
 <td align="left">筛选<strong>attr</strong>属性必须等于<strong>value</strong>，比如<span class="highlight-text blue">//book[@category='WEB']</span></td>
 </tr>
-
 <tr>
 <td align="left">node &gt; n</td>
 <td align="left">筛选<strong>node</strong>节点中的数值必须大于<strong>n</strong>，比如<span class="highlight-text blue">//book[price>35]</span></td>
 </tr>
-
 <tr>
 <td align="left">*</td>
 <td align="left">匹配任意节点，比如<span class="highlight-text blue">//book[1]/*</span></td>
 </tr>
-
 <tr>
 <td align="left">@*</td>
 <td align="left">匹配任意属性，比如<span class="highlight-text blue">//book[@*]</span>、<span class="highlight-text blue">//book[1]/@*</span></td>
 </tr>
-
 <tr>
 <td align="left">node()</td>
 <td align="left">匹配任意节点，等同于<span class="highlight-text blue">*</span></td>
 </tr>
-
 <tr>
 <td align="left">text()</td>
 <td align="left">匹配任意节点内容，比如<span class="highlight-text blue">//title[1]/text()</span></td>
 </tr>
-
 <tr>
 <td align="left">expr1 | expr2</td>
 <td align="left">获取匹配<strong>expr1</strong>或<strong>expr2</strong>的元素，比如<span class="highlight-text blue">//book[1] | //book[@category='WEB']</span></td>
 </tr>
 </tbody>
 </table>
-
-<p><br></p>
-
-<h2 id="10-图像类文件">10、图像类文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="10图像类文件">10、图像类文件</h2>
 <p>R语言虽然自带强大的图形化工具，但大多用于绘制、保存图像。为了方便提取图像中的信息进行数据分析（如图像识别），我们可以使用<span class="highlight-text purple">png、jpep</span>等程序包中的函数，读写<strong>PNG、JPEG</strong>等图像文件。注意读入R语言的图像将以三维数组的形式表示，数组中的行列分别代表图片横向和纵向的像素点，数组第三个纬度上的四个元素分别表示相应像素点的RGB和透明度（均已被标量化，取值范围在0-1之间）。由于<strong>PNG、JPEG</strong>等图像文件以压缩的形式存储图像信息，读入内存后图像是以位图的形式表示的，所以占用的空间远大于存储时占用的空间。</p>
-
 <p>R语言中图像处理、大数据分析的方法并不是很丰富，但我们可以在R语言中使用第三方工具完成这些任务，参考<span class="highlight-text purple">TensorFlow、keras、sparklyr</span>等程序包。</p>
-
-<p><br></p>
-
-<h2 id="11-阅读文档类文件">11、阅读文档类文件</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="11阅读文档类文件">11、阅读文档类文件</h2>
 <p><em>阅读文档类文件</em> 指的是为便于阅读、展示而产生的各种类型的文档，与<strong>纯文本文件</strong> 不同的是，阅读文档类文件中除了要包含文本内容，还要包含文本的展示样式。所以读写这类文件往往需要特定的编辑器或者程序，否则很容易破坏文档的结构，从而导致文档实效。</p>
-
 <p>在R语言中，我们可以使用<span class="highlight-text purple">knitr、rmarkdown</span>程序包，结合R语言与<strong>markdown</strong>语法，输出<strong>HTML、PDF、Word、PowerpPint</strong>文档。上文已经介绍了如何读取<strong>HTML</strong>文档中的内容，此外我们还可以使用<span class="highlight-text purple">officer</span>程序包，读写<strong>Word、PowerpPint</strong>等文档中的内容。读取<strong>PDF</strong>文档中的内容，我们可以使用<span class="highlight-text purple">pdftools</span>程序包，注意如果pdf文档中含有加密信息，我们需要提供相应的密码才能读取，还有一些pdf文档实际上是以图片的形式存储信息的，所以不能读取其中的文字。</p>
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 
 
   
@@ -1076,11 +871,9 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
 <li><strong>xpath</strong>——<code>//@attr='value'</code>有什么作用？</li>
 <li>R语言中可以读写音频、视频类文件吗？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -1092,7 +885,7 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80io%E7%AE%A1%E7%90%86/">R语言IO管理</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80io%E7%AE%A1%E7%90%86/">R语言IO管理</a>
 
                   </div>
                 
@@ -1100,8 +893,8 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言中的文件输入输出',
@@ -1122,7 +915,7 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -1130,7 +923,7 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/" data-tooltip="R语言与数据库资源链接管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/" data-tooltip="R语言与数据库资源链接管理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -1148,13 +941,13 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -1185,7 +978,7 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -1199,7 +992,7 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -1207,7 +1000,7 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/" data-tooltip="R语言与数据库资源链接管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%95%B0%E6%8D%AE%E5%BA%93%E8%B5%84%E6%BA%90%E9%93%BE%E6%8E%A5%E7%AE%A1%E7%90%86/" data-tooltip="R语言与数据库资源链接管理">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -1225,13 +1018,13 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -1265,13 +1058,13 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F09%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2596%2587%25E4%25BB%25B6%25E8%25BE%2593%25E5%2585%25A5%25E8%25BE%2593%25E5%2587%25BA%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F09%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2596%2587%25E4%25BB%25B6%25E8%25BE%2593%25E5%2585%25A5%25E8%25BE%2593%25E5%2587%25BA%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F09%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2596%2587%25E4%25BB%25B6%25E8%25BE%2593%25E5%2585%25A5%25E8%25BE%2593%25E5%2587%25BA%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F09%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E6%2596%2587%25E4%25BB%25B6%25E8%25BE%2593%25E5%2585%25A5%25E8%25BE%2593%25E5%2587%25BA%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -1326,12 +1119,12 @@ write.dcf(x, file = &quot;&quot;, append = FALSE, useBytes = FALSE,
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -1408,7 +1201,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

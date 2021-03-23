@@ -32,7 +32,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="SQL Server 打造定时语句系统">
 <meta property="og:description" content="SQL Server 中提供了定时作业的功能，可以帮助我们按照计划执行特定的任务，但这种方式每次都要在图形化界面设置一大堆条件才能启用。有没有一种便捷的方式，只需提供计划执行时间和SQL语句即可在规定时间执行相应的语句？这篇文章我们将介绍如何在 SQL Server 中打造定时语句系统。">
@@ -49,19 +49,23 @@
 
     <title>SQL Server 打造定时语句系统</title>
 
-    <link rel="canonical" href="../../../2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -72,12 +76,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -92,7 +96,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -107,7 +111,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -117,7 +121,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -127,7 +131,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -137,7 +141,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -147,7 +151,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -181,7 +185,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -195,7 +199,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -242,7 +246,7 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/sql">SQL</a>
+      <a class="category-link" href="/categories/sql">SQL</a>
     
   
 
@@ -254,38 +258,15 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>SQL Server</strong> 中提供了<strong>定时作业</strong>的功能，可以帮助我们按照计划执行特定的任务，但这种方式每次都要在图形化界面设置一大堆条件才能启用。有没有一种便捷的方式，只需提供<strong>计划执行时间</strong>和<strong>SQL语句</strong>即可在规定时间执行相应的语句？这篇文章我们将介绍如何在 <strong>SQL Server</strong> 中打造<strong>定时语句</strong>系统。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-具体实现步骤">1、具体实现步骤</a>
-<ul>
-<li><a href="#1-1-创建定时语句管理表">1.1、创建定时语句管理表</a></li>
-<li><a href="#1-2-创建实现定时语句的存储过程">1.2、创建实现定时语句的存储过程</a></li>
-<li><a href="#1-3-创建-sql-server-作业">1.3、创建 SQL Server 作业</a></li>
-</ul></li>
-<li><a href="#2-测试定时语句系统">2、测试定时语句系统</a></li>
-</ul></li>
-</ul>
-</nav>
-
+<!-- raw HTML omitted -->
 <p>假设我们的业务部门有一项需求——将某个用户禁言24小时，24小时后自动放开禁言。或者用户注销账号的时候，给用户留7天 <em>冷静时间</em> ，7天内用户可以放弃注销。</p>
-
 <p>如果使用定时作业的方式完成这样的需求，我们可能需要编写大量的SQL语句，并且每次都需要手动在定时作业中设置执行时间。接下来介绍的定时语句系统，则可以让我们在面对这些大规模且随时有可能产生的、需要在未来处理的SQL语句时，只需要考虑两个因素——计划执行时间和SQL语句。</p>
-
-<p><br></p>
-
-<h2 id="1-具体实现步骤">1、具体实现步骤</h2>
-
-<p>实现定时语句的过程可以分为三个步骤—— <a href="#创建定时语句管理表">创建定时语句管理表</a>、 <a href="#创建实现定时语句的存储过程">创建实现定时语句的存储过程</a>、 <a href="#创建 SQL Server 作业">创建 SQL Server 作业</a>。为了方便演示，这里所有的操作我们都在数据库<strong>mdb</strong>中完成。</p>
-
-<p><br></p>
-
-<h3 id="1-1-创建定时语句管理表">1.1、创建定时语句管理表</h3>
-
+<!-- raw HTML omitted -->
+<h2 id="1具体实现步骤">1、具体实现步骤</h2>
+<p>实现定时语句的过程可以分为三个步骤—— <a href="#%E5%88%9B%E5%BB%BA%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%AE%A1%E7%90%86%E8%A1%A8">创建定时语句管理表</a>、 <a href="#%E5%88%9B%E5%BB%BA%E5%AE%9E%E7%8E%B0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%9A%84%E5%AD%98%E5%82%A8%E8%BF%87%E7%A8%8B">创建实现定时语句的存储过程</a>、 [创建 SQL Server 作业](#创建 SQL Server 作业)。为了方便演示，这里所有的操作我们都在数据库<strong>mdb</strong>中完成。</p>
+<!-- raw HTML omitted -->
+<h3 id="11创建定时语句管理表">1.1、创建定时语句管理表</h3>
 <p>首先我们需要创建定时语句管理表，当创建定时语句时，需要要向这张表中插入计划执行时间和SQL语句，当定时语句被执行后，需要向这张表插入执行完成时间，如果执行失败我们还需要插入错误日志。以下是定时语句管理表中我们需要创建的所有字段及相应的释义：</p>
-
 <table>
 <thead>
 <tr>
@@ -293,129 +274,113 @@
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">id</td>
 <td align="left">序号，用于确定语句唯一性</td>
 </tr>
-
 <tr>
 <td align="left">execTime</td>
 <td align="left">需要执行的时间，必不可少</td>
 </tr>
-
 <tr>
 <td align="left">execContent</td>
 <td align="left">需要执行的语句，必不可少</td>
 </tr>
-
 <tr>
 <td align="left">isFinished</td>
 <td align="left">语句执行状态，0：未执行；1：执行成功；-1：执行失败</td>
 </tr>
-
 <tr>
 <td align="left">finishTime</td>
 <td align="left">语句执行完成时间，无论是否执行成功都会更新该值</td>
 </tr>
-
 <tr>
 <td align="left">errorMSG</td>
 <td align="left">语句执行遇到错误时，需要保存的错误日志</td>
 </tr>
-
 <tr>
 <td align="left">inputTime</td>
 <td align="left">数据插入时间</td>
 </tr>
 </tbody>
 </table>
-
 <p>当然这里我们也可以稍作修改，不必提供计划执行时间，而是提供<strong>延迟时间</strong>（语句提交后需要等待多久才能执行）。此时我们需要修改存储过程中的相应内容，根据表中的<strong>inputTime</strong>字段和提供的延迟时间，得出计划执行时间。</p>
-
-<pre><code class="language-SQL">CREATE TABLE mdb.dbo.tSchedule (
-  id INT IDENTITY(1, 1),
-  execTime DATETIME NOT NULL,
-  execContent VARCHAR(MAX) NOT NULL,
-  isFinished INT DEFAULT 0,
-  finishTime DATETIME NULL,
-  errorMSG VARCHAR(MAX) NULL,
-  inputTime DATETIME DEFAULT GETDATE()
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">TABLE</span> mdb.dbo.tSchedule (
+  id INT <span style="color:#66d9ef">IDENTITY</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
+  execTime DATETIME <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  execContent VARCHAR(<span style="color:#66d9ef">MAX</span>) <span style="color:#66d9ef">NOT</span> <span style="color:#66d9ef">NULL</span>,
+  isFinished INT <span style="color:#66d9ef">DEFAULT</span> <span style="color:#ae81ff">0</span>,
+  finishTime DATETIME <span style="color:#66d9ef">NULL</span>,
+  errorMSG VARCHAR(<span style="color:#66d9ef">MAX</span>) <span style="color:#66d9ef">NULL</span>,
+  inputTime DATETIME <span style="color:#66d9ef">DEFAULT</span> GETDATE()
 )
-</code></pre>
-
-<p><br></p>
-
-<h3 id="1-2-创建实现定时语句的存储过程">1.2、创建实现定时语句的存储过程</h3>
-
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="12创建实现定时语句的存储过程">1.2、创建实现定时语句的存储过程</h3>
 <p>接下来我们需要创建一个存储过程，每当这个存储过程被执行时，定时语句管理表中记录的，所有已经到了计划执行时间并且尚未被执行的语句，会按照计划执行时间的先后顺序逐一被执行。</p>
-
-<pre><code class="language-SQL">CREATE PROCEDURE mdb.dbo.pSchedule AS
-BEGIN
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#66d9ef">CREATE</span> <span style="color:#66d9ef">PROCEDURE</span> mdb.dbo.pSchedule <span style="color:#66d9ef">AS</span>
+<span style="color:#66d9ef">BEGIN</span>
 	
-	DECLARE @t TABLE(
-		i INT IDENTITY(1, 1),
+	<span style="color:#66d9ef">DECLARE</span> <span style="color:#f92672">@</span>t <span style="color:#66d9ef">TABLE</span>(
+		i INT <span style="color:#66d9ef">IDENTITY</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>),
 		id INT,
-		execContent VARCHAR(MAX)
+		execContent VARCHAR(<span style="color:#66d9ef">MAX</span>)
 	) 
-	-- 查询所有需要被执行的语句
-	INSERT INTO @t (id, execContent)
-		SELECT id, execContent FROM mdb.dbo.tSchedule
-			WHERE isFinished = 0 AND execTime &lt;= GETDATE()
-			ORDER BY execTime
+	<span style="color:#75715e">-- 查询所有需要被执行的语句
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">INSERT</span> <span style="color:#66d9ef">INTO</span> <span style="color:#f92672">@</span>t (id, execContent)
+		<span style="color:#66d9ef">SELECT</span> id, execContent <span style="color:#66d9ef">FROM</span> mdb.dbo.tSchedule
+			<span style="color:#66d9ef">WHERE</span> isFinished <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span> <span style="color:#66d9ef">AND</span> execTime <span style="color:#f92672">&lt;=</span> GETDATE()
+			<span style="color:#66d9ef">ORDER</span> <span style="color:#66d9ef">BY</span> execTime
 
-	-- 初始化变量
-	DECLARE @i INT, @n INT, @id INT, @execContent VARCHAR(max)
-	-- “@n”表示共有多少条语句需要被执行
-	SELECT @n = count(*) FROM @t
-	-- “@i”表示当前需要被执行的是那一条语句
-	SET @i = 1
+	<span style="color:#75715e">-- 初始化变量
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">DECLARE</span> <span style="color:#f92672">@</span>i INT, <span style="color:#f92672">@</span>n INT, <span style="color:#f92672">@</span>id INT, <span style="color:#f92672">@</span>execContent VARCHAR(<span style="color:#66d9ef">max</span>)
+	<span style="color:#75715e">-- “@n”表示共有多少条语句需要被执行
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">@</span>n <span style="color:#f92672">=</span> <span style="color:#66d9ef">count</span>(<span style="color:#f92672">*</span>) <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">@</span>t
+	<span style="color:#75715e">-- “@i”表示当前需要被执行的是那一条语句
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">SET</span> <span style="color:#f92672">@</span>i <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>
 
 	execLoop:
-	-- 执行完毕则退出
-	IF @i &gt; @n RETURN
-	-- 获取每次需要执行的语句
-	SELECT @id = id, @execContent = execContent FROM @t WHERE i = @i
-	-- 语句执行成功
-	BEGIN TRY
-		EXEC(@execContent)
-		UPDATE mdb.dbo.tSchedule
-			SET isFinished = 1, finishTime = GETDATE()
-			WHERE id = @id
-	END TRY
-	-- 语句执行失败，则插入错误日志
-	BEGIN CATCH
-		UPDATE mdb.dbo.tSchedule
-			SET isFinished = -1, finishTime = GETDATE(), errorMSG = ERROR_MESSAGE()
-			WHERE id = @id
-	END CATCH
-	-- 进入下一次循环
-	SET @i = @i + 1
-	GOTO execLoop
+	<span style="color:#75715e">-- 执行完毕则退出
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">IF</span> <span style="color:#f92672">@</span>i <span style="color:#f92672">&gt;</span> <span style="color:#f92672">@</span>n <span style="color:#66d9ef">RETURN</span>
+	<span style="color:#75715e">-- 获取每次需要执行的语句
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">SELECT</span> <span style="color:#f92672">@</span>id <span style="color:#f92672">=</span> id, <span style="color:#f92672">@</span>execContent <span style="color:#f92672">=</span> execContent <span style="color:#66d9ef">FROM</span> <span style="color:#f92672">@</span>t <span style="color:#66d9ef">WHERE</span> i <span style="color:#f92672">=</span> <span style="color:#f92672">@</span>i
+	<span style="color:#75715e">-- 语句执行成功
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">BEGIN</span> TRY
+		<span style="color:#66d9ef">EXEC</span>(<span style="color:#f92672">@</span>execContent)
+		<span style="color:#66d9ef">UPDATE</span> mdb.dbo.tSchedule
+			<span style="color:#66d9ef">SET</span> isFinished <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, finishTime <span style="color:#f92672">=</span> GETDATE()
+			<span style="color:#66d9ef">WHERE</span> id <span style="color:#f92672">=</span> <span style="color:#f92672">@</span>id
+	<span style="color:#66d9ef">END</span> TRY
+	<span style="color:#75715e">-- 语句执行失败，则插入错误日志
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">BEGIN</span> CATCH
+		<span style="color:#66d9ef">UPDATE</span> mdb.dbo.tSchedule
+			<span style="color:#66d9ef">SET</span> isFinished <span style="color:#f92672">=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>, finishTime <span style="color:#f92672">=</span> GETDATE(), errorMSG <span style="color:#f92672">=</span> ERROR_MESSAGE()
+			<span style="color:#66d9ef">WHERE</span> id <span style="color:#f92672">=</span> <span style="color:#f92672">@</span>id
+	<span style="color:#66d9ef">END</span> CATCH
+	<span style="color:#75715e">-- 进入下一次循环
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">SET</span> <span style="color:#f92672">@</span>i <span style="color:#f92672">=</span> <span style="color:#f92672">@</span>i <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+	<span style="color:#66d9ef">GOTO</span> execLoop
 
-END
-</code></pre>
-
-<p><br></p>
-
-<h3 id="1-3-创建-sql-server-作业">1.3、创建 SQL Server 作业</h3>
-
+<span style="color:#66d9ef">END</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h3 id="13创建-sql-server-作业">1.3、创建 SQL Server 作业</h3>
 <p>最后我们需要建立一个作业来频繁的运行刚刚创建的存储过程，运行的越频繁，定时语句的实际执行时间就会与计划执行时间越接近。两者之间总是会存在误差，但相比任务需要被延迟的时间，误差应当是可以忽略不计的。</p>
-
 <p>这里我们应当保证已经启用了 <strong>SQL Server 代理</strong>，如果尚未启用，可以根据 <strong>SQL Server</strong> 官方文档中介绍的流程 <a href="https://docs.microsoft.com/zh-cn/sql/ssms/agent/start-stop-or-pause-the-sql-server-agent-service">启动 SQL Server 代理</a>
 。接下来我们需要在<strong>数据库引擎实例</strong>中展开 <strong>SQL Server 代理</strong>，右击<strong>作业</strong>选择<strong>新建作业</strong>，在弹出来的选项卡中填写以下信息：</p>
-
 <ul>
-<li><p>在<strong>常规</strong>界面为作业设置名称，并确保勾选了<strong>已启用</strong>。</p></li>
-
-<li><p>在<strong>步骤</strong>界面选择<strong>新建</strong>，在弹出窗口中设置需要执行的步骤。这里我们只需要执行存储过程 <strong>pSchedule</strong> ，所以应该在<strong>命令</strong>窗格填写<code>EXEC mdb.dbo.pSchedule</code>。</p></li>
-
-<li><p>在<strong>计划</strong>界面选择<strong>新建</strong>，在弹出窗口中设置执行计划。<strong>计划类型</strong>中我们可以选择 <strong>CPU 空闲时启动</strong>，此时我们必须提前 <a href="https://docs.microsoft.com/zh-cn/sql/ssms/agent/set-cpu-idle-time-and-duration-sql-server-management-studio">设置 CPU 空闲时间和持续时间</a>，只有CPU状态满足设定的条件，作业才会被执行；我们也可以选择<strong>重复执行</strong>，此时我们应当设置作业每天间隔10分钟执行一次，并且确保<strong>持续时间</strong>从当天开始，无结束日期；当然我们还可以结合两种方法，设置多个计划，只要任一计划达到触发条件，作业就会执行。</p></li>
-
-<li><p>如果我们在 <strong>SQL Server 代理</strong>中设置了<strong>操作员</strong>，此时我们还可以在<strong>警报</strong>或者<strong>通知</strong>界面，选择当作业执行失败时以邮件等形式告知相关人员，真正做到 <em>无事不登数据库</em> 。</p></li>
+<li>
+<p>在<strong>常规</strong>界面为作业设置名称，并确保勾选了<strong>已启用</strong>。</p>
+</li>
+<li>
+<p>在<strong>步骤</strong>界面选择<strong>新建</strong>，在弹出窗口中设置需要执行的步骤。这里我们只需要执行存储过程 <strong>pSchedule</strong> ，所以应该在<strong>命令</strong>窗格填写<code>EXEC mdb.dbo.pSchedule</code>。</p>
+</li>
+<li>
+<p>在<strong>计划</strong>界面选择<strong>新建</strong>，在弹出窗口中设置执行计划。<strong>计划类型</strong>中我们可以选择 <strong>CPU 空闲时启动</strong>，此时我们必须提前 <a href="https://docs.microsoft.com/zh-cn/sql/ssms/agent/set-cpu-idle-time-and-duration-sql-server-management-studio">设置 CPU 空闲时间和持续时间</a>，只有CPU状态满足设定的条件，作业才会被执行；我们也可以选择<strong>重复执行</strong>，此时我们应当设置作业每天间隔10分钟执行一次，并且确保<strong>持续时间</strong>从当天开始，无结束日期；当然我们还可以结合两种方法，设置多个计划，只要任一计划达到触发条件，作业就会执行。</p>
+</li>
+<li>
+<p>如果我们在 <strong>SQL Server 代理</strong>中设置了<strong>操作员</strong>，此时我们还可以在<strong>警报</strong>或者<strong>通知</strong>界面，选择当作业执行失败时以邮件等形式告知相关人员，真正做到 <em>无事不登数据库</em> 。</p>
+</li>
 </ul>
-
 <p>
 
  
@@ -524,29 +489,22 @@ END
 
   <div style="clear:both;"></div>
 </p>
-
-<p><br></p>
-
-<h2 id="2-测试定时语句系统">2、测试定时语句系统</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="2测试定时语句系统">2、测试定时语句系统</h2>
 <p>现在我们需要测试定时语句系统能否正常运行。这里我们测试了定时语句系统能否处理必然出错的语句；定时语句系统如果处理计划执行时间不同的数据；以及在不同时间插入定时语句是否有影响。</p>
-
 <p>正如之前提到的那样，当我们设置定时语句时，只需要向定时语句管理表中插入计划执行时间和SQL语句即可。但是当SQL语句篇幅比较大，或者SQL语句中的大部分内容都有复用价值时，我们还是应当将SQL语句封装为存储过程（或者函数等），通过传递变量的方式实现不同的作用。此外我们还需要注意，这里不能用SQL语句做查询，因为我们无法接收到查询结果。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-SQL" data-lang="SQL"><span style="color:#75715e">-- 设置10分钟之后，执行一条必然出错的语句
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> mdb.dbo.tSchedule (execTime, execContent)
+<span style="color:#66d9ef">select</span> dateadd(<span style="color:#66d9ef">MINUTE</span>, <span style="color:#ae81ff">10</span>, getdate()), <span style="color:#e6db74">&#39;selet 1&#39;</span>
 
-<pre><code class="language-SQL">-- 设置10分钟之后，执行一条必然出错的语句
-insert into mdb.dbo.tSchedule (execTime, execContent)
-select dateadd(MINUTE, 10, getdate()), 'selet 1'
+<span style="color:#75715e">-- 设置20分钟之后，创建测试表
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> mdb.dbo.tSchedule (execTime, execContent)
+<span style="color:#66d9ef">select</span> dateadd(<span style="color:#66d9ef">MINUTE</span>, <span style="color:#ae81ff">20</span>, getdate()), <span style="color:#e6db74">&#39;create table mdb.dbo.tTest(用户Id int, 信息 ntext)&#39;</span>
 
--- 设置20分钟之后，创建测试表
-insert into mdb.dbo.tSchedule (execTime, execContent)
-select dateadd(MINUTE, 20, getdate()), 'create table mdb.dbo.tTest(用户Id int, 信息 ntext)'
-
--- 设置30分钟之后，向测试表插入信息
-insert into mdb.dbo.tSchedule (execTime, execContent)
-select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''abc'')'
-</code></pre>
-
-
+<span style="color:#75715e">-- 设置30分钟之后，向测试表插入信息
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">insert</span> <span style="color:#66d9ef">into</span> mdb.dbo.tSchedule (execTime, execContent)
+<span style="color:#66d9ef">select</span> dateadd(<span style="color:#66d9ef">MINUTE</span>, <span style="color:#ae81ff">30</span>, getdate()), <span style="color:#e6db74">&#39;insert into mdb.dbo.tTest values(123, &#39;&#39;abc&#39;&#39;)&#39;</span>
+</code></pre></div>
  
   
   
@@ -596,9 +554,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
 
   <div style="clear:both;"></div>
 
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 
 
   
@@ -611,7 +567,6 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
     <ul>
 <li>如何使用定时语句系统，实现文章开头所说的业务需求？</li>
 </ul>
-
   </div>
 </div>
               
@@ -625,7 +580,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/sql/">SQL</a>
+  <a class="tag tag--primary tag--small" href="/tags/sql/">SQL</a>
 
                   </div>
                 
@@ -633,8 +588,8 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'SQL Server 打造定时语句系统',
@@ -655,7 +610,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的文件资源管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的文件资源管理">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -663,7 +618,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -681,13 +636,13 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -718,7 +673,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -732,7 +687,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的文件资源管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/08/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E6%96%87%E4%BB%B6%E8%B5%84%E6%BA%90%E7%AE%A1%E7%90%86/" data-tooltip="R语言中的文件资源管理">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -740,7 +695,7 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/09/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E7%B3%BB%E7%BB%9F%E6%96%87%E4%BB%B6%E4%B8%8E%E7%BA%BF%E7%A8%8B%E8%AE%BE%E7%BD%AE/" data-tooltip="R语言中的系统文件与线程设置">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -758,13 +713,13 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/08/sql-server-%E6%89%93%E9%80%A0%E5%AE%9A%E6%97%B6%E8%AF%AD%E5%8F%A5%E7%B3%BB%E7%BB%9F/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -798,13 +753,13 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F08%2Fsql-server-%25E6%2589%2593%25E9%2580%25A0%25E5%25AE%259A%25E6%2597%25B6%25E8%25AF%25AD%25E5%258F%25A5%25E7%25B3%25BB%25E7%25BB%259F%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F08%2Fsql-server-%25E6%2589%2593%25E9%2580%25A0%25E5%25AE%259A%25E6%2597%25B6%25E8%25AF%25AD%25E5%258F%25A5%25E7%25B3%25BB%25E7%25BB%259F%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F08%2Fsql-server-%25E6%2589%2593%25E9%2580%25A0%25E5%25AE%259A%25E6%2597%25B6%25E8%25AF%25AD%25E5%258F%25A5%25E7%25B3%25BB%25E7%25BB%259F%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F08%2Fsql-server-%25E6%2589%2593%25E9%2580%25A0%25E5%25AE%259A%25E6%2597%25B6%25E8%25AF%25AD%25E5%258F%25A5%25E7%25B3%25BB%25E7%25BB%259F%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -859,12 +814,12 @@ select dateadd(MINUTE, 30, getdate()), 'insert into mdb.dbo.tTest values(123, ''
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -941,7 +896,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

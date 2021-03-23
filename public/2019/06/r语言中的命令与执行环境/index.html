@@ -36,7 +36,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言中的命令与执行环境">
 <meta property="og:description" content="面向语言的编程有时也被称作元编程，指的是一种计算机语言以另一种计算机语言（或自身）为目标语言，通过处理、执行目标语言来完成某项任务的过程。作为脚本语言的一种，R语言也拥有强大且便捷的元编程能力。这篇文章将介绍R语言中元编程的基础——命令与执行环境。">
@@ -53,19 +53,23 @@
 
     <title>R语言中的命令与执行环境</title>
 
-    <link rel="canonical" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -76,12 +80,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -96,7 +100,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -111,7 +115,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -121,7 +125,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -131,7 +135,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -141,7 +145,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -151,7 +155,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -185,7 +189,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -199,7 +203,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -246,9 +250,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
+      <a class="category-link" href="/categories/%e6%95%b0%e6%8d%ae%e7%b1%bb%e5%9e%8b">数据类型</a>
     
   
 
@@ -265,171 +269,109 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>面向语言的编程</strong>有时也被称作<strong>元编程</strong>，指的是一种计算机语言以另一种计算机语言（或自身）为<strong>目标语言</strong>，通过处理、执行目标语言来完成某项任务的过程。作为脚本语言的一种，<strong>R语言</strong>也拥有强大且便捷的元编程能力。这篇文章将介绍R语言中元编程的基础——命令与执行环境。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
-<ul>
-<li>
-<ul>
-<li><a href="#1-列表">1、列表</a></li>
-<li><a href="#2-执行环境">2、执行环境</a></li>
-<li><a href="#3-变量名">3、变量名</a></li>
-<li><a href="#4-命令">4、命令</a></li>
-<li><a href="#5-命令集">5、命令集</a></li>
-<li><a href="#6-延时命令">6、延时命令</a></li>
-<li><a href="#7-函数">7、函数</a></li>
-</ul></li>
-</ul>
-</nav>
-
-<h2 id="1-列表">1、列表</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="1列表">1、列表</h2>
 <p>R语言中的列表可以分为普通列表（<strong>list</strong>）和<strong>单向链表型列表</strong>（<strong>pairlist</strong>），两者之间可以互相转化。因为普通列表与<strong>数组类数据</strong>的存储结构更加类似，所以我们平时处理数据时用到的往往是普通列表。而单向链表型列表往往被用于辅助生成其它类型的对象，比如R语言中每个对象的<strong>attributes</strong>属性都是一个单向链表型列表。</p>
-
 <p>在底层数据存储结构中，单向链表型列表由三部分组成，其中<strong>carval</strong>中存储的是当前值，或者说是列表的第一个值。<strong>tagval</strong>中存储的是一个变量名，即当前值的名称。<strong>cdrval</strong>中存储的则是链表的下一个节点。</p>
-
 <p>而普通列表实际上每个元素都可以看作是一个数组或一个子别表，普通列表的名称存储在对象的<strong>names</strong>属性中的。注意使用<span class="highlight-text primary">list</span>函数生成列表时，列表中元素的取值需要当即计算，如果我们将某段R语言代码赋值给列表中的元素，则可以使用<span class="highlight-text primary">alist</span>函数。</p>
-
-<pre><code class="language-R">&gt; pairlist(a = 1:10)      # 单向链表型列表
-$a
- [1]  1  2  3  4  5  6  7  8  9 10
-&gt; list(a = 1:10)          # 普通列表
-$a
- [1]  1  2  3  4  5  6  7  8  9 10
-&gt; alist(a = b + 1:10)     # 变量b尚未定义
-$a
-b + 1:10
-</code></pre>
-
-<p><br></p>
-
-<h2 id="2-执行环境">2、执行环境</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">pairlist</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>)      <span style="color:#75715e"># 单向链表型列表</span>
+<span style="color:#f92672">$</span>a
+ [1]  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">list</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>)          <span style="color:#75715e"># 普通列表</span>
+<span style="color:#f92672">$</span>a
+ [1]  <span style="color:#ae81ff">1</span>  <span style="color:#ae81ff">2</span>  <span style="color:#ae81ff">3</span>  <span style="color:#ae81ff">4</span>  <span style="color:#ae81ff">5</span>  <span style="color:#ae81ff">6</span>  <span style="color:#ae81ff">7</span>  <span style="color:#ae81ff">8</span>  <span style="color:#ae81ff">9</span> <span style="color:#ae81ff">10</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">alist</span>(a <span style="color:#f92672">=</span> b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>)     <span style="color:#75715e"># 变量b尚未定义</span>
+<span style="color:#f92672">$</span>a
+b <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span><span style="color:#f92672">:</span><span style="color:#ae81ff">10</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="2执行环境">2、执行环境</h2>
 <p><strong>执行环境</strong>是R语言中查找变量取值、函数的位置。R语言中的执行环境存在 <em>继承</em> 关系，即子执行环境中不存在的变量、函数可以从父执行环境中寻找，反之则不能。子执行环境只能继承一个父执行环境，但是父执行环境继承的内容也可以被子执行环境继承。</p>
-
 <p>每当我们载入一个<strong>程序包</strong>就会生成一个与程序包相对应的执行环境，该程序包可以继承上一个载入的程序包的执行环境。比较特别的是：<span class="highlight-text primary">globalenv()</span>即<strong>全局执行环境</strong>，是当前工作的执行环境，总是处于所有已载入程序包的最后一层，所以可以继承所有已载入程序包的函数和数据。<span class="highlight-text primary">baseenv()</span>是R系统载入的第一个程序包，它父执行环境是<span class="highlight-text primary">emptyenv()</span>，后者是唯一没有父执行环境的执行环境。<span class="highlight-text primary">.BaseNamespaceEnv</span>是<strong>base</strong>程序包的<strong>namespace</strong>，实际上每当我们载入一个程序包都会生成两个执行环境<strong>namespace:packageName</strong>和<strong>package:packageName</strong>,后者拥有的元素只是前者的一部分，一般情况下只有后者可以被载入。由于<strong>base</strong>程序包的特殊性，所以两个执行环境都会被载入，两者唯一的区别在于：<strong>namespace:base</strong>的父执行环境是全局执行环境。</p>
-
 <p>执行环境由三部分组成，其中：<strong>frame</strong>是一个由变量名和取值构成的单向链表型列表；<strong>enclos</strong>即当前执行环境的上层执行环境（父执行环境）；<strong>hashtab</strong>是一个<strong>list</strong>形的哈希缓存表，相当于对<strong>frame</strong>的缓存，当其中的某个值被删除时，占用的空间不会被清除，执行环境的底层C语言代码中，<strong>length</strong>变量表示分配的列表长度，<strong>truelength</strong>变量表示真正使用的列表元素个数。注意执行环境中的内容只能存储在<strong>frame</strong>或<strong>hashtab</strong>二者之一。</p>
-
 <p>执行环境可以与列表互相转化，同时我们也可以像列表一样操作执行环境中的元素。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 将列表转化为执行环境</span>
+<span style="color:#f92672">&gt;</span> x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.environment</span>(<span style="color:#a6e22e">list</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>, b <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>)); x
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> <span style="color:#ae81ff">0x8b261e8</span><span style="color:#f92672">&gt;</span>
 
-<pre><code class="language-R"># 将列表转化为执行环境
-&gt; x &lt;- as.environment(list(a = 1, b = 2)); x
-&lt;environment: 0x8b261e8&gt;
+<span style="color:#75715e"># 获取执行环境中的元素</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(x<span style="color:#f92672">$</span>a, x<span style="color:#f92672">$</span>b)
+[1] <span style="color:#ae81ff">1</span> <span style="color:#ae81ff">2</span>
 
-# 获取执行环境中的元素
-&gt; c(x$a, x$b)
-[1] 1 2
+<span style="color:#75715e"># 获取执行环境x的父执行环境</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">parent.env</span>(x)
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> R_EmptyEnv<span style="color:#f92672">&gt;</span>
 
-# 获取执行环境x的父执行环境
-&gt; parent.env(x)
-&lt;environment: R_EmptyEnv&gt;
-
-# 根据位置获取执行环境，全局执行环境的位置为1，每上一层位置加1
-&gt; pos.to.env(1)
-&lt;environment: R_GlobalEnv&gt;
-</code></pre>
-
-<p><br></p>
-
-<h2 id="3-变量名">3、变量名</h2>
-
-<p>R语言中的<strong>变量名</strong>是一类被称为<strong>symbol</strong>（或者<strong>name</strong>）的对象，变量名本质上是一个字符串，但与字符串不同的是，变量名可以对应一个特定的值。比较特别的是，函数名或者操作符也是变量名的一种，它们的取值是一个特定的函数。对于系统函数名（参考<strong>.Internal</strong>、<strong>.Primitive</strong>的帮助文档）而言，其对应的函数存储在变量名对象本身。</p>
-
+<span style="color:#75715e"># 根据位置获取执行环境，全局执行环境的位置为1，每上一层位置加1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">pos.to.env</span>(<span style="color:#ae81ff">1</span>)
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> R_GlobalEnv<span style="color:#f92672">&gt;</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="3变量名">3、变量名</h2>
+<p>R语言中的<strong>变量名</strong>是一类被称为<strong>symbol</strong>（或者<strong>name</strong>）的对象，变量名本质上是一个字符串，但与字符串不同的是，变量名可以对应一个特定的值。比较特别的是，函数名或者操作符也是变量名的一种，它们的取值是一个特定的函数。对于系统函数名（参考**.Internal**、**.Primitive**的帮助文档）而言，其对应的函数存储在变量名对象本身。</p>
 <p>我们可以使用<span class="highlight-text primary">as.symbol、as.name</span>函数，将一个字符串转化为一个变量名，并使用<span class="highlight-text primary">eval</span>函数取出该变量名所对应的值。</p>
-
-<pre><code class="language-R">&gt; a &lt;- 123; x &lt;- as.symbol(&quot;a&quot;)
-&gt; x           # 注意x的取值是一个变量名
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">123</span>; x <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.symbol</span>(<span style="color:#e6db74">&#34;a&#34;</span>)
+<span style="color:#f92672">&gt;</span> x           <span style="color:#75715e"># 注意x的取值是一个变量名</span>
 a
-&gt; eval(x)     # 将x的取值作为变量名执行
-[1] 123
-</code></pre>
-
-<p><br></p>
-
-<h2 id="4-命令">4、命令</h2>
-
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">eval</span>(x)     <span style="color:#75715e"># 将x的取值作为变量名执行</span>
+[1] <span style="color:#ae81ff">123</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="4命令">4、命令</h2>
 <p><strong>命令</strong>是由<span class="highlight-text red">字面值</span> （数字、字符串等常量）、变量名、及子命令构成的集合，命令可以被解析为<strong>命令树</strong>，命令树的最顶层是需要最后被执行的命令，而最底层是需要最先被执行的命令。比如<code>sum(1:10)</code>被解析之后，处于最底层的是命令<code>1:2</code>，所以会先生成一个数组，然后再将生成结果送给处于最顶层的<strong>sum</strong>函数执行。</p>
-
 <p>在R语言中命令也可以等同于<strong>call</strong>（或者<strong>function call</strong>），因为操作符实际上也是函数，所以任何命令都可以看作是函数的调用或者嵌套调用。</p>
-
 <p>而另一个概念<strong>language</strong>的定义容易让人产生混淆，如果一个对象的存储类型（<strong>typeof</strong>）为<strong>language</strong>，这个对象一定是命令；如果我们使用<span class="highlight-text primary">is.language</span>判断一个对象是否为<strong>language</strong>，则变量名、命令、命令集都可以被称为<strong>language</strong>。简而言之，R语言的底层代码（<strong>C语言</strong>）中，<strong>language</strong>等同于命令；而R语言中将<strong>language</strong>归类为了任何可被执行的 <em>R语言代码</em> 。</p>
-
 <p>最后，概念<strong>formula</strong>指的是含有英文波浪号<strong>～</strong>的命令，常被用于表示数学模型。比如在线性回归模型中，<strong>～</strong>之前的变量名会被视为因变量，而<strong>～</strong>之后的命令会被视为对自变量的线性变换。</p>
-
 <p>在R语言命令行中直接输入命令，则命令会被立即执行，所以我们需要使用<span class="highlight-text primary">substitute、quote</span>等函数捕获未执行的命令，或者使用<span class="highlight-text primary">call</span>函数生成一个命令。同样命令也可以使用<strong>eval</strong>函数执行。</p>
-
-<pre><code class="language-R">&gt; quote(a + 1)          # 直接捕获命令
-a + 1
-&gt; call(&quot;sum&quot;, 1, 2)     # 生成 function call
-sum(1, 2)
-&gt; y ~ a + b             # 生成 formula
-y ~ a + b
-</code></pre>
-
-<p><br></p>
-
-<h2 id="5-命令集">5、命令集</h2>
-
-<p><strong>命令集</strong>（<strong>expression</strong>）是一系列命令的集合，处于同一个命令集中的命令会按照先后顺序执行，所以命令集中的命令可以引用上一个命令的变量或运算结果。我们也可以使用大括号操作符<strong>{}</strong>达到同样的效果，但<strong>{}</strong>生成的是嵌套命令而非命令集。</p>
-
-<pre><code class="language-R">&gt; y &lt;- expression(x &lt;- 1, x + 2); y     # 生成命令集
-expression(x &lt;- 1, x + 2)
-&gt; eval(y)
-[1] 3
-&gt; z &lt;- quote({x &lt;- 1; x + 2})           # 生成嵌套命令
-&gt; c(typeof(y), typeof(z))
-[1] &quot;expression&quot; &quot;language&quot;  
-</code></pre>
-
-<p><br></p>
-
-<h2 id="6-延时命令">6、延时命令</h2>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">quote</span>(a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)          <span style="color:#75715e"># 直接捕获命令</span>
+a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">call</span>(<span style="color:#e6db74">&#34;sum&#34;</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)     <span style="color:#75715e"># 生成 function call</span>
+<span style="color:#a6e22e">sum</span>(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>)
+<span style="color:#f92672">&gt;</span> y <span style="color:#f92672">~</span> a <span style="color:#f92672">+</span> b             <span style="color:#75715e"># 生成 formula</span>
+y <span style="color:#f92672">~</span> a <span style="color:#f92672">+</span> b
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="5命令集">5、命令集</h2>
+<p><strong>命令集</strong>（<strong>expression</strong>）是一系列命令的集合，处于同一个命令集中的命令会按照先后顺序执行，所以命令集中的命令可以引用上一个命令的变量或运算结果。我们也可以使用大括号操作符**{}**达到同样的效果，但**{}**生成的是嵌套命令而非命令集。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> y <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">expression</span>(x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>); y     <span style="color:#75715e"># 生成命令集</span>
+<span style="color:#a6e22e">expression</span>(x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>, x <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>)
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">eval</span>(y)
+[1] <span style="color:#ae81ff">3</span>
+<span style="color:#f92672">&gt;</span> z <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">quote</span>({x <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">1</span>; x <span style="color:#f92672">+</span> <span style="color:#ae81ff">2</span>})           <span style="color:#75715e"># 生成嵌套命令</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">typeof</span>(y), <span style="color:#a6e22e">typeof</span>(z))
+[1] <span style="color:#e6db74">&#34;expression&#34;</span> <span style="color:#e6db74">&#34;language&#34;</span>  
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="6延时命令">6、延时命令</h2>
 <p>R语言中有一类特殊的对象——<strong>promise</strong>，这里我们姑且称之为<strong>延时命令</strong>。延时命令实际上包含了一段R语言代码与一个执行环境，延时命令一旦被 <em>需要</em> ，其中的代码部分就会在其执行环境中被执行，执行完毕后其执行环境会被删除，从而转化为其它类型的对象。</p>
-
 <p>如下函数中，如果我们使用<span class="highlight-text primary">assign</span>函数直接将命令<code>a + 1</code>赋值给<strong>x</strong>则会报错，因为变量<strong>a</strong>尚不存在；如果使用<span class="highlight-text primary">delayedAssign</span>函数，则相当于给<strong>x</strong>赋值了一个延时命令，延时命令的默认执行环境是当前工作环境。当我们需要用到变量<strong>x</strong>时，延时命令会被立即执行，所以我们需要在此之前给变量<strong>a</strong>赋值。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">assign</span>(<span style="color:#e6db74">&#34;x&#34;</span>, a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+Error in <span style="color:#a6e22e">assign</span>(<span style="color:#e6db74">&#34;x&#34;</span>, a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>) <span style="color:#f92672">:</span> 找不到对象<span style="color:#e6db74">&#39;a&#39;</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">delayedAssign</span>(<span style="color:#e6db74">&#34;x&#34;</span>, a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>)
+<span style="color:#f92672">&gt;</span> a <span style="color:#f92672">&lt;-</span> <span style="color:#ae81ff">2</span>; x
+[1] <span style="color:#ae81ff">3</span>
 
-<pre><code class="language-R">&gt; assign(&quot;x&quot;, a + 1)
-Error in assign(&quot;x&quot;, a + 1) : 找不到对象'a'
-&gt; delayedAssign(&quot;x&quot;, a + 1)
-&gt; a &lt;- 2; x
-[1] 3
-
-# 注意延时命令只会被执行一次
-&gt; delayedAssign(&quot;x&quot;, {cat(&quot;promise 被执行\n&quot;); 1})
-&gt; x
+<span style="color:#75715e"># 注意延时命令只会被执行一次</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">delayedAssign</span>(<span style="color:#e6db74">&#34;x&#34;</span>, {<span style="color:#a6e22e">cat</span>(<span style="color:#e6db74">&#34;promise 被执行\n&#34;</span>); <span style="color:#ae81ff">1</span>})
+<span style="color:#f92672">&gt;</span> x
 promise 被执行
-[1] 1
-&gt; x
-[1] 1
-</code></pre>
-
-<p><br></p>
-
-<h2 id="7-函数">7、函数</h2>
-
+[1] <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> x
+[1] <span style="color:#ae81ff">1</span>
+</code></pre></div><!-- raw HTML omitted -->
+<h2 id="7函数">7、函数</h2>
 <p>R语言中的函数可以分为普通函数（<strong>closure</strong>）和系统函数（<strong>builtin、special</strong>）等。普通函数总是由三部分构成：</p>
-
 <ul>
 <li><strong>formals</strong>是函数的参数列表，参数的值是以<strong>延时命令</strong>的形式，与参数名一起存储在一个<strong>单向链表型列表</strong>中的，所以函数定义时参数可以是还未被定义的变量，但函数调用时必须定义相应的变量，或者指明参数的取值。</li>
 <li>函数的<strong>body</strong>部分是一段由R语言代码构成的<strong>函数体</strong>，也可以为空。</li>
 <li>函数的<strong>environment</strong>部分是函数定义时的执行环境，决定了参数列表中缺省变量的查找位置。此外还有：存储函数的执行环境，即函数被存储在什么位置；函数调用时的执行环境，决定了参数的寻找位置；函数内部的执行环境，保证了函数内执行的R语言代码不会作用到函数外的执行环境中，除非使用全局赋值命令。</li>
 </ul>
-
-<pre><code class="language-R">&gt; c(typeof(.Primitive), typeof(.Internal), typeof(mean))
-[1] &quot;builtin&quot; &quot;special&quot; &quot;closure&quot;
-&gt; f &lt;- function(a = 0) a + 1      
-&gt; formals(f)                      # 取函数参数
-$a
-[1] 0
-&gt; body(f)                         # 取函数体
-a + 1
-&gt; environment(f)                  # 取函数定义时的执行环境
-&lt;environment: R_GlobalEnv&gt;
-</code></pre>
-
-<p><br></p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">c</span>(<span style="color:#a6e22e">typeof</span>(.Primitive), <span style="color:#a6e22e">typeof</span>(.Internal), <span style="color:#a6e22e">typeof</span>(mean))
+[1] <span style="color:#e6db74">&#34;builtin&#34;</span> <span style="color:#e6db74">&#34;special&#34;</span> <span style="color:#e6db74">&#34;closure&#34;</span>
+<span style="color:#f92672">&gt;</span> f <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">function</span>(a <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>) a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>      
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">formals</span>(f)                      <span style="color:#75715e"># 取函数参数</span>
+<span style="color:#f92672">$</span>a
+[1] <span style="color:#ae81ff">0</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">body</span>(f)                         <span style="color:#75715e"># 取函数体</span>
+a <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">environment</span>(f)                  <span style="color:#75715e"># 取函数定义时的执行环境</span>
+<span style="color:#f92672">&lt;</span>environment<span style="color:#f92672">:</span> R_GlobalEnv<span style="color:#f92672">&gt;</span>
+</code></pre></div><!-- raw HTML omitted -->
 
 
   
@@ -444,11 +386,9 @@ a + 1
 <li>R语言中为什么不将<strong>变量名</strong>与<strong>取值</strong>存储在一起？</li>
 <li>函数的<strong>内部执行环境</strong>与函数<strong>调用时的执行环境</strong>有什么联系？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -460,9 +400,9 @@ a + 1
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B/">R语言数据类型</a>
 
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B/">R语言编程</a>
 
                   </div>
                 
@@ -470,8 +410,8 @@ a + 1
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言中的命令与执行环境',
@@ -492,7 +432,7 @@ a + 1
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="R语言与日期时间管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="R语言与日期时间管理">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -500,7 +440,7 @@ a + 1
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="R语言编程篇——面向语言的编程">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="R语言编程篇——面向语言的编程">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -518,13 +458,13 @@ a + 1
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -555,7 +495,7 @@ a + 1
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -569,7 +509,7 @@ a + 1
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="R语言与日期时间管理">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%8E%E6%97%A5%E6%9C%9F%E6%97%B6%E9%97%B4%E7%AE%A1%E7%90%86/" data-tooltip="R语言与日期时间管理">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -577,7 +517,7 @@ a + 1
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="R语言编程篇——面向语言的编程">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/06/r%E8%AF%AD%E8%A8%80%E7%BC%96%E7%A8%8B%E7%AF%87%E9%9D%A2%E5%90%91%E8%AF%AD%E8%A8%80%E7%9A%84%E7%BC%96%E7%A8%8B/" data-tooltip="R语言编程篇——面向语言的编程">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -595,13 +535,13 @@ a + 1
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/06/r%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%9A%84%E5%91%BD%E4%BB%A4%E4%B8%8E%E6%89%A7%E8%A1%8C%E7%8E%AF%E5%A2%83/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -635,13 +575,13 @@ a + 1
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%2591%25BD%25E4%25BB%25A4%25E4%25B8%258E%25E6%2589%25A7%25E8%25A1%258C%25E7%258E%25AF%25E5%25A2%2583%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%2591%25BD%25E4%25BB%25A4%25E4%25B8%258E%25E6%2589%25A7%25E8%25A1%258C%25E7%258E%25AF%25E5%25A2%2583%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%2591%25BD%25E4%25BB%25A4%25E4%25B8%258E%25E6%2589%25A7%25E8%25A1%258C%25E7%258E%25AF%25E5%25A2%2583%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F06%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25B8%25AD%25E7%259A%2584%25E5%2591%25BD%25E4%25BB%25A4%25E4%25B8%258E%25E6%2589%25A7%25E8%25A1%258C%25E7%258E%25AF%25E5%25A2%2583%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -696,12 +636,12 @@ a + 1
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -778,7 +718,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

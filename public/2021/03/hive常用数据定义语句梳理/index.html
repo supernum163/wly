@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="大数据, Hive, DDL, wly的博客, supernum">
+<meta name="description" content="Hive DDL（数据定义语句）用于描述Hive底层数据存储的具体实现，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。">
+
+
+  
+    <meta property="article:published_time" content="2021-03-15T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-03-15T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="进军大数据">
+    
+  
+  
+    
+      <meta property="article:tag" content="大数据">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive常用数据定义语句梳理">
+<meta property="og:description" content="Hive DDL（数据定义语句）用于描述Hive底层数据存储的具体实现，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/uQE3hF.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>Hive常用数据定义语句梳理</title>
+
+    <link rel="canonical" href="https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="/#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Hive常用数据定义语句梳理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2021-03-15T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-03-15
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/%e8%bf%9b%e5%86%9b%e5%a4%a7%e6%95%b0%e6%8d%ae">进军大数据</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Hive <strong>DDL</strong>（数据定义语句）用于描述Hive底层数据存储的具体实现，本章将介绍使用HiveQL管理数据库、表、视图、函数、分区等操作。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="1数据库操作相关语句">1、数据库操作相关语句</h2>
+<ul>
+<li>我们可以使用如下语句<strong>创建数据库</strong>，其中：
+<ul>
+<li><code>DATABASE</code> 与 <code>SCHEMA</code> 在Hive中指的都是数据库，可以混用</li>
+<li><code>COMMENT</code> 用于添加注释</li>
+<li><code>LOCATION</code> 用于设置外部表存放位置</li>
+<li><code>MANAGEDLOCATION</code> 用于设置管理表存放位置</li>
+<li><code>WITH DBPROPERTIES</code> 用于设置数据库的其它属性</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">CREATE (DATABASE|SCHEMA) [IF NOT EXISTS] database_name
+  [COMMENT database_comment]
+  [LOCATION hdfs_path]
+  [MANAGEDLOCATION hdfs_path]
+  [WITH DBPROPERTIES (property_name=property_value, ...)];
+</code></pre><ul>
+<li>我们可以使用如下语句<strong>删除数据库</strong>，其中：
+<ul>
+<li><code>RESTRICT</code> 指定当数据库非空时不能删除（默认选项）</li>
+<li><code>CASCADE</code> 指定删除数据库同时删除数据库中的内容</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">DROP (DATABASE|SCHEMA) [IF EXISTS] database_name [RESTRICT|CASCADE];
+</code></pre><ul>
+<li>我们可以使用如下语句<strong>修改数据库</strong>：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 修改数据库的属主;
+ALTER (DATABASE|SCHEMA) database_name SET OWNER [USER|ROLE] user_or_role; 
+# 修改外部表存放位置;
+ALTER (DATABASE|SCHEMA) database_name SET LOCATION hdfs_path;
+# 修改管理表存放位置，仅支持 Hive 4.0.0 及以上版本;
+ALTER (DATABASE|SCHEMA) database_name SET MANAGEDLOCATION hdfs_path;
+# 修改数据库的其它属性;
+ALTER (DATABASE|SCHEMA) database_name SET DBPROPERTIES (property_name=property_value, ...); 
+</code></pre><ul>
+<li>以下是其余数据库操作相关的常用语句：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 列举所有数据库;
+SHOW DATABASES;
+# 查看数据库选项;
+DESCRIBE DATABASE [EXTENDED] database_name;
+# 切换数据库;
+USE database_name;
+# 查看当前数据库;
+SELECT CURRENT_DATABASE();
+</code></pre><h2 id="2表操作相关语句">2、表操作相关语句</h2>
+<ul>
+<li>我们可以使用如下语句<strong>创建表</strong>，其中：
+<ul>
+<li><code>TEMPORARY</code> 表示创建临时表（仅作用于当前线程）</li>
+<li><code>EXTERNAL</code> 表示创建外部表（Hive中默认创建管理表）</li>
+<li><code>data_type</code> 表示字段的数据类型，可以是如下类型：
+<ul>
+<li>二进制类型：BINARY</li>
+<li>逻辑值类型：BOOLEAN</li>
+<li>整数类型：TINYINT、SMALLINT、INT、BIGINT</li>
+<li>小数类型：DOUBLE、FLOAT、DECIMAL</li>
+<li>字符串类型：CHAR、VARCHAR、STRING</li>
+<li>日期时间类型：DATE、TIMESTAMP</li>
+<li>array类型：ARRAY &lt; data_type &gt;</li>
+<li>map类型：MAP &lt; primitive_type, data_type &gt;</li>
+<li>struct类型：STRUCT &lt; col_name : data_type [COMMENT col_comment], &hellip;&gt;</li>
+<li>union类型：UNIONTYPE &lt; data_type, data_type, &hellip; &gt;</li>
+</ul>
+</li>
+<li><code>column_constraint_specification</code>用于对字段设置约束，可以进行以下设置：
+<ul>
+<li>主键约束：PRIMARY KEY</li>
+<li>取值唯一性约束：UNIQUE</li>
+<li>非空值约束：NOT NULL</li>
+<li>默认值约束：DEFAULT [default_value]</li>
+<li>自定义取值约束：CHECK  [check_expression]</li>
+<li>启用约束（仅对新增数据有效）：DISABLE NOVALIDATE</li>
+<li>关闭约束（可以对约束列的数据进行修改）：DISABLE NOVALIDATE</li>
+<li>是否将约束用于查询优化：RELY/NORELY</li>
+</ul>
+</li>
+<li><code>constraint_specification</code>用于对字段添加额外的约束，如添加主键、外键约束：
+<ul>
+<li><code>PRIMARY KEY (col_name, ...) DISABLE NOVALIDATE RELY/NORELY</code></li>
+<li><code>CONSTRAINT constraint_name FOREIGN KEY (col_name, ...) REFERENCES table_name(col_name, ...) DISABLE NOVALIDATE</code></li>
+</ul>
+</li>
+<li><code>PARTITIONED BY</code>分支语句用于设置分区字段</li>
+<li><code>CLUSTERED BY</code>分支语句用于设置分桶字段，<code>SORTED BY</code>用于设置桶内排序字段，<code>INTO num_buckets BUCKETS]</code>用于设置分桶数量</li>
+<li><code>SKEWED BY</code>分支语句应用于严重倾斜的字段，可以将其取值记录在元数据中。同时如果指定了<code>STORED AS DIRECTORIES</code>，则会根据倾斜值建立子目录</li>
+<li><code>ROW FORMAT</code>分支语句用于设置以特定的格式从文件中读取数据，
+<ul>
+<li><code>STORED AS</code>用于设置本地文件的存储类型。如读取csv文件：
+<ul>
+<li><code>ROW FORMAT DELIMITED FIELDS TERMINATED BY &quot;,&quot; LINES TERMINATED BY &quot;\n&quot; STORED AS TEXTFILE</code></li>
+</ul>
+</li>
+<li><code>file_format</code>支持的文件类型有：
+<ul>
+<li>特定格式的文件：TEXTFILE、JSONFILE、SEQUENCEFILE、RCFILE、ORC、PARQUET、AVRO</li>
+<li>自定义写入、查询格式：INPUTFORMAT input_format_classname OUTPUTFORMAT output_format_classname</li>
+</ul>
+</li>
+<li><code>STORED BY</code> 用于设置非本地表的存储类型，如存储在<strong>HBase</strong>中的表。</li>
+</ul>
+</li>
+<li><code>TBLPROPERTIES</code> 用于设置表的其它属性。如读取数据时略过第一行（标题行）:
+<ul>
+<li><code>tblproperties (&quot;skip.header.line.count&quot; = &quot;1&quot;)</code></li>
+</ul>
+</li>
+<li><code>AS</code>分支语句用于将查询结果插入新创建的表中</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 创建表;
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
+  [(col_name data_type [column_constraint_specification] [COMMENT col_comment], ... [constraint_specification])]
+  [COMMENT table_comment]
+  [PARTITIONED BY (col_name data_type [COMMENT col_comment], ...)]
+  [CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name [ASC|DESC], ...)] INTO num_buckets BUCKETS]
+  [SKEWED BY (col_name, col_name, ...)]
+     ON ((col_value, col_value, ...), (col_value, col_value, ...), ...)
+     [STORED AS DIRECTORIES]
+  [
+    [ROW FORMAT row_format] 
+    [STORED AS file_format]
+      | STORED BY 'storage.handler.class.name' [WITH SERDEPROPERTIES (...)]
+  ]
+  [LOCATION hdfs_path]
+  [TBLPROPERTIES (property_name=property_value, ...)]
+  [AS select_statement];
+ 
+# 根据已有的表或视图创建表结构;
+CREATE [TEMPORARY] [EXTERNAL] TABLE [IF NOT EXISTS] [db_name.]table_name
+  LIKE existing_table_or_view_name
+  [LOCATION hdfs_path];
+
+# 示例，创建可以从csv中读取数据的表结构；
+create table student 
+  ( id int, name varchar(10), class varchar(2) ) 
+  comment &quot;name：学生姓名，class：班级，year：入学年份&quot; 
+  partitioned by (year int)  
+  row format delimited 
+    fields terminated by &quot;,&quot; escaped by &quot;\\&quot;
+    collection items terminated by &quot;;&quot;
+    map keys terminated by &quot;:&quot;
+    lines terminated by &quot;\n&quot;
+    null defined as &quot;NULL&quot;
+  stored as textfile 
+  tblproperties (&quot;skip.header.line.count&quot; = &quot;1&quot;)
+;
+# 示例，从本地csv文件中读入数据到分区表
+load data local inpath 'student.csv' into table student 
+  partition (year = 2012)
+;
+# 示例，从Hive表中读入数据到分区表并覆盖
+insert overwrite table student 
+  partition (year = 2013)
+  select id, name, class from student
+;
+</code></pre><ul>
+<li>我们可以使用如下语句<strong>删除表</strong>，其中：
+<ul>
+<li><code>PURGE</code> 表示删除表时，将数据表也彻底删除（默认是放入回收站）</li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">DROP TABLE [IF EXISTS] table_name [PURGE];
+</code></pre><ul>
+<li>我们可以使用如下语句<strong>清空表</strong>，其中：
+<ul>
+<li><code>PARTITION</code> 可以用于指定需要清空的分区，如<code>PARTITION (year = 2021)</code></li>
+</ul>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">TRUNCATE [TABLE] table_name [PARTITION partition_spec];
+</code></pre><ul>
+<li>我们可以使用如下语句修改建表时的设置：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 修改表名称;
+ALTER TABLE table_name RENAME TO new_table_name;
+
+# 添加字段;
+ALTER TABLE table_name [PARTITION partition_spec]
+  ADD|REPLACE COLUMNS (col_name data_type [COMMENT col_comment], ...)
+  [CASCADE|RESTRICT]
+# 修改字段名称、数据类型、约束、注释、位置;
+ALTER TABLE table_name [PARTITION partition_spec] 
+  CHANGE [COLUMN] col_old_name col_new_name column_type
+  [CONSTRAINT constraint_name constraints] [COMMENT col_comment] [FIRST|AFTER column_name] 
+  [CASCADE|RESTRICT];
+# 添加约束;
+ALTER TABLE table_name ADD CONSTRAINT constraint_name constraint_specification;
+# 删除约束;
+ALTER TABLE table_name DROP CONSTRAINT constraint_name;
+
+# 添加分区;
+ALTER TABLE table_name ADD [IF NOT EXISTS] (PARTITION partition_spec [LOCATION 'location'], ...);
+# 分区重命名;
+ALTER TABLE table_name PARTITION partition_spec RENAME TO PARTITION partition_spec;
+# 分区交换;
+ALTER TABLE table_name_2 EXCHANGE PARTITION (partition_spec, ...) WITH TABLE table_name_1;
+# 分区信息更新（修复metastore与HDFS中的分区信息不一致）;
+MSCK [REPAIR] TABLE table_name [ADD/DROP/SYNC PARTITIONS];
+ALTER TABLE table_name RECOVER PARTITIONS;
+# 分区删除;
+ALTER TABLE table_name DROP [IF EXISTS] (PARTITION partition_spec, ...) [IGNORE PROTECTION] [PURGE];  
+# 分区归档/删档;
+ALTER TABLE table_name ARCHIVE PARTITION partition_spec;
+ALTER TABLE table_name UNARCHIVE PARTITION partition_spec;
+
+# 修改表的分桶情况;
+ALTER TABLE table_name CLUSTERED BY (col_name, col_name, ...) [SORTED BY (col_name, ...)]
+  INTO num_buckets BUCKETS;
+  
+# 修改表的严重倾斜字段;
+ALTER TABLE table_name SKEWED BY (col_name1, col_name2, ...)
+  ON ([(col_name1_value, col_name2_value, ...) [, (col_name1_value, col_name2_value), ...]
+ALTER TABLE table_name NOT SKEWED;
+ALTER TABLE table_name NOT STORED AS DIRECTORIES;
+ALTER TABLE table_name SET SKEWED LOCATION (col_name1=&quot;location1&quot; [, col_name2=&quot;location2&quot;, ...] );
+  [STORED AS DIRECTORIES];
+
+# 修改表/分区表的数据读入格式;
+ALTER TABLE table_name [PARTITION partition_spec] SET FILEFORMAT file_format;
+ALTER TABLE table_name [PARTITION partition_spec] SET SERDE serde_class_name [WITH SERDEPROPERTIES serde_properties];
+ALTER TABLE table_name [PARTITION partition_spec] SET SERDEPROPERTIES serde_properties;
+ALTER TABLE table_name [PARTITION partition_spec] UNSET SERDEPROPERTIES (property_name, ... );
+
+# 修改表/分区表的存储位置;
+ALTER TABLE table_name [PARTITION partition_spec] SET LOCATION &quot;new location&quot;;
+
+# 修改表的其它属性;
+ALTER TABLE table_name SET TBLPROPERTIES table_properties;
+ALTER TABLE table_name SET TBLPROPERTIES ('comment' = new_comment);
+</code></pre><ul>
+<li>以下是其余表操作相关的常用语句：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 列举表;
+SHOW TABLES;
+# 查看表信息;
+DESCRIBE [EXTENDED] tablename;
+# 列举表分区;
+SHOW PARTITIONS table_name;
+
+# 表/分区表信息更新;
+ALTER TABLE table_name TOUCH [PARTITION partition_spec];
+# 表/分区表开关保护;
+ALTER TABLE table_name [PARTITION partition_spec] ENABLE|DISABLE NO_DROP [CASCADE];
+ALTER TABLE table_name [PARTITION partition_spec] ENABLE|DISABLE OFFLINE;
+# 表/分区表压缩;
+ALTER TABLE table_name [PARTITION (partition_key = 'partition_value', ...)]
+  COMPACT 'compaction_type'[AND WAIT]
+  [WITH OVERWRITE TBLPROPERTIES (&quot;property&quot;=&quot;value&quot; , ...)];
+ALTER TABLE table_name [PARTITION (partition_key = 'partition_value', ...)] CONCATENATE;
+# 表/分区表字段信息更新;
+ALTER TABLE table_name [PARTITION (partition_key = 'partition_value' [, ...])] UPDATE COLUMNS;  
+</code></pre><h2 id="3视图操作相关语句">3、视图操作相关语句</h2>
+<ul>
+<li>我们可以使用如下语句<strong>管理普通视图</strong>：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 创建视图;
+CREATE VIEW [IF NOT EXISTS] [db_name.]view_name [(column_name [COMMENT column_comment], ...) ]
+  [COMMENT view_comment]
+  [TBLPROPERTIES (property_name = property_value, ...)]
+  AS select_statement;
+# 删除视图;
+DROP VIEW [IF EXISTS] [db_name.]view_name;
+# 修改视图属性;
+ALTER VIEW [db_name.]view_name SET TBLPROPERTIES table_properties;
+# 创建视图对应的查询语句;
+ALTER VIEW [db_name.]view_name AS select_statement;
+</code></pre><ul>
+<li>我们可以使用如下语句<strong>管理物化视图</strong>（物化视图在普通视图的基础上进行预运算，并能使用自动存储程序保存运算结果，可以有效的加速查询操作）：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 创建物化视图;
+CREATE MATERIALIZED VIEW [IF NOT EXISTS] [db_name.]materialized_view_name
+  [DISABLE REWRITE]
+  [COMMENT materialized_view_comment]
+  [PARTITIONED ON (col_name, ...)]
+  [CLUSTERED ON (col_name, ...) | DISTRIBUTED ON (col_name, ...) SORTED ON (col_name, ...)]
+  [
+    [ROW FORMAT row_format]
+    [STORED AS file_format] | STORED BY 'storage.handler.class.name' 
+    [WITH SERDEPROPERTIES (...)]
+  ]
+  [LOCATION hdfs_path]
+  [TBLPROPERTIES (property_name=property_value, ...)]
+  AS select_statement;
+# 删除物化视图;
+DROP MATERIALIZED VIEW [db_name.]materialized_view_name;
+# 开启、关闭物化视图的自动重写功能;
+ALTER MATERIALIZED VIEW [db_name.]materialized_view_name ENABLE|DISABLE REWRITE;
+</code></pre><h2 id="4自定义宏函数操作相关语句">4、自定义宏、函数操作相关语句</h2>
+<ul>
+<li>我们可以使用如下语句<strong>管理自定义宏</strong>：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 创建临时宏;
+CREATE TEMPORARY MACRO macro_name([col_name col_type, ...]) expression;
+# 删除临时宏;
+DROP TEMPORARY MACRO [IF EXISTS] macro_name;
+</code></pre><ul>
+<li>我们可以使用如下语句<strong>管理自定义函数</strong>，其中<code>class_name</code>即由Java实现的类方法名称：</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 创建临时函数;
+CREATE TEMPORARY FUNCTION function_name AS class_name;
+# 删除临时函数;
+DROP TEMPORARY FUNCTION [IF EXISTS] function_name;
+# 创建函数;
+CREATE FUNCTION [db_name.]function_name AS class_name
+  [USING (JAR|FILE|ARCHIVE 'file_uri', ...)];
+# 删除函数;
+DROP FUNCTION [IF EXISTS] function_name;
+# 重新加载函数
+RELOAD (FUNCTIONS|FUNCTION);
+</code></pre><h2 id="5show-相关语句">5、SHOW 相关语句</h2>
+<pre><code class="language-hive" data-lang="hive"># 列举数据库;
+SHOW (DATABASES|SCHEMAS) [LIKE 'identifier_with_wildcards'];
+# 列举表;
+SHOW TABLES [IN database_name] ['identifier_with_wildcards'];
+# 列举视图;
+SHOW VIEWS [IN/FROM database_name] [LIKE 'pattern_with_wildcards'];
+# 列举物化视图;
+SHOW MATERIALIZED VIEWS [IN/FROM database_name] [LIKE 'pattern_with_wildcards’];
+# 列举表分区;
+SHOW PARTITIONS [db_name.]table_name [PARTITION(partition_spec)] 
+  [WHERE where_condition] [ORDER BY col_list] [LIMIT rows]; 
+# 列举表的详细信息;
+SHOW TABLE EXTENDED [IN|FROM database_name] LIKE 'identifier_with_wildcards' [PARTITION(partition_spec)];
+# 列举创表时的详细信息;
+SHOW CREATE TABLE ([db_name.]table_name|view_name);
+# 列举表的属性信息;
+SHOW TBLPROPERTIES tblname;
+# 列举表的某一项属性信息;
+SHOW TBLPROPERTIES tblname(&quot;foo&quot;);
+# 列举表字段;
+SHOW COLUMNS (FROM|IN) table_name [(FROM|IN) db_name] [ LIKE 'pattern_with_wildcards'];
+# 列举函数;
+SHOW FUNCTIONS [LIKE &quot;&lt;pattern&gt;&quot;];
+# 列举表锁;
+SHOW LOCKS &lt;table_name&gt; [PARTITION (&lt;partition_spec&gt;)] [EXTENDED];
+# 列举数据库锁;
+SHOW LOCKS (DATABASE|SCHEMA) database_name;
+# 查看参数配置值;
+SHOW CONF &lt;configuration_name&gt;;
+# 列举Hive事务;
+SHOW TRANSACTIONS;
+# 列举Hive合并信息;
+SHOW COMPACTIONS;
+</code></pre><h2 id="6describe-相关语句">6、DESCRIBE 相关语句</h2>
+<pre><code class="language-hive" data-lang="hive"># 查看数据库的各项信息;
+DESCRIBE (DATABASE|SCHEMA) [EXTENDED] db_name;
+# 查看表、视图、字段、复杂数据类型（array、map、struct、union）子对象的各项信息;
+DESCRIBE [EXTENDED|FORMATTED] 
+  [db_name.]table_name[ col_name ( [.'$elem$'] | [.'$key$'] | [.field_name] | [.'$value$'] )* ];
+# 查看分区的各项信息;
+DESCRIBE FORMATTED [db_name.]table_name column_name PARTITION (partition_spec);  
+# 查看函数的各项信息;
+DESCRIBE FUNCTION [EXTENDED] function_name;
+</code></pre><h2 id="7终止hive事务">7、终止Hive事务</h2>
+<pre><code class="language-hive" data-lang="hive">ABORT TRANSACTIONS transactionID [ transactionID ...];
+</code></pre><hr>
+<p>参考：
+<a href="https://cwiki.apache.org/confluence/display/Hive/LanguageManual+DDL">Hive DDL</a>
+<a href="https://cwiki.apache.org/confluence/display/Hive/Configuration+Properties">Hive参数配置</a></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Hive常用数据定义语句梳理',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/" data-tooltip="Hive 安装与部署">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据操作语句梳理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive-%E5%AE%89%E8%A3%85%E4%B8%8E%E9%83%A8%E7%BD%B2/" data-tooltip="Hive 安装与部署">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据操作语句梳理">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E5%AE%9A%E4%B9%89%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive%25E5%25B8%25B8%25E7%2594%25A8%25E6%2595%25B0%25E6%258D%25AE%25E5%25AE%259A%25E4%25B9%2589%25E8%25AF%25AD%25E5%258F%25A5%25E6%25A2%25B3%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive%25E5%25B8%25B8%25E7%2594%25A8%25E6%2595%25B0%25E6%258D%25AE%25E5%25AE%259A%25E4%25B9%2589%25E8%25AF%25AD%25E5%258F%25A5%25E6%25A2%25B3%25E7%2590%2586%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>

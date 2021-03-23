@@ -1,40 +1,40 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数学运算 on wly&#39;s notebook</title>
-    <link>/categories/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
+    <link>https://wly.supernum.tech/categories/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
     <description>Recent content in 数学运算 on wly&#39;s notebook</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>zh-cn</language>
     <lastBuildDate>Sun, 28 Apr 2019 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="/categories/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://wly.supernum.tech/categories/%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>使用R语言对矩阵进行数学运算</title>
-      <link>/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
+      <link>https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
       <pubDate>Sun, 28 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</guid>
+      <guid>https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E7%9F%A9%E9%98%B5%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</guid>
       <description>&lt;p&gt;&lt;strong&gt;R语言&lt;/strong&gt;作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对&lt;strong&gt;矩阵&lt;/strong&gt;进行数学运算的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用R语言对数组进行数学运算</title>
-      <link>/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
+      <link>https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
       <pubDate>Wed, 10 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</guid>
+      <guid>https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E7%BB%84%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</guid>
       <description>&lt;p&gt;&lt;strong&gt;R语言&lt;/strong&gt;作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对&lt;strong&gt;数组&lt;/strong&gt;进行数学运算的。&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>使用R语言对数字进行数学运算</title>
-      <link>/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
+      <link>https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</link>
       <pubDate>Wed, 03 Apr 2019 00:00:00 +0000</pubDate>
       
-      <guid>/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</guid>
+      <guid>https://wly.supernum.tech/2019/04/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E5%AF%B9%E6%95%B0%E5%AD%97%E8%BF%9B%E8%A1%8C%E6%95%B0%E5%AD%A6%E8%BF%90%E7%AE%97/</guid>
       <description>&lt;p&gt;&lt;strong&gt;R语言&lt;/strong&gt;作为一门专为统计分析诞生的语言，数学运算自然是必不可少的。这篇文章将介绍R语言是如何对&lt;strong&gt;数字&lt;/strong&gt;进行数学运算的。&lt;/p&gt;</description>
     </item>
     

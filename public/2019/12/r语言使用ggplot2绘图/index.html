@@ -36,7 +36,7 @@
 
 <meta property="og:locale" content="zh-cn">
 <meta property="og:site_name" content="wly&#39;s notebook">
-<meta property="og:url" content="/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/">
+<meta property="og:url" content="https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/">
 <meta property="og:type" content="article">
 <meta property="og:title" content="R语言使用ggplot2绘图">
 <meta property="og:description" content="ggplot2是R语言中非常热门的一个绘图扩展包，可以允许我们以图层的形式逐一添加图形。这篇文章我们将介绍如何在R语言中使用ggplot2绘制优美的统计类图形。">
@@ -53,19 +53,23 @@
 
     <title>R语言使用ggplot2绘图</title>
 
-    <link rel="canonical" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/">
-    <link rel="icon" href="../../../img/favicon.ico">
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="../../../">
+    <link rel="canonical" href="https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
 
     
     
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../../../css/jquery.fancybox.min.css" />
-    <link rel="stylesheet" href="../../../css/jquery.fancybox-thumbs.min.css" />
-    <link rel="stylesheet" href="../../../highlight/styles/github.css">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
     
-    <link rel="stylesheet" href="../../../css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
     
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
     
 
     
@@ -76,12 +80,12 @@
       <header id="header" data-behavior="4">
   <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
   <div class="header-title">
-    <a class="header-title-link" href="../../../">wly&#39;s notebook</a>
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
   </div>
   
     
       <a class="header-right-picture "
-         href="../../../#about">
+         href="/#about">
     
     
     
@@ -96,7 +100,7 @@
       <nav id="sidebar" data-behavior="4">
   <div class="sidebar-container">
     <div class="sidebar-profile">
-      <a href="../../../#about">
+      <a href="/#about">
         <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
       </a>
       <h4 class="sidebar-profile-name">wly</h4>
@@ -111,7 +115,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../">
+      <a class="sidebar-button-link " href="/">
     
       <i class="sidebar-button-icon fa fa-lg fa-home"></i>
       
@@ -121,7 +125,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../categories">
+      <a class="sidebar-button-link " href="/categories">
     
       <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
       
@@ -131,7 +135,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../tags">
+      <a class="sidebar-button-link " href="/tags">
     
       <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
       
@@ -141,7 +145,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../archives">
+      <a class="sidebar-button-link " href="/archives">
     
       <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
       
@@ -151,7 +155,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/about">
+      <a class="sidebar-button-link " href="/page/about">
     
       <i class="sidebar-button-icon fa fa-lg fa-question"></i>
       
@@ -185,7 +189,7 @@
 
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../page/donate">
+      <a class="sidebar-button-link " href="/page/donate">
     
       <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
       
@@ -199,7 +203,7 @@
       
   <li class="sidebar-button">
     
-      <a class="sidebar-button-link " href="../../../index.xml">
+      <a class="sidebar-button-link " href="/index.xml">
     
       <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
       
@@ -246,9 +250,9 @@
   
     <span>发布在</span>
     
-      <a class="category-link" href="../../../categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
+      <a class="category-link" href="/categories/r%e8%af%ad%e8%a8%80">R语言</a>, 
     
-      <a class="category-link" href="../../../categories/%e7%bb%98%e5%9b%be">绘图</a>
+      <a class="category-link" href="/categories/%e7%bb%98%e5%9b%be">绘图</a>
     
   
 
@@ -260,93 +264,68 @@
           <div class="post-content markdown" itemprop="articleBody">
             <div class="main-content-wrap">
               <p><strong>ggplot2</strong>是R语言中非常热门的一个绘图扩展包，可以允许我们以图层的形式逐一添加图形。这篇文章我们将介绍如何在R语言中使用ggplot2绘制优美的统计类图形。</p>
-
-<h1 id="table-of-contents">目录</h1><nav id="TableOfContents">
+<!-- raw HTML omitted -->
+<p><strong>ggplot2</strong>是按照图层的形式绘制图像的，在绘制图形之前我们首先需要使用<span class="highlight-text primary">ggplot</span>函数，创建一个初始化图层。此外我们还可以<strong>ggplot</strong>函数中，指定绘图需要使用的数据框，并使用<span class="highlight-text primary">aes</span>函数，指定如何将数据框中的变量映射到图形属性（X、Y轴坐标、图形类型等）。</p>
+<p>接下来我们可以通过加号叠加图层或对图层某个部分的设定。<strong>ggplot2</strong>中绘图相关的函数，都可以使用与其相应的对象表示（<strong>ggplot2</strong>中首字母大写的变量，即相应绘图函数的对象）。所以叠加的过程，相当于将几个不同的对象，以向下覆盖的形式合并为同一个对象。</p>
+<!-- raw HTML omitted -->
+<h2 id="1图形管理">1、图形管理</h2>
+<p><strong>ggplot2</strong>中所有的图形，都可以通过<strong>geom</strong>家族中相应的函数添加。在<strong>geom</strong>家族的某些函数中，可能需要设置相应图形的特定属性（比如<span class="highlight-text primary">geom_abline</span>中需要设置<strong>slope、intercept</strong>），这一点需要视具体函数而定。此外<strong>geom</strong>家族函数还可以：</p>
 <ul>
 <li>
-<ul>
-<li><a href="#1-图形管理">1、图形管理</a></li>
-<li><a href="#2-图形属性映射">2、图形属性映射</a></li>
-<li><a href="#3-常用绘图设置函数">3、常用绘图设置函数</a></li>
-<li><a href="#4-色彩管理">4、色彩管理</a></li>
-<li><a href="#5-图形细节管理">5、图形细节管理</a></li>
-</ul></li>
+<p>指定当前图形的数据框、映射关系、以及是否去除其中的缺失值（<strong>data、mapping、na.rm</strong>参数）。</p>
+</li>
+<li>
+<p>指定绘制当前图形时，需要对数据进行的统计方式（<strong>stat</strong>参数），对于不需要统计，或者已经统计好的数据，我们可以指定<code>stat = &quot;identity&quot;</code>；如果必须对底层数据进行统计才能绘图，则需要指定合适的，与<strong>stat</strong>家族函数相应的统计方式（比如<span class="highlight-text primary">geom_boxplot</span>的统计方式为<code>stat = &quot;boxplot&quot;</code>，对应<span class="highlight-text primary">stat_boxplot</span>）。</p>
+</li>
+<li>
+<p>指定当前图形的摆放方式（<strong>position</strong>参数）：</p>
+</li>
 </ul>
-</nav>
-
-<p><strong>ggplot2</strong>是按照图层的形式绘制图像的，在绘制图形之前我们首先需要使用<span class="highlight-text primary">ggplot</span>函数，创建一个初始化图层。此外我们还可以<strong>ggplot</strong>函数中，指定绘图需要使用的数据框，并使用<span class="highlight-text primary">aes</span>函数，指定如何将数据框中的变量映射到图形属性（X、Y轴坐标、图形类型等）。</p>
-
-<p>接下来我们可以通过加号叠加图层或对图层某个部分的设定。<strong>ggplot2</strong>中绘图相关的函数，都可以使用与其相应的对象表示（<strong>ggplot2</strong>中首字母大写的变量，即相应绘图函数的对象）。所以叠加的过程，相当于将几个不同的对象，以向下覆盖的形式合并为同一个对象。</p>
-
-<p><br></p>
-
-<h2 id="1-图形管理">1、图形管理</h2>
-
-<p><strong>ggplot2</strong>中所有的图形，都可以通过<strong>geom</strong>家族中相应的函数添加。在<strong>geom</strong>家族的某些函数中，可能需要设置相应图形的特定属性（比如<span class="highlight-text primary">geom_abline</span>中需要设置<strong>slope、intercept</strong>），这一点需要视具体函数而定。此外<strong>geom</strong>家族函数还可以：</p>
-
-<ul>
-<li><p>指定当前图形的数据框、映射关系、以及是否去除其中的缺失值（<strong>data、mapping、na.rm</strong>参数）。</p></li>
-
-<li><p>指定绘制当前图形时，需要对数据进行的统计方式（<strong>stat</strong>参数），对于不需要统计，或者已经统计好的数据，我们可以指定<code>stat = &quot;identity&quot;</code>；如果必须对底层数据进行统计才能绘图，则需要指定合适的，与<strong>stat</strong>家族函数相应的统计方式（比如<span class="highlight-text primary">geom_boxplot</span>的统计方式为<code>stat = &quot;boxplot&quot;</code>，对应<span class="highlight-text primary">stat_boxplot</span>）。</p></li>
-
-<li><p>指定当前图形的摆放方式（<strong>position</strong>参数）：</p></li>
-</ul>
-
 <table>
 <thead>
 <tr>
-<th align="left">&emsp;&emsp; 函数</th>
+<th align="left">   函数</th>
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
-<td align="left">&emsp;&emsp; position_identity</td>
+<td align="left">   position_identity</td>
 <td align="left">保持原有位置</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_jitter</td>
+<td align="left">   position_jitter</td>
 <td align="left">对重叠的点形等进行小范围调整</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_jitterdodge</td>
+<td align="left">   position_jitterdodge</td>
 <td align="left">对重叠的点形等进行中小范围调整</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_dodge</td>
+<td align="left">   position_dodge</td>
 <td align="left">对重叠的点形进行中等范围调整，或将柱形等不留间隔并列放置</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_dodge2</td>
+<td align="left">   position_dodge2</td>
 <td align="left">对重叠的点形进行大范围调整，或将柱形等按一定间隔并列放置</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_stack</td>
+<td align="left">   position_stack</td>
 <td align="left">将柱形等堆叠放置</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_fill</td>
+<td align="left">   position_fill</td>
 <td align="left">将柱形等按照比例堆叠放置</td>
 </tr>
-
 <tr>
-<td align="left">&emsp;&emsp; position_nudge</td>
+<td align="left">   position_nudge</td>
 <td align="left">对标签等按特定值进行调整</td>
 </tr>
 </tbody>
 </table>
-
 <ul>
 <li>指定是否展示当前图层的图例（<strong>show.legend</strong>参数）。</li>
 </ul>
-
 <table>
 <thead>
 <tr>
@@ -354,255 +333,202 @@
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">geom_blank</td>
 <td align="left">空图形</td>
 </tr>
-
 <tr>
 <td align="left">geom_point</td>
 <td align="left">散点图（需要指定<strong>x、y</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_jitter</td>
 <td align="left">散点图（需要指定<strong>x、y</strong>，给重合的点添加偏移量）</td>
 </tr>
-
 <tr>
 <td align="left">geom_count</td>
 <td align="left">散点图（需要指定<strong>x、y</strong>，以点形大小表示重叠点的数量）</td>
 </tr>
-
 <tr>
 <td align="left">geom_hex</td>
 <td align="left">二维区间频率密度图（需要指定<strong>x、y</strong>，以六边形为单位统计频数）</td>
 </tr>
-
 <tr>
 <td align="left">geom_bin2d</td>
 <td align="left">二维区间频率密度图（需要指定<strong>x、y</strong>，以矩形为单位统计频数）</td>
 </tr>
-
 <tr>
 <td align="left">geom_spoke</td>
 <td align="left">射线（需要指定<strong>x、y、angle、radius</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_segment</td>
 <td align="left">点到点的直线（需要指定<strong>x、y、xend、yend</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_curve</td>
 <td align="left">点到点的弧线（需要指定<strong>x、y、xend、yend</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_abline</td>
 <td align="left">一元一次方程线（需要设置<strong>slope、intercept</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_hline</td>
 <td align="left">水平线（需要设置<strong>yintercept</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_vline</td>
 <td align="left">垂直线（需要设置<strong>xintercept</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_line</td>
 <td align="left">折线（需要指定<strong>x、y</strong>，按从左到右的顺序依次连接）</td>
 </tr>
-
 <tr>
 <td align="left">geom_path</td>
 <td align="left">折线（需要指定<strong>x、y</strong>，按点坐标出现的顺序依次连接）</td>
 </tr>
-
 <tr>
 <td align="left">geom_step</td>
 <td align="left">阶梯线（需要指定<strong>x、y</strong>，先水平后垂直）</td>
 </tr>
-
 <tr>
 <td align="left">geom_rect</td>
 <td align="left">矩形（需要指定<strong>xmin、ymin、xmax、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_tile</td>
 <td align="left">矩形（需要指定矩形中心点<strong>x、y</strong>，还可以指定<strong>width、height</strong>)</td>
 </tr>
-
 <tr>
 <td align="left">geom_raster</td>
 <td align="left">矩形（需要指定矩形中心点<strong>x、y</strong>，长宽固定为<strong>1</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_polygon</td>
 <td align="left">任意多边形（需要指定<strong>x、y</strong>)</td>
 </tr>
-
 <tr>
 <td align="left">geom_area</td>
 <td align="left">面积图（需要指定<strong>x、y</strong>，生成经过<strong>x、y</strong>中所有点的曲线与X轴之间围成的面积）</td>
 </tr>
-
 <tr>
 <td align="left">geom_ribbon</td>
 <td align="left">区间带图（需要指定<strong>x、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_map</td>
 <td align="left">形状填充图（需要指定形状轮廓<strong>map</strong>，形状属性<strong>map_id</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_contour</td>
 <td align="left">等高线图（需要指定<strong>x、y、z</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_sf</td>
-<td align="left">地图（需要<strong>.shp</strong>格式的文件）</td>
+<td align="left">地图（需要**.shp**格式的文件）</td>
 </tr>
-
 <tr>
 <td align="left">geom_sf_text</td>
 <td align="left">在地图中加入文字</td>
 </tr>
-
 <tr>
 <td align="left">geom_sf_label</td>
 <td align="left">在地图中加入标签</td>
 </tr>
-
 <tr>
 <td align="left">geom_histogram</td>
 <td align="left">直方图（需要指定<strong>x</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_freqpoly</td>
 <td align="left">频率密度曲线（需要指定<strong>x</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_dotplot</td>
 <td align="left">一维散点图（需要指定<strong>x</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_boxplot</td>
 <td align="left">箱线图（需要指定分类变量<strong>x</strong>，连续变量<strong>y</strong>，或者<strong>lower、upper、middle、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_violin</td>
 <td align="left">小提琴图（需要指定分类变量<strong>x</strong>，连续变量<strong>y</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_bar</td>
 <td align="left">柱形图（需要指定分类变量<strong>x</strong>，统计<strong>x</strong>的频数）</td>
 </tr>
-
 <tr>
 <td align="left">geom_col</td>
 <td align="left">柱形图（需要指定分类变量<strong>x</strong>，连续变量<strong>y</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_density</td>
 <td align="left">概率密度图（需要指定<strong>x</strong>，统计<strong>x</strong>取任意值时的概率密度）</td>
 </tr>
-
 <tr>
 <td align="left">geom_density2d</td>
 <td align="left">二维概率密度图（需要指定<strong>x、y</strong>，统计图形中任意位置的概率密度）</td>
 </tr>
-
 <tr>
 <td align="left">geom_qq</td>
 <td align="left">标准QQ图（需要指定<strong>sample</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_qq_line</td>
 <td align="left">标准QQ图中的一元一次拟合线（需要指定<strong>sample</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_quantile</td>
 <td align="left">分位数回归图（需要指定<strong>x、y</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_smooth</td>
 <td align="left">平滑线（需要指定<strong>x、y</strong>，可以设置<strong>method、formula</strong>来修改平滑线的绘制方式；设置<strong>se、level</strong>来修改置信区间的绘制方式）</td>
 </tr>
-
 <tr>
 <td align="left">geom_errorbar</td>
 <td align="left">误差区间图（需要指定<strong>x、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_errorbarh</td>
 <td align="left">水平方向的误差区间图（需要指定<strong>x、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_linerange</td>
 <td align="left">垂线表示的区间图（需要指定<strong>x、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_pointrange</td>
 <td align="left">点线表示的区间图（需要指定<strong>x、y、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_crossbar</td>
 <td align="left">柱形表示的区间图（需要指定<strong>x、y、ymin、ymax</strong>）</td>
 </tr>
-
 <tr>
 <td align="left">geom_text</td>
 <td align="left">文字（需要指定<strong>x、y、label</strong>)</td>
 </tr>
-
 <tr>
 <td align="left">geom_label</td>
 <td align="left">标签（需要指定<strong>x、y、label</strong>)</td>
 </tr>
-
 <tr>
 <td align="left">geom_rug</td>
 <td align="left">坐标轴须线</td>
 </tr>
 </tbody>
 </table>
-
-<p><br></p>
-
-<h2 id="2-图形属性映射">2、图形属性映射</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="2图形属性映射">2、图形属性映射</h2>
 <p>除了横纵坐标<strong>x、y</strong>之外，<strong>ggplot2</strong>中还可以将变量映射到图形的<strong>color、fill、alpha、linetype、shape、size</strong>属性，即<strong>轮廓颜色、填充颜色、透明度、线条类型、形状类型、形状大小</strong>（根据特定图形可能有所差异）。将变量映射到横纵坐标之外的图形属性之后，都可以自动生成图例。</p>
-
 <p>我们可以将分类型、连续型、数列型、日期型、日期时间型变量（<strong>discrete、continuous、ordinal、date、datetime</strong>）映射给图形属性。同时我们也可以使用<strong>scale</strong>家族函数，设置某个图形属性对应的变量类型。比如使用<span class="highlight-text primary">scale_alpha</span>函数设置图形颜色透明度对应的变量类型，注意对于形状大小而言，我们既可以将变量映射到形状面积、也可以映射到半径，分别对应<span class="highlight-text primary">scale_size_area、scale_radius</span>函数。</p>
-
-<p>使用以上方式将变量映射到横纵坐标之外的图形属性时，变量并不会直接被作为图形属性值使用，而是根据变量的大小、类别选取合适的图形属性值。比如我们设置<code>aes(color = &quot;blue&quot;)</code>，此时图形的轮廓颜色可能是红色（<strong>ggplot2</strong>默认调色板中的第一个颜色）。如果需要映射的变量即图形属性值本身，则应当使用相应的<strong>scale_*_identity</strong>函数来映射变量。此外如果我们需要手动设置分类变量每个取值应当对应的图形属性值，则可以使用相应的<strong>scale_*_manual</strong>函数。</p>
-
+<p>使用以上方式将变量映射到横纵坐标之外的图形属性时，变量并不会直接被作为图形属性值使用，而是根据变量的大小、类别选取合适的图形属性值。比如我们设置<code>aes(color = &quot;blue&quot;)</code>，此时图形的轮廓颜色可能是红色（<strong>ggplot2</strong>默认调色板中的第一个颜色）。如果需要映射的变量即图形属性值本身，则应当使用相应的**scale_*_identity**函数来映射变量。此外如果我们需要手动设置分类变量每个取值应当对应的图形属性值，则可以使用相应的**scale_*_manual**函数。</p>
 
 
  
@@ -628,19 +554,12 @@
   
 </div>
 
-
-<p><br></p>
-
-<h2 id="3-常用绘图设置函数">3、常用绘图设置函数</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="3常用绘图设置函数">3、常用绘图设置函数</h2>
 <p><strong>ggplot2</strong>中的坐标轴，默认情况下总是按照从小到大的顺序取值。我们可以使用<span class="highlight-text primary">scale_x_reverse、scale_y_reverse</span>设置横轴坐标从大到小取值。</p>
-
 <p>我们可以使用<span class="highlight-text primary">labs</span>，设置图像的标题、副标题、坐标轴标题、图例标题、图像说明、图像标签。此外我们还可以使用便捷函数<span class="highlight-text primary">ggtitle、xlab、ylab</span>，设置主、副标题以及X、Y轴标题。</p>
-
 <p>我们可以使用<span class="highlight-text primary">lims</span>函数，设置图形的绘制边界，或图形中某个纬度（颜色、形状等）的展示边界。这种方式相当于先将超出边界的数据去除，再用剩余的数据绘图。此外ggplot2中还有另外一种设置绘制边界的方式（参考<strong>coord_cartesian</strong>函数），可以在不去除数据的情况下，只展示图形的一部分。两种方式在一般情况下没有差异，但会对拟合线的计算方式等有影响。此外我们还可以使用便捷函数<span class="highlight-text primary">xlim、ylim</span>，设置X、Y轴方向的图形绘制边界。特别的，我们还可以使用<span class="highlight-text primary">expand_limits</span>函数，扩展图形的绘制边界。此时，将会包含<strong>expand_limits</strong>中设置的值。</p>
-
 <p>我们可以使用以下函数对坐标轴进行相应的调整。注意这些函数中都可以设置图形的绘制边界，但实现绘制边界的方式与<strong>lims</strong>函数不同。</p>
-
 <table>
 <thead>
 <tr>
@@ -648,63 +567,49 @@
 <th align="left">解释说明</th>
 </tr>
 </thead>
-
 <tbody>
 <tr>
 <td align="left">coord_trans</td>
 <td align="left">设置横纵坐标按一定规则缩放（开平方、取对数等）</td>
 </tr>
-
 <tr>
 <td align="left">coord_cartesian</td>
 <td align="left">设置横纵坐标数值范围，相当于将图像的某一部分进行缩放</td>
 </tr>
-
 <tr>
 <td align="left">coord_equal</td>
 <td align="left">设置纵横坐标轴总长度一致</td>
 </tr>
-
 <tr>
 <td align="left">coord_fixed</td>
 <td align="left">设置纵横坐标轴单位刻度对应的长度的比率</td>
 </tr>
-
 <tr>
 <td align="left">coord_flip</td>
 <td align="left">将横纵坐标轴位置互换</td>
 </tr>
-
 <tr>
 <td align="left">coord_polar</td>
 <td align="left">极性旋转坐标轴</td>
 </tr>
-
 <tr>
 <td align="left">coord_sf</td>
 <td align="left">设置坐标轴为地图坐标轴（适用于<strong>geom_sf</strong>绘制的地图）</td>
 </tr>
-
 <tr>
 <td align="left">coord_map</td>
 <td align="left">设置坐标轴为地图坐标轴（适用于<strong>geom_map</strong>绘制的地图）</td>
 </tr>
-
 <tr>
 <td align="left">coord_quickmap</td>
 <td align="left">设置坐标轴为地图坐标轴（适用于<strong>geom_map</strong>绘制的地图）</td>
 </tr>
 </tbody>
 </table>
-
 <p>与底层函数不同，<strong>ggplot2</strong>中实现一页多图的方式是将分类变量映射到图像的分面属性中，根据分类变量每个值在数据框中对应的数据，绘制成一幅单独的分面图。我们可以使用<span class="highlight-text primary">facet_grid、facet_wrap</span>函数，分面绘制图形。其中前者可以接收<strong>1-2</strong>各分类变量，取值分别表示纵横方向的分面图；而后者只能接收<strong>1</strong>各分类变量，其纵横方向的分面图的数量则需要通过<strong>nrow、ncol</strong>参数来设置。</p>
-
-<p><br></p>
-
-<h2 id="4-色彩管理">4、色彩管理</h2>
-
-<p>ggplot2中的颜色体系，与R语言本身的颜色体系类似。我们既可以通过关键字指定颜色（如<strong>red</strong>），也可以通过RGB颜色系统指定颜色（如<strong>#FFFFFF</strong>）。但ggplot2与R语言本身的调色板R略有不同，我们可以使用<strong>RColorBrewer</strong>程序包中的函数，查看、获取ggplot2中的系统调色板，以及调色板中的颜色。</p>
-
+<!-- raw HTML omitted -->
+<h2 id="4色彩管理">4、色彩管理</h2>
+<p>ggplot2中的颜色体系，与R语言本身的颜色体系类似。我们既可以通过关键字指定颜色（如<strong>red</strong>），也可以通过RGB颜色系统指定颜色（如**#FFFFFF**）。但ggplot2与R语言本身的调色板R略有不同，我们可以使用**RColorBrewer**程序包中的函数，查看、获取ggplot2中的系统调色板，以及调色板中的颜色。</p>
 
 
  
@@ -730,145 +635,177 @@
   
 </div>
 
-
 <p>我修改<strong>ggplot2</strong>中的默认调色板时，我们既可以既可以从系统调色板中选择、也可以从某个色系（或颜色集合）中手动生成调色板。注意<strong>ggplot2</strong>中图形的轮廓颜色与填充颜色可以分别对应不同的调色板，这里我们以轮廓颜色的调色板为例展开说明，设置填充颜色的调色板也可以用同样的规律。</p>
-
 <ul>
-<li><p>使用<span class="highlight-text primary">scale_color_brewer</span>函数，设置分类变量的调色板。注意这里调色板中的颜色数量是固定的，需要使用的颜色不足则只会使用其中的一部分，需要使用的颜色过多则会重复使用。</p></li>
-
-<li><p>使用<span class="highlight-text primary">scale_color_distiller</span>函数，设置连续变量的调色板。此时调色板中的颜色数量依然是固定的，但这里会使用插值法，实现在两种不同颜色中平滑过渡。</p></li>
-
-<li><p>通过<span class="highlight-text primary">scale_color_grey、scale_color_hue、scale_color_gradient、scale_color_gradient2、scale_color_gradientn</span>函数，使用灰度色系、HSV色系、双色渐变色系、通过饱和度或明亮度实现的双色渐变色系、多色渐变色系。</p></li>
-
-<li><p>通过<span class="highlight-text primary">scale_color_viridis_c、scale_color_viridis_d</span>函数，使用 <a href="https://bids.github.io/colormap/">viridis</a> 色系。</p></li>
+<li>
+<p>使用<span class="highlight-text primary">scale_color_brewer</span>函数，设置分类变量的调色板。注意这里调色板中的颜色数量是固定的，需要使用的颜色不足则只会使用其中的一部分，需要使用的颜色过多则会重复使用。</p>
+</li>
+<li>
+<p>使用<span class="highlight-text primary">scale_color_distiller</span>函数，设置连续变量的调色板。此时调色板中的颜色数量依然是固定的，但这里会使用插值法，实现在两种不同颜色中平滑过渡。</p>
+</li>
+<li>
+<p>通过<span class="highlight-text primary">scale_color_grey、scale_color_hue、scale_color_gradient、scale_color_gradient2、scale_color_gradientn</span>函数，使用灰度色系、HSV色系、双色渐变色系、通过饱和度或明亮度实现的双色渐变色系、多色渐变色系。</p>
+</li>
+<li>
+<p>通过<span class="highlight-text primary">scale_color_viridis_c、scale_color_viridis_d</span>函数，使用 <a href="https://bids.github.io/colormap/">viridis</a> 色系。</p>
+</li>
 </ul>
-
-<p><br></p>
-
-<h2 id="5-图形细节管理">5、图形细节管理</h2>
-
+<!-- raw HTML omitted -->
+<h2 id="5图形细节管理">5、图形细节管理</h2>
 <p>我们可以在<strong>ggplot2</strong>中使用<span class="highlight-text primary">theme</span>函数控制图形细节。对于图形中的边距、间距、矩形样式、线形样式、字体样式等细节的控制，需要是用到<span class="highlight-text primary">margin、unit、element_blank、element_line、element_rect、element_text</span>等函数生成的对象。注意对于矩形、线形、字体等类型的绘图细节，我们不能直接使用<strong>NULL</strong>值将其设置为空，而需要使用到<span class="highlight-text primary">element_blank</span>函数。</p>
-
-<pre><code class="language-R"># 设置边距
-margin(t = 0, r = 0, b = 0, l = 0, unit = &quot;pt&quot;)
-# 设置间距等
-unit(x, units, data=NULL)
-# 设置空样式
-element_blank()
-# 设置矩形样式
-element_rect(fill = NULL, colour = NULL, size = NULL,
-  linetype = NULL, color = NULL, inherit.blank = FALSE)
-# 设置线形样式
-element_line(colour = NULL, size = NULL, linetype = NULL,
-  lineend = NULL, color = NULL, arrow = NULL,
-  inherit.blank = FALSE)
-# 设置字体样式
-element_text(family = NULL, face = NULL, colour = NULL,
-  size = NULL, hjust = NULL, vjust = NULL, angle = NULL,
-  lineheight = NULL, color = NULL, margin = NULL, debug = NULL,
-  inherit.blank = FALSE)
-</code></pre>
-
-<p>一系列设置完备的图形细节可以看作是一套图形主题，<strong>ggplot2</strong>中预设的图形主题分别是<span class="highlight-text primary">theme_bw、theme_gray、theme_dark、theme_light、theme_minimal、theme_classic、theme_linedraw、theme_void</span>，其中绘图时默认的图形主题是<strong>theme_gray</strong>。我们可以以某个图形主题为基础，修改特定的绘图细节。以下是<strong>theme</strong>函数中支持修改的绘图细节：</p>
-
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># 设置边距</span>
+<span style="color:#a6e22e">margin</span>(t <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, r <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, b <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, l <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>, unit <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;pt&#34;</span>)
+<span style="color:#75715e"># 设置间距等</span>
+<span style="color:#a6e22e">unit</span>(x, units, data<span style="color:#f92672">=</span><span style="color:#66d9ef">NULL</span>)
+<span style="color:#75715e"># 设置空样式</span>
+<span style="color:#a6e22e">element_blank</span>()
+<span style="color:#75715e"># 设置矩形样式</span>
+<span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, colour <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, size <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+  linetype <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, color <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, inherit.blank <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#75715e"># 设置线形样式</span>
+<span style="color:#a6e22e">element_line</span>(colour <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, size <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, linetype <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+  lineend <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, color <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, arrow <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+  inherit.blank <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+<span style="color:#75715e"># 设置字体样式</span>
+<span style="color:#a6e22e">element_text</span>(family <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, face <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, colour <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+  size <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, hjust <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, vjust <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, angle <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+  lineheight <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, color <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, margin <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>, debug <span style="color:#f92672">=</span> <span style="color:#66d9ef">NULL</span>,
+  inherit.blank <span style="color:#f92672">=</span> <span style="color:#66d9ef">FALSE</span>)
+</code></pre></div><p>一系列设置完备的图形细节可以看作是一套图形主题，<strong>ggplot2</strong>中预设的图形主题分别是<span class="highlight-text primary">theme_bw、theme_gray、theme_dark、theme_light、theme_minimal、theme_classic、theme_linedraw、theme_void</span>，其中绘图时默认的图形主题是<strong>theme_gray</strong>。我们可以以某个图形主题为基础，修改特定的绘图细节。以下是<strong>theme</strong>函数中支持修改的绘图细节：</p>
 <ul>
-<li><strong>line、rect、text</strong>设置图像中所有线形、矩形、文字的样式。</li>
-<li><strong>title</strong>设置图像中所有标题的样式（包括主标题、副标题、坐标轴标题、图例标题），继承自<strong>text</strong>。</li>
-
-<li><p><strong>aspect.ratio</strong>设置纵横坐标轴总长度的比率。</p></li>
-
-<li><p><strong>plot.background</strong>设置图像区域背景色。继承自<strong>rect</strong>。</p></li>
-
-<li><p><strong>plot.margin</strong>设置图像边距。继承自<strong>margin</strong>。</p></li>
-
-<li><p><strong>plot.title、plot.subtitle、plot.caption、plot.tag</strong>设置图像标题、副标题、注释、标签的样式。继承自<strong>text</strong>。</p></li>
-
-<li><p><strong>plot.tag.position</strong>设置图像标签的位置，取值可以是<strong>topleft、top、topright、left、right、bottomleft、bottom、bottomright</strong>，也可以是<strong>c(x, y)</strong>（取值范围均在<strong>0-1</strong>之间，<strong>0.5</strong>表示居中）表示的，相对于图像的位置。</p></li>
-
-<li><p><strong>panel.background、panel.border</strong>设置主图区域背景色、边框。继承自<strong>rect</strong>。</p></li>
-
-<li><p><strong>panel.spacing</strong>设置分面图之间的间隔。参数<strong>panel.spacing.x、panel.spacing.y</strong>略。继承自<strong>unit</strong>。</p></li>
-
-<li><p><strong>panel.ontop</strong>设置是否将主图区域的背景置于最上层，通常仅用于主图区域没有背景色或背景色半透明的情况。</p></li>
-
-<li><p><strong>panel.grid</strong>设置主图区域的网格线。继承自<strong>line</strong>。我们也可以设置<strong>panel.grid.major、panel.grid.minor</strong>，使主、辅网格线间隔出现。参数<strong>panel.grid.major.x、panel.grid.major.y、panel.grid.minor.x、panel.grid.minor.y</strong>略。</p></li>
-
-<li><p><strong>strip.placement</strong>设置分面图页眉相对于坐标轴的放置位置，取值可以是<strong>inside、outside</strong>。</p></li>
-
-<li><p><strong>strip.switch.pad.grid、strip.switch.pad.wrap</strong>设置分面图标签相对于坐标轴的间隔。继承自<strong>unit</strong>。</p></li>
-
-<li><p><strong>strip.background</strong>设置分面图页眉背景的样式。继承自<strong>rect</strong>。参数<strong>strip.background.x、strip.background.y</strong>略。</p></li>
-
-<li><p><strong>strip.text</strong>设置分面图页眉标签的样式。继承自<strong>text</strong>。参数<strong>strip.text.x、strip.text.y</strong>略。</p></li>
-
-<li><p><strong>axis.title</strong>设置坐标轴标题的样式，继承自<strong>title</strong>。此外我们还可以使用<strong>axis.title.x、axis.title.y</strong>参数，分别设置X、Y坐标轴标题的样式；或者更明细的，使用<strong>axis.title.x.top、 axis.title.x.bottom、axis.title.y.left,、axis.title.y.right</strong>参数，分别设置X轴上、下以及Y轴左、右标题的样式</p></li>
-
-<li><p><strong>axis.text</strong>设置坐标轴标签的样式，继承自<strong>text</strong>。参数<strong>axis.text.x、axis.text.x.top、axis.text.x.bottom、axis.text.y、axis.text.y.left、axis.text.y.right</strong>略。</p></li>
-
-<li><p><strong>axis.ticks</strong>设置坐标轴刻度的样式，继承自<strong>line</strong>。参数<strong>axis.ticks.x、axis.ticks.x.top、axis.ticks.x.bottom、axis.ticks.y、axis.ticks.y.left、axis.ticks.y.right</strong>略。</p></li>
-
-<li><p><strong>axis.ticks.length</strong>设置坐标轴刻度的长度。参数<strong>axis.ticks.length.x、axis.ticks.length.x.top、axis.ticks.length.x.bottom、axis.ticks.length.y、axis.ticks.length.y.left、axis.ticks.length.y.right</strong>略。</p></li>
-
-<li><p><strong>axis.line</strong>设置坐标轴直线的样式。继承自<strong>line</strong>。参数<strong>axis.line.x、axis.line.x.top、axis.line.x.bottom、axis.line.y、axis.line.y.left、axis.line.y.right</strong>略。</p></li>
-
-<li><p><strong>legend.position</strong>设置图例的摆放位置。取值可以是<strong>none、left、right、bottom、top</strong>；也可以是<strong>c(x, y)</strong>表示的，相对于图像的位置。</p></li>
-
-<li><p><strong>legend.justification</strong>设置图例的位置在<strong>legend.position</strong>的基础上进行调整。取值可以是<strong>center</strong>，也可以是<strong>c(x, y)</strong>表示的偏移量。</p></li>
-
-<li><p><strong>legend.direction</strong>设置图例中的对象按水平或垂直方向依次放置，取值可以是<strong>horizontal、vertical</strong>。</p></li>
-
-<li><p><strong>legend.background</strong>设置图例背景，继承自<strong>rect</strong>。</p></li>
-
-<li><p><strong>legend.margin</strong>设置图例边距。继承自<strong>margin</strong>。</p></li>
-
-<li><p><strong>legend.spacing</strong>设置多个图例的之间的间隔。继承自<strong>unit</strong>。参数<strong>legend.spacing.x, legend.spacing.y</strong>略。</p></li>
-
-<li><p><strong>legend.title</strong>设置图例标题的样式，继承自<strong>title</strong>。</p></li>
-
-<li><p><strong>legend.title.align</strong>设置图例标题的对齐方式，取值范围在<strong>0-1</strong>之间（0表示左对齐；0.5表示居中；1表示右对齐）。</p></li>
-
-<li><p><strong>legend.text</strong>设置图例标签的样式，继承自<strong>text</strong>。</p></li>
-
-<li><p><strong>legend.text.align</strong>设置图例标签的对齐方式，取值范围在<strong>0-1</strong>之间。</p></li>
-
-<li><p><strong>legend.key</strong>设置图例形状的背影，继承自<strong>rect</strong>。</p></li>
-
-<li><p><strong>legend.key.size</strong>设置图例形状背影的大小。继承自<strong>unit</strong>。参数<strong>legend.key.height、legend.key.width</strong>略。</p></li>
-
-<li><p><strong>legend.box</strong>当有多个图例时，设置图例之间的排列方式。取值可以是<strong>horizontal、vertical</strong>。</p></li>
-
-<li><p><strong>legend.box.just</strong>当有多个图例时，设置图例相对于图例外边框的对齐方式。取值可以是<strong>left、right、bottom、top</strong>。</p></li>
-
-<li><p><strong>legend.box.background</strong>当有多个图例时，设置图例外边框。继承自<strong>rect</strong>。</p></li>
-
-<li><p><strong>legend.box.margin</strong>设置图例外边框的边距。继承自<strong>margin</strong>。</p></li>
-
-<li><p><strong>legend.box.spacing</strong>设置图例外边框到主图区域的距离。继承自<strong>unit</strong>。</p></li>
+<li>
+<p><strong>line、rect、text</strong>设置图像中所有线形、矩形、文字的样式。</p>
+</li>
+<li>
+<p><strong>title</strong>设置图像中所有标题的样式（包括主标题、副标题、坐标轴标题、图例标题），继承自<strong>text</strong>。</p>
+</li>
+<li>
+<p><strong>aspect.ratio</strong>设置纵横坐标轴总长度的比率。</p>
+</li>
+<li>
+<p><strong>plot.background</strong>设置图像区域背景色。继承自<strong>rect</strong>。</p>
+</li>
+<li>
+<p><strong>plot.margin</strong>设置图像边距。继承自<strong>margin</strong>。</p>
+</li>
+<li>
+<p><strong>plot.title、plot.subtitle、plot.caption、plot.tag</strong>设置图像标题、副标题、注释、标签的样式。继承自<strong>text</strong>。</p>
+</li>
+<li>
+<p><strong>plot.tag.position</strong>设置图像标签的位置，取值可以是<strong>topleft、top、topright、left、right、bottomleft、bottom、bottomright</strong>，也可以是<strong>c(x, y)</strong>（取值范围均在<strong>0-1</strong>之间，<strong>0.5</strong>表示居中）表示的，相对于图像的位置。</p>
+</li>
+<li>
+<p><strong>panel.background、panel.border</strong>设置主图区域背景色、边框。继承自<strong>rect</strong>。</p>
+</li>
+<li>
+<p><strong>panel.spacing</strong>设置分面图之间的间隔。参数<strong>panel.spacing.x、panel.spacing.y</strong>略。继承自<strong>unit</strong>。</p>
+</li>
+<li>
+<p><strong>panel.ontop</strong>设置是否将主图区域的背景置于最上层，通常仅用于主图区域没有背景色或背景色半透明的情况。</p>
+</li>
+<li>
+<p><strong>panel.grid</strong>设置主图区域的网格线。继承自<strong>line</strong>。我们也可以设置<strong>panel.grid.major、panel.grid.minor</strong>，使主、辅网格线间隔出现。参数<strong>panel.grid.major.x、panel.grid.major.y、panel.grid.minor.x、panel.grid.minor.y</strong>略。</p>
+</li>
+<li>
+<p><strong>strip.placement</strong>设置分面图页眉相对于坐标轴的放置位置，取值可以是<strong>inside、outside</strong>。</p>
+</li>
+<li>
+<p><strong>strip.switch.pad.grid、strip.switch.pad.wrap</strong>设置分面图标签相对于坐标轴的间隔。继承自<strong>unit</strong>。</p>
+</li>
+<li>
+<p><strong>strip.background</strong>设置分面图页眉背景的样式。继承自<strong>rect</strong>。参数<strong>strip.background.x、strip.background.y</strong>略。</p>
+</li>
+<li>
+<p><strong>strip.text</strong>设置分面图页眉标签的样式。继承自<strong>text</strong>。参数<strong>strip.text.x、strip.text.y</strong>略。</p>
+</li>
+<li>
+<p><strong>axis.title</strong>设置坐标轴标题的样式，继承自<strong>title</strong>。此外我们还可以使用<strong>axis.title.x、axis.title.y</strong>参数，分别设置X、Y坐标轴标题的样式；或者更明细的，使用<strong>axis.title.x.top、 axis.title.x.bottom、axis.title.y.left,、axis.title.y.right</strong>参数，分别设置X轴上、下以及Y轴左、右标题的样式</p>
+</li>
+<li>
+<p><strong>axis.text</strong>设置坐标轴标签的样式，继承自<strong>text</strong>。参数<strong>axis.text.x、axis.text.x.top、axis.text.x.bottom、axis.text.y、axis.text.y.left、axis.text.y.right</strong>略。</p>
+</li>
+<li>
+<p><strong>axis.ticks</strong>设置坐标轴刻度的样式，继承自<strong>line</strong>。参数<strong>axis.ticks.x、axis.ticks.x.top、axis.ticks.x.bottom、axis.ticks.y、axis.ticks.y.left、axis.ticks.y.right</strong>略。</p>
+</li>
+<li>
+<p><strong>axis.ticks.length</strong>设置坐标轴刻度的长度。参数<strong>axis.ticks.length.x、axis.ticks.length.x.top、axis.ticks.length.x.bottom、axis.ticks.length.y、axis.ticks.length.y.left、axis.ticks.length.y.right</strong>略。</p>
+</li>
+<li>
+<p><strong>axis.line</strong>设置坐标轴直线的样式。继承自<strong>line</strong>。参数<strong>axis.line.x、axis.line.x.top、axis.line.x.bottom、axis.line.y、axis.line.y.left、axis.line.y.right</strong>略。</p>
+</li>
+<li>
+<p><strong>legend.position</strong>设置图例的摆放位置。取值可以是<strong>none、left、right、bottom、top</strong>；也可以是**c(x, y)**表示的，相对于图像的位置。</p>
+</li>
+<li>
+<p><strong>legend.justification</strong>设置图例的位置在<strong>legend.position</strong>的基础上进行调整。取值可以是<strong>center</strong>，也可以是**c(x, y)**表示的偏移量。</p>
+</li>
+<li>
+<p><strong>legend.direction</strong>设置图例中的对象按水平或垂直方向依次放置，取值可以是<strong>horizontal、vertical</strong>。</p>
+</li>
+<li>
+<p><strong>legend.background</strong>设置图例背景，继承自<strong>rect</strong>。</p>
+</li>
+<li>
+<p><strong>legend.margin</strong>设置图例边距。继承自<strong>margin</strong>。</p>
+</li>
+<li>
+<p><strong>legend.spacing</strong>设置多个图例的之间的间隔。继承自<strong>unit</strong>。参数<strong>legend.spacing.x, legend.spacing.y</strong>略。</p>
+</li>
+<li>
+<p><strong>legend.title</strong>设置图例标题的样式，继承自<strong>title</strong>。</p>
+</li>
+<li>
+<p><strong>legend.title.align</strong>设置图例标题的对齐方式，取值范围在<strong>0-1</strong>之间（0表示左对齐；0.5表示居中；1表示右对齐）。</p>
+</li>
+<li>
+<p><strong>legend.text</strong>设置图例标签的样式，继承自<strong>text</strong>。</p>
+</li>
+<li>
+<p><strong>legend.text.align</strong>设置图例标签的对齐方式，取值范围在<strong>0-1</strong>之间。</p>
+</li>
+<li>
+<p><strong>legend.key</strong>设置图例形状的背影，继承自<strong>rect</strong>。</p>
+</li>
+<li>
+<p><strong>legend.key.size</strong>设置图例形状背影的大小。继承自<strong>unit</strong>。参数<strong>legend.key.height、legend.key.width</strong>略。</p>
+</li>
+<li>
+<p><strong>legend.box</strong>当有多个图例时，设置图例之间的排列方式。取值可以是<strong>horizontal、vertical</strong>。</p>
+</li>
+<li>
+<p><strong>legend.box.just</strong>当有多个图例时，设置图例相对于图例外边框的对齐方式。取值可以是<strong>left、right、bottom、top</strong>。</p>
+</li>
+<li>
+<p><strong>legend.box.background</strong>当有多个图例时，设置图例外边框。继承自<strong>rect</strong>。</p>
+</li>
+<li>
+<p><strong>legend.box.margin</strong>设置图例外边框的边距。继承自<strong>margin</strong>。</p>
+</li>
+<li>
+<p><strong>legend.box.spacing</strong>设置图例外边框到主图区域的距离。继承自<strong>unit</strong>。</p>
+</li>
 </ul>
-
-<pre><code class="language-R"># ggplot2中的绘图细节
-ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb))) + 
-  geom_point() + facet_wrap(am~., labeller = labeller(am = c(&quot;0&quot; = &quot;自动&quot;, &quot;1&quot; = &quot;手动&quot;))) +
-  labs(x = &quot;重量（千磅）&quot;, y = &quot;每加仑英里数&quot;, color = &quot;气缸数量&quot;, shape = &quot;汽化器数量&quot;,
-       title = &quot;汽车重量与每加仑英里数之间的关系&quot;, 
-       subtitle = &quot;辅助分析因素：换挡类型、气缸数量、汽化器数量&quot;, 
-       caption = &quot;汽车公路测试数据&quot;, tag = &quot;车&quot;) +
-  theme_bw() + theme(
-    plot.title = element_text(hjust = 0.5),
-    plot.subtitle = element_text(hjust = 0.5),
-    plot.caption = element_text(hjust = 0.5),
-    plot.background = element_rect(color = &quot;blue&quot;, size = 1),
-    panel.border = element_rect(color = &quot;red&quot;),
-    legend.box.background = element_rect(color = &quot;green&quot;),
-    legend.box.margin = margin(5, 5, 5, 5),
-    legend.box.just = &quot;left&quot;,
-    legend.background = element_rect(color = &quot;gray30&quot;),
-    legend.key = element_rect(fill = &quot;gray90&quot;),
-    legend.key.width = unit(15, &quot;pt&quot;),
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-R" data-lang="R"><span style="color:#75715e"># ggplot2中的绘图细节</span>
+<span style="color:#a6e22e">ggplot</span>(mtcars, <span style="color:#a6e22e">aes</span>(wt, mpg, color <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(cyl), shape <span style="color:#f92672">=</span> <span style="color:#a6e22e">as.character</span>(carb))) <span style="color:#f92672">+</span> 
+  <span style="color:#a6e22e">geom_point</span>() <span style="color:#f92672">+</span> <span style="color:#a6e22e">facet_wrap</span>(am<span style="color:#f92672">~</span>., labeller <span style="color:#f92672">=</span> <span style="color:#a6e22e">labeller</span>(am <span style="color:#f92672">=</span> <span style="color:#a6e22e">c</span>(<span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;自动&#34;</span>, <span style="color:#e6db74">&#34;1&#34;</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;手动&#34;</span>))) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">labs</span>(x <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;重量（千磅）&#34;</span>, y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;每加仑英里数&#34;</span>, color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;气缸数量&#34;</span>, shape <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;汽化器数量&#34;</span>,
+       title <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;汽车重量与每加仑英里数之间的关系&#34;</span>, 
+       subtitle <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;辅助分析因素：换挡类型、气缸数量、汽化器数量&#34;</span>, 
+       caption <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;汽车公路测试数据&#34;</span>, tag <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;车&#34;</span>) <span style="color:#f92672">+</span>
+  <span style="color:#a6e22e">theme_bw</span>() <span style="color:#f92672">+</span> <span style="color:#a6e22e">theme</span>(
+    plot.title <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>),
+    plot.subtitle <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>),
+    plot.caption <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_text</span>(hjust <span style="color:#f92672">=</span> <span style="color:#ae81ff">0.5</span>),
+    plot.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;blue&#34;</span>, size <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>),
+    panel.border <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;red&#34;</span>),
+    legend.box.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;green&#34;</span>),
+    legend.box.margin <span style="color:#f92672">=</span> <span style="color:#a6e22e">margin</span>(<span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>, <span style="color:#ae81ff">5</span>),
+    legend.box.just <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;left&#34;</span>,
+    legend.background <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(color <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gray30&#34;</span>),
+    legend.key <span style="color:#f92672">=</span> <span style="color:#a6e22e">element_rect</span>(fill <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;gray90&#34;</span>),
+    legend.key.width <span style="color:#f92672">=</span> <span style="color:#a6e22e">unit</span>(<span style="color:#ae81ff">15</span>, <span style="color:#e6db74">&#34;pt&#34;</span>),
   )
-</code></pre>
-
-
+</code></pre></div>
 
  
   
@@ -893,9 +830,7 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
   
 </div>
 
-
-<p><br></p>
-
+<!-- raw HTML omitted -->
 
 
   
@@ -910,11 +845,9 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
 <li>能否分别使用<strong>discrete_scale、continuous_scale</strong>函数，调整数列型、日期时间型变量对应的图形属性？</li>
 <li>如何使用<strong>ggplot2</strong>绘制扇形图、环形图、玫瑰图？</li>
 </ul>
-
   </div>
 </div>
-
-<p><br></p>
+<!-- raw HTML omitted -->
               
             </div>
           </div>
@@ -926,9 +859,9 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
                   <div class="post-footer-tags">
                     <span class="text-color-light text-small">标签</span><br/>
                     
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%9B%BE/">R语言绘图</a>
 
-  <a class="tag tag--primary tag--small" href="../../../tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/">R语言扩展包</a>
+  <a class="tag tag--primary tag--small" href="/tags/r%E8%AF%AD%E8%A8%80%E6%89%A9%E5%B1%95%E5%8C%85/">R语言扩展包</a>
 
                   </div>
                 
@@ -936,8 +869,8 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
             
             
 <div id="gitmentContainer"></div>
-<link rel="stylesheet" href="../../../css/gitment.css">
-<script src="../../../js/gitment.js"></script>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
 <script>
     var gitment = new Gitment({
         id: 'R语言使用ggplot2绘图',
@@ -958,7 +891,7 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" data-tooltip="使用R语言绘制图形">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" data-tooltip="使用R语言绘制图形">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -966,7 +899,7 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -984,13 +917,13 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -1021,7 +954,7 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
         </article>
         <footer id="footer" class="main-content-wrap">
   <span class="copyrights">
-    &copy; 2020 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
   </span>
 </footer>
 
@@ -1035,7 +968,7 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
           
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" data-tooltip="使用R语言绘制图形">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/%E4%BD%BF%E7%94%A8r%E8%AF%AD%E8%A8%80%E7%BB%98%E5%88%B6%E5%9B%BE%E5%BD%A2/" data-tooltip="使用R语言绘制图形">
               
                   <i class="fa fa-angle-left"></i>
                   <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
@@ -1043,7 +976,7 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
             </li>
             <li class="post-action">
               
-                <a class="post-action-btn btn btn--default tooltip--top" href="../../../2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2019/12/r%E8%AF%AD%E8%A8%80%E6%95%B0%E6%8D%AE%E6%95%B4%E7%90%86%E5%88%A9%E5%99%A8dplyr/" data-tooltip="R语言数据整理利器——dplyr">
               
                   <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
                   <i class="fa fa-angle-right"></i>
@@ -1061,13 +994,13 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
         </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
               <i class="fa fa-weibo"></i>
             </a>
           </li>
         
           <li class="post-action hide-xs">
-            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="分享到 QQ空间">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2019/12/r%E8%AF%AD%E8%A8%80%E4%BD%BF%E7%94%A8ggplot2%E7%BB%98%E5%9B%BE/" data-tooltip="分享到 QQ空间">
               <i class="fa fa-qq"></i>
             </a>
           </li>
@@ -1101,13 +1034,13 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
     <ul class="share-options">
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25BD%25BF%25E7%2594%25A8ggplot2%25E7%25BB%2598%25E5%259B%25BE%2F&amp;source=bookmark#_loginLayer_1551323382531">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25BD%25BF%25E7%2594%25A8ggplot2%25E7%25BB%2598%25E5%259B%25BE%2F&amp;source=bookmark#_loginLayer_1551323382531">
             <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
           </a>
         </li>
       
         <li class="share-option">
-          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25BD%25BF%25E7%2594%25A8ggplot2%25E7%25BB%2598%25E5%259B%25BE%2F">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2019%2F12%2Fr%25E8%25AF%25AD%25E8%25A8%2580%25E4%25BD%25BF%25E7%2594%25A8ggplot2%25E7%25BB%2598%25E5%259B%25BE%2F">
             <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
           </a>
         </li>
@@ -1162,12 +1095,12 @@ ggplot(mtcars, aes(wt, mpg, color = as.character(cyl), shape = as.character(carb
 
 
     
-<script src="../../../js/jquery.min.js"></script>
-<script src="../../../js/jquery.fancybox.min.js"></script>
-<script src="../../../highlight/highlight.pack.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
 <script>hljs.initHighlightingOnLoad();</script>
 
-<script src="../../../js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
 
 
 
@@ -1244,7 +1177,7 @@ function updateMinWidth() {
     </div>
   </div>
   
-  <script src="../../../js/qrcode.min.js"></script>
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
 
   <script type="text/javascript">
     new QRCode(document.getElementById("show-url-qrcode"), window.location.href);

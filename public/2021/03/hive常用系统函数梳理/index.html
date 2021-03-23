@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="wly">
+<meta name="keywords" content="大数据, Hive, wly的博客, supernum">
+<meta name="description" content="Hive 中的系统函数，可以帮助我们更高效的进行数据操作，本章将根据这些函数的作用进行分类梳理。">
+
+
+  
+    <meta property="article:published_time" content="2021-03-20T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-03-20T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="进军大数据">
+    
+  
+  
+    
+      <meta property="article:tag" content="大数据">
+    
+  
+
+
+
+<meta property="og:locale" content="zh-cn">
+<meta property="og:site_name" content="wly&#39;s notebook">
+<meta property="og:url" content="https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hive常用系统函数梳理">
+<meta property="og:description" content="Hive 中的系统函数，可以帮助我们更高效的进行数据操作，本章将根据这些函数的作用进行分类梳理。">
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/09/28/uQE3hF.png">
+
+
+
+
+
+  <meta property="og:image" content="https://s2.ax1x.com/2019/10/19/KmV65q.png">
+
+
+    <title>Hive常用系统函数梳理</title>
+
+    <link rel="canonical" href="https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/">
+    <link rel="icon" href="https://wly.supernum.tech/img/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="RSS" href="https://wly.supernum.tech/">
+
+    
+    
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/jquery.fancybox-thumbs.min.css" />
+    <link rel="stylesheet" href="https://wly.supernum.tech/highlight/styles/github.css">
+    
+    <link rel="stylesheet" href="https://wly.supernum.tech/css/style-nnm2spxvve8onlujjlegkkytaehyadd4ksxc1hyzzq9a2wvtrgbljqyulomn.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://wly.supernum.tech/css/custom.css">
+      
+    
+
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="/">wly&#39;s notebook</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    <div class="sidebar-profile">
+      <a href="/#about">
+        <img class="sidebar-profile-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+      </a>
+      <h4 class="sidebar-profile-name">wly</h4>
+      
+        <h5 class="sidebar-profile-bio">仍是年少不知愁</h5>
+      
+      
+        <h5 class="sidebar-profile-bio" style="margin-top: 0">Still young. Still alive</h5>
+      
+    </div>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">首页</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">分类</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">标签</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">归档</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">关于</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/supernum163" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:supernum@163.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-at"></i>
+      
+      <span class="sidebar-button-desc">Email</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/page/donate">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rmb"></i>
+      
+      <span class="sidebar-button-desc">打赏</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Hive常用系统函数梳理
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="publishDate" datetime="2021-03-20T00:00:00Z">
+        
+  
+  
+  
+  
+    2021-03-20
+  
+
+      </time>
+    
+    
+  
+  
+    <span>发布在</span>
+    
+      <a class="category-link" href="/categories/%e8%bf%9b%e5%86%9b%e5%a4%a7%e6%95%b0%e6%8d%ae">进军大数据</a>
+    
+  
+
+    
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Hive 中的系统函数，可以帮助我们更高效的进行数据操作，本章将根据这些函数的作用进行分类梳理。</p>
+<!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="1常数常数生成函数">1、常数、常数生成函数</h2>
+<ul>
+<li><code>true、false</code>真假值常数</li>
+<li><code>e、pi</code>生成自然对属底、圆周率</li>
+<li><code>current_date</code>生成当前日期</li>
+<li><code>current_timestamp</code>生成当前时间戳</li>
+<li><code>current_groups</code>生成当前系统中的所有用户组名称构成的列表</li>
+<li><code>current_user</code>生成当前系统用户名称</li>
+<li><code>current_database</code>生成当前使用的数据库名称</li>
+<li><code>current_authorizer</code>生成当前Hive授权者的名称</li>
+<li><code>logged_in_user</code>生成当前Hive登录者的名称</li>
+<li><code>version</code>生成当前Hive版本号</li>
+<li><code>uuid</code>生成通用唯一识别码</li>
+<li><code>restrict_information_schema</code>生成逻辑值，指示数据库架构是否启用了restrict模式</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select true, e(), current_date(), uuid();
+</code></pre><h2 id="2空值处理函数">2、空值处理函数</h2>
+<ul>
+<li><code>nvl</code>如果是空值则用特定的值替换，<code>nvl(NULL, 1) = 1</code></li>
+<li><code>nullif</code>如果等于特定的值则替换为空值，<code>nullif(1, 1) = NULL</code></li>
+<li><code>coalesce</code>返回多个参数中的第一个非空值，<code>coalesce(NULL, 1, 2) = 1</code></li>
+</ul>
+<h2 id="3逻辑运算函数">3、逻辑运算函数</h2>
+<ul>
+<li><code>and、or、not、!</code>求与、或、非、反，<code>!true = false</code></li>
+<li><code>&lt;、&lt;=、&gt;、&gt;=、==（=）、!=（&lt;&gt;）</code>小于、小于等于、大于、大于等于、等于、不等于比较</li>
+<li><code>&lt;=&gt;</code>不等于比较，双方都为NULL值时返回true</li>
+<li><code>between</code>比较是否在两个数值之间（左右都包含），<code>where id between 2 and 3</code></li>
+<li><code>in</code>比较是否在某个数组中，<code>where id in ( select explode(array(2, 3)) )</code></li>
+<li><code>isnull、istrue、isfalse</code>比较是否为NULL、true、false</li>
+<li><code>isnotnull、isnottrue、isnotfalse</code>比较是否不为NULL、true、false</li>
+</ul>
+<h2 id="4基础数学运算函数">4、基础数学运算函数</h2>
+<ul>
+<li><code>+、-、*、/（div）、%（mod）</code>对两个数值、两个字段、字段与数值之间，进行加减乘除、求余运算;</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">create temporary table A (id int);
+insert into A values (1), (2), (2), (3), (4);
+
+# 以下两个查询结果不同，前者只有一条记录，而后者中的记录数与表A的相同;
+select 1 + 1;
+select 1 + 1 from A;
+# 字段与数值相加时，相当于字段中的每个值分别与这个数值相加;
+select id + 1 from A;
+# 两个数值型字段可以直接相加;
+select id + id from A;
+</code></pre><ul>
+<li>
+<p><code>pmod</code>求正余数，<code>pmod(-7, 3) = 2</code></p>
+</li>
+<li>
+<p><code>factorial</code>求从1开始到n为止的连乘积，<code>factorial(5) = 120</code></p>
+</li>
+<li>
+<p>最大、最小值运算</p>
+<ul>
+<li><code>greatest</code>求多个数值中最大的一个，<code>greatest(1, 2, 3) = 3</code></li>
+<li><code>least</code>求多个数值中最小的一个，<code>least(1, 2, 3) = 1</code></li>
+</ul>
+</li>
+<li>
+<p>正反数运算</p>
+<ul>
+<li><code>sign</code>求正负号，<code>sign(-10) = -1</code></li>
+<li><code>abs</code>求绝对值，<code>abs(-10) = 10</code></li>
+<li><code>positive</code>求数值本身，<code>positive(-10) = -10</code></li>
+<li><code>negative</code>求相反数，<code>negative(10) = -10</code></li>
+</ul>
+</li>
+<li>
+<p>舍入运算</p>
+<ul>
+<li><code>floor</code>向下求整，<code>round(4.5) = 4</code></li>
+<li><code>ceil（ceiling）</code>向上求整，<code>ceil(4.4) = 5</code></li>
+<li><code>round</code>按特定精度（保留几位小数），求四舍五入，<code>round(4.5) = 5</code></li>
+<li><code>bround</code>按特定精度（保留几位小数），求<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>，<code>bround(1.45, 1) = 1.4</code></li>
+</ul>
+</li>
+<li>
+<p>指数运算</p>
+<ul>
+<li><code>pow（power）</code>指数运算，<code>pow(2, 3) = 8, pow(8, 1/3) = 2</code></li>
+<li><code>exp</code>以e为底的指数运算，<code>exp(1) = e()</code></li>
+</ul>
+</li>
+<li>
+<p>求根运算</p>
+<ul>
+<li><code>sqrt</code>求平方根，<code>sqrt(4) = 2</code></li>
+<li><code>cbrt</code>求立方根，<code>cbrt(8) = 2</code></li>
+</ul>
+</li>
+<li>
+<p>对数运算</p>
+<ul>
+<li><code>log</code>对数运算，<code>log(3, 9) = 2</code></li>
+<li><code>log2</code>以2为底的对数运算，<code>log2(8) = 3</code></li>
+<li><code>log10</code>以2为底的对数运算，<code>log10(100) = 2</code></li>
+<li><code>ln</code>以e为底的对数运算，<code>ln(e()) = 1</code></li>
+</ul>
+</li>
+<li>
+<p>三角函数运算</p>
+<ul>
+<li><code>degrees</code>将弧度转化为角度，<code>degrees(pi() / 2) = 90</code></li>
+<li><code>radians</code>将角度转化为弧度，<code>radians(180) = pi()</code></li>
+<li><code>sin</code>求正弦，<code>sin(pi() / 2) = 1</code></li>
+<li><code>cos</code>求余弦，<code>cos(pi() / 2) = 0</code></li>
+<li><code>tan</code>求正切，<code>tan(pi() / 4) = 1</code></li>
+<li><code>asin</code>求反正弦，<code>asin(1) = pi() / 2</code></li>
+<li><code>acos</code>求反余弦，<code>acos(0) = pi() / 2</code></li>
+<li><code>atan</code>求反正切，<code>atan(1) = pi() / 4</code></li>
+</ul>
+</li>
+<li>
+<p>按位运算</p>
+<ul>
+<li><code>&amp;、|、~、^</code>按位求与、或、非、异或，<code>3 ^ 1 = 2</code></li>
+<li><code>shiftleft</code>按位左移，<code>shiftleft(1, 2) = 4</code></li>
+<li><code>shiftright</code>按位右移，<code>shiftright(-4, 2) = -1</code></li>
+<li><code>shiftrightunsigned</code>按位右移（无符号），<code>shiftrightunsigned(-4, 2) = 1073741823</code></li>
+</ul>
+</li>
+<li>
+<p>进制转化</p>
+<ul>
+<li><code>conv</code>将数值（或字符串表示的数值）从一种进制模式转化为另一种进制模式，<code>conv(100, 2, 10) = 4, conv(15, 10, 16) = &quot;F&quot;</code></li>
+<li><code>bin</code>将数值转化为2进制数值，<code>bin(4) = 100</code></li>
+<li><code>hex</code>将2进制字节、10进制数值或字符串转化为16进制字符串，<code>hex(10) = &quot;A&quot;</code></li>
+<li><code>unhex</code>将16进制数值或字符串转化为2进制字节，<code>unhex(61) = binary(&quot;a&quot;)</code></li>
+</ul>
+</li>
+<li>
+<p>聚合函数</p>
+<ul>
+<li><code>count、min、max、avg、sum</code>计数、求最小值、求最大值、求平均值、求和</li>
+<li><code>percentile</code>计算序列的n分位数</li>
+<li><code>percentile_approx</code>为数值非常多的序列计算近似n分位数</li>
+<li><code>var_pop（variance）</code>计算方差，<code>var_pop(x) = sum(pow(x, 2)) / count(x) - pow(avg(x), 2)</code></li>
+<li><code>var_samp</code>计算样本方差，<code>var_samp(x) = var_pop(x) * count(x) / ( count(x) - 1 )</code></li>
+<li><code>stddev_pop（std、stddev）</code>计算标准差，<code>stddev_pop(x) = sqrt(var_pop(x))</code></li>
+<li><code>stddev_samp</code>计算样本标准差，<code>stddev_samp(x) = sqrt(var_samp(x))</code></li>
+<li><code>covar_pop</code>计算两个字段之间的协方差，<code>covar_pop(x, y) = sum(x * y) / count(x) - avg(x) * avg(y)</code></li>
+<li><code>covar_samp</code>计算两个字段之间的样本协方差，<code>covar_samp(x) = covar_pop(x) * count(x) / ( count(x) - 1 )</code></li>
+<li><code>corr</code>计算两个字段之间的相关系数，<code>corr(x, y) = covar_pop(x, y) / stddev_pop(x) / stddev_pop(y)</code></li>
+</ul>
+</li>
+<li>
+<p>线性回归相关聚合函数</p>
+<ul>
+<li><code>regr_count</code>将两个变量的取值一一对应，计算总共有多少对（如果一对取值中任意一个为空值，则忽略）</li>
+<li><code>regr_avgy</code>计算参数对中第一个参数的平均值</li>
+<li><code>regr_avgx</code>计算参数对中第二个参数的平均值</li>
+<li><code>regr_slope</code>计算参数对线性回归时的斜率，相当于<code>N*sum(x*y)-sum(x)*sum(y)) / (N*sum(x*x)-sum(x)*sum(x)</code></li>
+<li><code>regr_intercept</code>计算参数对线性回归时的截距，相当于<code>sum(y)*sum(x*x)-sum(X)*sum(x*y) )  /  ( N*sum(x*x)-sum(x)*sum(x)</code></li>
+<li><code>regr_sxx</code>用于计算regr_r2，相当于<code>sum(x*x)-sum(x)*sum(x)/N</code></li>
+<li><code>regr_syy</code>用于计算regr_r2，相当于<code>sum(y*y)-sum(y)*sum(y)/N</code></li>
+<li><code>regr_sxy</code>用于计算regr_r2，相当于<code>sum(x*y)-sum(x)*sum(y)/N</code></li>
+<li><code>regr_r2</code>计算R2系数，用于评估线性回归拟合优度，相当于<code>power(regr_sxy(y, x), 2)  / regr_sxx(y, x) / regr_syy(y, x) </code></li>
+</ul>
+</li>
+</ul>
+<h2 id="5字符串处理函数">5、字符串处理函数</h2>
+<ul>
+<li>
+<p>字符串生成</p>
+<ul>
+<li><code>space</code>生成n个空格，<code>space(2) = &quot;  &quot;</code></li>
+<li><code>repeat</code>生成n个指定字符/字符串，<code>repeat(&quot;a&quot;, 2) = &quot;aa&quot;</code></li>
+<li><code>printf</code>按照C语言printf函数的模式生成字符串，<code>printf(&quot;%s: %d%%&quot;, &quot;比率&quot;, 87) = &quot;比率: 87%&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串转化</p>
+<ul>
+<li><code>ascii</code>求字符对应的Ascii码，<code>ascii(&quot;a&quot;) = 97</code></li>
+<li><code>chr</code>求Ascii码对应的字符，<code>chr(97) = &quot;a&quot;</code></li>
+<li><code>binary</code>将字符转化为字节，<code>binary(&quot;abc&quot;) = hex(&quot;969798&quot;)</code></li>
+<li><code>encode</code>将字符串按照特定的编码方式转化为字节，<code>encode(&quot;a&quot;, &quot;ascii&quot;) = binary(&quot;a&quot;)</code></li>
+<li><code>decode</code>将字节按照特定的编码方式转化为字符串，<code>decode(unhex(&quot;61&quot;), &quot;ascii&quot;) = &quot;a&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串长度计算</p>
+<ul>
+<li><code>length（char_length、character_length）</code>计算字符串长度，<code>length(&quot;abc 中文&quot;) = 6</code></li>
+<li><code>octet_length</code>计算字符串长度（字节），<code>octet_length(&quot;abc 中文&quot;) = 10</code></li>
+</ul>
+</li>
+<li>
+<p>字符串转换</p>
+<ul>
+<li><code>lower（lcase）</code>将大写英文字符转化为小写，<code>lower(&quot;ABC&quot;) = &quot;abc&quot;</code></li>
+<li><code>upper（ucase）</code>将小写英文字符转化为大写，<code>upper(&quot;abc&quot;) = &quot;ABC&quot;</code></li>
+<li><code>initcap</code>将英文字符首字母大写，<code>initcap(&quot;abc def&quot;) = &quot;Abc Def&quot;</code></li>
+<li><code>reverse</code>将字符串反转，<code>reverse(&quot;abc 中文&quot;) = &quot;文中 cba&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串补齐、替换前后空格</p>
+<ul>
+<li><code>lpad</code>将字符串长度调整为n，不足时在左侧添加指定字符串，超出时截取前n个字符，<code>lpad(&quot;abc&quot;, 5, &quot; &quot;) = &quot;  abc&quot;</code></li>
+<li><code>rpad</code>将字符串长度调整为n，不足时在右侧添加指定字符串，超出时截取前n个字符，<code>rpad(&quot;abc&quot;, 5, &quot; &quot;) = &quot;abc  &quot;</code></li>
+<li><code>trim</code>将字符串左右的空格删除，<code>trim(&quot;  abc  &quot;) = &quot;abc&quot;</code></li>
+<li><code>ltrim</code>将字符串左侧的空格删除，<code>ltrim(&quot;  abc  &quot;) = &quot;abc  &quot;</code></li>
+<li><code>rtrim</code>将字符串右侧的空格删除，<code>rtrim(&quot;  abc  &quot;) = &quot;  abc&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串替换</p>
+<ul>
+<li><code>replace</code>将字符串中包含的某个子字符串替换为另一个字符串，<code>replace(&quot;abc&quot;, &quot;b&quot;, &quot; &quot;) = &quot;a c&quot;</code></li>
+<li><code>translate</code>将字符串中的某些字符逐一替换为对应的字符，<code>translate(&quot;abc&quot;, &quot;ac&quot;, &quot;13&quot;) = &quot;1b3&quot;</code></li>
+<li><code>mask</code>将某个字符串的各个部分，如（A-Z、a-z、0-9、其它字符、数值、日、月、年）替换为指定字符，-1表示保留原字符，<code>mask(&quot;2021.03.04&quot;, -1,-1, -1,&quot;-&quot;) = &quot;2021-03-04&quot;</code></li>
+<li><code>mask_first_n</code>将某个字符串前n个字符中的各个部分，替换为指定字符</li>
+<li><code>mask_last_n</code>将某个字符串后n个字符中的各个部分，替换为指定字符</li>
+<li><code>mask_show_first_n</code>将某个字符串前n个字符除外的各个部分，替换为指定字符</li>
+<li><code>mask_show_last_n</code>将某个字符串后n个字符除外的各个部分，替换为指定字符</li>
+</ul>
+</li>
+<li>
+<p>字符串截取</p>
+<ul>
+<li><code>substr（substring）</code>字符串截取，从某个位置开始，截取n个字符，<code>substr(&quot;abc 中文&quot;, 3, 4) = &quot;c 中文&quot;</code></li>
+<li><code>substring_index</code>字符串截取，从第一个字符开始，截取到某个字符第n次出现的位置，<code>substring_index(&quot;a,b,c&quot;, &quot;,&quot;, 2) = &quot;a,b&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串分割、拼接</p>
+<ul>
+<li><code>split</code>将字符串按某种模式切分为字符串数组，<code>split(&quot;ab ab  ab&quot;, &quot; +&quot;) = array(&quot;ab&quot;,&quot;ab&quot;,&quot;ab&quot;)</code></li>
+<li><code>concat</code>将多个字符串拼接为一个字符串，<code>concat(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;) = &quot;abc&quot;</code></li>
+<li><code>concat_ws</code>使用特定分隔符，将多个字符串或字符串数组拼接为一个字符串，<code>concat_ws(&quot; &quot;, array(&quot;a&quot;, &quot;b&quot;), &quot;c&quot;) = &quot;a b c&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串查找</p>
+<ul>
+<li><code>locate</code>返回某个字符串在另一个字符串中的位置（可以从指定位置开始查找），<code>locate(&quot;b&quot;, &quot;abcbc&quot;, 3) = 4</code></li>
+<li><code>instr</code>返回某个字符串中另一个字符串首次出现的位置，<code>instr(&quot;abc&quot;, &quot;b&quot;) = 2</code></li>
+<li><code>field</code>返回某个字符串在之后的字符串参数（构成的列表）中的位置，<code>field(&quot;b&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;) = 2</code></li>
+<li><code>elt</code>返回第n个字符串，<code>elt(2, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;) = &quot;b&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>字符串相似性计算</p>
+<ul>
+<li><code>like</code>检查字符串是否符合某种模式</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 返回true，&quot;abc&quot;能匹配模式&quot;%b%&quot; ;
+select &quot;abc&quot; like &quot;%b%&quot;;
+# 返回false，&quot;abc&quot;不能匹配模式&quot;%d%&quot; ;
+select &quot;abc&quot; like all (&quot;%b%&quot;, &quot;%d%&quot;);
+# 返回true，&quot;abc&quot;只要匹配一种模式就为真 ;
+select &quot;abc&quot; like any (&quot;%b%&quot;, &quot;%d%&quot;);
+</code></pre><ul>
+<li><code>levenshtein</code>计算两个字符串的编辑距离（由一个字符串转化为另一个所需的最少<strong>替换/插入/删除</strong>次数），<code>levenshtein(&quot;kitten&quot;, &quot;sitting&quot;) = 3</code></li>
+</ul>
+</li>
+<li>
+<p>正则表达式运算</p>
+<ul>
+<li><code>rlike（regexp）</code>检查字符串是否符合某种模式（正则表达式），<code>&quot;abc&quot; rlike &quot;(b|d)+&quot; = true</code></li>
+<li><code>regexp_extract</code>将某个字符串中，正则表达式匹配到的，（全部或第几个子模式匹配到的内容）提取出来，<code>regexp_extract(&quot;a-b&quot;, &quot;(\\w+).(\\w+)&quot;, 1) = &quot;a&quot;</code></li>
+<li><code>regexp_replace</code>将某个字符串中，正则表达式匹配到的，替换为指定的字符串，<code>regexp_replace(&quot;a-1&quot;, &quot;(\\w+)-&quot;, &quot;A.&quot;) = &quot;A.1&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>分词与词频统计</p>
+<ul>
+<li><code>sentences</code>将字符串按照句子及单词进行二级分割生成数组</li>
+<li><code>ngrams</code>计算字符串数组（或由字符串数组组成的数组）中，n个字符串同时出现频率最高的前k个组合</li>
+<li><code>context_ngrams</code>根据词频统计结果自动补全语句，给出跟在需要补全语句之后的，前k个最有可能的组合</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 分词，结果是 [ [&quot;Hello&quot;, &quot;there&quot;], [&quot;I&quot;, &quot;am&quot;, &quot;a&quot;, &quot;UDF&quot;] ] ;
+select sentences(&quot;Hello there! I am a UDF.&quot;);
+  
+# 词频统计，单个单词出现次数最多的前两名;
+# 结果是 [{&quot;ngram&quot;:[&quot;are&quot;],&quot;estfrequency&quot;:2.0},{&quot;ngram&quot;:[&quot;you&quot;],&quot;estfrequency&quot;:2.0}] ;
+select ngrams( array( array(&quot;How&quot;, &quot;are&quot;, &quot;you&quot;), array(&quot;Where&quot;, &quot;are&quot;, &quot;you&quot;) ), 1, 2) ;
+  
+# 词频统计，两个单词一起出现次数最多的组合;
+# 结果是 [{&quot;ngram&quot;:[&quot;are&quot;,&quot;you&quot;],&quot;estfrequency&quot;:2.0}];
+select ngrams( array( array(&quot;How&quot;, &quot;are&quot;, &quot;you&quot;), array(&quot;Where&quot;, &quot;are&quot;, &quot;you&quot;) ), 2, 1) ;
+  
+# 自动补全语句，需要补全的语句必须以字符串数组的形式给出，其中NULL值表示必须填补的空词;
+# 结果是 [{&quot;ngram&quot;:[&quot;you&quot;,&quot;do&quot;],&quot;estfrequency&quot;:1.0}] ;
+select context_ngrams(
+  sentences(lower(&quot;How are you! How do you do.&quot;)), 
+  array(&quot;how&quot;, &quot;do&quot;, null, null), 2
+);
+</code></pre></li>
+<li>
+<p>特征值计算</p>
+<ul>
+<li><code>hash</code>计算哈希值（散列值），<code>hash(123, &quot;abc&quot;, true) = 3105178</code></li>
+<li><code>murmur_hash</code>计算Murmur哈希值（非加密散列值），<code>murmur_hash(123, &quot;abc&quot;, true) = -1738619680</code></li>
+<li><code>mask_hash</code>计算字符串哈希值，<code>mask_hash(&quot;abc&quot;) = &quot;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&quot;</code></li>
+<li><code>base64</code>将字节转化为base64表示的字符串，<code>base64(binary(&quot;abc 中文&quot;)) = &quot;YWJjIOS4reaWhw==&quot;</code></li>
+<li><code>unbase64</code>将base64表示的字符串转化为字节，<code>unbase64(&quot;YWJjIOS4reaWhw==&quot;) = binary(&quot;abc 中文&quot;)</code></li>
+<li><code>aes_encrypt</code>将原文按照特定密匙进行<strong>aes加密</strong>，<code>base64(aes_encrypt('abc', '1234567890123456')) = &quot;Iig1Q00eW0x+EAlVOUTDNw==&quot;</code></li>
+<li><code>aes_decrypt</code>将密文按照特定密匙进行<strong>aes解密</strong>，<code>aes_decrypt(unbase64(&quot;Iig1Q00eW0x+EAlVOUTDNw==&quot;), &quot;1234567890123456&quot;) = &quot;abc&quot;</code></li>
+<li><code>soundex</code>计算<strong>soundex code</strong>（用于按英文发音索引姓名），<code>soundex(&quot;Miller&quot;) = &quot;M460&quot;</code></li>
+<li><code>crc32</code>计算<strong>CRC码</strong>（循环冗余信息码），<code>crc32(&quot;abc&quot;) = 891568578</code></li>
+<li><code>md5</code>计算<strong>md5</strong>，<code>md5(&quot;abc&quot;) = &quot;900150983cd24fb0d6963f7d28e17f72&quot;</code></li>
+<li><code>sha（sha1）</code>计算<strong>sha</strong>，<code>sha(&quot;abc&quot;) = &quot;a9993e364706816aba3e25717850c26c9cd0d89d&quot;</code></li>
+<li><code>sha2</code>计算<strong>sha2</strong>，可以选择输出多少个字节长度的结果，<code>sha2(&quot;abc&quot;, 256) = &quot;ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="6日期时间处理函数">6、日期时间处理函数</h2>
+<ul>
+<li>
+<p>日期时间转化</p>
+<ul>
+<li><code>from_unixtime</code>将时间戳（距<strong>1970-01-01</strong>过去了多少秒）转化为日期时间，<code>from_unixtime(1612310400) = &quot;2021-02-03 00:00:00&quot;</code></li>
+<li><code>unix_timestamp（to_unix_timestamp）</code>将日期时间转化为时间戳，<code>unix_timestamp(&quot;2021-02-03 00:00:00&quot;) = 1612310400</code></li>
+<li><code>from_utc_timestamp</code>将UTC日期时间，转化为特定时区的日期时间，<code>from_utc_timestamp(&quot;2021-02-03 00:00:00&quot;, &quot;PRC&quot;) = &quot;2021-02-03 08:00:00&quot;</code></li>
+<li><code>to_utc_timestamp</code>将特定时区的日期时间，转化为UTC日期时间，<code>to_utc_timestamp(&quot;2021-02-03 08:00:00&quot;, &quot;PRC&quot;) = &quot;2021-02-03 00:00:00&quot;</code></li>
+<li><code>date_format</code>将时间戳或日期时间转化为特定格式的字符串，<code>date_format(&quot;2021-02-03&quot;, &quot;yyyy/M/d&quot;) = &quot;2021/2/3&quot;</code></li>
+<li><code>to_date</code>获取日期时间对象中的日期部分，<code>to_date(&quot;2021-02-03 12:58:59&quot;) = &quot;2021-02-03&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>获取日期时间中的特定部分</p>
+<ul>
+<li><code>year</code>获取年份，<code>year(&quot;2021-02-03&quot;) = 2021</code></li>
+<li><code>quarter</code>获取季度，<code>quarter(&quot;2021-02-03&quot;) = 1</code></li>
+<li><code>month</code>获取月份，<code>month(&quot;2021-02-03&quot;) = 2</code></li>
+<li><code>weekofyear</code>获取一年中的第几个星期，<code>weekofyear(&quot;2021-02-03&quot;) = 5</code></li>
+<li><code>day（dayofmonth）</code>获取一月中的第几天，<code>day(&quot;2021-02-03&quot;) = 3</code></li>
+<li><code>dayofweek</code>获取一周中的第几天，<code>dayofweek(&quot;2021-02-03&quot;) = 4</code></li>
+<li><code>last_day</code>获取当月的最后一天，<code>last_day(&quot;2021-02-03&quot;) = &quot;2021-02-28&quot;</code></li>
+<li><code>next_day</code>获取从当天开始的下一个星期几，<code>next_day(&quot;2021-02-03&quot;, &quot;Sunday&quot;) = &quot;2021-02-07&quot;</code></li>
+<li><code>hour</code>获取小时，<code>hour(&quot;12:58:59&quot;) = 12</code></li>
+<li><code>minute</code>获取小时，<code>minute(&quot;12:58:59&quot;) = 58</code></li>
+<li><code>second</code>获取小时，<code>second(&quot;12:58:59&quot;) = 59</code></li>
+</ul>
+</li>
+<li>
+<p>日期时间向下取整</p>
+<ul>
+<li><code>floor_year</code>向下取整，精确到年份，<code>floor_year(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-01-01 00:00:00&quot;</code></li>
+<li><code>floor_quarter</code>向下取整，精确到季度，<code>floor_quarter(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-01-01 00:00:00&quot;</code></li>
+<li><code>floor_month</code>向下取整，精确到月份，<code>floor_month(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-02-01 00:00:00&quot;</code></li>
+<li><code>floor_week</code>向下取整，精确到周，<code>floor_week(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-02-01 00:00:00&quot;</code></li>
+<li><code>floor_day</code>向下取整，精确到日，<code>floor_day(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-02-03 00:00:00&quot;</code></li>
+<li><code>floor_hour</code>向下取整，精确到小时，<code>floor_hour(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-02-03 12:00:00&quot;</code></li>
+<li><code>floor_minute</code>向下取整，精确到分钟，<code>floor_minute(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-02-03 12:58:00&quot;</code></li>
+<li><code>floor_second</code>向下取整，精确到秒，<code>floor_second(cast(&quot;2021-02-03 12:58:59&quot; as timestamp)) = &quot;2021-02-03 12:58:59&quot;</code></li>
+</ul>
+</li>
+<li>
+<p>日期时间加减</p>
+<ul>
+<li><code>datediff</code>计算两个日期之间差多少天，<code>datediff(&quot;2021-02-05&quot;, &quot;2021-02-03&quot;) = 2</code></li>
+<li><code>months_between</code>计算两个日期之间差多少月，<code>months_between(&quot;2021-03-05&quot;, &quot;2021-02-03&quot;) = 1.06451613</code></li>
+<li><code>date_add</code>将指定日期加n天，<code>date_add(&quot;2021-02-03&quot;, 2) = &quot;2021-02-05&quot;</code></li>
+<li><code>date_sub</code>将指定日期减n天，<code>date_sub(&quot;2021-02-03&quot;, 2) = &quot;2021-02-01&quot;</code></li>
+<li><code>add_months</code>将指定日期加n个月，<code>add_months(&quot;2021-02-28&quot;, 1) = &quot;2021-03-31&quot;</code></li>
+<li>给日期时间加减特定单位的时间（多少秒、天等），<code>to_date(&quot;2021-02-03&quot;) - interval 10 second = &quot;2021-02-02 23:59:50&quot;</code></li>
+</ul>
+</li>
+</ul>
+<h2 id="7复杂类型对象处理函数">7、复杂类型对象处理函数</h2>
+<ul>
+<li>
+<p>array类型对象操作函数</p>
+<ul>
+<li>
+<p><code>array</code>生成数组，<code>array(1, 2, 3)</code></p>
+</li>
+<li>
+<p><code>index</code>返回数组中的第n个元素，<code>index(array(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;), 2) = &quot;c&quot;</code></p>
+</li>
+<li>
+<p><code>array_contains</code>查找数组中是否包含某个元素，<code>array_contains(array(1, 2, 3), 2) = true</code></p>
+</li>
+<li>
+<p><code>find_in_set</code>查找某个字符串在字符串表示的数组（以**,**分割元素）中的位置，<code>find_in_set(&quot;ab&quot;, &quot;abc,b,ab,c,def&quot;) = 3</code></p>
+</li>
+<li>
+<p><code>sort_array</code>给数组排序，<code>sort_array(array(&quot;b&quot;, &quot;c&quot;, &quot;a&quot;)) = array(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;)</code></p>
+</li>
+<li>
+<p><code>sort_array_by</code>当数组由struct元素构成时，按照struct中的字段给数组排序，<code>sort_array_by(array(struct(&quot;b&quot;, 100), struct(&quot;a&quot;, 200)), &quot;col1&quot;, &quot;ASC&quot;) = array(struct(&quot;a&quot;, 200), struct(&quot;b&quot;, 100))</code></p>
+</li>
+<li>
+<p><code>size</code>查询array、map中元素的个数，<code>size(array(1, 2, 3)) = 3</code></p>
+</li>
+<li>
+<p><code>collect_list</code>将序列合并为一个数组</p>
+</li>
+<li>
+<p><code>collect_set</code>将序列合并为一个数组（不包含重复值）</p>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select collect_list(id) from A;
+# 结果是 [1,2,2,3,4];
+select collect_set(id) from A;
+# 结果是 [1,2,3,4];
+</code></pre></li>
+<li>
+<p>map类型对象操作函数</p>
+<ul>
+<li><code>map</code>生成有名数组，<code>map(&quot;英语&quot;, 90, &quot;物理&quot;, NULL)</code></li>
+<li><code>str_to_map</code>将字符串按照元素分隔符、键值分隔符切分成有名数组，<code>str_to_map(&quot;英语:90,物理:NULL&quot;, &quot;,&quot;, &quot;:&quot;)</code></li>
+<li><code>map_keys</code>获取有名数组中的键，<code>map_keys(map(&quot;英语&quot;, 90, &quot;物理&quot;, NULL)) = array(&quot;英语&quot;, &quot;物理&quot;)</code></li>
+<li><code>map_values</code>获取有名数组中的值，<code>map_values(map(&quot;英语&quot;, 90, &quot;物理&quot;, NULL)) = array(90, NULL)</code></li>
+</ul>
+</li>
+<li>
+<p>struct类型对象操作函数</p>
+<ul>
+<li><code>struct</code>生成结构体，默认字段名称为 col1、col2、 &hellip;,<code>struct(90, NULL)</code></li>
+<li><code>named_struct</code>生成结构体，<code>named_struct(&quot;英语&quot;,90,&quot;物理&quot;,NULL)</code></li>
+</ul>
+</li>
+<li>
+<p>union类型对象操作函数</p>
+<ul>
+<li><code>create_union</code>生成联合体,<code>create_union(1, cast(NULL as bigint), &quot;8808-3124&quot;)</code></li>
+<li><code>extract_union</code>将联合体解析为结构体，或者获取其中的某个字段,<code>extract_union(create_union(1, 13137218094, &quot;8808-3124&quot;), 0)</code></li>
+</ul>
+</li>
+<li>
+<p>URL操作函数</p>
+<ul>
+<li><code>parse_url</code>获取URL中某一部分（<strong>PROTOCOL、HOST、AUTHORITY、PATH、QUERY、REF、FILE、USERINFO</strong>）</li>
+<li><code>parse_url_tuple</code>获取URL中的某些部分，并形成数组</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 获取URL中某一部分信息;
+# 返回结果 张三;
+select parse_url(&quot;http://wly@localhost:3939/serv?id=1&amp;name=张三#score&quot;, &quot;QUERY&quot;, &quot;name&quot;);
+  
+# 获取URL中各部分信息;
+# 返回结果 http	wly@localhost:3939	wly	localhost	/serv?id=1&amp;name=张三	/serv	id=1&amp;name=张三	张三	score;
+select parse_url_tuple(
+  &quot;http://wly@localhost:3939/serv?id=1&amp;name=张三#score&quot;,
+  &quot;PROTOCOL&quot;, &quot;AUTHORITY&quot;, &quot;USERINFO&quot;, &quot;HOST&quot;, &quot;FILE&quot;, &quot;PATH&quot;, &quot;QUERY&quot;, &quot;QUERY:name&quot;, &quot;REF&quot;
+);
+</code></pre></li>
+<li>
+<p>XML操作函数</p>
+<ul>
+<li><code>xpath</code>使用xpath获取XML文档中的某些信息</li>
+<li><code>xpath_boolean、xpath_short、xpath_int、xpath_long、xpath_double、xpath_float、xpath_number、xpath_string</code>使用xpath获取XML文档中的特定类型的信息</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 获取节点内部的文本, 返回结果 [&quot;b1&quot;,&quot;b2&quot;,&quot;b3&quot;];
+select xpath('&lt;a attr=&quot;c&quot;&gt; &lt;b&gt;b1&lt;/b&gt; &lt;b&gt;b2&lt;/b&gt; &lt;b&gt;b3&lt;/b&gt; &lt;/a&gt;', '//b/text()');
+# 获取节点属性, 返回结果 [&quot;c&quot;];
+select xpath('&lt;a attr=&quot;c&quot;&gt; &lt;b&gt;b1&lt;/b&gt; &lt;b&gt;b2&lt;/b&gt; &lt;b&gt;b3&lt;/b&gt; &lt;/a&gt;', 'a/@attr');
+# 获取是否有相应的xpath路径, 返回结果 true;
+select xpath_boolean('&lt;a&gt;b&lt;/a&gt;','a/text()');
+# 获取xpath计算结果, 返回结果 3.0;
+select xpath_number('&lt;a&gt;&lt;b&gt;1&lt;/b&gt;&lt;b&gt;2&lt;/b&gt;&lt;/a&gt;','sum(a/b)');
+</code></pre></li>
+<li>
+<p>JSON操作函数</p>
+<ul>
+<li><code>get_json_object</code>获取json文档中，json路径对应的值</li>
+<li><code>json_tuple</code>获取json文档中，根目录下多个字段的值</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 获取JSON数组中的值，返回结果 1;
+select get_json_object('{ &quot;a&quot;: [1, 2], &quot;b&quot;: {&quot;c&quot;: &quot;score&quot;, &quot;d&quot;: 100} }', &quot;$.a[0]&quot;);
+# 获取多个JSON中的值，并构成数组，返回结果 [1,2]	{&quot;c&quot;:&quot;score&quot;,&quot;d&quot;:100};
+select json_tuple('{ &quot;a&quot;: [1, 2], &quot;b&quot;: {&quot;c&quot;: &quot;score&quot;, &quot;d&quot;: 100} }', &quot;a&quot;, &quot;b&quot;);
+</code></pre></li>
+</ul>
+<h2 id="8窗口分析函数">8、窗口&amp;分析函数</h2>
+<ul>
+<li><code>first_value</code>获取序列中的第一个值</li>
+<li><code>last_value</code>获取序列中的最后一个值</li>
+<li><code>lag</code>将序列时滞n各周期</li>
+<li><code>lead</code>将序列前导n各周期</li>
+<li><code>row_number</code>获取序列号</li>
+<li><code>rank</code>获取排名，与row_number不同点在于，排名相同时都取靠前的序号</li>
+<li><code>dense_rank</code>获取排名，与rank不同点在于，排名相同的记录之后的排名，会紧接着上一个排名</li>
+<li><code>percent_rank</code>计算(当前rank - 1) / (总记录数 - 1)</li>
+<li><code>cume_dist</code>计算小于等于当前值的记录数 / 总记录数</li>
+<li><code>ntile</code>将序列按照排序分成n组，返回组别编号</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select first_value(id) over(order by id) from A;
+# 结果是 1 1 1 1 1;
+select last_value(id) over(order by id) from A;
+# 结果是 4 4 4 4 4;
+select lag(id, 1) over(order by id) from A;
+# 结果是 NULL 1 2 2 3;
+select lead(id, 1) over(order by id) from A;
+# 结果是 2 2 3 4 NULL;
+select row_number() over(order by id) from A;
+# 结果是 1 2 3 4 5;
+select rank() over(order by id) from A;
+# 结果是 1 2 2 4 5;
+select dense_rank() over(order by id) from A;
+# 结果是 1 2 2 3 4;
+select percent_rank() over(order by id) from A;
+# 结果是 0.0 0.25 0.25 0.75 1.0;
+select cume_dist() over(order by id) from A;
+# 结果是 0.2 0.6 0.6 0.8 1.0;
+select ntile(2) over(order by id) from A;
+# 结果是 1 1 1 2 2;
+</code></pre><h2 id="9表生成类函数">9、表生成类函数</h2>
+<ul>
+<li><code>explode</code>将数组、结构体等对象的每个元素转化为一条记录</li>
+<li><code>posexplode</code>将数组对象的每个元素转化为一条记录，包含元素在数组中的索引值</li>
+<li><code>inline</code>将以结构体为元素组成的数组，转化为每个结构体为一条记录，结构体中的每个字段为一个字段</li>
+<li><code>stack</code>将第2-k个参数，按照先行后列的方式转化为n条记录</li>
+<li><code>parse_url_tuple、json_tuple</code>见上文</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select name, B.* from student A 
+  lateral view explode(score) B as class, score
+  where A.id = 1;
+result&gt; name	b.class	b.score
+result&gt; 张三	语文	60
+result&gt; 张三	数学	70
+result&gt; 张三	英语	80
+
+select name, B.* from student A 
+  lateral view posexplode(class) B
+  where A.id = 1;
+result&gt; name	b.pos	b.val
+result&gt; 张三	0	语文
+result&gt; 张三	1	数学
+result&gt; 张三	2	英语
+
+select inline(array(named_struct(&quot;a&quot;, 1, &quot;b&quot;, 2), named_struct(&quot;a&quot;, 3, &quot;b&quot;, 4))) ;
+result&gt; a	b
+result&gt; 1	2
+result&gt; 3	4
+
+select stack(2, 1, 2, 3) ;
+result&gt; col0	col1
+result&gt; 1	2
+result&gt; 3	NULL
+</code></pre><h2 id="10其它常用函数">10、其它常用函数</h2>
+<ul>
+<li>
+<p><code>if</code>三目运算，如果第一个参数为真则返回第二个参数，否则返回第三个参数，<code>if(null, 1, 2) = 2</code></p>
+</li>
+<li>
+<p><code>case、when、else</code>多分支语句</p>
+</li>
+<li>
+<p><code>assert_true</code>如果参数为真则返回NULL，否则抛出错误</p>
+</li>
+<li>
+<p><code>rand</code>获取随机数</p>
+</li>
+<li>
+<p><code>format_number</code>将数值转化为特定格式的字符串，<code>format_number(1234.567, 2) = format_number(1234.567, &quot;#,###.##&quot;) = &quot;1,234.57&quot;</code></p>
+</li>
+<li>
+<p><code>trunc</code>将数值或日期时间向下取整</p>
+</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive"># 将数值保留最多两位有效小数，返回结果 1234.56;
+select trunc(1234.567, 2);
+# 将十位数以上的有效数字，返回结果 1200;
+select trunc(1234.567, -2);
+# 日期向下取整，精确到月份，返回结果 &quot;2021-02-01&quot;;
+select trunc(&quot;2021-02-03&quot;, &quot;MM&quot;);
+</code></pre><ul>
+<li><code>histogram_numeric</code>统计将序列等分为n个区间之后，每个区间的代表值和频数（参考直方图）</li>
+</ul>
+<pre><code class="language-hive" data-lang="hive">select histogram_numeric(id, 3) from A ;
+# 结果是 [{&quot;x&quot;:1.0,&quot;y&quot;:1.0},{&quot;x&quot;:2.333333333333333,&quot;y&quot;:3.0},{&quot;x&quot;:4.0,&quot;y&quot;:1.0}];
+</code></pre><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<section class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1" role="doc-endnote">
+<p>四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一 <a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</section>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">标签</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/">大数据</a>
+
+                  </div>
+                
+              
+            
+            
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="https://wly.supernum.tech/css/gitment.css">
+<script src="https://wly.supernum.tech/js/gitment.js"></script>
+<script>
+    var gitment = new Gitment({
+        id: 'Hive常用系统函数梳理',
+        owner: 'supernum163',
+        repo: 'wly',
+        oauth: {
+            client_id: '40f2576aa2a372d81a1a',
+            client_secret: 'c7f5edfb420146da2eed5a09576aaea56f402d30',
+        },
+    });
+    gitment.render('gitmentContainer')
+</script>
+
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据操作语句梳理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 <a href="https://github.com/supernum163">supernum</a>. 保留所有权
+  </span>
+</footer>
+
+      </div>
+      
+        <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+          <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="/2021/03/hive%E5%B8%B8%E7%94%A8%E6%95%B0%E6%8D%AE%E6%93%8D%E4%BD%9C%E8%AF%AD%E5%8F%A5%E6%A2%B3%E7%90%86/" data-tooltip="Hive常用数据操作语句梳理">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">上一篇</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">下一篇</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/&amp;source=bookmark#_loginLayer_1551323382531" data-tooltip="分享到 新浪微博">
+              <i class="fa fa-weibo"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default tooltip--top" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https://wly.supernum.tech/2021/03/hive%E5%B8%B8%E7%94%A8%E7%B3%BB%E7%BB%9F%E5%87%BD%E6%95%B0%E6%A2%B3%E7%90%86/" data-tooltip="分享到 QQ空间">
+              <i class="fa fa-qq"></i>
+            </a>
+          </li>
+        
+        <li class="post-action hide-xs">
+          <a class="post-action-btn btn btn--default tooltip--top show-url-btn-open" data-tooltip="分享到  微信" >
+            <i class="fa fa-weixin"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+      
+        <a class="post-action-btn btn btn--default tooltip--top" href="#gitmentContainer" data-tooltip="写下评论">
+        <i class="fa fa-commenting-o"></i>
+      
+        </a>
+      </li>
+      <li class="post-action">
+        <a class="post-action-btn btn btn--default tooltip--top" href="#" data-tooltip="回到顶部">
+          <i class="fa fa-arrow-up"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+        </div>
+        
+  <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+    <i id="btn-close-shareoptions" class="fa fa-close"></i>
+    <ul class="share-options">
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://service.weibo.com/share/share.php?title=title&amp;url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive%25E5%25B8%25B8%25E7%2594%25A8%25E7%25B3%25BB%25E7%25BB%259F%25E5%2587%25BD%25E6%2595%25B0%25E6%25A2%25B3%25E7%2590%2586%2F&amp;source=bookmark#_loginLayer_1551323382531">
+            <i class="fa fa-weibo"></i><span>分享到 新浪微博</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn" target="new" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=https%3A%2F%2Fwly.supernum.tech%2F2021%2F03%2Fhive%25E5%25B8%25B8%25E7%2594%25A8%25E7%25B3%25BB%25E7%25BB%259F%25E5%2587%25BD%25E6%2595%25B0%25E6%25A2%25B3%25E7%2590%2586%2F">
+            <i class="fa fa-qq"></i><span>分享到 QQ空间</span>
+          </a>
+        </li>
+      
+        <li class="share-option">
+          <a class="share-option-btn show-url-btn-open" href="#show-url-background">
+            <i class="fa fa-weixin"></i><span>分享到  微信</span>
+          </a>
+        </li>
+    </ul>
+  </div>
+  <div id="share-options-mask" class="share-options-mask"></div>
+
+      
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    <img id="about-card-picture" src="https://s2.ax1x.com/2019/10/19/KmV65q.png" alt="作者的图片" />
+    <h4 id="about-card-name">wly</h4>
+    
+      <div id="about-card-bio" style="margin: 0">仍是年少不知愁</div>
+    
+    
+      <div id="about-card-bio">Still young. Still alive</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        数据分析师
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        中国 上海
+      </div>
+    
+  </div>
+</div>
+
+    
+    
+  
+    <div id="cover" style="background-color: #171314;"></div>
+  
+
+
+    
+<script src="https://wly.supernum.tech/js/jquery.min.js"></script>
+<script src="https://wly.supernum.tech/js/jquery.fancybox.min.js"></script>
+<script src="https://wly.supernum.tech/highlight/highlight.pack.js"></script>
+<script>hljs.initHighlightingOnLoad();</script>
+
+<script src="https://wly.supernum.tech/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+    
+
+  <style>
+    #show-url-background {
+      margin:0px;
+      padding:0px;
+      width:100%;
+      height:100%;
+      background-color:rgba(136,135,134,0.5);
+      position:fixed;
+      display:none;
+      z-index:1000;
+    }
+    
+    #show-url-card{
+      text-align: center;
+      position: relative; 
+      top:50%; 
+      left:50%;
+      transform: translate(-50%, -50%);
+      max-width:400px;
+      max-height:400px;
+      padding:5rem 0 3rem 0;
+      background-color:#888786;
+      display:none;
+    }
+    
+    #show-url-describe{
+      margin:2rem 0 0 0;
+      color:white;
+    }
+  
+    #show-url-btn-close {
+      position: absolute; 
+      top: 5px;
+      right: 15px;
+      color:white;
+    }
+  </style>
+
+  <div id="show-url-background">
+    <div id="show-url-card">
+      <div id="show-url-btn-close">
+        <i class="fa fa-remove"></i>
+      </div>
+      <div id="show-url-qrcode"></div> 
+      <p id="show-url-describe">扫描上方二维码分享到微信</p>
+    </div>
+  </div>
+  
+  <script src="https://wly.supernum.tech/js/qrcode.min.js"></script>
+
+  <script type="text/javascript">
+    new QRCode(document.getElementById("show-url-qrcode"), window.location.href);
+    
+    $(".show-url-btn-open").click(function(){
+      $("#show-url-background").css("display", "block");
+      $("#show-url-card").css("display", "block");
+    }); 
+    $("#show-url-btn-close").click(function(){
+      $("#show-url-background").css("display", "none");
+      $("#show-url-card").css("display", "none");
+    }); 
+  </script>
+  
+
+    
+  </body>
+</html>
