@@ -90,7 +90,7 @@ select id + id from A;
   - `floor`向下求整，`round(4.5) = 4`
   - `ceil（ceiling）`向上求整，`ceil(4.4) = 5`
   - `round`按特定精度（保留几位小数），求四舍五入，`round(4.5) = 5`
-  - `bround`按特定精度（保留几位小数），求[^银行家舍入]，`bround(1.45, 1) = 1.4`
+  - `bround`按特定精度（保留几位小数），求银行家舍入[^1]，`bround(1.45, 1) = 1.4`
 
 - 指数运算
   - `pow（power）`指数运算，`pow(2, 3) = 8, pow(8, 1/3) = 2`
@@ -494,5 +494,5 @@ matchpath、replicate_rows、to_epoch_milli、width_bucket、windowingtablefunct
 -->
 
 
-[^银行家舍入]: 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
+[^1]: 四舍六入五考虑，五后非零就进一，五后为零看奇偶，五前为偶应舍去，五前为奇要进一
 

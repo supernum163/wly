@@ -50,7 +50,7 @@ source .bashrc
 
 ## 3、安装配置Hadoop
 
-- 3.1、首先[^下载Hadoop]，解压后放入**/usr/local**目录下，并配置相关环境变量。
+- 3.1、首先下载Hadoop[^1]，解压后放入**/usr/local**目录下，并配置相关环境变量。
 
 ```sh
 # 安装Hadoop
@@ -135,7 +135,7 @@ hdfs dfs -cat output/*
 
 ## 4、安装配置Hive
 
-- 4.1、首先[^下载Hive]，解压后放入**/usr/local**目录下，并配置相关环境变量。
+- 4.1、首先下载Hive[^2]，解压后放入**/usr/local**目录下，并配置相关环境变量。
 
 ```sh
 # 安装Hive
@@ -151,7 +151,7 @@ echo export PATH=\$PATH:\$HIVE_HOME/bin >> .bashrc
 
 ### 4.3、使用Derby做为matastore
 
-- 4.3.1、首先[^下载Derby]，解压后放入**/usr/local**目录下，并配置相关环境变量。
+- 4.3.1、首先下载Derby[^3]，解压后放入**/usr/local**目录下，并配置相关环境变量。
 
 ```sh
 wget https://mirrors.tuna.tsinghua.edu.cn/apache//db/derby/db-derby-10.14.2.0/db-derby-10.14.2.0-bin.tar.gz
@@ -336,6 +336,6 @@ sudo cp $HADOOP_HOME/share/hadoop/common/lib/guava-27.0-jre.jar $HIVE_HOME/lib/
 
 
 
-[^下载Hadoop]: http://hadoop.apache.org 
-[^下载Hive]: http://hive.apache.org 
-[^下载Derby]: http://db.apache.org/derby/
+[^1]: http://hadoop.apache.org 
+[^2]: http://hive.apache.org 
+[^3]: http://db.apache.org/derby/
